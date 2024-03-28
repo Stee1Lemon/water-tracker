@@ -127,7 +127,7 @@ Error generating stack: `+o.message+`
   width: 40px;
   height: 40px;
   object-fit: cover;
-`,dg="/water-tracker/assets/example-def0f7cb.png",pg=()=>z.jsxs(sg,{children:[z.jsx(cg,{children:"First Page"}),z.jsx(fg,{src:dg,alt:"Example"})]}),hg=Me.div`
+`,dg="/water-tracker/assets/example-def0f7cb.png",pg=()=>z.jsxs(sg,{children:[z.jsx(cg,{children:"First Page Test env"}),z.jsx(fg,{src:dg,alt:"Example"})]}),hg=Me.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,4 +187,4 @@ Error generating stack: `+o.message+`
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 100% 100%;
-`,_g="";function $g(){return console.log(_g),z.jsx(Pg,{children:z.jsx(Gh,{children:z.jsxs(wn,{path:"/",element:z.jsx(mv,{}),children:[z.jsx(wn,{path:"/first",element:z.jsx(pg,{})}),z.jsx(wn,{path:"/second",element:z.jsx(yg,{}),children:z.jsx(wn,{path:":half",element:z.jsx(Sg,{})})}),z.jsx(wn,{path:"*",element:z.jsx(Eg,{})})]})})})}Ml.createRoot(document.getElementById("root")).render(z.jsx(sn.StrictMode,{children:z.jsx(e0,{basename:"/water-tracker",children:z.jsx($g,{})})}));
+`,_g="123";function $g(){return console.log(_g),z.jsx(Pg,{children:z.jsx(Gh,{children:z.jsxs(wn,{path:"/",element:z.jsx(mv,{}),children:[z.jsx(wn,{path:"/first",element:z.jsx(pg,{})}),z.jsx(wn,{path:"/second",element:z.jsx(yg,{}),children:z.jsx(wn,{path:":half",element:z.jsx(Sg,{})})}),z.jsx(wn,{path:"*",element:z.jsx(Eg,{})})]})})})}Ml.createRoot(document.getElementById("root")).render(z.jsx(sn.StrictMode,{children:z.jsx(e0,{basename:"/water-tracker",children:z.jsx($g,{})})}));
