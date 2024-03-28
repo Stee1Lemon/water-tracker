@@ -127,7 +127,7 @@ Error generating stack: `+o.message+`
   width: 40px;
   height: 40px;
   object-fit: cover;
-`,dg="/water-tracker/assets/example-def0f7cb.png",pg=()=>z.jsxs(sg,{children:[z.jsx(cg,{children:"First Page Test env"}),z.jsx(fg,{src:dg,alt:"Example"})]}),hg=Me.div`
+`,dg="/water-tracker/assets/example-def0f7cb.png",pg=()=>{const e="123";return z.jsxs(sg,{children:[z.jsx(cg,{children:"First Page Test env"}),z.jsxs("p",{children:["$",e]}),z.jsx(fg,{src:dg,alt:"Example"})]})},hg=Me.div`
   display: flex;
   justify-content: center;
   align-items: center;
