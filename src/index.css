@@ -1,3 +1,17 @@
+:root {
+  /*Primary colors*/
+  --primary-light: #fff;
+  --primary-dark: #2f2f2f;
+  --primary-focus: #407bff;
+
+  /* Secondary colors */
+  --secondary-first: #ecf2ff;
+  --secondary-second: #ef5050;
+  --secondary-third: #9ebbff;
+  --secondary-fourth: #ff9d43;
+  --secondary-fifth: #d7e3ff;
+}
+
 body {
   background-color: #dadada;
   /* background-image: url('./assets/background.png'); */
