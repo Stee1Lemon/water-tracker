@@ -8,7 +8,7 @@ import {
   MenuButton,
   DropdownMenu,
   DropDownElement,
-  DropDownButton
+  DropDownButton,
 } from './HeaderSigned.styled';
 import { useState } from 'react';
 import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
@@ -44,18 +44,16 @@ export const HeaderSigned = () => {
           <MenuButton onClick={toggleMenu}>
             <UserMenu />
           </MenuButton>
-          {isMenuVisible && (
-            <DropdownMenu>
-              <DropDownElement>
-                <UserCog />
-                <DropDownButton>Setting</DropDownButton>
-              </DropDownElement>
-              <DropDownElement>
-                <UserLogOut />
-                <DropDownButton>Log out</DropDownButton>
-              </DropDownElement>
-            </DropdownMenu>
-          )}
+          <DropdownMenu className={isMenuVisible ? 'visible' : ''}>
+            <DropDownElement>
+              <UserCog />
+              <DropDownButton>Setting</DropDownButton>
+            </DropDownElement>
+            <DropDownElement>
+              <UserLogOut />
+              <DropDownButton>Log out</DropDownButton>
+            </DropDownElement>
+          </DropdownMenu>
         </UserContext>
       </Navigation>
     </HeaderContainer>

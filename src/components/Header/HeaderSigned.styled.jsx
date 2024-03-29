@@ -44,12 +44,10 @@ export const UserContext = styled.div`
   gap: 8px;
   align-items: center;
   color: var(--primary-focus);
-
-  &:hover {
-    color: #356ac8;
-  }
+  cursor: default;
 
   &:link,
+  &:hover,
   &:visited,
   &:active {
     text-decoration: none;
@@ -86,6 +84,15 @@ export const DropdownMenu = styled.div`
   display: flex;
   flex-wrap: wrap;
   row-gap: 16px;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
 `;
 
 export const DropDownElement = styled.div`
