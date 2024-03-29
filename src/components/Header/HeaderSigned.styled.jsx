@@ -11,14 +11,23 @@ export const Navigation = styled.nav`
   padding-top: 12px;
   padding-left: 188px;
   padding-right: 188px;
+
+  @media (max-width: 1439px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+  }
 `;
 
 export const LogoLink = styled(Link)`
   display: flex;
   max-height: 48px;
-  font:
-    700 12px/1.5 'Roboto',
-    sans-serif;
+  font: 700 12px/1.5 'Roboto', sans-serif;
   gap: 4px;
   align-items: center;
   color: var(--primary-focus);
@@ -32,15 +41,21 @@ export const LogoLink = styled(Link)`
   &:active {
     text-decoration: none;
   }
+
+  @media (max-width: 1439px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const UserContext = styled.div`
   position: relative;
   display: flex;
   max-height: 48px;
-  font:
-    400 18px/1.5 'Roboto',
-    sans-serif;
+  font: 400 18px/1.5 'Roboto', sans-serif;
   gap: 8px;
   align-items: center;
   color: var(--primary-focus);
@@ -51,6 +66,14 @@ export const UserContext = styled.div`
   &:visited,
   &:active {
     text-decoration: none;
+  }
+
+  @media (max-width: 1439px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 16px;
   }
 `;
 
@@ -67,6 +90,20 @@ export const MenuButton = styled.button`
   svg {
     width: 16px;
     height: 16px;
+  }
+
+  @media (max-width: 1439px) {
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
   }
 `;
 
@@ -105,26 +142,26 @@ export const DropDownElement = styled.div`
 `;
 
 export const DropDownButton = styled.button`
-background: none;
-border: none;
-padding: 0;
-margin: 0;
-color: #407BFF;
-font-family: inherit;
-font-size: inherit;
-cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #407BFF;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
 
-&:hover {
-  color: #356ac8;
-}
+  &:hover {
+    color: #356ac8;
+  }
 
-&:focus {
-  outline: none;
-}
+  &:focus {
+    outline: none;
+  }
 
-&:active {
-  outline: none;
-}
+  &:active {
+    outline: none;
+  }
 `;
 
 export const ImgWrapper = styled.div`

@@ -13,7 +13,6 @@ export const Navigation = styled.nav`
   @media (max-width: 1439px) {
     padding-left: 32px;
     padding-right: 32px;
-    background-color: red;
   }
 
   @media (max-width: 767px) {
