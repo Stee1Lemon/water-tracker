@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const ContainerRef = styled.div`
+  width: 100%;
+  max-width: 320px;
   margin: 0 auto;
-  padding: 0 15px;
-
-  @media screen and(min - width: 320px) {
-    max-width: 320px;
-    padding: 0 20px;
-  }
+  padding: 0 20px;
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
@@ -16,6 +13,6 @@ export const ContainerRef = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 1440px;
-    padding: 0 100px;
+    padding: 0 112px;
   }
 `;
