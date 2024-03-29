@@ -9,14 +9,24 @@ export const Navigation = styled.nav`
   padding-top: 12px;
   padding-left: 188px;
   padding-right: 188px;
+
+  @media (max-width: 1439px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color: red;
+  }
+
+  @media (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+  }
 `;
 
 export const LogoLink = styled(Link)`
   display: flex;
   max-height: 48px;
-  font:
-    700 12px/1.5 'Roboto',
-    sans-serif;
+  font: 700 12px/1.5 'Roboto', sans-serif;
   gap: 4px;
   align-items: center;
   color: var(--primary-focus);
@@ -30,15 +40,21 @@ export const LogoLink = styled(Link)`
   &:active {
     text-decoration: none;
   }
+
+  @media (max-width: 1439px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const SignInLink = styled(Link)`
   width: 90px;
   display: flex;
   max-height: 48px;
-  font:
-    400 18px/1.5 'Roboto',
-    sans-serif;
+  font: 400 18px/1.5 'Roboto', sans-serif;
   gap: 8px;
   align-items: center;
   color: var(--primary-focus);
@@ -52,7 +68,17 @@ export const SignInLink = styled(Link)`
   &:active {
     text-decoration: none;
   }
+
+  @media (max-width: 1439px) {
+    width: auto;
+    font-size: 18px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
 `;
+
 
 export const SignWrapper = styled.svg`
   width: 28px;
