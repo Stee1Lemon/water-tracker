@@ -19,10 +19,10 @@ export const LogoLink = styled(Link)`
     sans-serif;
   gap: 4px;
   align-items: center;
-  color: #407BFF; // Основной цвет текста
+  color: var(--primary-focus);
 
   &:hover {
-    color: #356ac8; // Цвет текста при наведении
+    color: #356ac8;
   }
 
   &:link,
@@ -41,7 +41,7 @@ export const SignInLink = styled(Link)`
     sans-serif;
   gap: 8px;
   align-items: center;
-  color: #407BFF;
+  color: var(--primary-focus);
 
   &:hover {
     color: #356ac8;
