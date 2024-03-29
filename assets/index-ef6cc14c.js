@@ -188,13 +188,10 @@ Error generating stack: `+o.message+`
   background-position: left top;
   background-size: 100% 100%;
 `,_v=()=>N.jsx("h1",{children:"WelcomePage"}),$v=()=>N.jsx("h2",{children:"SignupPage"}),Nv=()=>N.jsx("h2",{children:"Signin Page"}),Rv=sr.div`
+  width: 100%;
+  max-width: 320px;
   margin: 0 auto;
-  padding: 0 15px;
-
-  @media screen and(min - width: 320px) {
-    max-width: 320px;
-    padding: 0 20px;
-  }
+  padding: 0 20px;
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
@@ -203,6 +200,6 @@ Error generating stack: `+o.message+`
 
   @media screen and (min-width: 1440px) {
     max-width: 1440px;
-    padding: 0 100px;
+    padding: 0 112px;
   }
 `,Tv=({children:e})=>N.jsx(Rv,{children:e}),Ov=()=>N.jsx(N.Fragment,{children:N.jsx(Tv,{children:N.jsx("h2",{children:"Home Page"})})});function Lv(){return N.jsx(Pv,{children:N.jsx(Gh,{children:N.jsxs(rt,{path:"/",element:N.jsx(mg,{}),children:[N.jsx(rt,{path:"/welcome",element:N.jsx(_v,{})}),N.jsx(rt,{path:"/signup",element:N.jsx($v,{})}),N.jsx(rt,{path:"/signin",element:N.jsx(Nv,{})}),N.jsx(rt,{path:"/home",element:N.jsx(Ov,{})}),N.jsx(rt,{path:"/first",element:N.jsx(pv,{})}),N.jsx(rt,{path:"/second",element:N.jsx(yv,{}),children:N.jsx(rt,{path:":half",element:N.jsx(Sv,{})})}),N.jsx(rt,{path:"*",element:N.jsx(Ev,{})})]})})})}Fl.createRoot(document.getElementById("root")).render(N.jsx(cn.StrictMode,{children:N.jsx(e0,{basename:"/water-tracker",children:N.jsx(Lv,{})})}));
