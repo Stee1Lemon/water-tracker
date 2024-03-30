@@ -1,5 +1,12 @@
+import { SignupForm } from 'components/SignupForm/SignupForm';
+import { FormContainer } from './SignupPage.styled';
+
 const SignupPage = () => {
-  return <h2>SignupPage</h2>;
+  return (
+    <FormContainer>
+      <SignupForm />
+    </FormContainer>
+  );
 };
 
 export default SignupPage;
