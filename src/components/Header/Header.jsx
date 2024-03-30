@@ -1,51 +1,31 @@
 import {
   HeaderContainer,
   Navigation,
-  StyledLink,
-  IconWrapper,
+  LogoLink,
+  SignInLink,
+  LogoWrapper,
+  SignWrapper,
 } from './Header.styled';
-import sprite from 'assets/sprite.svg';
+import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
+import { ReactComponent as OutlineIcon } from './headerIcons/Outline.svg';
 
 export const Header = () => {
   return (
     <HeaderContainer>
       <Navigation>
-        <StyledLink to="/first">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          First
-        </StyledLink>
-        <StyledLink to="/second">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Second
-        </StyledLink>
-        <StyledLink to="/welcome">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Welcome
-        </StyledLink>
-        <StyledLink to="/signin">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Sign In
-        </StyledLink>
-        <StyledLink to="/signup">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Sign Up
-        </StyledLink>
-        <StyledLink to="/home">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Home
-        </StyledLink>
+        <LogoLink to="/welcome">
+          <LogoWrapper>
+            <LogoIcon />
+          </LogoWrapper>
+          TRACKER<br /> 
+          OF WATER
+        </LogoLink>
+        <SignInLink to="/signin">
+          Sign in
+          <SignWrapper>
+            <OutlineIcon />
+          </SignWrapper>
+        </SignInLink>
       </Navigation>
     </HeaderContainer>
   );

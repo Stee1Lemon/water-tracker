@@ -1,51 +1,90 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
-  padding: 20px;
-`;
+export const HeaderContainer = styled.div``;
 
 export const Navigation = styled.nav`
   display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-left: 188px;
+  padding-right: 188px;
 
-export const StyledLink = styled(Link)`
-  padding: 8px 16px;
-  color: #ffffff; /* White text color */
-  text-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
-  transition:
-    color 0.3s,
-    text-shadow 0.3s;
+  @media (max-width: 1439px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 
-  &:hover,
-  &:focus {
-    color: #00baff; /* Blue text color on hover/focus */
-    text-shadow:
-      0 0 5px #00baff,
-      0 0 10px #00baff,
-      0 0 20px #00baff,
-      0 0 40px #00baff,
-      0 0 80px #00baff;
+  @media (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
   }
 `;
 
-export const IconWrapper = styled.svg`
-  width: ${(props) => props.size || '12px'};
-  height: ${(props) => props.size || '12px'};
-  fill: ${(props) => props.color || '#ffffff'};
-  display: inline-block;
-  margin-right: 5px;
-  box-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
+export const LogoLink = styled(Link)`
+  display: flex;
+  max-height: 48px;
+  font: 700 12px/1.5 'Roboto', sans-serif;
+  gap: 4px;
+  align-items: center;
+  color: var(--primary-focus);
+
+  &:hover {
+    color: #356ac8;
+  }
+
+  &:link,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+
+  @media (max-width: 1439px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
+`;
+
+export const SignInLink = styled(Link)`
+  width: 90px;
+  display: flex;
+  max-height: 48px;
+  font: 400 18px/1.5 'Roboto', sans-serif;
+  gap: 8px;
+  align-items: center;
+  color: var(--primary-focus);
+
+  &:hover {
+    color: #356ac8;
+  }
+
+  &:link,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+
+  @media (max-width: 1439px) {
+    width: auto;
+    font-size: 18px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+`;
+
+
+export const SignWrapper = styled.svg`
+  width: 28px;
+  height: 28px;
+`;
+
+export const LogoWrapper = styled.svg`
+  width: 40px;
+  height: 48px;
 `;
