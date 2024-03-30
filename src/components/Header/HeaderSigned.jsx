@@ -29,8 +29,18 @@ import {
   ArrowUpWrapper,
   SettingsP1,
   SettingsP2,
+  SettingsP3,
   SettingsButton1,
   UploadPhotoDiv,
+  GenderIdentityDiv,
+  OldPasswordDiv,
+  ShowPasswordWrapper,
+  SettingsRadioLabel,
+  SettingsRadioForm,
+  RadioLabelOption,
+  RadioInput,
+  OldPasswordLabel,
+  PasswordInput,
 } from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
@@ -39,6 +49,7 @@ import { ReactComponent as UserCog } from './headerIcons/UserCog.svg';
 import { ReactComponent as UserLogOut } from './headerIcons/UserLogOut.svg';
 import { ReactComponent as Xmark } from './headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from './headerIcons/ArrowUp.svg';
+import { ReactComponent as ShowPassword } from './headerIcons/ShowPassword.svg';
 import TemplateImg from './headerIcons/Template.jpg';
 import Modal from 'components/Modal/Modal';
 
@@ -123,7 +134,12 @@ export const HeaderSigned = () => {
             <SettingsP2>Your Photo</SettingsP2>
             <UploadPhotoDiv>
               <SettingsImgWrapper>
-                <img src={TemplateImg} alt="User Profile Picture" width={80} height={80}/>
+                <img
+                  src={TemplateImg}
+                  alt="User Profile Picture"
+                  width={80}
+                  height={80}
+                />
               </SettingsImgWrapper>
               <ArrowUpWrapper>
                 <ArrowUp />
@@ -131,7 +147,44 @@ export const HeaderSigned = () => {
               <SettingsButton1>Upload a photo</SettingsButton1>
             </UploadPhotoDiv>
           </SettingsDiv2>
-          <SettingsDiv3></SettingsDiv3>
+          <SettingsDiv3>
+            <GenderIdentityDiv>
+              <SettingsRadioForm>
+                <SettingsRadioLabel htmlFor="genderIdentity">
+                  Your gender identity
+                </SettingsRadioLabel>
+                <RadioInput
+                  type="radio"
+                  id="woman"
+                  name="gender"
+                  value="woman"
+                ></RadioInput>
+                <RadioLabelOption htmlFor="woman">Woman</RadioLabelOption>
+                <RadioInput 
+                  type="radio" 
+                  id="man" 
+                  name="gender" 
+                  value="man">
+                </RadioInput>
+                <RadioLabelOption htmlFor="man">Man</RadioLabelOption>
+              </SettingsRadioForm>
+            </GenderIdentityDiv>
+            <OldPasswordDiv>
+              <SettingsP3>Password</SettingsP3>
+              <OldPasswordLabel htmlFor="oldPassword">Outdated password:</OldPasswordLabel>
+              <div className="password-input-container">
+                <PasswordInput
+                  type="password"
+                  id="oldPassword"
+                  placeholder="Password"
+                />
+                {/* add onlick */}
+                <ShowPasswordWrapper>
+                  <ShowPassword height="16px" width="16px" />
+                </ShowPasswordWrapper>
+              </div>
+            </OldPasswordDiv>
+          </SettingsDiv3>
           <SettingsDiv4></SettingsDiv4>
           <SettingsDiv5></SettingsDiv5>
           <SettingsDiv6></SettingsDiv6>

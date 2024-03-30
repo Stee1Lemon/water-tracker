@@ -194,6 +194,14 @@ export const SettingsImgWrapper = styled.div`
   height: 80px;
 `;
 
+export const ShowPasswordWrapper = styled.button`
+  width: 24px;
+  height: 24px;
+  padding: 0px;
+  border: 0px;
+  padding-top: 4px;
+`;
+
 // LogOutStyles
 
 export const ModalLogOutContainer = styled.div`
@@ -325,10 +333,10 @@ export const SettingsDiv2 = styled.div`
 
 export const SettingsDiv3 = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 960px;
   height: 108px;
-  align-items: center;
+  align-items: start;
   justify-content: start;
 `;
 
@@ -366,6 +374,69 @@ export const UploadPhotoDiv = styled.div`
   align-items: center;
 `;
 
+export const GenderIdentityDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+`;
+
+export const SettingsRadioLabel = styled.label`
+  display: flex;
+  align-items: start;
+  font:
+    500 18px/1.5 'Roboto',
+    sans-serif;
+`;
+
+export const SettingsRadioForm = styled.label`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 182px;
+  row-gap: 4px;
+  column-gap: 8px;
+`;
+
+export const RadioLabelOption = styled.div`
+  margin: 0px;
+  font:
+    400 16px/1.5 'Roboto',
+    sans-serif;
+`;
+
+export const RadioInput = styled.input``;
+
+export const OldPasswordDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+`;
+
+export const OldPasswordLabel = styled.div`
+  margin: 0px;
+  font:
+    400 16px/1.5 'Roboto',
+    sans-serif;
+`;
+
+export const PasswordInput = styled.input`
+  width: 392px;
+  height: 44px;
+  padding: 12px 10px 12px 10px;
+  border-radius: 6px;
+  border: 1px solid #D7E3FF;
+  color: #D7E3FF;
+
+  &::placeholder {
+    color: #D7E3FF;
+  }
+
+  &::active {
+    color: #407bff;
+  }
+`;
+
 export const SettingsP1 = styled.div`
   margin: 0px;
   font:
@@ -374,6 +445,14 @@ export const SettingsP1 = styled.div`
 `;
 
 export const SettingsP2 = styled.div`
+  margin: 0px;
+  font:
+    500 18px/1.5 'Roboto',
+    sans-serif;
+  width: 100%;
+`;
+
+export const SettingsP3 = styled.div`
   margin: 0px;
   font:
     500 18px/1.5 'Roboto',
