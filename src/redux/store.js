@@ -11,15 +11,25 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { rootReducer } from './root/rootSlice.js';
+import { authReducer } from './auth/authSlice.js';
 
 const testPersistConfig = {
   key: 'test',
   storage,
 };
 
+const PersistConfig = {
+  key: 'root',
+  storage,
+}
+
 export const store = configureStore({
   reducer: {
+    root: rootReducer,
     test: persistReducer(testPersistConfig, testReducer),
+    auth: persistReducer((PersistConfig, authReducer),)
+    
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
