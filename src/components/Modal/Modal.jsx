@@ -1,13 +1,11 @@
-import { ModalOverlay, ModalContainer } from './Modal.styled';
+import { ModalOverlay } from './Modal.styled';
 
-const Modal = ({ children, isOpen, onClose, size, style }) => {
+const Modal = ({ children, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
     <ModalOverlay onClick={onClose}>
-      <ModalContainer size={size} onClick={e => e.stopPropagation()} style={style}>
-        {children}
-      </ModalContainer>
+      {children}
     </ModalOverlay>
   );
 };
