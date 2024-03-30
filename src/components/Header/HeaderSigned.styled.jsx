@@ -173,4 +173,3 @@ export const LogoWrapper = styled.svg`
   width: 40px;
   height: 48px;
 `;
-
