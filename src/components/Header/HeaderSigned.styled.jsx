@@ -199,7 +199,25 @@ export const ShowPasswordWrapper = styled.button`
   height: 24px;
   padding: 0px;
   border: 0px;
+  background: #fff;
   padding-top: 4px;
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  cursor: pointer;
+`;
+
+export const ShowPasswordWrapper2 = styled.button`
+  width: 24px;
+  height: 24px;
+  padding: 0px;
+  border: 0px;
+  background: #fff;
+  padding-top: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  cursor: pointer;
 `;
 
 // LogOutStyles
@@ -310,6 +328,7 @@ export const ModalSettingContainer = styled.div`
   align-items: start;
   max-height: 80vh;
   overflow-y: auto;
+  padding: 32px 24px 32px 24px;
 `;
 
 export const SettingsDiv1 = styled.div`
@@ -319,6 +338,7 @@ export const SettingsDiv1 = styled.div`
   height: 32px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 24px;
 `;
 
 export const SettingsDiv2 = styled.div`
@@ -329,6 +349,7 @@ export const SettingsDiv2 = styled.div`
   align-items: center;
   justify-content: start;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 `;
 
 export const SettingsDiv3 = styled.div`
@@ -338,33 +359,56 @@ export const SettingsDiv3 = styled.div`
   height: 108px;
   align-items: start;
   justify-content: start;
+  margin-bottom: 12px;
+  column-gap: 234px;
 `;
 
 export const SettingsDiv4 = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 960px;
   height: 108px;
   align-items: center;
   justify-content: start;
+  column-gap: 24px;
 `;
 
 export const SettingsDiv5 = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 960px;
   height: 108px;
   align-items: center;
   justify-content: start;
+  column-gap: 24px;
+  margin-bottom: 24px;
 `;
 
 export const SettingsDiv6 = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 960px;
   height: 108px;
   align-items: center;
-  justify-content: start;
+  justify-content: end;
+  gap: 24px;
+`;
+
+export const SaveButton = styled.button`
+  width: 160px;
+  height: 44px;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font:
+    500 18px/1.5 'Roboto',
+    sans-serif;
+  color: #fff;
+  background: #407BFF;
+  border: 1px solid transparent;
+  border-radius: 10px;
 `;
 
 export const UploadPhotoDiv = styled.div`
@@ -406,18 +450,22 @@ export const RadioLabelOption = styled.div`
 
 export const RadioInput = styled.input``;
 
-export const OldPasswordDiv = styled.div`
+export const PasswordDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 4px;
 `;
 
-export const OldPasswordLabel = styled.div`
+export const PasswordLabel = styled.div`
   margin: 0px;
   font:
     400 16px/1.5 'Roboto',
     sans-serif;
+`;
+
+export const PasswordInputContainer = styled.div`
+  position: relative;
 `;
 
 export const PasswordInput = styled.input`
@@ -425,11 +473,11 @@ export const PasswordInput = styled.input`
   height: 44px;
   padding: 12px 10px 12px 10px;
   border-radius: 6px;
-  border: 1px solid #D7E3FF;
-  color: #D7E3FF;
+  border: 1px solid #d7e3ff;
+  color: #d7e3ff;
 
   &::placeholder {
-    color: #D7E3FF;
+    color: #d7e3ff;
   }
 
   &::active {

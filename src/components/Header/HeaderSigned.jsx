@@ -33,14 +33,17 @@ import {
   SettingsButton1,
   UploadPhotoDiv,
   GenderIdentityDiv,
-  OldPasswordDiv,
+  PasswordDiv,
   ShowPasswordWrapper,
+  ShowPasswordWrapper2,
   SettingsRadioLabel,
   SettingsRadioForm,
   RadioLabelOption,
   RadioInput,
-  OldPasswordLabel,
+  PasswordLabel,
   PasswordInput,
+  PasswordInputContainer,
+  SaveButton,
 } from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
@@ -160,19 +163,21 @@ export const HeaderSigned = () => {
                   value="woman"
                 ></RadioInput>
                 <RadioLabelOption htmlFor="woman">Woman</RadioLabelOption>
-                <RadioInput 
-                  type="radio" 
-                  id="man" 
-                  name="gender" 
-                  value="man">
-                </RadioInput>
+                <RadioInput
+                  type="radio"
+                  id="man"
+                  name="gender"
+                  value="man"
+                ></RadioInput>
                 <RadioLabelOption htmlFor="man">Man</RadioLabelOption>
               </SettingsRadioForm>
             </GenderIdentityDiv>
-            <OldPasswordDiv>
+            <PasswordDiv>
               <SettingsP3>Password</SettingsP3>
-              <OldPasswordLabel htmlFor="oldPassword">Outdated password:</OldPasswordLabel>
-              <div className="password-input-container">
+              <PasswordLabel htmlFor="oldPassword">
+                Outdated password:
+              </PasswordLabel>
+              <PasswordInputContainer>
                 <PasswordInput
                   type="password"
                   id="oldPassword"
@@ -182,12 +187,54 @@ export const HeaderSigned = () => {
                 <ShowPasswordWrapper>
                   <ShowPassword height="16px" width="16px" />
                 </ShowPasswordWrapper>
-              </div>
-            </OldPasswordDiv>
+              </PasswordInputContainer>
+            </PasswordDiv>
           </SettingsDiv3>
-          <SettingsDiv4></SettingsDiv4>
-          <SettingsDiv5></SettingsDiv5>
-          <SettingsDiv6></SettingsDiv6>
+          <SettingsDiv4>
+            <PasswordInputContainer>
+              <PasswordLabel htmlFor="userName">Your name</PasswordLabel>
+              <PasswordInput type="name" id="userName" placeholder="John" />
+            </PasswordInputContainer>
+            <PasswordInputContainer>
+              <PasswordLabel htmlFor="userName">New password</PasswordLabel>
+              <PasswordInput
+                type="password"
+                id="newPassword"
+                placeholder="Password"
+              />
+              <ShowPasswordWrapper2>
+                <ShowPassword height="16px" width="16px" />
+              </ShowPasswordWrapper2>
+            </PasswordInputContainer>
+          </SettingsDiv4>
+          <SettingsDiv5>
+          <PasswordInputContainer>
+              <PasswordLabel htmlFor="userName">E-mail</PasswordLabel>
+              <PasswordInput
+                type="email"
+                id="userEmail"
+                placeholder="E-mail"
+              />
+              <ShowPasswordWrapper2>
+                <ShowPassword height="16px" width="16px" />
+              </ShowPasswordWrapper2>
+            </PasswordInputContainer>
+            <PasswordInputContainer>
+              <PasswordLabel htmlFor="userName">New password</PasswordLabel>
+              <PasswordInput
+                type="password"
+                id="newPassword"
+                placeholder="Password"
+              />
+              <ShowPasswordWrapper2>
+                <ShowPassword height="16px" width="16px" />
+              </ShowPasswordWrapper2>
+            </PasswordInputContainer>
+          </SettingsDiv5>
+          <SettingsDiv6>
+              <LogOutButtonCancel>Cancel</LogOutButtonCancel>
+              <SaveButton>Save</SaveButton>
+          </SettingsDiv6>
         </ModalSettingContainer>
       </Modal>
       {/* Модальне вікно LogOut */}
