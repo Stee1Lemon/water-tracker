@@ -18,6 +18,10 @@ import { ReactComponent as UserLogOut } from './headerIcons/UserLogOut.svg';
 import TemplateImg from './headerIcons/Template.jpg';
 import Modal from 'components/Modal/Modal';
 
+const SettingStyle = {
+  background: 'red',
+}
+
 export const HeaderSigned = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
@@ -57,7 +61,9 @@ export const HeaderSigned = () => {
           <DropdownMenu className={isMenuVisible ? 'visible' : ''}>
             <DropDownElement>
               <UserCog />
-              <DropDownButton onClick={toggleSettingsModal}>Setting</DropDownButton>
+              <DropDownButton onClick={toggleSettingsModal}>
+                Setting
+              </DropDownButton>
             </DropDownElement>
             <DropDownElement onClick={toggleLogoutModal}>
               <UserLogOut />
@@ -67,12 +73,12 @@ export const HeaderSigned = () => {
         </UserContext>
       </Navigation>
       {/* Модальне вікно Settings */}
-      <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
+      <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal} style={SettingStyle}>
         <button onClick={toggleSettingsModal}>Close settings</button>
         <p>Settings</p>
       </Modal>
       {/* Модальне вікно LogOut */}
-      <Modal isOpen={isLogoutModalOpen} onClose={toggleLogoutModal}>
+      <Modal isOpen={isLogoutModalOpen} onClose={toggleLogoutModal} style={SettingStyle}>
         <button onClick={toggleLogoutModal}>Close Log out</button>
         <p>Are you sure you want to log out?</p>
       </Modal>
