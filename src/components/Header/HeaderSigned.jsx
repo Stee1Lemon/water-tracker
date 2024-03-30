@@ -12,7 +12,7 @@ import {
   ModalLogOutContainer,
   ModalSettingContainer,
 } from './HeaderSigned.styled';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
 import { ReactComponent as UserMenu } from './headerIcons/UserMenu.svg';
 import { ReactComponent as UserCog } from './headerIcons/UserCog.svg';
@@ -22,17 +22,32 @@ import Modal from 'components/Modal/Modal';
 
 export const HeaderSigned = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
+  const menuRef = useRef(null);
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
+  // Дропдаун
   const toggleMenu = () => {
     setMenuVisible((prevState) => !prevState);
   };
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuVisible(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuRef]);
 
+  // Модалка налаштувань
   const toggleSettingsModal = () => {
     setSettingsModalOpen(!isSettingsModalOpen);
   };
 
+  // Модалка LogOut
   const toggleLogoutModal = () => {
     setLogoutModalOpen(!isLogoutModalOpen);
   };
@@ -56,7 +71,10 @@ export const HeaderSigned = () => {
           <MenuButton onClick={toggleMenu}>
             <UserMenu />
           </MenuButton>
-          <DropdownMenu className={isMenuVisible ? 'visible' : ''}>
+          <DropdownMenu
+            ref={menuRef}
+            className={isMenuVisible ? 'visible' : ''}
+          >
             <DropDownElement>
               <UserCog />
               <DropDownButton onClick={toggleSettingsModal}>
@@ -73,15 +91,15 @@ export const HeaderSigned = () => {
       {/* Модальне вікно Settings */}
       <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
         <ModalSettingContainer>
-        <button onClick={toggleSettingsModal}>Close settings</button>
-        <p>Settings</p>
+          <button onClick={toggleSettingsModal}>Close settings</button>
+          <p>Settings</p>
         </ModalSettingContainer>
       </Modal>
       {/* Модальне вікно LogOut */}
       <Modal isOpen={isLogoutModalOpen} onClose={toggleLogoutModal}>
         <ModalLogOutContainer>
-        <button onClick={toggleLogoutModal}>Close Log out</button>
-        <p>Are you sure you want to log out?</p>
+          <button onClick={toggleLogoutModal}>Close Log out</button>
+          <p>Are you sure you want to log out?</p>
         </ModalLogOutContainer>
       </Modal>
     </HeaderContainer>
