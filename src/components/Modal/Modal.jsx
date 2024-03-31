@@ -1,10 +1,10 @@
 import { ModalOverlay } from './Modal.styled';
 
-const Modal = ({ children, isOpen, onClose }) => {
+const Modal = ({ children, isOpen }) => {
   if (!isOpen) return null;
 
   return (
-    <ModalOverlay onClick={onClose}>
+    <ModalOverlay>
       {children}
     </ModalOverlay>
   );
