@@ -101,11 +101,21 @@ export const UserContext = styled.div`
     gap: 4px;
     color: var(--primary-focus);
 
-    
     &:focus {
       outline: none;
     }
   }
+
+  .menuButton {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .menuButton.rotate {
+    transform: rotate(540deg);
+    transition: transform 0.5s ease-in-out;
+  }
+
 `;
 
 export const DropdownMenu = styled.div`
@@ -468,15 +478,17 @@ export const ModalSettingContainer = styled.div`
     height: 44px;
     padding: 12px 10px 12px 10px;
     border-radius: 6px;
-    border: 1px solid #d7e3ff;
-    color: #d7e3ff;
+    border: 1px solid var(--secondary-fifth);
+    color: var(--secondary-fifth);
 
     &::placeholder {
-      color: #d7e3ff;
+      color: var(--secondary-fifth);
     }
 
-    &:active {
-      color: #407bff;
+    &:focus {
+      color: var(--primary-focus);
+      border: 1px solid var(--secondary-fifth);
+      outline: none;
     }
 
     @media (max-width: 767px) {
