@@ -32,10 +32,6 @@ export const LogoLink = styled(Link)`
   align-items: center;
   color: var(--primary-focus);
 
-  &:hover {
-    color: #356ac8;
-  }
-
   &:link,
   &:visited,
   &:active {
@@ -115,15 +111,14 @@ export const UserContext = styled.div`
     transform: rotate(540deg);
     transition: transform 0.5s ease-in-out;
   }
-
 `;
 
 export const DropdownMenu = styled.div`
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-light);
   border-radius: 12px;
   padding-top: 16px;
   padding-bottom: 16px;
@@ -159,14 +154,10 @@ export const DropdownMenu = styled.div`
     border: none;
     padding: 0;
     margin: 0;
-    color: #407bff;
+    color: var(--primary-focus);
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
-
-    &:hover {
-      color: #356ac8;
-    }
 
     &:focus {
       outline: none;
@@ -181,7 +172,7 @@ export const DropdownMenu = styled.div`
 // LogOutStyles
 
 export const ModalLogOutContainer = styled.div`
-  background-color: white;
+  background-color: var(--primary-light);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 592px;
@@ -269,8 +260,8 @@ export const ModalLogOutContainer = styled.div`
     font:
       500 18px/1.5 'Roboto',
       sans-serif;
-    color: #407bff;
-    background: #d7e3ff;
+    color: var(--primary-light);
+    background: var(--secondary-fifth);
     border: 1px solid transparent;
     border-radius: 10px;
 
@@ -278,6 +269,10 @@ export const ModalLogOutContainer = styled.div`
       max-width: 232px;
       max-height: 36px;
     }
+  }
+
+  .logOutButtonCancel:hover {
+    box-shadow: 0px 4px 14px 0px rgba(215, 227, 255, 0.54);
   }
 
   .logOutButtonDelete {
@@ -291,8 +286,8 @@ export const ModalLogOutContainer = styled.div`
     font:
       500 18px/1.5 'Roboto',
       sans-serif;
-    color: #fff;
-    background: #ef5050;
+    color: var(--primary-light);
+    background: var(--secondary-second);
     border: 1px solid transparent;
     border-radius: 10px;
 
@@ -300,6 +295,10 @@ export const ModalLogOutContainer = styled.div`
       max-width: 232px;
       max-height: 36px;
     }
+  }
+
+  .logOutButtonDelete:hover {
+    box-shadow: 0px 4px 14px 0px rgba(239, 80, 80, 0.54);
   }
 
   .xMarkWrapper {
@@ -312,7 +311,7 @@ export const ModalLogOutContainer = styled.div`
 // SettingsStyles
 
 export const ModalSettingContainer = styled.div`
-  background-color: white;
+  background-color: var(--primary-light);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 1008px;
@@ -393,7 +392,7 @@ export const ModalSettingContainer = styled.div`
     font:
       500 14px/1.5 'Roboto',
       sans-serif;
-    color: #407bff;
+    color: var(--primary-focus);
     padding: 0;
     background-color: transparent;
     border: none;
@@ -496,6 +495,10 @@ export const ModalSettingContainer = styled.div`
     }
   }
 
+  .passwordInput:not(:placeholder-shown) {
+    color: var(--primary-focus);
+  }
+
   .passwordInputContainer {
     position: relative;
     width: 392px;
@@ -587,8 +590,8 @@ export const ModalSettingContainer = styled.div`
     font:
       500 18px/1.5 'Roboto',
       sans-serif;
-    color: #fff;
-    background: #407bff;
+    color: var(--primary-light);
+    background: var(--primary-focus);
     border: 1px solid transparent;
     border-radius: 10px;
 
@@ -596,6 +599,10 @@ export const ModalSettingContainer = styled.div`
       width: 256px;
       height: 36px;
     }
+  }
+
+  .saveButton:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
 
   .settingsP1 {
@@ -619,23 +626,6 @@ export const ModalSettingContainer = styled.div`
       500 18px/1.5 'Roboto',
       sans-serif;
     width: 100%;
-  }
-
-  .logOutButtonCancel {
-    width: 160px;
-    height: 44px;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font:
-      500 18px/1.5 'Roboto',
-      sans-serif;
-    color: #407bff;
-    background: #d7e3ff;
-    border: 1px solid transparent;
-    border-radius: 10px;
   }
 
   .ShowPasswordWrapper {
