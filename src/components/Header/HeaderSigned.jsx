@@ -61,12 +61,14 @@ export const HeaderSigned = () => {
           OF WATER
         </LogoLink>
         <UserContext>
-          Template
-          <div className="imgWrapper">
-            <img src={TemplateImg} alt="User Profile Picture" />
-          </div>
-          <button className="menuButton" onClick={toggleMenu}>
-            <UserMenu />
+          <button className="UserContextButton" onClick={toggleMenu}>
+            Template
+            <div className="imgWrapper">
+              <img src={TemplateImg} alt="User Profile Picture" />
+            </div>
+            <div className="menuButton">
+              <UserMenu />
+            </div>
           </button>
           <DropdownMenu
             ref={menuRef}
@@ -163,12 +165,14 @@ export const HeaderSigned = () => {
               <label className="passwordLabel" htmlFor="userName">
                 Your name:
               </label>
-              <input
-                className="passwordInput"
-                type="name"
-                id="userName"
-                placeholder="John"
-              />
+              <div className="passwordInputContainer">
+                <input
+                  className="passwordInput"
+                  type="name"
+                  id="userName"
+                  placeholder="John"
+                />
+              </div>
             </div>
 
             <div className="newPasswordDiv">
@@ -191,14 +195,15 @@ export const HeaderSigned = () => {
               <label className="passwordLabel" htmlFor="userEmail">
                 E-mail:
               </label>
-              <input
-                className="passwordInput"
-                type="email"
-                id="userEmail"
-                placeholder="E-mail"
-              />
+              <div className="passwordInputContainer">
+                <input
+                  className="passwordInput"
+                  type="email"
+                  id="userEmail"
+                  placeholder="E-mail"
+                />
+              </div>
             </div>
-
             <div className="confirmNewPasswordDiv">
               <label className="passwordLabel" htmlFor="confirmNewPassword">
                 Repeat New password:

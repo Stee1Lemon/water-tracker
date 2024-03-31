@@ -88,33 +88,22 @@ export const UserContext = styled.div`
     height: 28px;
   }
 
-  .menuButton {
+  .UserContextButton {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary-focus);
+
+
     &:focus {
       outline: none;
-    }
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    @media (max-width: 1439px) {
-      svg {
-        width: 14px;
-        height: 14px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      svg {
-        width: 12px;
-        height: 12px;
-      }
     }
   }
 `;
@@ -186,7 +175,7 @@ export const ModalLogOutContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 592px;
-  height: 208px;
+  min-height: 216px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -196,6 +185,15 @@ export const ModalLogOutContainer = styled.div`
   gap: 24px;
   padding: 32px 24px 32px 24px;
 
+  @media (max-width: 1439px) {
+    max-width: 592px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 280px;
+    min-height: 280px;
+  }
+
   .logOutDiv1 {
     display: flex;
     flex-wrap: nowrap;
@@ -203,6 +201,10 @@ export const ModalLogOutContainer = styled.div`
     height: 32px;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      max-width: 232px;
+    }
   }
 
   .logOutDiv2 {
@@ -212,16 +214,24 @@ export const ModalLogOutContainer = styled.div`
     height: 32px;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      max-width: 232px;
+    }
   }
 
   .logOutDiv3 {
     display: flex;
     flex-wrap: nowrap;
     width: 544px;
-    height: 32px;
     align-items: center;
     gap: 24px;
     flex-direction: row-reverse;
+
+    @media (max-width: 767px) {
+      max-width: 232px;
+      flex-direction: column-reverse;
+    }
   }
 
   .logOutP1 {
@@ -253,6 +263,11 @@ export const ModalLogOutContainer = styled.div`
     background: #d7e3ff;
     border: 1px solid transparent;
     border-radius: 10px;
+
+    @media (max-width: 767px) {
+      max-width: 232px;
+      max-height: 36px;
+    }
   }
 
   .logOutButtonDelete {
@@ -270,6 +285,11 @@ export const ModalLogOutContainer = styled.div`
     background: #ef5050;
     border: 1px solid transparent;
     border-radius: 10px;
+
+    @media (max-width: 767px) {
+      max-width: 232px;
+      max-height: 36px;
+    }
   }
 
   .xMarkWrapper {
@@ -296,7 +316,7 @@ export const ModalSettingContainer = styled.div`
 
   @media (max-width: 1439px) {
     width: 704px;
-    padding: 32px 12px 32px 12px;
+    padding: 32px 12px 32px 24px;
   }
 
   @media (max-width: 767px) {
@@ -320,19 +340,18 @@ export const ModalSettingContainer = styled.div`
     @media (max-width: 1439px) {
       grid-template-columns: 1fr;
       grid-template-areas:
-      'gender'
-      'name'
-      'email'
-      'password'
-      'newPassword'
-      'repeatPassword'
+        'gender'
+        'name'
+        'email'
+        'password'
+        'newPassword'
+        'repeatPassword';
     }
 
     @media (max-width: 767px) {
       width: 256px;
       margin-bottom: 26px;
     }
-
   }
 
   .settingsFirst {
@@ -403,7 +422,7 @@ export const ModalSettingContainer = styled.div`
     align-items: start;
     grid-area: gender;
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
     }
   }
@@ -460,7 +479,7 @@ export const ModalSettingContainer = styled.div`
       color: #407bff;
     }
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
     }
   }
@@ -469,7 +488,7 @@ export const ModalSettingContainer = styled.div`
     position: relative;
     width: 392px;
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
     }
   }
@@ -486,8 +505,9 @@ export const ModalSettingContainer = styled.div`
     display: flex;
     flex-direction: column;
     grid-area: name;
+    gap: 4px;
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
     }
   }
@@ -500,7 +520,7 @@ export const ModalSettingContainer = styled.div`
     align-items: start;
     gap: 4px;
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
     }
   }
@@ -509,6 +529,7 @@ export const ModalSettingContainer = styled.div`
     display: flex;
     flex-direction: column;
     grid-area: email;
+    gap: 4px;
   }
 
   .confirmNewPasswordDiv {
@@ -519,7 +540,7 @@ export const ModalSettingContainer = styled.div`
     align-items: start;
     gap: 4px;
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
     }
   }
@@ -537,11 +558,10 @@ export const ModalSettingContainer = styled.div`
       width: 656px;
     }
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
       flex-direction: column;
     }
-
   }
 
   .saveButton {
@@ -560,7 +580,7 @@ export const ModalSettingContainer = styled.div`
     border: 1px solid transparent;
     border-radius: 10px;
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       width: 256px;
       height: 36px;
     }
