@@ -11,17 +11,27 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { rootReducer } from './root/rootSlice.js';
+import { authReducer } from './auth/authSlice.js';
 
 const testPersistConfig = {
   key: 'authTest',
   storage,
 };
 
+const PersistConfig = {
+  key: 'root',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
+    root: rootReducer,
+    auth: persistReducer((PersistConfig, authReducer)),
+
     authTest: persistReducer(testPersistConfig, authTestReducer),
   },
-  
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
