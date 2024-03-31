@@ -4,6 +4,7 @@ import {
   UserContext,
   DropdownMenu,
   ModalLogOutContainer,
+  ModalSettingContainer,
 } from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
@@ -77,8 +78,8 @@ export const HeaderSigned = () => {
                 Setting
               </button>
             </div>
-              <div className="dropDownElement" onClick={toggleLogoutModal}>
-                <UserLogOut />
+            <div className="dropDownElement" onClick={toggleLogoutModal}>
+              <UserLogOut />
               <button className="dropDownButton">Log out</button>
             </div>
           </DropdownMenu>
@@ -87,127 +88,155 @@ export const HeaderSigned = () => {
       {/* Модальне вікно Settings */}
       <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
         <ModalSettingContainer>
-          <SettingsDiv1>
-            <SettingsP1>Settings</SettingsP1>
-            <svg className='xMarkWrapper' onClick={toggleSettingsModal}>
+          <div className="settingsFirst">
+            <p className="settingsP1">Settings</p>
+            <svg className="xMarkWrapper" onClick={toggleSettingsModal}>
               <Xmark />
             </svg>
-          </SettingsDiv1>
-          <SettingsDiv2>
-            <SettingsP2>Your Photo</SettingsP2>
-            <UploadPhotoDiv>
-              <SettingsImgWrapper>
+          </div>
+          <div className="settingsSecond">
+            <p className="settingsP2">Your Photo</p>
+            <div className="uploadPhotoDiv">
+              <div className="settingsImgWrapper">
                 <img
                   src={TemplateImg}
                   alt="User Profile Picture"
                   width={80}
                   height={80}
                 />
-              </SettingsImgWrapper>
-              <ArrowUpWrapper>
+              </div>
+              <div className="arrowUpWrapper">
                 <ArrowUp />
-              </ArrowUpWrapper>
-              <SettingsButton1>Upload a photo</SettingsButton1>
-            </UploadPhotoDiv>
-          </SettingsDiv2>
-          <SettingsDiv3>
-            <GenderIdentityDiv>
-              <SettingsRadioForm>
-                <SettingsRadioLabel htmlFor="genderIdentity">
+              </div>
+              <button className="uploadPhotoButton">Upload a photo</button>
+            </div>
+          </div>
+          <div className="settingsThird">
+            <div className="genderIdentityDiv">
+              <form className="settingsRadioForm">
+                <label className="settingsRadioLabel" htmlFor="genderIdentity">
                   Your gender identity
-                </SettingsRadioLabel>
-                <RadioInput
-                  type="radio"
-                  id="woman"
-                  name="gender"
-                  value="woman"
-                ></RadioInput>
-                <RadioLabelOption htmlFor="woman">Woman</RadioLabelOption>
-                <RadioInput
-                  type="radio"
-                  id="man"
-                  name="gender"
-                  value="man"
-                ></RadioInput>
-                <RadioLabelOption htmlFor="man">Man</RadioLabelOption>
-              </SettingsRadioForm>
-            </GenderIdentityDiv>
-            <PasswordDiv>
-              <SettingsP3>Password</SettingsP3>
-              <PasswordLabel htmlFor="oldPassword">
+                </label>
+                <div className='radioOptionDiv'>
+                  <input
+                    className="radioInput"
+                    type="radio"
+                    id="woman"
+                    name="gender"
+                    value="woman"
+                  ></input>
+                  <label className="radioLabelOption" htmlFor="woman">
+                    Woman
+                  </label>
+                  <input
+                    className="radioInput"
+                    type="radio"
+                    id="man"
+                    name="gender"
+                    value="man"
+                  ></input>
+                  <label className="radioLabelOption" htmlFor="man">
+                    Man
+                  </label>
+                </div>
+              </form>
+            </div>
+            <div className="passwordDiv">
+              <p className="settingsP3">Password</p>
+              <label className="passwordLabel" htmlFor="oldPassword">
                 Outdated password:
-              </PasswordLabel>
-              <PasswordInputContainer>
-                <PasswordInput
+              </label>
+              <div className="passwordInputContainer">
+                <input
+                  className="passwordInput"
                   type="password"
                   id="oldPassword"
                   placeholder="Password"
                 />
                 {/* add onlick */}
-                <ShowPasswordWrapper>
+                <svg className="ShowPasswordWrapper">
                   <ShowPassword height="16px" width="16px" />
-                </ShowPasswordWrapper>
-              </PasswordInputContainer>
-            </PasswordDiv>
-          </SettingsDiv3>
-          <SettingsDiv4>
-            <PasswordInputContainer>
-              <PasswordLabel htmlFor="userName">Your name</PasswordLabel>
-              <PasswordInput type="name" id="userName" placeholder="John" />
-            </PasswordInputContainer>
-            <PasswordInputContainer>
-              <PasswordLabel htmlFor="userName">New password</PasswordLabel>
-              <PasswordInput
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div className="settingsFourth">
+            <div className="passwordInputContainer">
+              <label className="passwordLabel" htmlFor="userName">
+                Your name:
+              </label>
+              <input
+                className="passwordInput"
+                type="name"
+                id="userName"
+                placeholder="John"
+              />
+            </div>
+            <div className="passwordInputContainer">
+              <label className="passwordLabel" htmlFor="userName">
+                New password:
+              </label>
+              <input
+                className="passwordInput"
                 type="password"
                 id="newPassword"
                 placeholder="Password"
               />
-              <ShowPasswordWrapper2>
+              <svg className="ShowPasswordWrapper2">
                 <ShowPassword height="16px" width="16px" />
-              </ShowPasswordWrapper2>
-            </PasswordInputContainer>
-          </SettingsDiv4>
-          <SettingsDiv5>
-            <PasswordInputContainer>
-              <PasswordLabel htmlFor="userName">E-mail</PasswordLabel>
-              <PasswordInput type="email" id="userEmail" placeholder="E-mail" />
-              <ShowPasswordWrapper2>
-                <ShowPassword height="16px" width="16px" />
-              </ShowPasswordWrapper2>
-            </PasswordInputContainer>
-            <PasswordInputContainer>
-              <PasswordLabel htmlFor="userName">New password</PasswordLabel>
-              <PasswordInput
+              </svg>
+            </div>
+          </div>
+          <div className="settingsFifth">
+            <div className="passwordInputContainer">
+              <label className="passwordLabel" htmlFor="userName">
+                E-mail:
+              </label>
+              <input
+                className="passwordInput"
+                type="email"
+                id="userEmail"
+                placeholder="E-mail"
+              />
+            </div>
+            <div className="passwordInputContainer">
+              <label className="passwordLabel" htmlFor="userName">
+                Repeat New password:
+              </label>
+              <input
+                className="passwordInput"
                 type="password"
-                id="newPassword"
+                id="confirmNewPassword"
                 placeholder="Password"
               />
-              <ShowPasswordWrapper2>
+              <svg className="ShowPasswordWrapper2">
                 <ShowPassword height="16px" width="16px" />
-              </ShowPasswordWrapper2>
-            </PasswordInputContainer>
-          </SettingsDiv5>
-          <SettingsDiv6>
-            <LogOutButtonCancel>Cancel</LogOutButtonCancel>
-            <SaveButton>Save</SaveButton>
-          </SettingsDiv6>
+              </svg>
+            </div>
+          </div>
+          <div className="settingsSixth">
+            <button className="logOutButtonCancel">Cancel</button>
+            <button className="saveButton">Save</button>
+          </div>
         </ModalSettingContainer>
       </Modal>
       {/* Модальне вікно LogOut */}
       <Modal isOpen={isLogoutModalOpen} onClose={toggleLogoutModal}>
         <ModalLogOutContainer>
-          <div className='logOutDiv1'>
-            <p className='logOutP1'>Delete Entry</p>
-            <svg className='xMarkWrapper' onClick={toggleLogoutModal}>
+          <div className="logOutDiv1">
+            <p className="logOutP1">Delete Entry</p>
+            <svg className="xMarkWrapper" onClick={toggleLogoutModal}>
               <Xmark />
             </svg>
           </div>
-          <div className='logOutDiv2'>
-            <p className='logOutP2'>Are you sure you want to delete the entry?</p>
+          <div className="logOutDiv2">
+            <p className="logOutP2">
+              Are you sure you want to delete the entry?
+            </p>
           </div>
-          <div className='logOutDiv3'>
-            <button className='logOutButtonDelete'>Delete</button>
-            <button className='logOutButtonCancel'>Cancel</button>
+          <div className="logOutDiv3">
+            <button className="logOutButtonDelete">Delete</button>
+            <button className="logOutButtonCancel">Cancel</button>
           </div>
         </ModalLogOutContainer>
       </Modal>

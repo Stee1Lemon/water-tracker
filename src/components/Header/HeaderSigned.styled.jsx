@@ -179,248 +179,6 @@ export const DropdownMenu = styled.div`
   }
 `;
 
-export const ArrowUpWrapper = styled.svg`
-  width: 16px;
-  height: 16px;
-`;
-
-export const SettingsImgWrapper = styled.div`
-  width: 80px;
-  height: 80px;
-`;
-
-export const ShowPasswordWrapper = styled.button`
-  width: 24px;
-  height: 24px;
-  padding: 0px;
-  border: 0px;
-  background: #fff;
-  padding-top: 4px;
-  position: absolute;
-  right: 10px;
-  top: 20%;
-  cursor: pointer;
-`;
-
-export const ShowPasswordWrapper2 = styled.button`
-  width: 24px;
-  height: 24px;
-  padding: 0px;
-  border: 0px;
-  background: #fff;
-  padding-top: 4px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  cursor: pointer;
-`;
-
-// SettingsStyles
-
-export const ModalSettingContainer = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 1008px;
-  height: 592px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  max-height: 80vh;
-  overflow-y: auto;
-  padding: 32px 24px 32px 24px;
-`;
-
-export const SettingsDiv1 = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  width: 960px;
-  height: 32px;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-`;
-
-export const SettingsDiv2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 222px;
-  height: 108px;
-  align-items: center;
-  justify-content: start;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-`;
-
-export const SettingsDiv3 = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 960px;
-  height: 108px;
-  align-items: start;
-  justify-content: start;
-  margin-bottom: 12px;
-  column-gap: 234px;
-`;
-
-export const SettingsDiv4 = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 960px;
-  height: 108px;
-  align-items: center;
-  justify-content: start;
-  column-gap: 24px;
-`;
-
-export const SettingsDiv5 = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 960px;
-  height: 108px;
-  align-items: center;
-  justify-content: start;
-  column-gap: 24px;
-  margin-bottom: 24px;
-`;
-
-export const SettingsDiv6 = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 960px;
-  height: 108px;
-  align-items: center;
-  justify-content: end;
-  gap: 24px;
-`;
-
-export const SaveButton = styled.button`
-  width: 160px;
-  height: 44px;
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-  color: #fff;
-  background: #407bff;
-  border: 1px solid transparent;
-  border-radius: 10px;
-`;
-
-export const UploadPhotoDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-`;
-
-export const GenderIdentityDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-`;
-
-export const SettingsRadioLabel = styled.label`
-  display: flex;
-  align-items: start;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-`;
-
-export const SettingsRadioForm = styled.label`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 182px;
-  row-gap: 4px;
-  column-gap: 8px;
-`;
-
-export const RadioLabelOption = styled.div`
-  margin: 0px;
-  font:
-    400 16px/1.5 'Roboto',
-    sans-serif;
-`;
-
-export const RadioInput = styled.input``;
-
-export const PasswordDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 4px;
-`;
-
-export const PasswordLabel = styled.div`
-  margin: 0px;
-  font:
-    400 16px/1.5 'Roboto',
-    sans-serif;
-`;
-
-export const PasswordInputContainer = styled.div`
-  position: relative;
-`;
-
-export const PasswordInput = styled.input`
-  width: 392px;
-  height: 44px;
-  padding: 12px 10px 12px 10px;
-  border-radius: 6px;
-  border: 1px solid #d7e3ff;
-  color: #d7e3ff;
-
-  &::placeholder {
-    color: #d7e3ff;
-  }
-
-  &::active {
-    color: #407bff;
-  }
-`;
-
-export const SettingsP1 = styled.div`
-  margin: 0px;
-  font:
-    500 26px/1.5 'Roboto',
-    sans-serif;
-`;
-
-export const SettingsP2 = styled.div`
-  margin: 0px;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-  width: 100%;
-`;
-
-export const SettingsP3 = styled.div`
-  margin: 0px;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-  width: 100%;
-`;
-
-export const SettingsButton1 = styled.button`
-  margin: 0px;
-  font:
-    500 14px/1.5 'Roboto',
-    sans-serif;
-  color: #407bff;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-`;
-
 // LogOutStyles
 
 export const ModalLogOutContainer = styled.div`
@@ -518,5 +276,293 @@ export const ModalLogOutContainer = styled.div`
     width: 16px;
     height: 16px;
     cursor: pointer;
+  }
+`;
+
+// SettingsStyles
+
+export const ModalSettingContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 1008px;
+  height: 592px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 32px 24px 32px 24px;
+
+  @media (max-width: 1439px) {
+    width: 704px;
+    height: 860px;
+  }
+
+  @media (max-width: 767px) {
+    width: 280px;
+    height: 852px;
+  }
+
+  .settingsFirst {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 960px;
+    height: 32px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    @media (max-width: 1439px) {
+      width: 656px;
+    }
+
+    @media (max-width: 767px) {
+      width: 256px;
+    }
+  }
+
+  .xMarkWrapper {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  .uploadPhotoButton {
+    margin: 0px;
+    font:
+      500 14px/1.5 'Roboto',
+      sans-serif;
+    color: #407bff;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .settingsSecond {
+    display: flex;
+    flex-direction: row;
+    width: 222px;
+    height: 108px;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .uploadPhotoDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .genderIdentityDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .settingsRadioLabel {
+    display: flex;
+    align-items: start;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+  }
+
+  .SettingsRadioForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 182px;
+    row-gap: 4px;
+    column-gap: 8px;
+  }
+
+  .radioLabelOption {
+    margin: 0px;
+    font:
+      400 16px/1.5 'Roboto',
+      sans-serif;
+  }
+
+  .radioOptionDiv {
+    display: flex;
+    gap: 8px;
+  }
+
+  .settingsThird {
+    display: flex;
+    flex-direction: row;
+    width: 960px;
+    height: 108px;
+    align-items: start;
+    justify-content: start;
+    margin-bottom: 12px;
+    column-gap: 254px;
+  }
+
+  .passwordLabel {
+    margin: 0px;
+    font:
+      400 16px/1.5 'Roboto',
+      sans-serif;
+  }
+
+  .passwordInput {
+    width: 392px;
+    height: 44px;
+    padding: 12px 10px 12px 10px;
+    border-radius: 6px;
+    border: 1px solid #d7e3ff;
+    color: #d7e3ff;
+
+    &::placeholder {
+      color: #d7e3ff;
+    }
+
+    &:active {
+      color: #407bff;
+    }
+  }
+
+  .passwordInputContainer {
+    position: relative;
+    width: 392px;
+  }
+
+  .passwordDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+  }
+
+  .settingsFourth {
+    display: flex;
+    flex-direction: row;
+    width: 960px;
+    height: 108px;
+    align-items: center;
+    justify-content: start;
+    column-gap: 24px;
+    margin-bottom: 12px;
+  }
+
+  .settingsFifth {
+    display: flex;
+    flex-direction: row;
+    width: 960px;
+    height: 108px;
+    align-items: center;
+    justify-content: start;
+    column-gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .settingsSixth {
+    display: flex;
+    flex-direction: row;
+    width: 960px;
+    height: 108px;
+    align-items: center;
+    justify-content: end;
+    gap: 24px;
+  }
+
+  .saveButton {
+    width: 160px;
+    height: 44px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+    color: #fff;
+    background: #407bff;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  .settingsP1 {
+    margin: 0px;
+    font:
+      500 26px/1.5 'Roboto',
+      sans-serif;
+  }
+
+  .settingsP2 {
+    margin: 0px;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+    width: 100%;
+  }
+
+  .settingsP3 {
+    margin: 0px;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+    width: 100%;
+  }
+
+  .logOutButtonCancel {
+    width: 160px;
+    height: 44px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+    color: #407bff;
+    background: #d7e3ff;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  .ShowPasswordWrapper {
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+    border: 0px;
+    background: #fff;
+    padding-top: 4px;
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    cursor: pointer;
+  }
+
+  .ShowPasswordWrapper2 {
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+    border: 0px;
+    background: #fff;
+    padding-top: 4px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    cursor: pointer;
+  }
+
+  .settingsImgWrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .arrowUpWrapper {
+    width: 16px;
+    height: 16px;
   }
 `;
