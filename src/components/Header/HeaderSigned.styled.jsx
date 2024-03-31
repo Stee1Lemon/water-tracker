@@ -105,11 +105,17 @@ export const UserContext = styled.div`
   .menuButton {
     transform: rotate(0deg);
     transition: transform 0.5s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .menuButton.rotate {
     transform: rotate(540deg);
     transition: transform 0.5s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 `;
 
