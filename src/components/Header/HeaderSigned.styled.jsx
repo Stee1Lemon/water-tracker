@@ -101,7 +101,7 @@ export const UserContext = styled.div`
     gap: 4px;
     color: var(--primary-focus);
 
-
+    
     &:focus {
       outline: none;
     }

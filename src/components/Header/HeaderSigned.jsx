@@ -49,6 +49,22 @@ export const HeaderSigned = () => {
     setLogoutModalOpen(!isLogoutModalOpen);
   };
 
+  // Закриття на esc
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSettingsModalOpen(false);
+        setLogoutModalOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <header>
       <Navigation>
@@ -242,7 +258,9 @@ export const HeaderSigned = () => {
           </div>
           <div className="logOutDiv3">
             <button className="logOutButtonDelete">Delete</button>
-            <button className="logOutButtonCancel">Cancel</button>
+            <button className="logOutButtonCancel" onClick={toggleLogoutModal}>
+              Cancel
+            </button>
           </div>
         </ModalLogOutContainer>
       </Modal>
