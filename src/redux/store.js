@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import testReducer from './test/test-slice.js';
+import authTestReducer from './auth-test/auth-test-slice.js';
 import {
   persistStore,
   persistReducer,
@@ -15,22 +15,23 @@ import { rootReducer } from './root/rootSlice.js';
 import { authReducer } from './auth/authSlice.js';
 
 const testPersistConfig = {
-  key: 'test',
+  key: 'authTest',
   storage,
 };
 
 const PersistConfig = {
   key: 'root',
   storage,
-}
+};
 
 export const store = configureStore({
   reducer: {
     root: rootReducer,
-    test: persistReducer(testPersistConfig, testReducer),
-    auth: persistReducer((PersistConfig, authReducer),)
-    
+    auth: persistReducer((PersistConfig, authReducer)),
+
+    authTest: persistReducer(testPersistConfig, authTestReducer),
   },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
