@@ -111,13 +111,13 @@ export const HeaderSigned = () => {
               <button className="uploadPhotoButton">Upload a photo</button>
             </div>
           </div>
-          <div className="settingsThird">
+          <div className="settingsGridContainer">
             <div className="genderIdentityDiv">
               <form className="settingsRadioForm">
                 <label className="settingsRadioLabel" htmlFor="genderIdentity">
                   Your gender identity
                 </label>
-                <div className='radioOptionDiv'>
+                <div className="radioOptionDiv">
                   <input
                     className="radioInput"
                     type="radio"
@@ -153,15 +153,13 @@ export const HeaderSigned = () => {
                   id="oldPassword"
                   placeholder="Password"
                 />
-                {/* add onlick */}
                 <svg className="ShowPasswordWrapper">
                   <ShowPassword height="16px" width="16px" />
                 </svg>
               </div>
             </div>
-          </div>
-          <div className="settingsFourth">
-            <div className="passwordInputContainer">
+
+            <div className="nameDiv">
               <label className="passwordLabel" htmlFor="userName">
                 Your name:
               </label>
@@ -172,24 +170,25 @@ export const HeaderSigned = () => {
                 placeholder="John"
               />
             </div>
-            <div className="passwordInputContainer">
-              <label className="passwordLabel" htmlFor="userName">
+
+            <div className="newPasswordDiv">
+              <label className="passwordLabel" htmlFor="newPassword">
                 New password:
               </label>
-              <input
-                className="passwordInput"
-                type="password"
-                id="newPassword"
-                placeholder="Password"
-              />
-              <svg className="ShowPasswordWrapper2">
-                <ShowPassword height="16px" width="16px" />
-              </svg>
+              <div className="passwordInputContainer">
+                <input
+                  className="passwordInput"
+                  type="password"
+                  id="newPassword"
+                  placeholder="Password"
+                />
+                <svg className="ShowPasswordWrapper">
+                  <ShowPassword height="16px" width="16px" />
+                </svg>
+              </div>
             </div>
-          </div>
-          <div className="settingsFifth">
-            <div className="passwordInputContainer">
-              <label className="passwordLabel" htmlFor="userName">
+            <div className="emailDiv">
+              <label className="passwordLabel" htmlFor="userEmail">
                 E-mail:
               </label>
               <input
@@ -199,23 +198,25 @@ export const HeaderSigned = () => {
                 placeholder="E-mail"
               />
             </div>
-            <div className="passwordInputContainer">
-              <label className="passwordLabel" htmlFor="userName">
+
+            <div className="confirmNewPasswordDiv">
+              <label className="passwordLabel" htmlFor="confirmNewPassword">
                 Repeat New password:
               </label>
-              <input
-                className="passwordInput"
-                type="password"
-                id="confirmNewPassword"
-                placeholder="Password"
-              />
-              <svg className="ShowPasswordWrapper2">
-                <ShowPassword height="16px" width="16px" />
-              </svg>
+              <div className="passwordInputContainer">
+                <input
+                  className="passwordInput"
+                  type="password"
+                  id="confirmNewPassword"
+                  placeholder="Password"
+                />
+                <svg className="ShowPasswordWrapper">
+                  <ShowPassword height="16px" width="16px" />
+                </svg>
+              </div>
             </div>
           </div>
           <div className="settingsSixth">
-            <button className="logOutButtonCancel">Cancel</button>
             <button className="saveButton">Save</button>
           </div>
         </ModalSettingContainer>

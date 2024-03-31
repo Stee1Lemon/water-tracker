@@ -286,7 +286,6 @@ export const ModalSettingContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 1008px;
-  height: 592px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -297,12 +296,43 @@ export const ModalSettingContainer = styled.div`
 
   @media (max-width: 1439px) {
     width: 704px;
-    height: 860px;
+    padding: 32px 12px 32px 12px;
   }
 
   @media (max-width: 767px) {
     width: 280px;
-    height: 852px;
+    padding: 32px 12px 32px 12px;
+  }
+
+  .settingsGridContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: start;
+    justify-items: start;
+    grid-template-areas:
+      'gender password'
+      'name newPassword'
+      'email repeatPassword';
+
+    @media (max-width: 1439px) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+      'gender'
+      'name'
+      'email'
+      'password'
+      'newPassword'
+      'repeatPassword'
+    }
+
+    @media (max-width: 767px) {
+      width: 256px;
+      margin-bottom: 26px;
+    }
+
   }
 
   .settingsFirst {
@@ -350,6 +380,14 @@ export const ModalSettingContainer = styled.div`
     justify-content: start;
     flex-wrap: wrap;
     margin-bottom: 24px;
+
+    @media (max-width: 1439px) {
+      width: 656px;
+    }
+
+    @media (max-width: 767px) {
+      width: 256px;
+    }
   }
 
   .uploadPhotoDiv {
@@ -363,6 +401,11 @@ export const ModalSettingContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+    grid-area: gender;
+
+    @media (max-width:767px) {
+      width: 256px;
+    }
   }
 
   .settingsRadioLabel {
@@ -394,17 +437,6 @@ export const ModalSettingContainer = styled.div`
     gap: 8px;
   }
 
-  .settingsThird {
-    display: flex;
-    flex-direction: row;
-    width: 960px;
-    height: 108px;
-    align-items: start;
-    justify-content: start;
-    margin-bottom: 12px;
-    column-gap: 254px;
-  }
-
   .passwordLabel {
     margin: 0px;
     font:
@@ -427,11 +459,19 @@ export const ModalSettingContainer = styled.div`
     &:active {
       color: #407bff;
     }
+
+    @media (max-width:767px) {
+      width: 256px;
+    }
   }
 
   .passwordInputContainer {
     position: relative;
     width: 392px;
+
+    @media (max-width:767px) {
+      width: 256px;
+    }
   }
 
   .passwordDiv {
@@ -439,38 +479,69 @@ export const ModalSettingContainer = styled.div`
     flex-direction: column;
     align-items: start;
     gap: 4px;
+    grid-area: password;
   }
 
-  .settingsFourth {
+  .nameDiv {
     display: flex;
-    flex-direction: row;
-    width: 960px;
-    height: 108px;
-    align-items: center;
-    justify-content: start;
-    column-gap: 24px;
-    margin-bottom: 12px;
+    flex-direction: column;
+    grid-area: name;
+
+    @media (max-width:767px) {
+      width: 256px;
+    }
   }
 
-  .settingsFifth {
+  .newPasswordDiv {
+    grid-area: newPassword;
+    width: 392px;
     display: flex;
-    flex-direction: row;
-    width: 960px;
-    height: 108px;
-    align-items: center;
-    justify-content: start;
-    column-gap: 24px;
-    margin-bottom: 24px;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+
+    @media (max-width:767px) {
+      width: 256px;
+    }
+  }
+
+  .emailDiv {
+    display: flex;
+    flex-direction: column;
+    grid-area: email;
+  }
+
+  .confirmNewPasswordDiv {
+    grid-area: repeatPassword;
+    width: 392px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+
+    @media (max-width:767px) {
+      width: 256px;
+    }
   }
 
   .settingsSixth {
     display: flex;
     flex-direction: row;
     width: 960px;
-    height: 108px;
+    height: 44px;
     align-items: center;
     justify-content: end;
     gap: 24px;
+
+    @media (max-width: 1439px) {
+      width: 656px;
+    }
+
+    @media (max-width:767px) {
+      width: 256px;
+      flex-direction: column;
+    }
+
   }
 
   .saveButton {
@@ -488,6 +559,11 @@ export const ModalSettingContainer = styled.div`
     background: #407bff;
     border: 1px solid transparent;
     border-radius: 10px;
+
+    @media (max-width:767px) {
+      width: 256px;
+      height: 36px;
+    }
   }
 
   .settingsP1 {
@@ -531,29 +607,13 @@ export const ModalSettingContainer = styled.div`
   }
 
   .ShowPasswordWrapper {
-    width: 24px;
-    height: 24px;
-    padding: 0px;
-    border: 0px;
+    width: 16px;
+    height: 16px;
     background: #fff;
-    padding-top: 4px;
     position: absolute;
-    right: 10px;
-    top: 20%;
     cursor: pointer;
-  }
-
-  .ShowPasswordWrapper2 {
-    width: 24px;
-    height: 24px;
-    padding: 0px;
-    border: 0px;
-    background: #fff;
-    padding-top: 4px;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    cursor: pointer;
+    top: 14px;
+    right: 16px;
   }
 
   .settingsImgWrapper {
