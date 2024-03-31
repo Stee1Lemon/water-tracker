@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { startOfMonth, lastDayOfMonth, eachDayOfInterval, format, subMonths, addMonths, isSameMonth } from "date-fns";
 
-import { Calendar, CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWrap, Day, DayButton, } from "./MonthStatsTable.styled"
+import { CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWrap, Day, DayButton, } from "./MonthStatsTable.styled"
 import { ReactComponent as PaginationPrevIcon } from '../homeIcons/arrow.svg';
 
 const formatOfYear = "yyyy";
@@ -50,7 +50,7 @@ export const MonthStatsTable = () => {
   };
 
   return (
-      <Calendar>
+      <div>
           <CalendarHeader>
               <CalendarTitle>Month</CalendarTitle>
               <Pagination>
@@ -62,6 +62,6 @@ export const MonthStatsTable = () => {
           <CalendarWrap>
               {totalDate.map((date, index) =>  <Day key={index}><DayButton isConsumed={isConsumed} type="button">{format(date, formatOfDay)}</DayButton><span>{percentOfWaterVolume}%</span></Day>)}
           </CalendarWrap>
-    </Calendar>
+    </div>
   )
 }

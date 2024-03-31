@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Calendar = styled('div')`
-/* max-width:264px;
-@media only screen and (min-width: 768px) {
-max-width:538px;
-} */
-`
 
 export const CalendarHeader = styled('div')`
 margin-bottom: 16px;
