@@ -180,9 +180,11 @@ export const HeaderSigned = () => {
                   id="oldPassword"
                   placeholder="Password"
                 />
-                <svg className="ShowPasswordWrapper">
-                  <ShowPassword height="16px" width="16px" />
-                </svg>
+                <button className='ShowPasswordWrapper'>
+                  <svg height="16px" width="16px">
+                    <ShowPassword />
+                  </svg>
+                </button>
               </div>
             </div>
 

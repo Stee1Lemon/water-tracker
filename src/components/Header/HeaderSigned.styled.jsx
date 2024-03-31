@@ -631,7 +631,7 @@ export const ModalSettingContainer = styled.div`
   .ShowPasswordWrapper {
     width: 16px;
     height: 16px;
-    background: #fff;
+    background: var(--primary-light);
     position: absolute;
     cursor: pointer;
     top: 14px;
