@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { startOfMonth, lastDayOfMonth, eachDayOfInterval, format, subMonths, addMonths, isSameMonth } from "date-fns";
 
-import {Calendar, CalendarHeader,CalendarTitle, Pagination, PaginationButton,  CalendarWrap, Day, DayButton, } from "./MonthStatsTable.styled"
+import { Calendar, CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWrap, Day, DayButton, } from "./MonthStatsTable.styled"
+import { ReactComponent as PaginationPrevIcon } from '../homeIcons/arrow.svg';
 
 const formatOfYear = "yyyy";
 const formatOfMonth = "MMMM";
@@ -53,9 +54,9 @@ export const MonthStatsTable = () => {
           <CalendarHeader>
               <CalendarTitle>Month</CalendarTitle>
               <Pagination>
-                <PaginationButton onClick={handlePrevMonth} active={activeButton === 'next'} type="button">pr</PaginationButton>
+                <PaginationButton onClick={handlePrevMonth} active={activeButton === 'next'} type="button"><PaginationPrevIcon/></PaginationButton>
                 <span>{currentMonth}, {currentYear}</span>
-                <PaginationButton onClick={handleNextMonth} active={activeButton === 'prev'} type="button">ne</PaginationButton>
+                <PaginationButton onClick={handleNextMonth} next active={activeButton === 'prev'} type="button"><PaginationPrevIcon/></PaginationButton>
               </Pagination>
           </CalendarHeader>
           <CalendarWrap>

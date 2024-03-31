@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Calendar = styled('div')`
-max-width:264px;
+/* max-width:264px;
 @media only screen and (min-width: 768px) {
 max-width:538px;
-}
+} */
 `
 
 export const CalendarHeader = styled('div')`
@@ -38,7 +38,15 @@ export const Pagination = styled('div')`
 }
 `
 export const PaginationButton = styled('button')`
-     ${({ active }) => active ? `color: var(--secondary-third);`: `color:var(--primary-focus);`}
+padding:0;
+width: 14px;
+height: 14px;
+svg {
+    width: 14px;
+    height: 14px;
+    ${({ active }) => active ? `fill: var(--secondary-third);` : `fill:var(--primary-focus);`}
+    ${({ next }) => next && `transform: rotate(180deg);`}
+}
 `
 
 export const CalendarTitle = styled('div')`
