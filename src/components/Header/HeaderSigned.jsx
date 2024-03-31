@@ -1,49 +1,9 @@
 import {
-  HeaderContainer,
   Navigation,
   LogoLink,
   UserContext,
-  LogoWrapper,
-  ImgWrapper,
-  MenuButton,
   DropdownMenu,
-  DropDownElement,
-  DropDownButton,
   ModalLogOutContainer,
-  ModalSettingContainer,
-  XmarkWrapper,
-  SettingsImgWrapper,
-  LogOutDiv1,
-  LogOutDiv2,
-  LogOutDiv3,
-  LogOutP1,
-  LogOutP2,
-  LogOutButtonCancel,
-  LogOutButtonDelete,
-  SettingsDiv1,
-  SettingsDiv2,
-  SettingsDiv3,
-  SettingsDiv4,
-  SettingsDiv5,
-  SettingsDiv6,
-  ArrowUpWrapper,
-  SettingsP1,
-  SettingsP2,
-  SettingsP3,
-  SettingsButton1,
-  UploadPhotoDiv,
-  GenderIdentityDiv,
-  PasswordDiv,
-  ShowPasswordWrapper,
-  ShowPasswordWrapper2,
-  SettingsRadioLabel,
-  SettingsRadioForm,
-  RadioLabelOption,
-  RadioInput,
-  PasswordLabel,
-  PasswordInput,
-  PasswordInputContainer,
-  SaveButton,
 } from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
@@ -89,38 +49,38 @@ export const HeaderSigned = () => {
   };
 
   return (
-    <HeaderContainer>
+    <header>
       <Navigation>
         <LogoLink to="/first">
-          <LogoWrapper>
+          <svg className="logoWrapper">
             <LogoIcon />
-          </LogoWrapper>
+          </svg>
           TRACKER
           <br />
           OF WATER
         </LogoLink>
         <UserContext>
           Template
-          <ImgWrapper>
+          <div className="imgWrapper">
             <img src={TemplateImg} alt="User Profile Picture" />
-          </ImgWrapper>
-          <MenuButton onClick={toggleMenu}>
+          </div>
+          <button className="menuButton" onClick={toggleMenu}>
             <UserMenu />
-          </MenuButton>
+          </button>
           <DropdownMenu
             ref={menuRef}
             className={isMenuVisible ? 'visible' : ''}
           >
-            <DropDownElement>
+            <div className="dropDownElement">
               <UserCog />
-              <DropDownButton onClick={toggleSettingsModal}>
+              <button className="dropDownButton" onClick={toggleSettingsModal}>
                 Setting
-              </DropDownButton>
-            </DropDownElement>
-            <DropDownElement onClick={toggleLogoutModal}>
-              <UserLogOut />
-              <DropDownButton>Log out</DropDownButton>
-            </DropDownElement>
+              </button>
+            </div>
+              <div className="dropDownElement" onClick={toggleLogoutModal}>
+                <UserLogOut />
+              <button className="dropDownButton">Log out</button>
+            </div>
           </DropdownMenu>
         </UserContext>
       </Navigation>
@@ -129,9 +89,9 @@ export const HeaderSigned = () => {
         <ModalSettingContainer>
           <SettingsDiv1>
             <SettingsP1>Settings</SettingsP1>
-            <XmarkWrapper onClick={toggleSettingsModal}>
+            <svg className='xMarkWrapper' onClick={toggleSettingsModal}>
               <Xmark />
-            </XmarkWrapper>
+            </svg>
           </SettingsDiv1>
           <SettingsDiv2>
             <SettingsP2>Your Photo</SettingsP2>
@@ -208,13 +168,9 @@ export const HeaderSigned = () => {
             </PasswordInputContainer>
           </SettingsDiv4>
           <SettingsDiv5>
-          <PasswordInputContainer>
+            <PasswordInputContainer>
               <PasswordLabel htmlFor="userName">E-mail</PasswordLabel>
-              <PasswordInput
-                type="email"
-                id="userEmail"
-                placeholder="E-mail"
-              />
+              <PasswordInput type="email" id="userEmail" placeholder="E-mail" />
               <ShowPasswordWrapper2>
                 <ShowPassword height="16px" width="16px" />
               </ShowPasswordWrapper2>
@@ -232,29 +188,29 @@ export const HeaderSigned = () => {
             </PasswordInputContainer>
           </SettingsDiv5>
           <SettingsDiv6>
-              <LogOutButtonCancel>Cancel</LogOutButtonCancel>
-              <SaveButton>Save</SaveButton>
+            <LogOutButtonCancel>Cancel</LogOutButtonCancel>
+            <SaveButton>Save</SaveButton>
           </SettingsDiv6>
         </ModalSettingContainer>
       </Modal>
       {/* Модальне вікно LogOut */}
       <Modal isOpen={isLogoutModalOpen} onClose={toggleLogoutModal}>
         <ModalLogOutContainer>
-          <LogOutDiv1>
-            <LogOutP1>Delete Entry</LogOutP1>
-            <XmarkWrapper onClick={toggleLogoutModal}>
+          <div className='logOutDiv1'>
+            <p className='logOutP1'>Delete Entry</p>
+            <svg className='xMarkWrapper' onClick={toggleLogoutModal}>
               <Xmark />
-            </XmarkWrapper>
-          </LogOutDiv1>
-          <LogOutDiv2>
-            <LogOutP2>Are you sure you want to delete the entry?</LogOutP2>
-          </LogOutDiv2>
-          <LogOutDiv3>
-            <LogOutButtonDelete>Delete</LogOutButtonDelete>
-            <LogOutButtonCancel>Cancel</LogOutButtonCancel>
-          </LogOutDiv3>
+            </svg>
+          </div>
+          <div className='logOutDiv2'>
+            <p className='logOutP2'>Are you sure you want to delete the entry?</p>
+          </div>
+          <div className='logOutDiv3'>
+            <button className='logOutButtonDelete'>Delete</button>
+            <button className='logOutButtonCancel'>Cancel</button>
+          </div>
         </ModalLogOutContainer>
       </Modal>
-    </HeaderContainer>
+    </header>
   );
 };

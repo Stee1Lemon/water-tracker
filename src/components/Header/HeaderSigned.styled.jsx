@@ -49,6 +49,11 @@ export const LogoLink = styled(Link)`
   @media (max-width: 767px) {
     font-size: 12px;
   }
+
+  .logoWrapper {
+    width: 40px;
+    height: 48px;
+  }
 `;
 
 export const UserContext = styled.div`
@@ -77,34 +82,39 @@ export const UserContext = styled.div`
   @media (max-width: 767px) {
     font-size: 16px;
   }
-`;
 
-export const MenuButton = styled.button`
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-
-  &:focus {
-    outline: none;
+  .imgWrapper {
+    width: 28px;
+    height: 28px;
   }
 
-  svg {
-    width: 16px;
-    height: 16px;
-  }
+  .menuButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 
-  @media (max-width: 1439px) {
-    svg {
-      width: 14px;
-      height: 14px;
+    &:focus {
+      outline: none;
     }
-  }
 
-  @media (max-width: 767px) {
     svg {
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 1439px) {
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      svg {
+        width: 12px;
+        height: 12px;
+      }
     }
   }
 `;
@@ -135,55 +145,40 @@ export const DropdownMenu = styled.div`
     transform: translateY(0);
     visibility: visible;
   }
-`;
 
-export const DropDownElement = styled.div`
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  padding-left: 16px;
-  padding-right: 16px;
-`;
-
-export const DropDownButton = styled.button`
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  color: #407bff;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: pointer;
-
-  &:hover {
-    color: #356ac8;
+  .dropDownElement {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  &:focus {
-    outline: none;
+  .dropDownButton {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #407bff;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: #356ac8;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      outline: none;
+    }
   }
-
-  &:active {
-    outline: none;
-  }
 `;
 
-export const ImgWrapper = styled.div`
-  width: 28px;
-  height: 28px;
-`;
-
-export const LogoWrapper = styled.svg`
-  width: 40px;
-  height: 48px;
-`;
-
-export const XmarkWrapper = styled.svg`
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-`;
 export const ArrowUpWrapper = styled.svg`
   width: 16px;
   height: 16px;
@@ -218,100 +213,6 @@ export const ShowPasswordWrapper2 = styled.button`
   right: 10px;
   top: 50%;
   cursor: pointer;
-`;
-
-// LogOutStyles
-
-export const ModalLogOutContainer = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 592px;
-  height: 208px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 80vh;
-  overflow-y: auto;
-  gap: 24px;
-  padding: 32px 24px 32px 24px;
-`;
-
-export const LogOutDiv1 = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  width: 544px;
-  height: 32px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const LogOutDiv2 = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  width: 544px;
-  height: 32px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const LogOutDiv3 = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  width: 544px;
-  height: 32px;
-  align-items: center;
-  gap: 24px;
-  flex-direction: row-reverse;
-`;
-
-export const LogOutP1 = styled.p`
-  margin: 0px;
-  font:
-    500 26px/1.5 'Roboto',
-    sans-serif;
-`;
-
-export const LogOutP2 = styled.p`
-  margin: 0px;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-`;
-
-export const LogOutButtonCancel = styled.button`
-  width: 160px;
-  height: 44px;
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-  color: #407bff;
-  background: #d7e3ff;
-  border: 1px solid transparent;
-  border-radius: 10px;
-`;
-
-export const LogOutButtonDelete = styled.button`
-  width: 160px;
-  height: 44px;
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font:
-    500 18px/1.5 'Roboto',
-    sans-serif;
-  color: #fff;
-  background: #ef5050;
-  border: 1px solid transparent;
-  border-radius: 10px;
 `;
 
 // SettingsStyles
@@ -406,7 +307,7 @@ export const SaveButton = styled.button`
     500 18px/1.5 'Roboto',
     sans-serif;
   color: #fff;
-  background: #407BFF;
+  background: #407bff;
   border: 1px solid transparent;
   border-radius: 10px;
 `;
@@ -518,4 +419,104 @@ export const SettingsButton1 = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+`;
+
+// LogOutStyles
+
+export const ModalLogOutContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 592px;
+  height: 208px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
+  overflow-y: auto;
+  gap: 24px;
+  padding: 32px 24px 32px 24px;
+
+  .logOutDiv1 {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 544px;
+    height: 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logOutDiv2 {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 544px;
+    height: 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logOutDiv3 {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 544px;
+    height: 32px;
+    align-items: center;
+    gap: 24px;
+    flex-direction: row-reverse;
+  }
+
+  .logOutP1 {
+    margin: 0px;
+    font:
+      500 26px/1.5 'Roboto',
+      sans-serif;
+  }
+
+  .logOutP2 {
+    margin: 0px;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+  }
+
+  .logOutButtonCancel {
+    width: 160px;
+    height: 44px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+    color: #407bff;
+    background: #d7e3ff;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  .logOutButtonDelete {
+    width: 160px;
+    height: 44px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font:
+      500 18px/1.5 'Roboto',
+      sans-serif;
+    color: #fff;
+    background: #ef5050;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  .xMarkWrapper {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
 `;
