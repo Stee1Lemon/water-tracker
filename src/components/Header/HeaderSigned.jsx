@@ -100,14 +100,16 @@ export const HeaderSigned = () => {
             className={isMenuVisible ? 'visible' : ''}
           >
             <div className="dropDownElement">
-              <UserCog />
               <button className="dropDownButton" onClick={toggleSettingsModal}>
+                <UserCog className="svgCog" />
                 Setting
               </button>
             </div>
             <div className="dropDownElement" onClick={toggleLogoutModal}>
-              <UserLogOut />
-              <button className="dropDownButton">Log out</button>
+              <button className="dropDownButton">
+                <UserLogOut className="svgLogOut" />
+                Log out
+              </button>
             </div>
           </DropdownMenu>
         </UserContext>
@@ -180,14 +182,13 @@ export const HeaderSigned = () => {
                   id="oldPassword"
                   placeholder="Password"
                 />
-                <button className='ShowPasswordWrapper'>
+                <button className="ShowPasswordWrapper">
                   <svg height="16px" width="16px">
                     <ShowPassword />
                   </svg>
                 </button>
               </div>
             </div>
-
             <div className="nameDiv">
               <label className="passwordLabel" htmlFor="userName">
                 Your name:

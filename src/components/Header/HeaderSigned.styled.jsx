@@ -131,6 +131,8 @@ export const DropdownMenu = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
   z-index: 1;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   row-gap: 16px;
   opacity: 0;
@@ -150,9 +152,8 @@ export const DropdownMenu = styled.div`
     display: flex;
     gap: 8px;
     align-items: center;
-    justify-content: center;
-    padding-left: 16px;
-    padding-right: 16px;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .dropDownButton {
@@ -163,6 +164,10 @@ export const DropdownMenu = styled.div`
     color: var(--primary-focus);
     font-family: inherit;
     font-size: inherit;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    width: 100%;
     cursor: pointer;
 
     &:focus {
@@ -172,6 +177,19 @@ export const DropdownMenu = styled.div`
     &:active {
       outline: none;
     }
+  }
+
+  .svgCog,
+  .svgLogOut {
+    transition: transform 1s ease-in-out;
+  }
+
+  .dropDownButton:hover .svgCog {
+    transform: rotate(540deg);
+  }
+
+  .dropDownButton:hover .svgLogOut {
+    transform: rotateY(180deg);
   }
 `;
 

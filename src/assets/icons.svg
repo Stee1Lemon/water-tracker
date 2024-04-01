@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:16;height:16;overflow:hidden">
   <defs>
     <symbol id="icon-glass" viewBox="0 0 32 32">
       <path d="m4.012.139 2.281 31.636v.086h19.64L28.214.238V.14H4.011zm21.114 30.836H7.106L5.395 7.279h.94l1.547 20.883c.009.11.058.212.138.288s.184.117.293.119h.036a.422.422 0 0 0 .296-.15.439.439 0 0 0 .105-.319L7.203 7.278h19.634l-1.711 23.696zm1.772-24.583H7.137l-.34-4.616c-.011-.113-.063-.217-.146-.292s-.191-.116-.303-.114a.445.445 0 0 0-.401.474l.34 4.555h-.953L4.946 1.02h22.34l-.388 5.373z"/>
@@ -49,7 +49,7 @@
     <symbol id="icon-circle-plus" viewBox="0 0 32 32">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333" d="M16 12v8m4-4h-8m16 0a12 12 0 1 1-24.003.002A12 12 0 0 1 28.002 16z"/>
     </symbol>
-    <symbol id="icon-arrow-down" viewBox="0 0 32 32">
+    <symbol id="icon-arrow-down" viewBox="0 0 32 32" width="16" height="16">
       <path d="M16.706 21.707a1.002 1.002 0 0 1-1.414 0l-10-10a.996.996 0 0 1 .025-1.388 1.002 1.002 0 0 1 1.388-.025l9.293 9.293 9.293-9.293a1.013 1.013 0 0 1 .714-.318.993.993 0 0 1 .725.293.992.992 0 0 1 .293.725 1.001 1.001 0 0 1-.318.714l-10 10z"/>
     </symbol>
     <symbol id="icon-arrow-left" viewBox="0 0 32 32">
