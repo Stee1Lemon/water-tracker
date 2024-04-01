@@ -1,13 +1,27 @@
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import { useState } from 'react';
 import { ModalTestStyles } from './ModalTest.styled';
+import Loader from 'components/Loader/Loader';
 
 const ModalTest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dataExample, setDataExample] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleNewNumber = () => {
+    setIsLoading(true);
+    setDataExample('');
+
+    setTimeout(() => {
+      setDataExample(Math.floor(Math.random() * 10));
+      setIsLoading(false);
+    }, 2000);
+  };
 
   return (
     <>
       <button onClick={() => setIsModalOpen(!isModalOpen)}>Open Modal</button>
+
       <ModalOverlay
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(!isModalOpen)}
@@ -15,10 +29,10 @@ const ModalTest = () => {
         <ModalTestStyles>
           <button onClick={() => setIsModalOpen(!isModalOpen)}>Close</button>
           <h2>Modal Test</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse,
-            fugiat.
-          </p>
+
+          {isLoading ? <Loader /> : <p>{dataExample}</p>}
+
+          <button onClick={handleNewNumber}>Generate number</button>
         </ModalTestStyles>
       </ModalOverlay>
     </>
