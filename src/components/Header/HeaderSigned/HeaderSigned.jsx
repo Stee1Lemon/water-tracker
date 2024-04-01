@@ -1,11 +1,11 @@
 import { Navigation, LogoLink, UserContext } from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
-import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
-import { ReactComponent as UserMenu } from './headerIcons/UserMenu.svg';
-import SettingsModal from './settingsModal/settingsModal';
-import LogOutModal from './logOutModal/logOutModal';
-import TemplateImg from '../../assets/Template.jpg';
-import DropDownHeader from './dropDownMenu/dropDownHeader';
+import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
+import { ReactComponent as UserMenu } from '../headerIcons/UserMenu.svg';
+import SettingsModal from '../settingsModal/settingsModal';
+import LogOutModal from '../logOutModal/logOutModal';
+import TemplateImg from '../../../assets/Template.jpg';
+import DropDownHeader from '../dropDownMenu/dropDownHeader';
 
 export const HeaderSigned = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { HeaderSigned } from './HeaderSigned';
-import { Header } from './Header';
+import { HeaderSigned } from './HeaderSigned/HeaderSigned';
+import { Header } from './Header/Header';
 
 const HeaderCombined = () => {
     const isAuthenticated = useSelector((state) => state.authTest.auth);
