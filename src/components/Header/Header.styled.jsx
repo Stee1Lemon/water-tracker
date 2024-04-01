@@ -25,14 +25,13 @@ export const Navigation = styled.nav`
 export const LogoLink = styled(Link)`
   display: flex;
   max-height: 48px;
-  font: 700 12px/1.5 'Roboto', sans-serif;
+  font:
+    700 12px/1.5 'Roboto',
+    sans-serif;
   gap: 4px;
   align-items: center;
   color: var(--primary-focus);
-
-  &:hover {
-    color: #356ac8;
-  }
+  transition: font-size 0.2s linear;
 
   &:link,
   &:visited,
@@ -50,17 +49,15 @@ export const LogoLink = styled(Link)`
 `;
 
 export const SignInLink = styled(Link)`
-  width: 90px;
   display: flex;
   max-height: 48px;
-  font: 400 18px/1.5 'Roboto', sans-serif;
+  font:
+    400 18px/1.5 'Roboto',
+    sans-serif;
   gap: 8px;
   align-items: center;
   color: var(--primary-focus);
-
-  &:hover {
-    color: #356ac8;
-  }
+  transition: font-size 0.2s linear;
 
   &:link,
   &:visited,
@@ -77,7 +74,6 @@ export const SignInLink = styled(Link)`
     font-size: 16px;
   }
 `;
-
 
 export const SignWrapper = styled.svg`
   width: 28px;

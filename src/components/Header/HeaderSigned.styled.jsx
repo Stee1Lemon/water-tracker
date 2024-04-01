@@ -31,6 +31,7 @@ export const LogoLink = styled(Link)`
   gap: 4px;
   align-items: center;
   color: var(--primary-focus);
+  transition: font-size 0.2s linear;
 
   &:link,
   &:visited,
@@ -85,11 +86,12 @@ export const UserContext = styled.div`
   }
 
   .UserContextButton {
+    min-width: 138px;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-
+    transition: font-size 0.2s linear;
     display: flex;
     flex-direction: row;
     justify-content: center;
