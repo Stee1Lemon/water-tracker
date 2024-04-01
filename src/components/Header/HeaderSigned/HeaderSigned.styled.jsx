@@ -25,14 +25,13 @@ export const Navigation = styled.nav`
 export const LogoLink = styled(Link)`
   display: flex;
   max-height: 48px;
-  font: 700 12px/1.5 'Roboto', sans-serif;
+  font:
+    700 12px/1.5 'Roboto',
+    sans-serif;
   gap: 4px;
   align-items: center;
   color: var(--primary-focus);
-
-  &:hover {
-    color: #356ac8;
-  }
+  transition: font-size 0.2s linear;
 
   &:link,
   &:visited,
@@ -47,44 +46,77 @@ export const LogoLink = styled(Link)`
   @media (max-width: 767px) {
     font-size: 12px;
   }
+
+  .logoWrapper {
+    width: 40px;
+    height: 48px;
+  }
 `;
 
-export const SignInLink = styled(Link)`
-  width: 90px;
+export const UserContext = styled.div`
+  position: relative;
   display: flex;
   max-height: 48px;
-  font: 400 18px/1.5 'Roboto', sans-serif;
+  font:
+    400 18px/1.5 'Roboto',
+    sans-serif;
   gap: 8px;
   align-items: center;
   color: var(--primary-focus);
-
-  &:hover {
-    color: #356ac8;
-  }
+  cursor: default;
 
   &:link,
+  &:hover,
   &:visited,
   &:active {
     text-decoration: none;
   }
 
   @media (max-width: 1439px) {
-    width: auto;
     font-size: 18px;
   }
 
   @media (max-width: 767px) {
     font-size: 16px;
   }
-`;
 
+  .imgWrapper {
+    width: 28px;
+    height: 28px;
+  }
 
-export const SignWrapper = styled.svg`
-  width: 28px;
-  height: 28px;
-`;
+  .UserContextButton {
+    min-width: 138px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: font-size 0.2s linear;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary-focus);
 
-export const LogoWrapper = styled.svg`
-  width: 40px;
-  height: 48px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .menuButton {
+    transform: rotateX(0deg);
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .menuButton.rotate {
+    transform: rotateX(180deg);
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 `;

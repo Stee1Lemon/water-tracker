@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from 'components/Header/Header';
-import { HeaderSigned } from 'components/Header/HeaderSigned';
+import HeaderCombined from 'components/Header/HeaderCombined';
 import { AuthTest } from 'components/AuthTest/AuthTest';
 import ModalTest from 'components/ModalTest/ModalTest';
 
@@ -10,8 +9,7 @@ const SharedLayout = () => {
     <>
       <AuthTest />
       <ModalTest />
-      <Header />
-      <HeaderSigned />
+      <HeaderCombined />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

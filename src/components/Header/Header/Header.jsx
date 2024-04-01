@@ -6,8 +6,8 @@ import {
   LogoWrapper,
   SignWrapper,
 } from './Header.styled';
-import { ReactComponent as LogoIcon } from './headerIcons/Logo.svg';
-import { ReactComponent as OutlineIcon } from './headerIcons/Outline.svg';
+import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
+import { ReactComponent as OutlineIcon } from '../headerIcons/Outline.svg';
 
 export const Header = () => {
   return (
