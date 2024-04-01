@@ -39,6 +39,7 @@ border: 1px solid var(--secondary-fifth);
 
 export const ModalWrap = css`
 background-color: var(--primary-light);
+position: relative;
 border-radius:10px;
 padding:24px 12px;
 width:280px;
@@ -64,8 +65,31 @@ margin-bottom: 16px;
 `
 
 export const ModalTitle = styled('h3')`
+max-width: 200px;
 font-size: 26px;
 font-weight: 500;
 line-height: 120%;
 color: var(--primary-dark);
+@media only screen and (min-width: 768px) {
+    max-width: 600px;
+}
+`
+
+export const ModalCloseButton = styled('button')`
+border:none;
+background-color: transparent;
+position: absolute;
+width: 0;
+height: 0;
+top:30px;
+right:18px;
+svg{
+    width: 24px;
+    height: 24px;
+    stroke:var(--primary-focus);
+}
+@media only screen and (min-width: 768px) {
+    top:42px;
+    right:30px;
+}
 `

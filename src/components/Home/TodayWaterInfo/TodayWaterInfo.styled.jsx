@@ -7,6 +7,7 @@ column-gap:12px;
 svg {
     width: 26px;
     height: 26px;
+    fill: var(--primary-focus);
 }
 @media only screen and (min-width: 768px) {
 svg {

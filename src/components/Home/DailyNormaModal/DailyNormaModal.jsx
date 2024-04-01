@@ -1,12 +1,18 @@
 import Modal from "../../Modal/Modal"
 import { NormaModal, ModalBtn, CalculationScheme, CalculationText, CalculationItem, CalculationResult, Form, FormRadioItems, RadioItem } from "./DailyNormaModal.styled"
-import {Input, ModalSubtitle, ModalTitle} from "../CommonStyles.styled"
+import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
+import icons from '../../../assets/icons.svg';
 
 export const DailyNormaModal = () => {
   return (
     <Modal isOpen>
           <NormaModal>
-              <ModalTitle>My daily norma</ModalTitle>
+        <ModalTitle>My daily norma</ModalTitle>
+        <ModalCloseButton>
+          <svg >
+            <use href={`${icons}#icon-close`}></use>
+          </svg>
+        </ModalCloseButton>
               <div>
                   <CalculationScheme>
                       <p>For girl: <span>V=(M*0,03) + (T*0,4)</span></p>

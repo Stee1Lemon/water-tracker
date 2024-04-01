@@ -1,23 +1,35 @@
 import Modal from "../../Modal/Modal"
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
 import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalFooter, Label, ModalBtn } from "./TodayListModal.styled"
-import {Input, ModalSubtitle, ModalTitle} from "../CommonStyles.styled"
-import { ReactComponent as IncrementIcon } from '../homeIcons/increment.svg';
-import { ReactComponent as DecrementIcon } from '../homeIcons/decrement.svg';
+import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
+import icons from '../../../assets/icons.svg';
 
 export const TodayListModal = () => {
   return (
     <Modal isOpen>
           <AddWaterModal>
-                <ModalTitle>Edit the entered amount of water</ModalTitle>
+              <ModalTitle>Edit the entered amount of water</ModalTitle>
+              <ModalCloseButton>
+                <svg >
+                <use href={`${icons}#icon-close`}></use>
+                </svg>
+              </ModalCloseButton>
               <PrevInfo><TodayWaterInfo /></PrevInfo>
               <div>
                 <ModalSubtitle>Correct entered data:</ModalSubtitle>
                 <p>Amount of water:</p>
                 <WaterCounter>
-                  <CounterBtn><DecrementIcon/></CounterBtn>
+                  <CounterBtn minus>
+                    <svg>
+                      <use href={`${icons}#icon-minus`}></use>
+                    </svg>
+                  </CounterBtn>
                   <CounterLabel>200 ml</CounterLabel>
-                  <CounterBtn><IncrementIcon/></CounterBtn>
+                  <CounterBtn plus>
+                    <svg>
+                      <use href={`${icons}#icon-plus`}></use>
+                    </svg>
+                  </CounterBtn>
                 </WaterCounter>
               </div>
                 <div>

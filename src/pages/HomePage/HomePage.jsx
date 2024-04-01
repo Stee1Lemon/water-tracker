@@ -3,7 +3,7 @@ import { MonthStatsTable } from "components/Home/MonthStatsTable/MonthStatsTable
 import { TodayWaterList } from "components/Home/TodayWaterList/TodayWaterList"
 // import {TodayListModal} from "components/Home/TodayListModal/TodayListModal"
 // import {DailyNormaModal} from "components/Home/DailyNormaModal/DailyNormaModal"
-import {PopupDelete} from "components/Home/PopupDelete/PopupDelete"
+// import {PopupDelete} from "components/Home/PopupDelete/PopupDelete"
 
 import {Statistics} from "./HomePage.styled"
 
@@ -13,7 +13,7 @@ const HomePage = () => {
       <Container>
         <h2>Home Page</h2>
         <Statistics>
-          <PopupDelete/>
+          {/* <PopupDelete/> */}
           {/* <TodayListModal/> */}
           {/* <DailyNormaModal/> */}
           <TodayWaterList/>

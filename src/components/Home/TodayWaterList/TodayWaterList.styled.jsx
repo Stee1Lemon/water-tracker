@@ -57,11 +57,23 @@ export const ItemBtnEdit = styled('button')`
     :hover {
         border-bottom: 1px solid var(--secondary-third);
     }
+    svg{
+        stroke: var(--secondary-third);
+        fill: transparent;
+        width: 16px;
+        height: 16px;
+    }
 `
 
 export const ItemBtnDelete = styled('button')`
     :hover {
         border-bottom: 1px solid var(--secondary-second);
+    }
+    svg{
+        stroke: var(--secondary-second);
+        fill: transparent;
+        width: 16px;
+        height: 16px;
     }
 `
 
@@ -77,16 +89,9 @@ column-gap:6px;
 align-items: center;
 transition: all 150ms linear;
 :hover {
-color: var(--secondary-fourth);
-svg {
-    fill: var(--secondary-fourth);
-}
-}
-svg {
-    width: 9px;
-    height: 9px;
-    fill: var(--primary-focus);
-    transition: all 150ms linear;
+color: var(--secondary-fourth);}
+span{
+    font-size: 24px;
 }
 @media only screen and (min-width: 768px) {
 width: 115px;

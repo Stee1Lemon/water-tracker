@@ -1,10 +1,12 @@
-import { ReactComponent as WaterGlassIcon } from '../homeIcons/glass.svg';
-import {ListItemInfo, ListItemVolume, ListItemTime} from "./TodayWaterInfo.styled"
+import { ListItemInfo, ListItemVolume, ListItemTime } from "./TodayWaterInfo.styled"
+import icons from '../../../assets/icons.svg';
 
 export const TodayWaterInfo = () => {
   return (
    <ListItemInfo>
-        <WaterGlassIcon />
+      <svg >
+        <use href={`${icons}#icon-glass`}></use>
+      </svg>
         <ListItemVolume>250 ml</ListItemVolume>
         <ListItemTime>7:00 AM</ListItemTime>
     </ListItemInfo>

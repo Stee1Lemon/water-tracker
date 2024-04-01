@@ -53,10 +53,11 @@ align-items: center;
 justify-content:center;
 transition: all 150ms linear;
 svg {
-    fill: var(--primary-focus);
     width: 24px;
     height: 24px;
 }
+${({ plus }) => plus && `svg {stroke: var(--primary-focus);}`}
+${({ minus }) => minus && `svg {fill: var(--primary-focus);}`}
 :hover{
     box-shadow: 0px 2px 6px rgba(64, 123, 255, 0.5);
 }
