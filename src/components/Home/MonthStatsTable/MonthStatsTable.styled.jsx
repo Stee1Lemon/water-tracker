@@ -38,8 +38,7 @@ height: 14px;
 svg {
     width: 14px;
     height: 14px;
-    ${({ active }) => active ? `fill: var(--secondary-third);` : `fill:var(--primary-focus);`}
-    ${({ next }) => next && `transform: rotate(180deg);`}
+    ${({ active }) => active ? `stroke: var(--secondary-third);` : `stroke:var(--primary-focus);`}
 }
 `
 
