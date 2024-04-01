@@ -1,5 +1,21 @@
 import styled from 'styled-components';
 
+export const BackgroundWrap = styled('div')`
+    position: relative;
+`
+
+export const BackgrounImage = styled('img')`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    object-fit: cover;
+    object-position: top left;
+    z-index:-1;
+`
+
 export const Statistics = styled('div')`
 display: flex;
 flex-direction:column;
