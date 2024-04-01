@@ -103,16 +103,16 @@ export const UserContext = styled.div`
   }
 
   .menuButton {
-    transform: rotate(0deg);
-    transition: transform 0.5s ease-in-out;
+    transform: rotateX(0deg);
+    transition: transform 0.3s ease-in-out;
     height: 100%;
     display: flex;
     align-items: center;
   }
 
   .menuButton.rotate {
-    transform: rotate(540deg);
-    transition: transform 0.5s ease-in-out;
+    transform: rotateX(180deg);
+    transition: transform 0.3s ease-in-out;
     height: 100%;
     display: flex;
     align-items: center;
@@ -185,7 +185,7 @@ export const DropdownMenu = styled.div`
   }
 
   .dropDownButton:hover .svgCog {
-    transform: rotate(540deg);
+    transform: rotate(180deg);
   }
 
   .dropDownButton:hover .svgLogOut {
