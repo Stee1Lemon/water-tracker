@@ -92,7 +92,7 @@ export const Form = styled.form`
 
   @media only screen and (min-width: 1440px) {
     max-width: 384px;
-    margin: 140px 0 0;
+    padding-top: 130px;
 
     input {
       width: 384px;
