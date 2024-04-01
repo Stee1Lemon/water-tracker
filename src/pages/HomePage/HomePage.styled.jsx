@@ -10,10 +10,64 @@ export const BackgrounImage = styled('img')`
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
     object-fit: cover;
     object-position: top left;
     z-index:-1;
+`
+
+export const PageWrap = styled('div')`
+  display: flex;
+  flex-direction:column;
+  gap:40px;
+   padding: 24px 0 40px 0;
+   @media only screen and (min-width: 768px) {
+    padding: 40px 0 40px 0;
+   }
+   @media only screen and (min-width: 1440px) {
+    flex-direction:row;
+    gap:32px;
+    padding: 20px 0 40px 0;
+   }
+`
+
+export const DailyNormaBlock = styled('div')`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction:column;
+  row-gap:16px;
+  @media only screen and (min-width: 1440px) {
+    row-gap:24px;
+   }
+`
+export const ImageWrap = styled('div')`
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 290px;
+    position: relative;
+    img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    object-fit: contain;
+    object-position: bottom;
+    }
+    @media only screen and (min-width: 768px) {
+    min-height:386px;
+    object-position: center;
+    }
+    @media only screen and (min-width: 1440px) {
+    flex: 1 0 auto;
+    img{
+    object-fit: cover;
+    }
+   }
+`
+
+export const ProgressWrap = styled('div')`
+
 `
 
 export const Statistics = styled('div')`
