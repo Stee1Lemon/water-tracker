@@ -1,8 +1,6 @@
-import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListItemTools, ListItemInfo, ListItemVolume, ListItemTime, ItemBtnEdit, ItemBtnDelete } from "./TodayWaterList.styled"
-import { ReactComponent as AddWaterIcon } from '../homeIcons/plus.svg';
-import { ReactComponent as WaterGlassIcon } from '../homeIcons/glass.svg';
-import { ReactComponent as WaterEditIcon } from '../homeIcons/pen.svg';
-import { ReactComponent as WaterDeleteIcon } from '../homeIcons/trash.svg';
+import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListItemTools, ItemBtnEdit, ItemBtnDelete } from "./TodayWaterList.styled"
+import icons from '../../../assets/icons.svg';
+import {TodayWaterInfo} from "../TodayWaterInfo/TodayWaterInfo"
 
 export const TodayWaterList = () => {
     return (
@@ -10,51 +8,24 @@ export const TodayWaterList = () => {
             <WaterListTitle>Today</WaterListTitle>
             <List>
                 <ListItem>
-                    <ListItemInfo>
-                        <WaterGlassIcon />
-                        <ListItemVolume>250 ml</ListItemVolume>
-                        <ListItemTime>7:00 AM</ListItemTime>
-                    </ListItemInfo>
+                    <TodayWaterInfo/>
                     <ListItemTools>
-                        <ItemBtnEdit type="button"><WaterEditIcon /></ItemBtnEdit>
-                        <ItemBtnDelete type="button"><WaterDeleteIcon /></ItemBtnDelete>
-                    </ListItemTools>
-                </ListItem>
-                <ListItem>
-                    <ListItemInfo>
-                        <WaterGlassIcon />
-                        <ListItemVolume>250 ml</ListItemVolume>
-                        <ListItemTime>7:00 AM</ListItemTime>
-                    </ListItemInfo>
-                    <ListItemTools>
-                        <ItemBtnEdit type="button"><WaterEditIcon /></ItemBtnEdit>
-                        <ItemBtnDelete type="button"><WaterDeleteIcon /></ItemBtnDelete>
-                    </ListItemTools>
-                </ListItem>
-                <ListItem>
-                    <ListItemInfo>
-                        <WaterGlassIcon />
-                        <ListItemVolume>250 ml</ListItemVolume>
-                        <ListItemTime>7:00 AM</ListItemTime>
-                    </ListItemInfo>
-                    <ListItemTools>
-                        <ItemBtnEdit type="button"><WaterEditIcon /></ItemBtnEdit>
-                        <ItemBtnDelete type="button"><WaterDeleteIcon /></ItemBtnDelete>
-                    </ListItemTools>
-                </ListItem>
-                <ListItem>
-                    <ListItemInfo>
-                        <WaterGlassIcon />
-                        <ListItemVolume>250 ml</ListItemVolume>
-                        <ListItemTime>7:00 AM</ListItemTime>
-                    </ListItemInfo>
-                    <ListItemTools>
-                        <ItemBtnEdit type="button"><WaterEditIcon /></ItemBtnEdit>
-                        <ItemBtnDelete type="button"><WaterDeleteIcon /></ItemBtnDelete>
+                        <ItemBtnEdit type="button">
+                            <svg>
+                                <use href={`${icons}#icon-icon-pencil`}></use>
+                            </svg>
+                        </ItemBtnEdit>
+                        <ItemBtnDelete type="button">
+                            <svg>
+                                <use href={`${icons}#icon-trash`}></use>
+                            </svg>
+                        </ItemBtnDelete>
                     </ListItemTools>
                 </ListItem>
             </List>
-            <WaterListButton type="button"><AddWaterIcon/><span>Add water</span></WaterListButton>
+            <WaterListButton type="button">
+                <span>+</span>Add water
+            </WaterListButton>
       </WaterListWrap>
   )
 }

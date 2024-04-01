@@ -37,32 +37,6 @@ padding: 12px 6px;
 }
 `
 
-export const ListItemInfo = styled('div')`
-display: flex;
-align-items: center;
-column-gap:12px;
-svg {
-    width: 26px;
-    height: 26px;
-}
-@media only screen and (min-width: 768px) {
-svg {
-    width: 36px;
-    height: 36px;
-}
-}
-`
-export const ListItemVolume = styled('div')`
-color: var(--primary-focus);
-font-size: 18px;
-line-height:140%;
-`
-export const ListItemTime = styled('div')`
-color: var(--primary-dark);
-font-size: 12px;
-line-height: 200%;
-`
-
 export const ListItemTools = styled('div')`
 display: flex;
 column-gap:20px;
@@ -83,11 +57,23 @@ export const ItemBtnEdit = styled('button')`
     :hover {
         border-bottom: 1px solid var(--secondary-third);
     }
+    svg{
+        stroke: var(--secondary-third);
+        fill: transparent;
+        width: 16px;
+        height: 16px;
+    }
 `
 
 export const ItemBtnDelete = styled('button')`
     :hover {
         border-bottom: 1px solid var(--secondary-second);
+    }
+    svg{
+        stroke: var(--secondary-second);
+        fill: transparent;
+        width: 16px;
+        height: 16px;
     }
 `
 
@@ -103,16 +89,9 @@ column-gap:6px;
 align-items: center;
 transition: all 150ms linear;
 :hover {
-color: var(--secondary-fourth);
-svg {
-    fill: var(--secondary-fourth);
-}
-}
-svg {
-    width: 9px;
-    height: 9px;
-    fill: var(--primary-focus);
-    transition: all 150ms linear;
+color: var(--secondary-fourth);}
+span{
+    font-size: 24px;
 }
 @media only screen and (min-width: 768px) {
 width: 115px;
