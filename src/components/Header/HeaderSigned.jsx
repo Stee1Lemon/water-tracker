@@ -14,7 +14,7 @@ import { ReactComponent as UserLogOut } from './headerIcons/UserLogOut.svg';
 import { ReactComponent as Xmark } from './headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from './headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from './headerIcons/ShowPassword.svg';
-import TemplateImg from './headerIcons/Template.jpg';
+import TemplateImg from '../../assets/Template.jpg';
 import Modal from 'components/Modal/Modal';
 
 export const HeaderSigned = () => {
@@ -30,9 +30,12 @@ export const HeaderSigned = () => {
   };
   useEffect(() => {
     function handleClickOutside(event) {
+      const isModalOpen = isSettingsModalOpen || isLogoutModalOpen;
+
       if (
         !menuRef.current.contains(event.target) &&
-        !menuButtonRef.current.contains(event.target)
+        !menuButtonRef.current.contains(event.target) &&
+        !isModalOpen
       ) {
         setMenuVisible(false);
       }
@@ -42,7 +45,7 @@ export const HeaderSigned = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [menuRef, menuButtonRef]);
+  }, [menuRef, menuButtonRef, isSettingsModalOpen, isLogoutModalOpen]);
 
   // Модалка налаштувань
   const toggleSettingsModal = () => {
@@ -119,9 +122,7 @@ export const HeaderSigned = () => {
         <ModalSettingContainer>
           <div className="settingsFirst">
             <p className="settingsP1">Settings</p>
-            <svg className="xMarkWrapper" onClick={toggleSettingsModal}>
-              <Xmark />
-            </svg>
+            <Xmark className="xMarkWrapper" onClick={toggleSettingsModal} />
           </div>
           <div className="settingsSecond">
             <p className="settingsP2">Your Photo</p>
@@ -259,9 +260,7 @@ export const HeaderSigned = () => {
         <ModalLogOutContainer>
           <div className="logOutDiv1">
             <p className="logOutP1">Delete Entry</p>
-            <svg className="xMarkWrapper" onClick={toggleLogoutModal}>
-              <Xmark />
-            </svg>
+            <Xmark className="xMarkWrapper" onClick={toggleLogoutModal} />
           </div>
           <div className="logOutDiv2">
             <p className="logOutP2">

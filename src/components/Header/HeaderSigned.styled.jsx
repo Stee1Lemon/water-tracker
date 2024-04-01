@@ -330,6 +330,10 @@ export const ModalLogOutContainer = styled.div`
     height: 16px;
     cursor: pointer;
   }
+
+  .xMarkWrapper:hover {
+    border-bottom: 1px solid var(--primary-focus);
+  }
 `;
 
 // SettingsStyles
@@ -409,6 +413,10 @@ export const ModalSettingContainer = styled.div`
     width: 16px;
     height: 16px;
     cursor: pointer;
+  }
+
+  .xMarkWrapper:hover {
+    border-bottom: 1px solid var(--primary-focus);
   }
 
   .uploadPhotoButton {
