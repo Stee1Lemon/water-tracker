@@ -20,6 +20,7 @@ import Modal from 'components/Modal/Modal';
 export const HeaderSigned = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
+  const menuButtonRef = useRef(null);
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
@@ -29,15 +30,19 @@ export const HeaderSigned = () => {
   };
   useEffect(() => {
     function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (
+        !menuRef.current.contains(event.target) &&
+        !menuButtonRef.current.contains(event.target)
+      ) {
         setMenuVisible(false);
       }
     }
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [menuRef]);
+  }, [menuRef, menuButtonRef]);
 
   // Модалка налаштувань
   const toggleSettingsModal = () => {
@@ -77,12 +82,16 @@ export const HeaderSigned = () => {
           OF WATER
         </LogoLink>
         <UserContext>
-          <button className="UserContextButton" onClick={toggleMenu}>
+          <button
+            className="UserContextButton"
+            ref={menuButtonRef}
+            onClick={toggleMenu}
+          >
             Template
             <div className="imgWrapper">
               <img src={TemplateImg} alt="User Profile Picture" />
             </div>
-            <div className="menuButton">
+            <div className={`menuButton ${isMenuVisible ? 'rotate' : ''}`}>
               <UserMenu />
             </div>
           </button>
@@ -171,9 +180,11 @@ export const HeaderSigned = () => {
                   id="oldPassword"
                   placeholder="Password"
                 />
-                <svg className="ShowPasswordWrapper">
-                  <ShowPassword height="16px" width="16px" />
-                </svg>
+                <button className='ShowPasswordWrapper'>
+                  <svg height="16px" width="16px">
+                    <ShowPassword />
+                  </svg>
+                </button>
               </div>
             </div>
 
