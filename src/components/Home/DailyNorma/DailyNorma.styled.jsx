@@ -6,9 +6,8 @@ padding: 8px 20px;
 border-radius: 10px;
 box-shadow: 0px 4px 8px rgba(158, 187, 255,0.2);
 width: 164px;
-@media only screen and (min-width: 768px) {
-/* font-size: 26px;   */
-}
+position: relative;
+z-index:1;
 `
 
 export const NormaBlockFooter = styled('div')`
@@ -29,3 +28,5 @@ button {
     color: var(--secondary-fourth);}
     }
 `
+
+
