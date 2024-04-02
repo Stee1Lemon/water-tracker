@@ -350,4 +350,15 @@ export const ModalSettingContainer = styled.div`
     width: 16px;
     height: 16px;
   }
+
+  .invalid {
+    border: 1px solid var(--secondary-second);
+    color: var(--secondary-second);
+
+    &:focus, &:active {
+      color: var(--secondary-second);
+      border: 1px solid var(--secondary-second);
+      outline: none;
+    }
+  }
 `;
