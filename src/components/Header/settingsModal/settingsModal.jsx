@@ -2,10 +2,71 @@ import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg';
+import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
+import { useState } from 'react';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
+  const [passwordVisible, setPasswordVisible] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmNewPassword: false,
+  });
+
+  const togglePasswordVisibility = (field) => {
+    setPasswordVisible({
+      ...passwordVisible,
+      [field]: !passwordVisible[field],
+    });
+  };
+
+  const togglePasswordTextVisibility = (field) => {
+    const passwordInput = document.getElementById(field);
+    passwordInput.type = passwordVisible[field] ? 'password' : 'text';
+  };
+
+  const [nameValid, setNameValid] = useState(true);
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState({
+    oldPassword: true,
+    newPassword: true,
+    confirmNewPassword: true,
+  });
+
+  const [nameTouched, setNameTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmNewPassword: false,
+  });
+
+  const handleNameChange = (event) => {
+    setNameTouched(true);
+    const name = event.target.value;
+    setNameValid(!name || (name.length >= 2 && /^[A-Za-z]+$/.test(name)));
+  };
+
+  const handleEmailChange = (event) => {
+    setEmailTouched(true);
+    const email = event.target.value;
+    setEmailValid(!email || /\S+@\S+\.\S+/.test(email));
+  };
+
+  const handlePasswordChange = (event, field) => {
+    setPasswordTouched({
+      ...passwordTouched,
+      [field]: true,
+    });
+
+    const password = event.target.value;
+    setPasswordValid({
+      ...passwordValid,
+      [field]: !password || password.length >= 6,
+    });
+  };
+
   return (
     <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
       <ModalSettingContainer>
@@ -24,10 +85,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 height={80}
               />
             </div>
-            <div className="arrowUpWrapper">
-              <ArrowUp />
-            </div>
-            <button className="uploadPhotoButton">Upload a photo</button>
+            <button className="uploadPhotoButton">
+              <div className="arrowUpWrapper">
+                <ArrowUp />
+              </div>
+              Upload a photo
+            </button>
           </div>
         </div>
         <div className="settingsGridContainer">
@@ -36,26 +99,29 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
               <label className="settingsRadioLabel" htmlFor="genderIdentity">
                 Your gender identity
               </label>
-              <div className="radioOptionDiv">
-                <input
-                  className="radioInput"
-                  type="radio"
-                  id="woman"
-                  name="gender"
-                  value="woman"
-                ></input>
-                <label className="radioLabelOption" htmlFor="woman">
-                  Woman
+              <div className="radioOptionsDiv">
+                <label className="radioOption">
+                  <input
+                    className="radioInput"
+                    type="radio"
+                    id="woman"
+                    name="gender"
+                    value="woman"
+                    checked
+                  />
+                  <div className="customRadioButton"></div>
+                  <span className="radioLabelOption">Woman</span>
                 </label>
-                <input
-                  className="radioInput"
-                  type="radio"
-                  id="man"
-                  name="gender"
-                  value="man"
-                ></input>
-                <label className="radioLabelOption" htmlFor="man">
-                  Man
+                <label className="radioOption">
+                  <input
+                    className="radioInput"
+                    type="radio"
+                    id="man"
+                    name="gender"
+                    value="man"
+                  />
+                  <div className="customRadioButton"></div>
+                  <span className="radioLabelOption">Man</span>
                 </label>
               </div>
             </form>
@@ -67,15 +133,28 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className="passwordInput"
-                type="password"
+                className={`passwordInput ${
+                  !passwordValid.oldPassword && passwordTouched.oldPassword
+                    ? 'invalid'
+                    : ''
+                }`}
+                type={passwordVisible.oldPassword ? 'text' : 'password'}
                 id="oldPassword"
                 placeholder="Password"
+                onChange={(event) => handlePasswordChange(event, 'oldPassword')}
               />
-              <button className="ShowPasswordWrapper">
-                <svg height="16px" width="16px">
-                  <ShowPassword />
-                </svg>
+              <button
+                className="ShowPasswordWrapper"
+                onClick={() => {
+                  togglePasswordVisibility('oldPassword');
+                  togglePasswordTextVisibility('oldPassword');
+                }}
+              >
+                {passwordVisible.oldPassword ? (
+                  <ShowPasswordActive className="showPasswordSVG" />
+                ) : (
+                  <ShowPassword className="showPasswordSVG" />
+                )}
               </button>
             </div>
           </div>
@@ -85,10 +164,13 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className="passwordInput"
-                type="name"
+                className={`passwordInput ${
+                  !nameValid && nameTouched ? 'invalid' : ''
+                }`}
+                type="text"
                 id="userName"
                 placeholder="John"
+                onChange={handleNameChange}
               />
             </div>
           </div>
@@ -99,14 +181,29 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className="passwordInput"
-                type="password"
+                className={`passwordInput ${
+                  !passwordValid.newPassword && passwordTouched.newPassword
+                    ? 'invalid'
+                    : ''
+                }`}
+                type={passwordVisible.newPassword ? 'text' : 'password'}
                 id="newPassword"
                 placeholder="Password"
+                onChange={(event) => handlePasswordChange(event, 'newPassword')}
               />
-              <svg className="ShowPasswordWrapper">
-                <ShowPassword height="16px" width="16px" />
-              </svg>
+              <button
+                className="ShowPasswordWrapper"
+                onClick={() => {
+                  togglePasswordVisibility('newPassword');
+                  togglePasswordTextVisibility('newPassword');
+                }}
+              >
+                {passwordVisible.newPassword ? (
+                  <ShowPasswordActive className="showPasswordSVG" />
+                ) : (
+                  <ShowPassword className="showPasswordSVG" />
+                )}
+              </button>
             </div>
           </div>
           <div className="emailDiv">
@@ -115,10 +212,13 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className="passwordInput"
+                className={`passwordInput ${
+                  !emailValid && emailTouched ? 'invalid' : ''
+                }`}
                 type="email"
                 id="userEmail"
                 placeholder="E-mail"
+                onChange={handleEmailChange}
               />
             </div>
           </div>
@@ -128,14 +228,32 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className="passwordInput"
-                type="password"
+                className={`passwordInput ${
+                  !passwordValid.confirmNewPassword &&
+                  passwordTouched.confirmNewPassword
+                    ? 'invalid'
+                    : ''
+                }`}
+                type={passwordVisible.confirmNewPassword ? 'text' : 'password'}
                 id="confirmNewPassword"
                 placeholder="Password"
+                onChange={(event) =>
+                  handlePasswordChange(event, 'confirmNewPassword')
+                }
               />
-              <svg className="ShowPasswordWrapper">
-                <ShowPassword height="16px" width="16px" />
-              </svg>
+              <button
+                className="ShowPasswordWrapper"
+                onClick={() => {
+                  togglePasswordVisibility('confirmNewPassword');
+                  togglePasswordTextVisibility('confirmNewPassword');
+                }}
+              >
+                {passwordVisible.confirmNewPassword ? (
+                  <ShowPasswordActive className="showPasswordSVG" />
+                ) : (
+                  <ShowPassword className="showPasswordSVG" />
+                )}
+              </button>
             </div>
           </div>
         </div>
