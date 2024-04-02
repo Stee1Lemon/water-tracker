@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
@@ -5,7 +6,6 @@ import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg'
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
-import { useState } from 'react';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const [passwordVisible, setPasswordVisible] = useState({
@@ -26,45 +26,87 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     passwordInput.type = passwordVisible[field] ? 'password' : 'text';
   };
 
-  const [nameValid, setNameValid] = useState(true);
-  const [emailValid, setEmailValid] = useState(true);
-  const [passwordValid, setPasswordValid] = useState({
-    oldPassword: true,
-    newPassword: true,
-    confirmNewPassword: true,
+  const [formData, setFormData] = useState({
+    gender: 'woman',
+    userName: '',
+    userEmail: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmNewPassword: '',
   });
 
-  const [nameTouched, setNameTouched] = useState(false);
-  const [emailTouched, setEmailTouched] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState({
-    oldPassword: false,
-    newPassword: false,
-    confirmNewPassword: false,
-  });
+  const [errors, setErrors] = useState({});
 
-  const handleNameChange = (event) => {
-    setNameTouched(true);
-    const name = event.target.value;
-    setNameValid(!name || (name.length >= 2 && /^[A-Za-z]+$/.test(name)));
+  useEffect(() => {
+    if (!isSettingsModalOpen) {
+      setFormData({
+        userName: '',
+        userEmail: '',
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: '',
+      });
+      setPasswordVisible({
+        oldPassword: false,
+        newPassword: false,
+        confirmNewPassword: false,
+      });
+      setErrors({});
+    }
+  }, [isSettingsModalOpen]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+    if (errors[name]) {
+      const newErrors = { ...errors };
+      delete newErrors[name];
+      setErrors(newErrors);
+    }
   };
 
-  const handleEmailChange = (event) => {
-    setEmailTouched(true);
-    const email = event.target.value;
-    setEmailValid(!email || /\S+@\S+\.\S+/.test(email));
+  const handleRadioChange = (event) => {
+    setFormData({
+      ...formData,
+      gender: event.target.value,
+    });
   };
 
-  const handlePasswordChange = (event, field) => {
-    setPasswordTouched({
-      ...passwordTouched,
-      [field]: true,
-    });
+  const validateForm = () => {
+    const newErrors = {};
+    if (
+      !formData.userName ||
+      formData.userName.length < 2 ||
+      !/^[A-Za-z]+$/.test(formData.userName)
+    ) {
+      newErrors.userName = 'Name must be at least 2 characters.';
+    }
+    if (!formData.userEmail || !/\S+@\S+\.\S+/.test(formData.userEmail)) {
+      newErrors.userEmail = 'Email is invalid.';
+    }
+    if (!formData.oldPassword || formData.oldPassword.length < 6) {
+      newErrors.oldPassword =
+        'Old Password must be at least 6 characters long.';
+    }
+    if (!formData.newPassword || formData.newPassword.length < 6) {
+      newErrors.newPassword = 'Minimum 6 symbols';
+    }
+    if (formData.newPassword !== formData.confirmNewPassword) {
+      newErrors.confirmNewPassword = "Passwords doesn't match.";
+    }
+    return newErrors;
+  };
 
-    const password = event.target.value;
-    setPasswordValid({
-      ...passwordValid,
-      [field]: !password || password.length >= 6,
-    });
+  const handleSave = () => {
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length === 0) {
+      const dataToSave = { ...formData };
+      delete dataToSave.confirmNewPassword;
+      console.log(dataToSave);
+    } else {
+      console.error('Validation errors:', formErrors);
+      setErrors(formErrors);
+    }
   };
 
   return (
@@ -107,7 +149,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     id="woman"
                     name="gender"
                     value="woman"
-                    checked
+                    onChange={handleRadioChange}
+                    checked={formData.gender === 'woman'}
                   />
                   <div className="customRadioButton"></div>
                   <span className="radioLabelOption">Woman</span>
@@ -119,6 +162,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     id="man"
                     name="gender"
                     value="man"
+                    onChange={handleRadioChange}
+                    checked={formData.gender === 'man'}
                   />
                   <div className="customRadioButton"></div>
                   <span className="radioLabelOption">Man</span>
@@ -133,15 +178,13 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${
-                  !passwordValid.oldPassword && passwordTouched.oldPassword
-                    ? 'invalid'
-                    : ''
-                }`}
+                className="passwordInput"
                 type={passwordVisible.oldPassword ? 'text' : 'password'}
                 id="oldPassword"
+                name="oldPassword"
                 placeholder="Password"
-                onChange={(event) => handlePasswordChange(event, 'oldPassword')}
+                value={formData.oldPassword}
+                onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
@@ -164,17 +207,19 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${
-                  !nameValid && nameTouched ? 'invalid' : ''
-                }`}
+                className={`passwordInput ${errors.userName ? 'invalid' : ''}`}
                 type="text"
                 id="userName"
+                name="userName"
                 placeholder="John"
-                onChange={handleNameChange}
+                value={formData.userName}
+                onChange={handleInputChange}
               />
+              {errors.userName && (
+                <div className="errorText">{errors.userName}</div>
+              )}
             </div>
           </div>
-
           <div className="newPasswordDiv">
             <label className="passwordLabel" htmlFor="newPassword">
               New password:
@@ -182,14 +227,14 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  !passwordValid.newPassword && passwordTouched.newPassword
-                    ? 'invalid'
-                    : ''
+                  errors.newPassword ? 'invalid' : ''
                 }`}
                 type={passwordVisible.newPassword ? 'text' : 'password'}
                 id="newPassword"
+                name="newPassword"
                 placeholder="Password"
-                onChange={(event) => handlePasswordChange(event, 'newPassword')}
+                value={formData.newPassword}
+                onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
@@ -204,6 +249,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
+              {errors.newPassword && (
+                <div className="errorText">{errors.newPassword}</div>
+              )}
             </div>
           </div>
           <div className="emailDiv">
@@ -212,14 +260,17 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${
-                  !emailValid && emailTouched ? 'invalid' : ''
-                }`}
+                className={`passwordInput ${errors.userEmail ? 'invalid' : ''}`}
                 type="email"
                 id="userEmail"
+                name="userEmail"
                 placeholder="E-mail"
-                onChange={handleEmailChange}
+                value={formData.userEmail}
+                onChange={handleInputChange}
               />
+              {errors.userEmail && (
+                <div className="errorText">{errors.userEmail}</div>
+              )}
             </div>
           </div>
           <div className="confirmNewPasswordDiv">
@@ -229,17 +280,14 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  !passwordValid.confirmNewPassword &&
-                  passwordTouched.confirmNewPassword
-                    ? 'invalid'
-                    : ''
+                  errors.confirmNewPassword ? 'invalid' : ''
                 }`}
                 type={passwordVisible.confirmNewPassword ? 'text' : 'password'}
                 id="confirmNewPassword"
+                name="confirmNewPassword"
                 placeholder="Password"
-                onChange={(event) =>
-                  handlePasswordChange(event, 'confirmNewPassword')
-                }
+                value={formData.confirmNewPassword}
+                onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
@@ -254,11 +302,16 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
+              {errors.confirmNewPassword && (
+                <div className="errorText">{errors.confirmNewPassword}</div>
+              )}
             </div>
           </div>
         </div>
         <div className="settingsSixth">
-          <button className="saveButton">Save</button>
+          <button className="saveButton" onClick={handleSave}>
+            Save
+          </button>
         </div>
       </ModalSettingContainer>
     </Modal>
