@@ -1133,7 +1133,6 @@ to {
 
   flex-direction: column;
   align-items: flex-start;
-]
 `,v5=_.div`
   position: absolute;
   padding: 32px 21px;
