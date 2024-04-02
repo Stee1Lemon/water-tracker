@@ -1,24 +1,24 @@
-import Modal from "../../Modal/Modal"
+import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import { ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import { Popup, PopupFooter, PopupBtnRemove, PopupBtnClose } from "./PopupDelete.styled"
 import icons from '../../../assets/icons.svg';
 
-export function PopupDelete() {
+export function PopupDelete({isOpen, onClose}) {
     return (
-      <Modal isOpen>
+      <ModalOverlay isOpen={isOpen} onClose={onClose}>
             <Popup>
                 <ModalTitle>Delete entry</ModalTitle>
-                <ModalCloseButton>
+                <ModalCloseButton onClick={onClose}>
                     <svg >
                         <use href={`${icons}#icon-close`}></use>
                     </svg>
                 </ModalCloseButton>
                 <ModalSubtitle>Are you sure you want to delete the entry?</ModalSubtitle>
                 <PopupFooter>
-                    <PopupBtnClose type="button">Cancel</PopupBtnClose>
+                    <PopupBtnClose onClick={onClose} type="button">Cancel</PopupBtnClose>
                     <PopupBtnRemove type="button">Delete</PopupBtnRemove>
                 </PopupFooter>
             </Popup>  
-      </Modal>
+      </ModalOverlay>
   )
 }

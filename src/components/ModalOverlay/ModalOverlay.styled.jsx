@@ -25,4 +25,5 @@ export const Container = styled.div`
   z-index: 91;
   width: fit-content;
   height: fit-content;
+  border-radius:10px;
 `;
