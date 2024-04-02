@@ -15,7 +15,7 @@ export const DailyNorma = () => {
       <NormaBlock>
           <ModalSubtitle>My daily norma</ModalSubtitle>
           <NormaBlockFooter>
-              <span>{dailyNorma} L</span>
+              <span>{parseFloat(dailyNorma).toFixed(1)} L</span>
               <button onClick={handlerToggleModal} type="button">Edit</button>
       </NormaBlockFooter>
       <DailyNormaModal isOpen={isModalOpen}
