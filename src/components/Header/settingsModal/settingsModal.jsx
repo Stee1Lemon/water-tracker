@@ -73,9 +73,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 placeholder="Password"
               />
               <button className="ShowPasswordWrapper">
-                <svg height="16px" width="16px">
-                  <ShowPassword />
-                </svg>
+                  <ShowPassword className="showPasswordSVG"/>
               </button>
             </div>
           </div>
@@ -104,9 +102,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 id="newPassword"
                 placeholder="Password"
               />
-              <svg className="ShowPasswordWrapper">
-                <ShowPassword height="16px" width="16px" />
-              </svg>
+              <button className="ShowPasswordWrapper">
+                  <ShowPassword className="showPasswordSVG"/>
+              </button>
             </div>
           </div>
           <div className="emailDiv">
@@ -133,9 +131,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 id="confirmNewPassword"
                 placeholder="Password"
               />
-              <svg className="ShowPasswordWrapper">
-                <ShowPassword height="16px" width="16px" />
-              </svg>
+              <button className="ShowPasswordWrapper">
+                  <ShowPassword className="showPasswordSVG"/>
+              </button>
             </div>
           </div>
         </div>

@@ -329,9 +329,16 @@ export const ModalSettingContainer = styled.div`
     height: 16px;
     background: var(--primary-light);
     position: absolute;
+    padding: 0;
+    margin: 0;
+    border: none;
     cursor: pointer;
     top: 14px;
     right: 16px;
+  }
+
+  .showPasswordSVG{
+    position: relative;
   }
 
   .settingsImgWrapper {
