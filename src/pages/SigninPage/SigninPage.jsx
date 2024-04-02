@@ -1,5 +1,14 @@
+import { SigninForm } from 'components/SigninForm/SigninForm';
+import { FormContainer, FormSection } from './SigninPage.styled';
+
 const SigninPage = () => {
-  return <h2>Signin Page</h2>;
+  return (
+    <FormSection>
+      <FormContainer>
+        <SigninForm />
+      </FormContainer>
+    </FormSection>
+  );
 };
 
 export default SigninPage;
