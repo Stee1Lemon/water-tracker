@@ -8,22 +8,11 @@ import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
-  const [formData, setFormData] = useState({
-    userName: '',
-    userEmail: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
-    gender: 'woman',
-  });
-
   const [passwordVisible, setPasswordVisible] = useState({
     oldPassword: false,
     newPassword: false,
     confirmNewPassword: false,
   });
-
-  const [errors, setErrors] = useState({});
 
   const togglePasswordVisibility = (field) => {
     setPasswordVisible({
@@ -31,6 +20,22 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       [field]: !passwordVisible[field],
     });
   };
+
+  const togglePasswordTextVisibility = (field) => {
+    const passwordInput = document.getElementById(field);
+    passwordInput.type = passwordVisible[field] ? 'password' : 'text';
+  };
+
+  const [formData, setFormData] = useState({
+    gender: 'woman',
+    userName: '',
+    userEmail: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmNewPassword: '',
+  });
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (!isSettingsModalOpen) {
@@ -40,7 +45,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
         oldPassword: '',
         newPassword: '',
         confirmNewPassword: '',
-        gender: 'woman',
       });
       setPasswordVisible({
         oldPassword: false,
@@ -55,8 +59,17 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
+      const newErrors = { ...errors };
+      delete newErrors[name];
+      setErrors(newErrors);
     }
+  };
+
+  const handleRadioChange = (event) => {
+    setFormData({
+      ...formData,
+      gender: event.target.value,
+    });
   };
 
   const validateForm = () => {
@@ -66,8 +79,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       formData.userName.length < 2 ||
       !/^[A-Za-z]+$/.test(formData.userName)
     ) {
-      newErrors.userName =
-        'Name must be at least 2 characters long and only contain letters.';
+      newErrors.userName = 'Name must be at least 2 characters.';
     }
     if (!formData.userEmail || !/\S+@\S+\.\S+/.test(formData.userEmail)) {
       newErrors.userEmail = 'Email is invalid.';
@@ -77,12 +89,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
         'Old Password must be at least 6 characters long.';
     }
     if (!formData.newPassword || formData.newPassword.length < 6) {
-      newErrors.newPassword =
-        'New Password must be at least 6 characters long.';
+      newErrors.newPassword = 'Minimum 6 symbols';
     }
     if (formData.newPassword !== formData.confirmNewPassword) {
-      newErrors.confirmNewPassword =
-        'New Password and Confirm New Password do not match.';
+      newErrors.confirmNewPassword = "Passwords doesn't match.";
     }
     return newErrors;
   };
@@ -90,7 +100,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const handleSave = () => {
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-      const { confirmNewPassword, ...dataToSave } = formData;
+      const dataToSave = { ...formData };
+      delete dataToSave.confirmNewPassword;
       console.log(dataToSave);
     } else {
       console.error('Validation errors:', formErrors);
@@ -138,8 +149,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     id="woman"
                     name="gender"
                     value="woman"
+                    onChange={handleRadioChange}
                     checked={formData.gender === 'woman'}
-                    onChange={handleInputChange}
                   />
                   <div className="customRadioButton"></div>
                   <span className="radioLabelOption">Woman</span>
@@ -151,8 +162,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     id="man"
                     name="gender"
                     value="man"
+                    onChange={handleRadioChange}
                     checked={formData.gender === 'man'}
-                    onChange={handleInputChange}
                   />
                   <div className="customRadioButton"></div>
                   <span className="radioLabelOption">Man</span>
@@ -160,7 +171,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
               </div>
             </form>
           </div>
-          {/* Repeat similar structure for other fields, applying conditional className based on errors */}
           <div className="passwordDiv">
             <p className="settingsP3">Password</p>
             <label className="passwordLabel" htmlFor="oldPassword">
@@ -168,9 +178,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${
-                  errors.oldPassword ? 'invalid' : ''
-                }`}
+                className="passwordInput"
                 type={passwordVisible.oldPassword ? 'text' : 'password'}
                 id="oldPassword"
                 name="oldPassword"
@@ -179,14 +187,16 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 onChange={handleInputChange}
               />
               <button
-                type="button"
                 className="ShowPasswordWrapper"
-                onClick={() => togglePasswordVisibility('oldPassword')}
+                onClick={() => {
+                  togglePasswordVisibility('oldPassword');
+                  togglePasswordTextVisibility('oldPassword');
+                }}
               >
                 {passwordVisible.oldPassword ? (
-                  <ShowPasswordActive />
+                  <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
-                  <ShowPassword />
+                  <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
             </div>
@@ -195,18 +205,20 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             <label className="passwordLabel" htmlFor="userName">
               Your name:
             </label>
-            <input
-              className={`passwordInput ${errors.userName ? 'invalid' : ''}`}
-              type="text"
-              id="userName"
-              name="userName"
-              placeholder="John"
-              value={formData.userName}
-              onChange={handleInputChange}
-            />
-            {errors.userName && (
-              <div className="errorText">{errors.userName}</div>
-            )}
+            <div className="passwordInputContainer">
+              <input
+                className={`passwordInput ${errors.userName ? 'invalid' : ''}`}
+                type="text"
+                id="userName"
+                name="userName"
+                placeholder="John"
+                value={formData.userName}
+                onChange={handleInputChange}
+              />
+              {errors.userName && (
+                <div className="errorText">{errors.userName}</div>
+              )}
+            </div>
           </div>
           <div className="newPasswordDiv">
             <label className="passwordLabel" htmlFor="newPassword">
@@ -225,34 +237,41 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 onChange={handleInputChange}
               />
               <button
-                type="button"
                 className="ShowPasswordWrapper"
-                onClick={() => togglePasswordVisibility('newPassword')}
+                onClick={() => {
+                  togglePasswordVisibility('newPassword');
+                  togglePasswordTextVisibility('newPassword');
+                }}
               >
                 {passwordVisible.newPassword ? (
-                  <ShowPasswordActive />
+                  <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
-                  <ShowPassword />
+                  <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
+              {errors.newPassword && (
+                <div className="errorText">{errors.newPassword}</div>
+              )}
             </div>
           </div>
           <div className="emailDiv">
             <label className="passwordLabel" htmlFor="userEmail">
               E-mail:
             </label>
-            <input
-              className={`passwordInput ${errors.userEmail ? 'invalid' : ''}`}
-              type="email"
-              id="userEmail"
-              name="userEmail"
-              placeholder="E-mail"
-              value={formData.userEmail}
-              onChange={handleInputChange}
-            />
-            {errors.userEmail && (
-              <div className="errorText">{errors.userEmail}</div>
-            )}
+            <div className="passwordInputContainer">
+              <input
+                className={`passwordInput ${errors.userEmail ? 'invalid' : ''}`}
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                placeholder="E-mail"
+                value={formData.userEmail}
+                onChange={handleInputChange}
+              />
+              {errors.userEmail && (
+                <div className="errorText">{errors.userEmail}</div>
+              )}
+            </div>
           </div>
           <div className="confirmNewPasswordDiv">
             <label className="passwordLabel" htmlFor="confirmNewPassword">
@@ -271,21 +290,26 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 onChange={handleInputChange}
               />
               <button
-                type="button"
                 className="ShowPasswordWrapper"
-                onClick={() => togglePasswordVisibility('confirmNewPassword')}
+                onClick={() => {
+                  togglePasswordVisibility('confirmNewPassword');
+                  togglePasswordTextVisibility('confirmNewPassword');
+                }}
               >
                 {passwordVisible.confirmNewPassword ? (
-                  <ShowPasswordActive />
+                  <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
-                  <ShowPassword />
+                  <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
+              {errors.confirmNewPassword && (
+                <div className="errorText">{errors.confirmNewPassword}</div>
+              )}
             </div>
           </div>
         </div>
         <div className="settingsSixth">
-          <button type="button" className="saveButton" onClick={handleSave}>
+          <button className="saveButton" onClick={handleSave}>
             Save
           </button>
         </div>
