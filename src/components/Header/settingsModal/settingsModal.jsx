@@ -2,10 +2,30 @@ import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg';
+import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
+import { useState } from 'react';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
+  const [passwordVisible, setPasswordVisible] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmNewPassword: false,
+  });
+
+  const togglePasswordVisibility = (field) => {
+    setPasswordVisible({
+      ...passwordVisible,
+      [field]: !passwordVisible[field],
+    });
+  };
+
+  const togglePasswordTextVisibility = (field) => {
+    const passwordInput = document.getElementById(field);
+    passwordInput.type = passwordVisible[field] ? 'password' : 'text';
+  };
+
   return (
     <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
       <ModalSettingContainer>
@@ -68,12 +88,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             <div className="passwordInputContainer">
               <input
                 className="passwordInput"
-                type="password"
+                type={passwordVisible.oldPassword ? 'text' : 'password'}
                 id="oldPassword"
                 placeholder="Password"
               />
-              <button className="ShowPasswordWrapper">
-                  <ShowPassword className="showPasswordSVG"/>
+              <button className="ShowPasswordWrapper" onClick={() => { togglePasswordVisibility('oldPassword'); togglePasswordTextVisibility('oldPassword'); }}>
+                {passwordVisible.oldPassword ? <ShowPasswordActive className="showPasswordSVG" /> : <ShowPassword className="showPasswordSVG" />}
               </button>
             </div>
           </div>
@@ -98,12 +118,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             <div className="passwordInputContainer">
               <input
                 className="passwordInput"
-                type="password"
+                type={passwordVisible.newPassword ? 'text' : 'password'}
                 id="newPassword"
                 placeholder="Password"
               />
-              <button className="ShowPasswordWrapper">
-                  <ShowPassword className="showPasswordSVG"/>
+              <button className="ShowPasswordWrapper" onClick={() => { togglePasswordVisibility('newPassword'); togglePasswordTextVisibility('newPassword'); }}>
+                {passwordVisible.newPassword ? <ShowPasswordActive className="showPasswordSVG" /> : <ShowPassword className="showPasswordSVG" />}
               </button>
             </div>
           </div>
@@ -127,12 +147,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             <div className="passwordInputContainer">
               <input
                 className="passwordInput"
-                type="password"
+                type={passwordVisible.confirmNewPassword ? 'text' : 'password'}
                 id="confirmNewPassword"
                 placeholder="Password"
               />
-              <button className="ShowPasswordWrapper">
-                  <ShowPassword className="showPasswordSVG"/>
+              <button className="ShowPasswordWrapper" onClick={() => { togglePasswordVisibility('confirmNewPassword'); togglePasswordTextVisibility('confirmNewPassword'); }}>
+                {passwordVisible.confirmNewPassword ? <ShowPasswordActive className="showPasswordSVG" /> : <ShowPassword className="showPasswordSVG" />}
               </button>
             </div>
           </div>
