@@ -11,12 +11,11 @@ export const DailyNorma = () => {
   const handlerToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-  const dailyVolume = (dailyNorma / 1000).toFixed(1);
   return (
       <NormaBlock>
           <ModalSubtitle>My daily norma</ModalSubtitle>
           <NormaBlockFooter>
-              <span>{dailyVolume} L</span>
+              <span>{dailyNorma} L</span>
               <button onClick={handlerToggleModal} type="button">Edit</button>
       </NormaBlockFooter>
       <DailyNormaModal isOpen={isModalOpen}
