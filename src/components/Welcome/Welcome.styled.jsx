@@ -107,7 +107,6 @@ export const WelcomePageDescriptionWrapper = styled.div`
 
   flex-direction: column;
   align-items: flex-start;
-]
 `;
 
 export const WelcomePageDescriptionDiv = styled.div`
