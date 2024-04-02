@@ -29,7 +29,7 @@
     "redux-persist": "^6.0.0",
     "styled-components": "^6.0.7",
     "vite-plugin-svgr": "^3.2.0",
-    "yap": "^0.0.2"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
