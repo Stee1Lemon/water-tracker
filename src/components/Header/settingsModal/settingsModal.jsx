@@ -85,10 +85,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 height={80}
               />
             </div>
-            <div className="arrowUpWrapper">
-              <ArrowUp />
-            </div>
-            <button className="uploadPhotoButton">Upload a photo</button>
+            <button className="uploadPhotoButton">
+              <div className="arrowUpWrapper">
+                <ArrowUp />
+              </div>
+              Upload a photo
+            </button>
           </div>
         </div>
         <div className="settingsGridContainer">
@@ -105,6 +107,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     id="woman"
                     name="gender"
                     value="woman"
+                    checked
                   />
                   <div className="customRadioButton"></div>
                   <span className="radioLabelOption">Woman</span>

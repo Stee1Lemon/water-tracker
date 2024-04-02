@@ -86,13 +86,20 @@ export const ModalSettingContainer = styled.div`
   .uploadPhotoButton {
     margin: 0px;
     font:
-      500 14px/1.5 'Roboto',
+      500 16px/1.5 'Roboto',
       sans-serif;
     color: var(--primary-focus);
     padding: 0;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
+    gap: 4px;
+  }
+
+  .uploadPhotoButton:hover .arrowUpWrapper {
+    transform: rotateY(180deg);
+    transition: transform 0.5s linear;
   }
 
   .settingsSecond {
@@ -355,6 +362,7 @@ export const ModalSettingContainer = styled.div`
 
   .settingsP2 {
     margin: 0px;
+    margin-bottom: 4px;
     font:
       500 18px/1.5 'Roboto',
       sans-serif;
@@ -394,6 +402,7 @@ export const ModalSettingContainer = styled.div`
   .arrowUpWrapper {
     width: 16px;
     height: 16px;
+    transition: transform 0.5s linear;
   }
 
   .invalid {
