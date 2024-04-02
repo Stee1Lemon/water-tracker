@@ -7,6 +7,8 @@ export const initialState = {
         email: '',
         name: '',
         gender: '',
+        avatarURL: '',
+        dailyNorma: '',
     },
     token: null,
     isLoggedIn: false,
