@@ -134,6 +134,7 @@ export const ModalSettingContainer = styled.div`
 
   .settingsRadioLabel {
     display: flex;
+    padding-bottom: 4px;
     align-items: start;
     font:
       500 18px/1.5 'Roboto',
@@ -154,11 +155,55 @@ export const ModalSettingContainer = styled.div`
     font:
       400 16px/1.5 'Roboto',
       sans-serif;
+    cursor: pointer;
   }
 
-  .radioOptionDiv {
+  .radioOptionsDiv {
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+  }
+
+  .radioOption {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .radioInput {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .customRadioButton {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    margin-right: 8px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .customRadioButton::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #007bff;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .radioInput:checked + .customRadioButton::after {
+    display: block;
+  }
+
+  .radioInput:checked + .customRadioButton + .radioLabelOption {
+    font-weight: bold;
+    color: #007bff;
   }
 
   .passwordLabel {
@@ -337,7 +382,7 @@ export const ModalSettingContainer = styled.div`
     right: 16px;
   }
 
-  .showPasswordSVG{
+  .showPasswordSVG {
     position: relative;
   }
 
@@ -355,10 +400,15 @@ export const ModalSettingContainer = styled.div`
     border: 1px solid var(--secondary-second);
     color: var(--secondary-second);
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       color: var(--secondary-second);
       border: 1px solid var(--secondary-second);
       outline: none;
     }
+  }
+
+  .invalid.passwordInput:not(:placeholder-shown) {
+    color: var(--secondary-second);
   }
 `;

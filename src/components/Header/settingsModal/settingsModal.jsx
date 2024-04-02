@@ -97,26 +97,28 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
               <label className="settingsRadioLabel" htmlFor="genderIdentity">
                 Your gender identity
               </label>
-              <div className="radioOptionDiv">
-                <input
-                  className="radioInput"
-                  type="radio"
-                  id="woman"
-                  name="gender"
-                  value="woman"
-                ></input>
-                <label className="radioLabelOption" htmlFor="woman">
-                  Woman
+              <div className="radioOptionsDiv">
+                <label className="radioOption">
+                  <input
+                    className="radioInput"
+                    type="radio"
+                    id="woman"
+                    name="gender"
+                    value="woman"
+                  />
+                  <div className="customRadioButton"></div>
+                  <span className="radioLabelOption">Woman</span>
                 </label>
-                <input
-                  className="radioInput"
-                  type="radio"
-                  id="man"
-                  name="gender"
-                  value="man"
-                ></input>
-                <label className="radioLabelOption" htmlFor="man">
-                  Man
+                <label className="radioOption">
+                  <input
+                    className="radioInput"
+                    type="radio"
+                    id="man"
+                    name="gender"
+                    value="man"
+                  />
+                  <div className="customRadioButton"></div>
+                  <span className="radioLabelOption">Man</span>
                 </label>
               </div>
             </form>
@@ -128,14 +130,28 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${(!passwordValid.oldPassword && passwordTouched.oldPassword) ? 'invalid' : ''}`}
+                className={`passwordInput ${
+                  !passwordValid.oldPassword && passwordTouched.oldPassword
+                    ? 'invalid'
+                    : ''
+                }`}
                 type={passwordVisible.oldPassword ? 'text' : 'password'}
                 id="oldPassword"
                 placeholder="Password"
                 onChange={(event) => handlePasswordChange(event, 'oldPassword')}
               />
-              <button className="ShowPasswordWrapper" onClick={() => { togglePasswordVisibility('oldPassword'); togglePasswordTextVisibility('oldPassword'); }}>
-                {passwordVisible.oldPassword ? <ShowPasswordActive className="showPasswordSVG" /> : <ShowPassword className="showPasswordSVG" />}
+              <button
+                className="ShowPasswordWrapper"
+                onClick={() => {
+                  togglePasswordVisibility('oldPassword');
+                  togglePasswordTextVisibility('oldPassword');
+                }}
+              >
+                {passwordVisible.oldPassword ? (
+                  <ShowPasswordActive className="showPasswordSVG" />
+                ) : (
+                  <ShowPassword className="showPasswordSVG" />
+                )}
               </button>
             </div>
           </div>
@@ -145,7 +161,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${(!nameValid && nameTouched) ? 'invalid' : ''}`}
+                className={`passwordInput ${
+                  !nameValid && nameTouched ? 'invalid' : ''
+                }`}
                 type="text"
                 id="userName"
                 placeholder="John"
@@ -160,14 +178,28 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${(!passwordValid.newPassword && passwordTouched.newPassword) ? 'invalid' : ''}`}
+                className={`passwordInput ${
+                  !passwordValid.newPassword && passwordTouched.newPassword
+                    ? 'invalid'
+                    : ''
+                }`}
                 type={passwordVisible.newPassword ? 'text' : 'password'}
                 id="newPassword"
                 placeholder="Password"
                 onChange={(event) => handlePasswordChange(event, 'newPassword')}
               />
-              <button className="ShowPasswordWrapper" onClick={() => { togglePasswordVisibility('newPassword'); togglePasswordTextVisibility('newPassword'); }}>
-                {passwordVisible.newPassword ? <ShowPasswordActive className="showPasswordSVG" /> : <ShowPassword className="showPasswordSVG" />}
+              <button
+                className="ShowPasswordWrapper"
+                onClick={() => {
+                  togglePasswordVisibility('newPassword');
+                  togglePasswordTextVisibility('newPassword');
+                }}
+              >
+                {passwordVisible.newPassword ? (
+                  <ShowPasswordActive className="showPasswordSVG" />
+                ) : (
+                  <ShowPassword className="showPasswordSVG" />
+                )}
               </button>
             </div>
           </div>
@@ -177,7 +209,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${(!emailValid && emailTouched) ? 'invalid' : ''}`}
+                className={`passwordInput ${
+                  !emailValid && emailTouched ? 'invalid' : ''
+                }`}
                 type="email"
                 id="userEmail"
                 placeholder="E-mail"
@@ -191,14 +225,31 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${(!passwordValid.confirmNewPassword && passwordTouched.confirmNewPassword) ? 'invalid' : ''}`}
+                className={`passwordInput ${
+                  !passwordValid.confirmNewPassword &&
+                  passwordTouched.confirmNewPassword
+                    ? 'invalid'
+                    : ''
+                }`}
                 type={passwordVisible.confirmNewPassword ? 'text' : 'password'}
                 id="confirmNewPassword"
                 placeholder="Password"
-                onChange={(event) => handlePasswordChange(event, 'confirmNewPassword')}
+                onChange={(event) =>
+                  handlePasswordChange(event, 'confirmNewPassword')
+                }
               />
-              <button className="ShowPasswordWrapper" onClick={() => { togglePasswordVisibility('confirmNewPassword'); togglePasswordTextVisibility('confirmNewPassword'); }}>
-                {passwordVisible.confirmNewPassword ? <ShowPasswordActive className="showPasswordSVG" /> : <ShowPassword className="showPasswordSVG" />}
+              <button
+                className="ShowPasswordWrapper"
+                onClick={() => {
+                  togglePasswordVisibility('confirmNewPassword');
+                  togglePasswordTextVisibility('confirmNewPassword');
+                }}
+              >
+                {passwordVisible.confirmNewPassword ? (
+                  <ShowPasswordActive className="showPasswordSVG" />
+                ) : (
+                  <ShowPassword className="showPasswordSVG" />
+                )}
               </button>
             </div>
           </div>
