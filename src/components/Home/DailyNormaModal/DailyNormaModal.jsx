@@ -1,14 +1,14 @@
-import Modal from "../../Modal/Modal"
+import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import { NormaModal, ModalBtn, CalculationScheme, CalculationText, CalculationItem, CalculationResult, Form, FormRadioItems, RadioItem } from "./DailyNormaModal.styled"
 import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
 
-export const DailyNormaModal = () => {
+export const DailyNormaModal = ({isOpen, onClose}) => {
   return (
-    <Modal isOpen>
+    <ModalOverlay isOpen={isOpen} onClose={onClose}>
           <NormaModal>
         <ModalTitle>My daily norma</ModalTitle>
-        <ModalCloseButton>
+        <ModalCloseButton onClick={onClose}>
           <svg >
             <use href={`${icons}#icon-close`}></use>
           </svg>
@@ -58,6 +58,6 @@ export const DailyNormaModal = () => {
                   <ModalBtn type="submit">Save</ModalBtn>
             </Form>
           </NormaModal>
-    </Modal>
+    </ModalOverlay>
   )
 }

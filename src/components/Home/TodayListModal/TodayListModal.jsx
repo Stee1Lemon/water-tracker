@@ -1,22 +1,22 @@
-import Modal from "../../Modal/Modal"
+import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
 import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalFooter, Label, ModalBtn } from "./TodayListModal.styled"
 import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
 
-export const TodayListModal = () => {
+export const TodayListModal = ({isOpen, onClose, type}) => {
   return (
-    <Modal isOpen>
+    <ModalOverlay isOpen={isOpen} onClose={onClose}>
           <AddWaterModal>
-              <ModalTitle>Edit the entered amount of water</ModalTitle>
-              <ModalCloseButton>
+        <ModalTitle>{type? "Edit the entered amount of water" : "Add water"}</ModalTitle>
+              <ModalCloseButton onClick={onClose}>
                 <svg >
                 <use href={`${icons}#icon-close`}></use>
                 </svg>
               </ModalCloseButton>
-              <PrevInfo><TodayWaterInfo /></PrevInfo>
+              {type && <PrevInfo><TodayWaterInfo /></PrevInfo>}
               <div>
-                <ModalSubtitle>Correct entered data:</ModalSubtitle>
+                <ModalSubtitle>{type? "Correct entered data:" : "Choose a value:"}</ModalSubtitle>
                 <p>Amount of water:</p>
                 <WaterCounter>
                   <CounterBtn minus>
@@ -45,6 +45,6 @@ export const TodayListModal = () => {
                       <ModalBtn>Save</ModalBtn>
                   </ModalFooter>
           </AddWaterModal> 
-    </Modal>
+    </ModalOverlay>
   )
 }
