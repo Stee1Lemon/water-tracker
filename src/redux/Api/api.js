@@ -50,7 +50,7 @@ export const editUserInfo = async body => {
 export const dailyNorm = async norm => {
     const { data } = await axios.patch('api/user/norm', { dailyNorm: norm });    //api/user/norm ????? уточнити маршрути
     return data;
-}
+};
 
 //Water part
 
