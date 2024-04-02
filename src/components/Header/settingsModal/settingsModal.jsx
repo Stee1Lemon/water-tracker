@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
@@ -5,7 +6,6 @@ import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg'
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
-import { useState } from 'react';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const [passwordVisible, setPasswordVisible] = useState({
@@ -41,6 +41,25 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     newPassword: false,
     confirmNewPassword: false,
   });
+
+  useEffect(() => {
+    if (!isSettingsModalOpen) {
+      setNameValid(true);
+      setEmailValid(true);
+      setPasswordValid({
+        oldPassword: true,
+        newPassword: true,
+        confirmNewPassword: true,
+      });
+      setNameTouched(false);
+      setEmailTouched(false);
+      setPasswordTouched({
+        oldPassword: false,
+        newPassword: false,
+        confirmNewPassword: false,
+      });
+    }
+  }, [isSettingsModalOpen]);
 
   const handleNameChange = (event) => {
     setNameTouched(true);
