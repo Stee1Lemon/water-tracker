@@ -4,11 +4,11 @@ import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalF
 import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
 import { useState } from 'react';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import { Formik } from 'formik';
 
 
-const getTimeOptions = () => {
+const getOptions = () => {
   const options = [];
 
   for (let i = 0; i < 24; i++) {
@@ -25,15 +25,34 @@ const getTimeOptions = () => {
 };
 
 
+const getCurrentTime = date => {
+  const currentTime = date ? new Date(date) : new Date();
+  const minutes = currentTime.getMinutes();
+  const roundedMinutes = Math.ceil(minutes / 5) * 5;
+  currentTime.setMinutes(roundedMinutes);
+  currentTime.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  return currentTime;
+};
+
+
 
 export const TodayListModal = ({ isOpen, onClose, type }) => {
   const [volume, setVolume] = useState(0);
-  const [time, setTime] = useState({
-    value: format(new Date(), 'HH:mm'),
-    label: format(new Date(), 'HH:mm'),
+  
+  // const { _id, date, amountWater } = useSelector(selectModalWater);
+  const now = getCurrentTime();
+  const nowTime =
+    `${now.getHours()}`.padStart(2, '0') +
+    ':' +
+    `${now.getMinutes()}`.padStart(2, '0');
+  
+   const [time, setTime] = useState({
+    value: nowTime,
+    label: nowTime,
   })
-  //  const [time, setTime] = useState(new Date())
-  console.log('time :>> ', time);
 
   const increaseVolume = () => {
     setVolume((prev) => prev === "" ? 0 : parseFloat(prev) + 50);
@@ -46,16 +65,16 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
     setTime(selectedOption);
   };
 
-  // const onMenuOpen = () => {
-  //   requestAnimationFrame(() => {
-  //     const selectedEl = document.querySelector(
-  //       '.MyDropdown__option--is-selected'
-  //     );
-  //     if (selectedEl) {
-  //       selectedEl.scrollIntoView({});
-  //     }
-  //   });
-  // };
+  const onMenuOpen = () => {
+    requestAnimationFrame(() => {
+      const selectedOption = document.querySelector(
+        '.Select__option--is-selected'
+      );
+      if (selectedOption) {
+        selectedOption.scrollIntoView({});
+      }
+    });
+  };
 
 
   const handleOnSubmit = (e) => {
@@ -65,23 +84,13 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
     if (!type) {
       // Беремо поточний день
       const currentDate = new Date();
-       // Беремо години і хвилини обрані користувачем
-      const [hours, minutes] = time.split(':');
+      // Беремо години і хвилини обрані користувачем
+
+      const [hours, minutes] = time.value.split(':');
       // Редагуємо поточну дату з урахуванням обраного часу
       currentDate.setHours(hours, minutes, 0);
       // console.log(' currentDate:>> ',currentDate);
-      selectedDate = currentDate.toUTCString();
-      console.log(' selectedDate:>> ',selectedDate);
-    }
-    if (type) {
-      // Беремо поточний день
-      const currentDate = new Date();
-       // Беремо години і хвилини обрані користувачем
-      const [hours, minutes] = time.split(':');
-      // Редагуємо поточну дату з урахуванням обраного часу
-      currentDate.setHours(hours, minutes, 0);
-      // console.log(' currentDate:>> ',currentDate);
-      selectedDate = currentDate.toUTCString();
+      // selectedDate = currentDate.toISOString();
       console.log(' selectedDate:>> ',selectedDate);
     }
   }
@@ -115,8 +124,8 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
               <Form onSubmit={handleOnSubmit}>
                 <div>
             <p>Recording time:</p>
-              <TimeInput classNamePrefix={'MyDropdown'}
-              options={getTimeOptions()} value={time} defaultValue={time} onChange={handleChangeTime} />
+              <TimeInput classNamePrefix={'Select'}
+              options={getOptions()} value={time} defaultValue={time} onChange={handleChangeTime} onMenuOpen={onMenuOpen}/>
             {/* <Input type="time" name="time" step={step} value={time} onChange={e => {
               console.log('e.target Time :>> ', e);
               setTime(e.target.value)

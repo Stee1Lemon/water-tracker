@@ -108,30 +108,30 @@ width: 100%;
 line-height: 125%;
 margin: 0;
 /* border: 1px solid var(--secondary-fifth); */
-.MyDropdown__control {
+.Select__control {
     height: 44px;
     border: 1px solid red;
     cursor: pointer;
   }
 
-  .MyDropdown__control:hover {
+  .Select__control:hover {
     border: 1px solid blue;
   }
 
-  .MyDropdown__indicators {
+  .Select__indicators {
     display: none;
   }
 
-  .MyDropdown__value-container {
+  .Select__value-container {
     padding: 0px 10px;
   }
 
-  .MyDropdown__single-value {
+  .Select__single-value {
     color: green;
     line-height: 1.25;
   }
 
-  .MyDropdown__menu {
+  .Select__menu {
     width: 88px;
     color: orange;
   }
