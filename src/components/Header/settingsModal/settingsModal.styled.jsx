@@ -170,6 +170,7 @@ export const ModalSettingContainer = styled.div`
         display: flex;
         align-items: center;
         margin-bottom: 8px;
+        cursor: pointer;
     }
 
     .radioInput {

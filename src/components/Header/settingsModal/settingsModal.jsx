@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Notiflix from 'notiflix';
 import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
@@ -40,6 +41,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   useEffect(() => {
     if (!isSettingsModalOpen) {
       setFormData({
+        gender: 'woman',
         userName: '',
         userEmail: '',
         oldPassword: '',
@@ -58,11 +60,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    if (errors[name]) {
-      const newErrors = { ...errors };
-      delete newErrors[name];
-      setErrors(newErrors);
-    }
+
+    validateField(name, value);
   };
 
   const handleRadioChange = (event) => {
@@ -72,41 +71,80 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     });
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (
-      !formData.userName ||
-      formData.userName.length < 2 ||
-      !/^[A-Za-z]+$/.test(formData.userName)
-    ) {
-      newErrors.userName = 'Name must be at least 2 characters.';
+  const validateField = (name, value) => {
+    let fieldErrors = { ...errors };
+
+    if (name === 'userName') {
+      if (!value || value.length < 2 || !/^[A-Za-z]+$/.test(value)) {
+        fieldErrors[name] = 'Name must be at least 2 characters.';
+      } else {
+        delete fieldErrors[name];
+      }
     }
-    if (!formData.userEmail || !/\S+@\S+\.\S+/.test(formData.userEmail)) {
-      newErrors.userEmail = 'Email is invalid.';
+
+    if (name === 'userEmail') {
+      if (!value || !/\S+@\S+\.\S+/.test(value)) {
+        fieldErrors[name] = 'Email is invalid.';
+      } else {
+        delete fieldErrors[name];
+      }
     }
-    if (!formData.oldPassword || formData.oldPassword.length < 6) {
-      newErrors.oldPassword =
-        'Old Password must be at least 6 characters long.';
+
+    if (name === 'oldPassword') {
+      if (!value || value.length < 6) {
+        fieldErrors[name] = 'Old Password must be at least 6 characters long.';
+      } else {
+        delete fieldErrors[name];
+      }
     }
-    if (!formData.newPassword || formData.newPassword.length < 6) {
-      newErrors.newPassword = 'Minimum 6 symbols';
+
+    if (name === 'newPassword') {
+      if (!value || value.length < 6) {
+        fieldErrors[name] = 'Minimum 6 symbols';
+      } else {
+        delete fieldErrors[name];
+      }
     }
-    if (formData.newPassword !== formData.confirmNewPassword) {
-      newErrors.confirmNewPassword = "Passwords doesn't match.";
+
+    if (name === 'confirmNewPassword') {
+      if (formData.newPassword !== value) {
+        fieldErrors[name] = "Passwords doesn't match.";
+      } else {
+        delete fieldErrors[name];
+      }
     }
-    return newErrors;
+
+    setErrors(fieldErrors);
   };
 
   const handleSave = () => {
     const formErrors = validateForm();
-    if (Object.keys(formErrors).length === 0) {
+
+    const areAllFieldsValid = Object.keys(formData).every((key) => {
+      if (key === 'confirmNewPassword') return true;
+      const value = formData[key];
+      return value && (!errors[key] || errors[key] === '');
+    });
+
+    if (Object.keys(formErrors).length === 0 && areAllFieldsValid) {
       const dataToSave = { ...formData };
       delete dataToSave.confirmNewPassword;
       console.log(dataToSave);
+      Notiflix.Notify.success('Success!');
     } else {
-      console.error('Validation errors:', formErrors);
-      setErrors(formErrors);
+      Notiflix.Notify.failure('Oops! Something went wrong!');
     }
+  };
+
+  const validateForm = () => {
+    let formErrors = {};
+    Object.keys(formData).forEach((key) => {
+      validateField(key, formData[key]);
+      if (errors[key]) {
+        formErrors[key] = errors[key];
+      }
+    });
+    return formErrors;
   };
 
   return (
@@ -153,7 +191,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     checked={formData.gender === 'woman'}
                   />
                   <div className="customRadioButton"></div>
-                  <span className="radioLabelOption">Woman</span>
+                  Woman
                 </label>
                 <label className="radioOption">
                   <input
@@ -166,7 +204,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     checked={formData.gender === 'man'}
                   />
                   <div className="customRadioButton"></div>
-                  <span className="radioLabelOption">Man</span>
+                  Man
                 </label>
               </div>
             </form>
@@ -178,7 +216,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className="passwordInput"
+                className={`passwordInput ${
+                  errors.oldPassword ? 'invalid' : ''
+                }`}
                 type={passwordVisible.oldPassword ? 'text' : 'password'}
                 id="oldPassword"
                 name="oldPassword"
@@ -199,6 +239,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
+              {errors.oldPassword && (
+                <div className="errorText">{errors.oldPassword}</div>
+              )}
             </div>
           </div>
           <div className="nameDiv">
