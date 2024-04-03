@@ -207,7 +207,7 @@ overflow-y: hidden;
     flex-direction: column;
     align-items: start;
     max-height: 80vh;
-    padding: 32px 0px 32px 24px;
+    padding: 32px 0 32px 24px;
 
     @media (max-width: 1439px) {
         width: 704px;
@@ -234,6 +234,7 @@ overflow-y: hidden;
 
         @media (max-width: 1439px) {
             grid-template-columns: 1fr;
+            overflow-y: auto;
             grid-template-areas:
         'gender'
         'name'
@@ -246,6 +247,7 @@ overflow-y: hidden;
         @media (max-width: 767px) {
             width: 256px;
             margin-bottom: 26px;
+            overflow-y: auto;
         }
     }
 
@@ -278,7 +280,7 @@ overflow-y: hidden;
     }
 
     .uploadPhotoButton {
-        margin: 0px;
+        margin: 0;
         font: 500 16px/1.5 'Roboto',
         sans-serif;
         color: var(--primary-focus);
@@ -350,7 +352,7 @@ overflow-y: hidden;
     }
 
     .radioLabelOption {
-        margin: 0px;
+        margin: 0;
         font: 400 16px/1.5 'Roboto',
         sans-serif;
         cursor: pointer;
@@ -405,7 +407,7 @@ overflow-y: hidden;
     }
 
     .passwordLabel {
-        margin: 0px;
+        margin: 0;
         font: 400 16px/1.5 'Roboto',
         sans-serif;
     }
@@ -520,8 +522,8 @@ overflow-y: hidden;
     .saveButton {
         width: 160px;
         height: 44px;
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -540,32 +542,31 @@ overflow-y: hidden;
     }
 
     .saveButton:hover {
-        box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+        box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
     }
 
     .saveButton:active {
         background: #0c48cc;
-        box-shadow: 0px 2px 8px 0px rgba(64, 123, 255, 0.54);
+        box-shadow: 0 2px 8px 0 rgba(64, 123, 255, 0.54);
         transform: translateY(2px);
     }
 
 
     .settingsP1 {
-        margin: 0px;
+        margin: 0;
         font: 500 26px/1.5 'Roboto',
         sans-serif;
     }
 
     .settingsP2 {
-        margin: 0px;
-        margin-bottom: 4px;
+        margin: 0 0 4px;
         font: 500 18px/1.5 'Roboto',
         sans-serif;
         width: 100%;
     }
 
     .settingsP3 {
-        margin: 0px;
+        margin: 0;
         font: 500 18px/1.5 'Roboto',
         sans-serif;
         width: 100%;
