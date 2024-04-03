@@ -27,6 +27,10 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     calculateWaterVolume();
   }, [calculateWaterVolume]);
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    console.log('dailyGoalNormOfWater :>> ', dailyGoal);
+  }
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
@@ -44,7 +48,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
                   </CalculationScheme>
                   <CalculationText><span>*</span> V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)</CalculationText>
               </div>
-              <Form>
+              <Form onSubmit={handleOnSubmit}>
               <div>
                 <ModalSubtitle>Calculate your rate:</ModalSubtitle>
                       <FormRadioItems>
