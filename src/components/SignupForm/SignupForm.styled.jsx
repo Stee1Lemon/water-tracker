@@ -22,15 +22,14 @@ export const Form = styled.form`
   }
 
   input {
-    border: 1px solid var(--secondary-fifth);
     border-radius: 6px;
     padding: 12px 10px;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
     line-height: 1.25;
+    width: 280px;
   }
 
   input:focus {
-    color: var(--primary-focus);
     outline: none;
     font-size: 16px;
     line-height: 1.25;
@@ -41,6 +40,24 @@ export const Form = styled.form`
     font-size: 16px;
     line-height: 1.25;
     color: var(--secondary-third);
+  }
+
+  .icon-eye,
+  .icon-eye:hover,
+  .icon-eye:focus {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 90%;
+  }
+
+  .icon {
+    stroke: var(--primary-focus);
+    fill: none;
   }
 
   button {
@@ -83,6 +100,13 @@ export const Form = styled.form`
       width: 336px;
     }
 
+    .icon-eye,
+    .icon-eye:hover,
+    .icon-eye:focus {
+      top: 27%;
+      left: 92%;
+    }
+
     button {
       padding: 10px 30px;
       font-size: 18px;
@@ -98,4 +122,14 @@ export const Form = styled.form`
       width: 384px;
     }
   }
+`;
+
+export const InputDiv = styled.div`
+  margin-bottom: 16px;
+  position: relative;
+`;
+
+export const Message = styled.span`
+  color: var(--secondary-second);
+  font-size: 14px;
 `;
