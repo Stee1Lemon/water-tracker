@@ -39,6 +39,7 @@ export const ModalSettingContainer = styled.div`
 
         @media (max-width: 1439px) {
             grid-template-columns: 1fr;
+            overflow-y: auto;
             grid-template-areas:
         'gender'
         'name'
@@ -51,6 +52,7 @@ export const ModalSettingContainer = styled.div`
         @media (max-width: 767px) {
             width: 256px;
             margin-bottom: 26px;
+            overflow-y: auto;
         }
     }
 
