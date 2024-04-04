@@ -5,7 +5,7 @@ import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonSty
 import icons from '../../../assets/icons.svg';
 import { useState } from 'react';
 import { format } from 'date-fns';
-import { Formik } from 'formik';
+// import { Formik } from 'formik';
 
 
 const maxVolumeLimit = 2000;
@@ -35,28 +35,47 @@ const getCurrentTime = date => {
   const minutes = currentTime.getMinutes();
   const roundedMinutes = Math.ceil(minutes / 5) * 5;
   currentTime.setMinutes(roundedMinutes);
-  currentTime.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
   return currentTime;
 };
 
 
 
 export const TodayListModal = ({ isOpen, onClose, type }) => {
+
   const [volume, setVolume] = useState(0);
 
   // Дані введені через інпут
   const [enteredVolume, setEnteredVolume] = useState(volume);
   
+
+  // ___________________________________________________Time
+
   const now = getCurrentTime();
   const nowTimeRounded = format(new Date(now), 'HH:mm');
   const nowTime = format(new Date(), 'HH:mm');
    const [time, setTime] = useState({
     value: nowTimeRounded,
     label: nowTime,
-  })
+   })
+  
+  const handleChangeTime = selectedOption => {
+    setTime(selectedOption);
+  };
+
+  const onMenuOpen = () => {
+    requestAnimationFrame(() => {
+      const selectedOption = document.querySelector(
+        '.Select__option--is-selected'
+      );
+      if (selectedOption) {
+        selectedOption.scrollIntoView({});
+      }
+    });
+  };
+  // ---------------------------------------------------
+  
+
+  //_____________________________________________ Volume
 
   const increaseVolume = () => {
     if (volume >= maxVolumeLimit) {
@@ -65,16 +84,13 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
     setVolume((prev) => parseFloat(prev) + step);
     setEnteredVolume((prev) => parseFloat(prev) + step);
   };
+
   const decreaseVolume = () => {
     if (volume <= minVolumeLimit) {
       return;
     }
     setVolume((prev) => parseFloat(prev) - step);
     setEnteredVolume((prev) => parseFloat(prev) - step);
-  };
-
-  const handleChangeTime = selectedOption => {
-    setTime(selectedOption);
   };
 
   const handleOnFocus = (e) => {
@@ -95,18 +111,7 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
   const handleChangeVolume = e => {
    setEnteredVolume(e.target.value);
   };
-
-  const onMenuOpen = () => {
-    requestAnimationFrame(() => {
-      const selectedOption = document.querySelector(
-        '.Select__option--is-selected'
-      );
-      if (selectedOption) {
-        selectedOption.scrollIntoView({});
-      }
-    });
-  };
-
+// ---------------------------------------------------------
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -162,10 +167,6 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
             <p>Recording time:</p>
               <TimeInput classNamePrefix={'Select'}
               options={getOptions()} value={time} defaultValue={time} onChange={handleChangeTime} onMenuOpen={onMenuOpen}/>
-            {/* <Input type="time" name="time" step={step} value={time} onChange={e => {
-              console.log('e.target Time :>> ', e);
-              setTime(e.target.value)
-            }} /> */}
                 </div>
                 <div>
                   <ModalSubtitle>Enter the value of the water used:</ModalSubtitle>
