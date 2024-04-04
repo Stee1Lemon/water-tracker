@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import {CommonStyleBtn, ModalWrap} from "../CommonStyles.styled"
+// import styled from 'styled-components';
+import { CommonStyleBtn, ModalWrap } from "../CommonStyles.styled"
+import Select from 'react-select';
 
 export const AddWaterModal = styled('div')`
 ${ModalWrap}
@@ -62,6 +64,11 @@ ${({ minus }) => minus && `svg {fill: var(--primary-focus);}`}
     box-shadow: 0px 2px 6px rgba(64, 123, 255, 0.5);
 }
 `
+export const Form = styled('form')`
+display: flex;
+flex-direction:column;
+row-gap:24px;
+`
 
 export const ModalFooter = styled('div')`
      display: flex;
@@ -90,4 +97,48 @@ export const ModalBtn = styled('button')`
     @media only screen and (min-width: 768px) {
         width:160px;
     }
+`
+
+export const TimeInput = styled(Select)`
+background-color:transparent;
+color: var(--primary-focus);
+border-radius:6px;
+height: 44px;
+width: 100%;
+line-height: 125%;
+margin: 0;
+/* border: 1px solid var(--secondary-fifth); */
+.Select__control {
+    height: 44px;
+    border: 1px solid var(--secondary-fifth);
+    cursor: pointer;
+  }
+
+  .Select__control:hover {
+    border: 1px solid blue;
+  }
+
+  .Select__indicators {
+    display: none;
+  }
+
+  .Select__value-container {
+    padding: 0px 10px;
+  }
+
+  .Select__single-value {
+    color: var(--primary-focus);
+    line-height: 1.25;
+  }
+
+  .Select__menu {
+    width: 100px;
+    color: var(--primary-focus);
+    text-align: center;
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
 `
