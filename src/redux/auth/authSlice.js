@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logoutThunk, signinThunk, signupThunk } from "./authOperations";
-import { handleLogout, handleSignin, handleSignup } from "./handlers";
+import authApi from "./authOperations";
+import { handleLogout, handleSignin } from "./handlers";
 
 export const initialState = {
     user: {
@@ -8,7 +8,7 @@ export const initialState = {
         name: '',
         gender: '',
         avatarURL: '',
-        dailyNorma: '',
+        waterRate: 0,
     },
     token: null,
     isLoggedIn: false,
@@ -21,9 +21,9 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(signupThunk.fulfilled, handleSignup)
-            .addCase(signinThunk.fulfilled, handleSignin)
-            .addCase(logoutThunk.fulfilled, handleLogout)
+            .addCase(authApi.signupThunk.fulfilled)
+            .addCase(authApi.signinThunk.fulfilled, handleSignin)
+            .addCase(authApi.logoutThunk.pending, handleLogout)
     }
 });
 

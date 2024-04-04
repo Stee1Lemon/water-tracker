@@ -14,13 +14,13 @@ const clearAuthToken = () => {
 // User-Auth part
 
 export const signup = async body => {
-    const { data } = await axios.post('api/auth/signup', body);
+    const { data } = await axios.post('api/auth/register', body);
     setAuthToken(data.token);
     return data;
 };
 
 export const signin = async body => {
-    const { data } = await axios.post('api/auth/signin', body);
+    const { data } = await axios.post('api/auth/login', body);
     setAuthToken(data.token);
     return data;
 };
@@ -37,35 +37,40 @@ export const refreshUser = async token => {
     return data;
 };
 
+export const getUser = async () => {
+    const { data } = await axios.get('api/user/current');
+    return data;
+}
+
 export const updateAvatar = async photo => {
-    const { data } = await axios.patch('api/user/avatar', photo);
+    const { data } = await axios.patch('api/user/avatars', photo);
     return data.avatarURL;
 };
 
 export const editUserInfo = async body => {
-    const { data } = await axios.patch('api/user/edit', body);
+    const { data } = await axios.patch('api/user/current', body);
     return data;
 };
 
-export const dailyNorm = async norm => {
-    const { data } = await axios.patch('api/user/norm', { dailyNorm: norm });    //api/user/norm ????? уточнити маршрути
+export const waterRate = async norm => {
+    const { data } = await axios.patch('api/waters/water_rate', { waterRate: norm }); 
     return data;
 };
 
 //Water part
 
 export const addWater = async water => {
-    const { data } = await axios.post('water', water);
+    const { data } = await axios.post('api/waters', water);
     return data;
 };
 
 export const editWater = async ({ newWater, id }) => {
-    const { data } = await axios.patch(`water/${id}`, newWater);
+    const { data } = await axios.patch(`api/waters/${id}`, newWater);
     return data;
 };
 
 export const deleteWater = async id => {
-    await axios.delete(`water/${id}`);
+    await axios.delete(`api/waters/${id}`);
 };
 
 export const fetchTodayWater = async () => {
