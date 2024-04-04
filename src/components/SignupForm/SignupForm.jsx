@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Notiflix from 'notiflix';
 import { Form, InputDiv, Message } from './SignupForm.styled';
 import icons from '../../assets/icons.svg';
+import authApi from '../../redux/auth/authOperations';
 
 export const SignupForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
@@ -26,8 +30,14 @@ export const SignupForm = () => {
         .required('Password is required')
         .oneOf([Yup.ref('password'), null], 'Passwords must match'),
     }),
-    onSubmit: ({ email, password }) => {
-      console.log({ email, password });
+    onSubmit: async ({ email, password }) => {
+      const register = await dispatch(authApi.signupThunk({ email, password }));
+      if (register.error) return Notiflix.Notify.failure(register.payload);
+
+      const login = await dispatch(authApi.signinThunk({ email, password }));
+      if (login.error) return Notiflix.Notify.failure(login.payload);
+
+      formik.resetForm();
     },
   });
 
