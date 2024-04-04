@@ -849,23 +849,35 @@ overflow-y: hidden;
   .dropDownButton:hover .svgLogOut {
     transform: rotateY(180deg);
   }
-`,YE=e=>b.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:16,height:16,fill:"none",...e},b.createElement("path",{stroke:"#407BFF",strokeLinecap:"round",strokeLinejoin:"round",d:"M6.396 2.627A.75.75 0 0 1 7.136 2h1.729a.75.75 0 0 1 .74.627l.142.854c.042.249.208.457.43.58.049.026.098.055.146.084.216.131.48.172.717.083l.811-.304a.75.75 0 0 1 .914.327l.864 1.498a.75.75 0 0 1-.174.954l-.668.551a.828.828 0 0 0-.288.661 4.38 4.38 0 0 1 0 .17c-.004.252.092.5.287.66l.67.552a.75.75 0 0 1 .173.954l-.865 1.498a.75.75 0 0 1-.913.327l-.811-.304a.83.83 0 0 0-.717.083c-.049.03-.098.057-.147.085a.831.831 0 0 0-.43.58l-.141.853a.75.75 0 0 1-.74.627h-1.73a.75.75 0 0 1-.74-.627l-.142-.854a.83.83 0 0 0-.429-.58 4.353 4.353 0 0 1-.147-.084.83.83 0 0 0-.717-.083l-.811.304a.75.75 0 0 1-.913-.327l-.865-1.498a.75.75 0 0 1 .174-.954l.669-.551a.83.83 0 0 0 .287-.661 4.632 4.632 0 0 1 0-.17.827.827 0 0 0-.287-.66l-.67-.552a.75.75 0 0 1-.173-.954l.865-1.498a.75.75 0 0 1 .913-.327l.811.304a.83.83 0 0 0 .717-.083c.048-.029.098-.058.147-.085a.828.828 0 0 0 .43-.58l.142-.853Z"}),b.createElement("path",{stroke:"#407BFF",strokeLinecap:"round",strokeLinejoin:"round",d:"M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"})),GE=e=>b.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:16,height:16,fill:"none",...e},b.createElement("path",{stroke:"#407BFF",strokeLinecap:"round",strokeLinejoin:"round",d:"M10.5 6V3.5A1.5 1.5 0 0 0 9 2H5a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 5 14h4a1.5 1.5 0 0 0 1.5-1.5V10m2 0 2-2m0 0-2-2m2 2H6"})),QE=({menuRef:e,isMenuVisible:t,toggleSettingsModal:n,toggleLogoutModal:r})=>f.jsxs(XE,{ref:e,className:t?"visible":"",children:[f.jsx("div",{className:"dropDownElement",children:f.jsxs("button",{className:"dropDownButton",onClick:n,children:[f.jsx(YE,{className:"svgCog"}),"Setting"]})}),f.jsx("div",{className:"dropDownElement",onClick:r,children:f.jsxs("button",{className:"dropDownButton",children:[f.jsx(GE,{className:"svgLogOut"}),"Log out"]})})]}),qE=()=>{const[e,t]=b.useState(!1),n=b.useRef(null),r=b.useRef(null),[i,o]=b.useState(!1),[a,s]=b.useState(!1),l=()=>{t(d=>!d)};b.useEffect(()=>{function d(p){const v=i||a;!n.current.contains(p.target)&&!r.current.contains(p.target)&&!v&&t(!1)}return document.addEventListener("mousedown",d),()=>{document.removeEventListener("mousedown",d)}},[n,r,i,a]);const u=()=>{o(!i)},c=()=>{s(!a)};return b.useEffect(()=>{const d=p=>{p.key==="Escape"&&(o(!1),s(!1))};return window.addEventListener("keydown",d),()=>{window.removeEventListener("keydown",d)}},[]),f.jsxs("header",{children:[f.jsxs(Mk,{children:[f.jsxs(Dk,{to:"/first",children:[f.jsx("svg",{className:"logoWrapper",children:f.jsx(qx,{})}),"TRACKER",f.jsx("br",{}),"OF WATER"]}),f.jsxs(Ik,{children:[f.jsxs("button",{className:"UserContextButton",ref:r,onClick:l,children:["Template",f.jsx("div",{className:"imgWrapper",children:f.jsx("img",{src:e2,alt:"User Profile Picture"})}),f.jsx("div",{className:`menuButton ${e?"rotate":""}`,children:f.jsx($k,{})})]}),f.jsx(QE,{menuRef:n,isMenuVisible:e,toggleSettingsModal:u,toggleLogoutModal:c})]})]}),f.jsx(Wk,{isSettingsModalOpen:i,toggleSettingsModal:u}),f.jsx(HE,{isLogoutModalOpen:a,toggleLogoutModal:c})]})},KE=V.div``,ZE=V.nav`
-  display: flex;
-  justify-content: space-between;
-  padding-top: 12px;
-  padding-left: 188px;
-  padding-right: 188px;
+`,YE=e=>b.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:16,height:16,fill:"none",...e},b.createElement("path",{stroke:"#407BFF",strokeLinecap:"round",strokeLinejoin:"round",d:"M6.396 2.627A.75.75 0 0 1 7.136 2h1.729a.75.75 0 0 1 .74.627l.142.854c.042.249.208.457.43.58.049.026.098.055.146.084.216.131.48.172.717.083l.811-.304a.75.75 0 0 1 .914.327l.864 1.498a.75.75 0 0 1-.174.954l-.668.551a.828.828 0 0 0-.288.661 4.38 4.38 0 0 1 0 .17c-.004.252.092.5.287.66l.67.552a.75.75 0 0 1 .173.954l-.865 1.498a.75.75 0 0 1-.913.327l-.811-.304a.83.83 0 0 0-.717.083c-.049.03-.098.057-.147.085a.831.831 0 0 0-.43.58l-.141.853a.75.75 0 0 1-.74.627h-1.73a.75.75 0 0 1-.74-.627l-.142-.854a.83.83 0 0 0-.429-.58 4.353 4.353 0 0 1-.147-.084.83.83 0 0 0-.717-.083l-.811.304a.75.75 0 0 1-.913-.327l-.865-1.498a.75.75 0 0 1 .174-.954l.669-.551a.83.83 0 0 0 .287-.661 4.632 4.632 0 0 1 0-.17.827.827 0 0 0-.287-.66l-.67-.552a.75.75 0 0 1-.173-.954l.865-1.498a.75.75 0 0 1 .913-.327l.811.304a.83.83 0 0 0 .717-.083c.048-.029.098-.058.147-.085a.828.828 0 0 0 .43-.58l.142-.853Z"}),b.createElement("path",{stroke:"#407BFF",strokeLinecap:"round",strokeLinejoin:"round",d:"M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"})),GE=e=>b.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:16,height:16,fill:"none",...e},b.createElement("path",{stroke:"#407BFF",strokeLinecap:"round",strokeLinejoin:"round",d:"M10.5 6V3.5A1.5 1.5 0 0 0 9 2H5a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 5 14h4a1.5 1.5 0 0 0 1.5-1.5V10m2 0 2-2m0 0-2-2m2 2H6"})),QE=({menuRef:e,isMenuVisible:t,toggleSettingsModal:n,toggleLogoutModal:r})=>f.jsxs(XE,{ref:e,className:t?"visible":"",children:[f.jsx("div",{className:"dropDownElement",children:f.jsxs("button",{className:"dropDownButton",onClick:n,children:[f.jsx(YE,{className:"svgCog"}),"Setting"]})}),f.jsx("div",{className:"dropDownElement",onClick:r,children:f.jsxs("button",{className:"dropDownButton",children:[f.jsx(GE,{className:"svgLogOut"}),"Log out"]})})]}),qE=()=>{const[e,t]=b.useState(!1),n=b.useRef(null),r=b.useRef(null),[i,o]=b.useState(!1),[a,s]=b.useState(!1),l=()=>{t(d=>!d)};b.useEffect(()=>{function d(p){const v=i||a;!n.current.contains(p.target)&&!r.current.contains(p.target)&&!v&&t(!1)}return document.addEventListener("mousedown",d),()=>{document.removeEventListener("mousedown",d)}},[n,r,i,a]);const u=()=>{o(!i)},c=()=>{s(!a)};return b.useEffect(()=>{const d=p=>{p.key==="Escape"&&(o(!1),s(!1))};return window.addEventListener("keydown",d),()=>{window.removeEventListener("keydown",d)}},[]),f.jsxs("header",{children:[f.jsxs(Mk,{children:[f.jsxs(Dk,{to:"/first",children:[f.jsx("svg",{className:"logoWrapper",children:f.jsx(qx,{})}),"TRACKER",f.jsx("br",{}),"OF WATER"]}),f.jsxs(Ik,{children:[f.jsxs("button",{className:"UserContextButton",ref:r,onClick:l,children:["Template",f.jsx("div",{className:"imgWrapper",children:f.jsx("img",{src:e2,alt:"User Profile Picture"})}),f.jsx("div",{className:`menuButton ${e?"rotate":""}`,children:f.jsx($k,{})})]}),f.jsx(QE,{menuRef:n,isMenuVisible:e,toggleSettingsModal:u,toggleLogoutModal:c})]})]}),f.jsx(Wk,{isSettingsModalOpen:i,toggleSettingsModal:u}),f.jsx(HE,{isLogoutModalOpen:a,toggleLogoutModal:c})]})},KE=V.div`
+    max-width: 1042px;
+    margin: 0 auto;
+    
+    @media (max-width: 1439px) {
+        max-width: 780px;
+    }
+    
+    @media (max-width: 767px) {
+        max-width: 320px;
+    }
+`,ZE=V.nav`
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    width: 100%;
 
-  @media (max-width: 1439px) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+    @media (max-width: 1439px) {
+        padding-left: 32px;
+        padding-right: 32px;
+        width: 100%;
+    }
 
-  @media (max-width: 767px) {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-  }
+    @media (max-width: 767px) {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 8px;
+        width: 100%;
+    }
 `,JE=V(eu)`
   display: flex;
   max-height: 48px;
