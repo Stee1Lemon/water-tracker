@@ -1,51 +1,52 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  dailyNorm,
   editUserInfo,
+  getUser,
   logout,
   refreshUser,
   signin,
   signup,
   updateAvatar,
+  waterRate,
 } from '../../redux/Api/api';
 
-export const signupThunk = createAsyncThunk(
+const signupThunk = createAsyncThunk(
   'auth/signup',
   async (credentials, thunkApi) => {
     try {
       const data = await signup(credentials);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
 
-export const signinThunk = createAsyncThunk(
+const signinThunk = createAsyncThunk(
   'auth/signin',
   async (credentials, thunkApi) => {
     try {
       const data = await signin(credentials);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
 
-export const logoutThunk = createAsyncThunk(
+const logoutThunk = createAsyncThunk(
   'auth/logout',
   async (_, thunkApi) => {
     try {
       await logout();
       return;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
 
-export const refreshUserThunk = createAsyncThunk(
+const refreshUserThunk = createAsyncThunk(
   'auth/refresh',
   async (_, thunkApi) => {
     const { auth } = thunkApi.getState();
@@ -58,44 +59,69 @@ export const refreshUserThunk = createAsyncThunk(
       const data = await refreshUser(auth.token);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
 
-export const updateAvatarThunk = createAsyncThunk(
+const getUserThunk = createAsyncThunk(
+  'user/current',
+  async (_, thunkApi) => {
+    try {
+      const data = await getUser();
+      return data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.respinse.data.message)
+    }
+  });
+
+
+const updateAvatarThunk = createAsyncThunk(
   'user/avatar',
   async (photo, thunkApi) => {
     try {
       const avatarURL = await updateAvatar(photo);
       return avatarURL;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
 
-export const editUserInfoThunk = createAsyncThunk(
+const editUserInfoThunk = createAsyncThunk(
   'user/edit',
   async (credentials, thunkApi) => {
     try {
       const data = await editUserInfo(credentials);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
 
-export const dailyNormaThunk = createAsyncThunk(
-  'auth/dailynorm',
+const waterRateThunk = createAsyncThunk(
+  'auth/water_rate',
   async (norm, thunkApi) => {
     try {
       const newNorm = Number(norm) * 1000;
-      await dailyNorm(newNorm);
+      await waterRate(newNorm);
       return newNorm;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
+
+const authApi = {
+  signupThunk,
+  signinThunk,
+  logoutThunk,
+  refreshUserThunk,
+  getUserThunk,
+  updateAvatarThunk,
+  editUserInfoThunk,
+  waterRateThunk,
+};
+
+export default authApi;
