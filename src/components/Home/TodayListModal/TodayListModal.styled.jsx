@@ -110,7 +110,7 @@ margin: 0;
 /* border: 1px solid var(--secondary-fifth); */
 .Select__control {
     height: 44px;
-    border: 1px solid red;
+    border: 1px solid var(--secondary-fifth);
     cursor: pointer;
   }
 
@@ -127,13 +127,15 @@ margin: 0;
   }
 
   .Select__single-value {
-    color: green;
+    color: var(--primary-focus);
     line-height: 1.25;
   }
 
   .Select__menu {
-    width: 88px;
-    color: orange;
+    width: 100px;
+    color: var(--primary-focus);
+    text-align: center;
+    font-size: 18px;
   }
 
   @media screen and (min-width: 768px) {
