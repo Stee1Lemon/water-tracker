@@ -2,6 +2,7 @@ import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import { useState } from 'react';
 import { ModalTestStyles } from './ModalTest.styled';
 import Loader from 'components/Loader/Loader';
+import { AuthTest } from 'components/AuthTest/AuthTest';
 
 const ModalTest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,6 +34,7 @@ const ModalTest = () => {
           {isLoading ? <Loader /> : <p>{dataExample}</p>}
 
           <button onClick={handleNewNumber}>Generate number</button>
+          <AuthTest />
         </ModalTestStyles>
       </ModalOverlay>
     </>

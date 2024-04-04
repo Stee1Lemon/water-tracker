@@ -13,7 +13,7 @@ import {
   WelcomePageDescriptionItem,
   WelcomePageDescriptionDiv,
   WelcomePageWrapperFirst,
-  // WelcomePageImage,
+  WelcomePageNavLink,
 } from './Welcome.styled';
 
 import icons from '../../assets/icons.svg';
@@ -53,7 +53,9 @@ export const Welcome = () => {
             </WelcomePageTrackerItem>
           </WelcomePageTrackerList>
 
-          <WelcomePageButton>Try tracker</WelcomePageButton>
+          <WelcomePageButton>
+            <WelcomePageNavLink to="/signup">Try tracker</WelcomePageNavLink>
+          </WelcomePageButton>
         </WelcomePageWrapperFirst>
 
         <WelcomePageDescriptionWrapper>
