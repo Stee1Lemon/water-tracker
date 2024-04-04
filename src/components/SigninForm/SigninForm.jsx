@@ -4,9 +4,15 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import icons from '../../assets/icons.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import authApi from '../../redux/auth/authOperations';
+import Notiflix from 'notiflix';
+import { selectError } from '../../redux/root/rootSelectors';
 
 export const SigninForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const errorRedux = useSelector(selectError);
 
   const formik = useFormik({
     initialValues: {
@@ -22,8 +28,12 @@ export const SigninForm = () => {
         .min(8, 'Password must contain at least 8 characters')
         .max(64, 'Password must contain no more than 64 characters'),
     }),
-    onSubmit: ({ email, password }) => {
-      console.log({ email, password });
+    onSubmit: async (values) => {
+      const result = await dispatch(authApi.signinThunk(values));
+      if (result.error) return Notiflix.Notify.failure(result.payload);
+      const user = await dispatch(authApi.getUserThunk());
+      if (user.error) return Notiflix.Notify.failure(user.payload);
+      console.log(user.payload);
     },
   });
 

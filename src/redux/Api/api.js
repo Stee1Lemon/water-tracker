@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 axios.defaults.baseURL = "https://watertracker-t8-backend.onrender.com/";
 
-const setAuthToken = token => {
+export const setAuthToken = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
 };
 

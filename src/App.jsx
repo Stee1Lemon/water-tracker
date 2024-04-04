@@ -7,11 +7,16 @@ import SigninPage from 'pages/SigninPage/SigninPage';
 import HomePage from 'pages/HomePage/HomePage';
 import PrivateRoute from 'components/auth/PrivateRoute';
 import PublicRoute from 'components/auth/PublicRoute';
+import { useSelector } from 'react-redux';
+import { selectUserToken } from './redux/auth/authSelectors';
+import { setAuthToken } from './redux/Api/api';
 
 // імпорт з .env
 // const test = import.meta.env.VITE_API_TEST;
 
 function App() {
+  const token = useSelector(selectUserToken);
+  if (token) setAuthToken(token);
   return (
     <AppWrapper>
       <Routes>
