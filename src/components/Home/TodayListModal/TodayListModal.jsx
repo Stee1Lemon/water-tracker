@@ -4,8 +4,13 @@ import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalF
 import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
 import { useState } from 'react';
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 import { Formik } from 'formik';
+
+
+const maxVolumeLimit = 2000;
+const minVolumeLimit = 50;
+const step = 50;
 
 
 const getOptions = () => {
@@ -41,28 +46,54 @@ const getCurrentTime = date => {
 
 export const TodayListModal = ({ isOpen, onClose, type }) => {
   const [volume, setVolume] = useState(0);
+
+  // Дані введені через інпут
+  const [enteredVolume, setEnteredVolume] = useState(volume);
   
-  // const { _id, date, amountWater } = useSelector(selectModalWater);
   const now = getCurrentTime();
-  const nowTime =
-    `${now.getHours()}`.padStart(2, '0') +
-    ':' +
-    `${now.getMinutes()}`.padStart(2, '0');
-  
+  const nowTimeRounded = format(new Date(now), 'HH:mm');
+  const nowTime = format(new Date(), 'HH:mm');
    const [time, setTime] = useState({
-    value: nowTime,
+    value: nowTimeRounded,
     label: nowTime,
   })
 
   const increaseVolume = () => {
-    setVolume((prev) => prev === "" ? 0 : parseFloat(prev) + 50);
+    if (volume >= maxVolumeLimit) {
+      return;
+    }
+    setVolume((prev) => parseFloat(prev) + step);
+    setEnteredVolume((prev) => parseFloat(prev) + step);
   };
   const decreaseVolume = () => {
-    setVolume((prev) => prev > 50 ? prev - 50 : 0);
+    if (volume <= minVolumeLimit) {
+      return;
+    }
+    setVolume((prev) => parseFloat(prev) - step);
+    setEnteredVolume((prev) => parseFloat(prev) - step);
   };
 
   const handleChangeTime = selectedOption => {
     setTime(selectedOption);
+  };
+
+  const handleOnFocus = (e) => {
+     e.target.value = '';
+  }
+
+  const handleOnBlur = (e) => {
+      if (!e.target.value) {
+      e.target.value = volume;
+      return;
+    }
+    const value = parseFloat(e.target.value);
+    if (value >= 0 && value <= maxVolumeLimit) {
+      setVolume(value);
+    }
+  }
+
+  const handleChangeVolume = e => {
+   setEnteredVolume(e.target.value);
   };
 
   const onMenuOpen = () => {
@@ -84,15 +115,20 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
     if (!type) {
       // Беремо поточний день
       const currentDate = new Date();
-      // Беремо години і хвилини обрані користувачем
 
+      // Беремо години і хвилини обрані користувачем
       const [hours, minutes] = time.value.split(':');
+
       // Редагуємо поточну дату з урахуванням обраного часу
       currentDate.setHours(hours, minutes, 0);
       // console.log(' currentDate:>> ',currentDate);
-      // selectedDate = currentDate.toISOString();
-      console.log(' selectedDate:>> ',selectedDate);
+      selectedDate = currentDate.toISOString();
+      // console.log(' selectedDate:>> ',selectedDate);
     }
+    console.log('ADD Water data :>> ', {
+      time: selectedDate,
+      water: volume
+    });
   }
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
@@ -133,7 +169,7 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
                 </div>
                 <div>
                   <ModalSubtitle>Enter the value of the water used:</ModalSubtitle>
-                  <Input type="number" name="volume" min="0" value={volume} onChange={e => setVolume(e.target.value)}/>
+                  <Input type="number" name="volume" min="0" value={enteredVolume} onChange={handleChangeVolume} onFocus={handleOnFocus} onBlur={handleOnBlur}/>
                 </div>
                 <ModalFooter>
                   <Label>{volume || 0}ml</Label>
