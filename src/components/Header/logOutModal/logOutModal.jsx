@@ -15,11 +15,11 @@ const LogOutModal = ({ isLogoutModalOpen, toggleLogoutModal }) => {
     <Modal isOpen={isLogoutModalOpen} onClose={toggleLogoutModal}>
       <ModalLogOutContainer>
         <div className="logOutDiv1">
-          <p className="logOutP1">Delete Entry</p>
+          <p className="logOutP1">Log out</p>
           <Xmark className="xMarkWrapper" onClick={toggleLogoutModal} />
         </div>
         <div className="logOutDiv2">
-          <p className="logOutP2">Are you sure you want to delete the entry?</p>
+          <p className="logOutP2">Do you really want to leave?</p>
         </div>
         <div className="logOutDiv3">
           <button className="logOutButtonDelete" onClick={handleLogOut}>
