@@ -4,15 +4,13 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import icons from '../../assets/icons.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authApi from '../../redux/auth/authOperations';
 import Notiflix from 'notiflix';
-import { selectError } from '../../redux/root/rootSelectors';
 
 export const SigninForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const errorRedux = useSelector(selectError);
 
   const formik = useFormik({
     initialValues: {
