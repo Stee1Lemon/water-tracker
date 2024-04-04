@@ -3,12 +3,12 @@ import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
 import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalFooter, Label, ModalBtn, Form, TimeInput } from "./TodayListModal.styled"
 import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 // import { Formik } from 'formik';
 
 
-const maxVolumeLimit = 2000;
+const maxVolumeLimit = 5000;
 const minVolumeLimit = 50;
 const step = 50;
 
@@ -40,24 +40,37 @@ const getCurrentTime = date => {
 
 
 
-export const TodayListModal = ({ isOpen, onClose, type }) => {
+export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amountWater, date }) => {
 
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState(amountWater||0);
 
   // Дані введені через інпут
   const [enteredVolume, setEnteredVolume] = useState(volume);
   
-
   // ___________________________________________________Time
 
-  const now = getCurrentTime();
+  const now = getCurrentTime(date);
   const nowTimeRounded = format(new Date(now), 'HH:mm');
   const nowTime = format(new Date(), 'HH:mm');
+
    const [time, setTime] = useState({
     value: nowTimeRounded,
     label: nowTime,
    })
   
+  
+  
+  useEffect(() => {
+    if (isEditing) {
+      setVolume(amountWater);
+      setEnteredVolume(amountWater)
+    } 
+      
+  }, [isEditing, amountWater])
+  
+  console.log('volume :>> ', volume);
+  console.log('time  :>> ', date);
+
   const handleChangeTime = selectedOption => {
     setTime(selectedOption);
   };
@@ -117,7 +130,7 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
     e.preventDefault();
     let selectedDate;
     // Add Water Modal
-    if (!type) {
+    if (!isEditing) {
       // Беремо поточний день
       const currentDate = new Date();
 
@@ -138,15 +151,15 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
           <AddWaterModal>
-        <ModalTitle>{type? "Edit the entered amount of water" : "Add water"}</ModalTitle>
+        <ModalTitle>{isEditing? "Edit the entered amount of water" : "Add water"}</ModalTitle>
               <ModalCloseButton onClick={onClose}>
                 <svg >
                 <use href={`${icons}#icon-close`}></use>
                 </svg>
               </ModalCloseButton>
-              {type && <PrevInfo><TodayWaterInfo /></PrevInfo>}
+              {isEditing && <PrevInfo><TodayWaterInfo data={{amountWater,date}}/></PrevInfo>}
               <div>
-                <ModalSubtitle>{type? "Correct entered data:" : "Choose a value:"}</ModalSubtitle>
+                <ModalSubtitle>{isEditing? "Correct entered data:" : "Choose a value:"}</ModalSubtitle>
                 <p>Amount of water:</p>
                 <WaterCounter>
                   <CounterBtn minus onClick={decreaseVolume}>
@@ -154,7 +167,7 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
                       <use href={`${icons}#icon-minus`}></use>
                     </svg>
                   </CounterBtn>
-                  <CounterLabel>{volume || 0}</CounterLabel>
+                  <CounterLabel>{volume}</CounterLabel>
                   <CounterBtn plus onClick={increaseVolume}>
                     <svg>
                       <use href={`${icons}#icon-plus`}></use>
@@ -173,7 +186,7 @@ export const TodayListModal = ({ isOpen, onClose, type }) => {
                   <Input type="number" name="volume" min="0" value={enteredVolume} onChange={handleChangeVolume} onFocus={handleOnFocus} onBlur={handleOnBlur}/>
                 </div>
                 <ModalFooter>
-                  <Label>{volume || 0}ml</Label>
+                  <Label>{volume}ml</Label>
                   <ModalBtn type='submit'>Save</ModalBtn>
                 </ModalFooter>
              </Form>

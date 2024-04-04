@@ -1,14 +1,15 @@
 import { ListItemInfo, ListItemVolume, ListItemTime } from "./TodayWaterInfo.styled"
 import icons from '../../../assets/icons.svg';
+import { format } from 'date-fns';
 
-export const TodayWaterInfo = () => {
+export const TodayWaterInfo = ({data:{amountWater,date}}) => {
   return (
    <ListItemInfo>
       <svg >
         <use href={`${icons}#icon-glass`}></use>
       </svg>
-        <ListItemVolume>250 ml</ListItemVolume>
-        <ListItemTime>7:00 AM</ListItemTime>
+        <ListItemVolume>{amountWater} ml</ListItemVolume>
+        <ListItemTime>{format(new Date(date), 'HH:mm')} AM</ListItemTime>
     </ListItemInfo>
   )
 }
