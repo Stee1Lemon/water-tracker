@@ -1,25 +1,37 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div``;
+export const HeaderContainer = styled.div`
+    max-width: 1042px;
+    margin: 0 auto;
+    
+    @media (max-width: 1439px) {
+        max-width: 780px;
+    }
+    
+    @media (max-width: 767px) {
+        max-width: 320px;
+    }
+`;
 
 export const Navigation = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding-top: 12px;
-  padding-left: 188px;
-  padding-right: 188px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    width: 100%;
 
-  @media (max-width: 1439px) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+    @media (max-width: 1439px) {
+        padding-left: 32px;
+        padding-right: 32px;
+        width: 100%;
+    }
 
-  @media (max-width: 767px) {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-  }
+    @media (max-width: 767px) {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 8px;
+        width: 100%;
+    }
 `;
 
 export const LogoLink = styled(Link)`
