@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Notiflix from 'notiflix';
+import { useTranslation } from 'react-i18next';
 import { Form, InputDiv, Message } from './SignupForm.styled';
 import icons from '../../assets/icons.svg';
 import authApi from '../../redux/auth/authOperations';
 
 export const SignupForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -47,13 +49,13 @@ export const SignupForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <h2>Sign Up</h2>
-      <label>Enter your email</label>
+      <h2>{t('headers.signup')}</h2>
+      <label>{t('authForm.email')}</label>
       <InputDiv>
         <input
           type="email"
           name="email"
-          placeholder="E-mail"
+          placeholder={t('placeholders.email')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
@@ -72,12 +74,12 @@ export const SignupForm = () => {
           <Message>{formik.errors.email}</Message>
         ) : null}
       </InputDiv>
-      <label>Enter your password</label>
+      <label>{t('authForm.password')}</label>
       <InputDiv>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
-          placeholder="Password"
+          placeholder={t('placeholders.password')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
@@ -115,12 +117,12 @@ export const SignupForm = () => {
           <Message>{formik.errors.password}</Message>
         ) : null}
       </InputDiv>
-      <label>Repeat password</label>
+      <label>{t('authForm.repeatPassword')}</label>
       <InputDiv>
         <input
           type={showPassword ? 'text' : 'password'}
           name="repeatedPassword"
-          placeholder="Repeat password"
+          placeholder={t('authForm.repeatPassword')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.repeatedPassword}
@@ -160,8 +162,8 @@ export const SignupForm = () => {
           <Message>{formik.errors.repeatedPassword}</Message>
         ) : null}
       </InputDiv>
-      <button type="submit">Submit</button>
-      <NavLink to="/signin">Sign in</NavLink>
+      <button type="submit">{t('buttons.signup')}</button>
+      <NavLink to="/signin">{t('links.signin')}</NavLink>
     </Form>
   );
 };
