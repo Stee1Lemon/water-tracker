@@ -51,7 +51,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
 
   const now = getCurrentTime(date);
   const nowTimeRounded = format(new Date(now), 'HH:mm');
-  const nowTime = format(new Date(), 'HH:mm');
+  const nowTime = date ? format(date, 'HH:mm') :format(new Date(), 'HH:mm');
 
    const [time, setTime] = useState({
     value: nowTimeRounded,
@@ -64,12 +64,11 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
     if (isEditing) {
       setVolume(amountWater);
       setEnteredVolume(amountWater)
+      setTime({ value: nowTimeRounded,label: nowTime})
     } 
       
-  }, [isEditing, amountWater])
+  }, [isEditing, amountWater,nowTime, nowTimeRounded])
   
-  console.log('volume :>> ', volume);
-  console.log('time  :>> ', date);
 
   const handleChangeTime = selectedOption => {
     setTime(selectedOption);
@@ -129,8 +128,6 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
   const handleOnSubmit = (e) => {
     e.preventDefault();
     let selectedDate;
-    // Add Water Modal
-    if (!isEditing) {
       // Беремо поточний день
       const currentDate = new Date();
 
@@ -140,13 +137,22 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
       // Редагуємо поточну дату з урахуванням обраного часу
       currentDate.setHours(hours, minutes, 0);
       // console.log(' currentDate:>> ',currentDate);
-      selectedDate = currentDate.toISOString();
-      // console.log(' selectedDate:>> ',selectedDate);
-    }
-    console.log('ADD Water data :>> ', {
+      // selectedDate = currentDate.toISOString();
+    selectedDate = currentDate;
+    if (!isEditing) {
+      // console.log(' selectedDate:>> ', selectedDate);
+      console.log('ADD Water data :>> ', {
       time: selectedDate,
       water: volume
     });
+    }
+    if (isEditing) {
+      console.log('EDIT Water data :>> ', {
+      _id: selectedItemId,
+      time: selectedDate,
+      water: volume
+    });
+    }
   }
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>

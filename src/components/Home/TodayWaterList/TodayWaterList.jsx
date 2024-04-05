@@ -9,13 +9,6 @@ import { useState } from "react";
 import {dailyWaterList} from "../arr.js"
 
 export const TodayWaterList = () => {
-    // ___________________________ТИМЧАСОВІ ДАНІ ДЛЯ ТЕСТУВАННЯ
-  const _id = "123456";
-  const date = "2024-04-04T14:50:00.582Z";
-    const portion = 400;
-    // ТИМЧАСОВІ ДАНІ___________________________________________
-    
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setisEditing] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
