@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUserToken } from './redux/auth/authSelectors';
 import { setAuthToken } from './redux/Api/api';
 import authApi from './redux/auth/authOperations';
+import { useEffect } from 'react';
 
 // імпорт з .env
 // const test = import.meta.env.VITE_API_TEST;
@@ -18,10 +19,15 @@ import authApi from './redux/auth/authOperations';
 function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectUserToken);
-  if (token) {
-    setAuthToken(token);
-    dispatch(authApi.getUserThunk());
-  }
+
+  useEffect(() => {
+    if (token) {
+      setAuthToken(token);
+      dispatch(authApi.getUserThunk());
+      console.log('if at app');
+    }
+  }, [token, dispatch]);
+
   return (
     <AppWrapper>
       <Routes>
