@@ -29,9 +29,9 @@ export const SigninForm = () => {
     onSubmit: async (values) => {
       const result = await dispatch(authApi.signinThunk(values));
       if (result.error) return Notiflix.Notify.failure(result.payload);
-      const user = await dispatch(authApi.getUserThunk());
-      if (user.error) return Notiflix.Notify.failure(user.payload);
-      console.log(user.payload);
+      // const user = await dispatch(authApi.getUserThunk());
+      // if (user.error) return Notiflix.Notify.failure(user.payload);
+      // console.log(user.payload);
     },
   });
 

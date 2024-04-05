@@ -22,7 +22,6 @@ export const signup = async body => {
 export const signin = async body => {
     const { data } = await axios.post('api/auth/login', body);
     setAuthToken(data.token);
-    console.log('signin', data);
     return data;
 };
 
@@ -35,7 +34,6 @@ export const logout = async () => {
 export const refreshUser = async token => {
     setAuthToken(token);
     const { data } = await axios.get('api/user/current');
-    console.log('refresh', data);
     return data;
 };
 

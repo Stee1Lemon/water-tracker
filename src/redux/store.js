@@ -23,9 +23,8 @@ const testPersistConfig = {
 const PersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'isLoggedIn'],
 };
-
 
 export const store = configureStore({
   reducer: {
@@ -34,7 +33,7 @@ export const store = configureStore({
     waterData: persistReducer(PersistConfig, waterReducer),
     authTest: persistReducer(testPersistConfig, authTestReducer),
   },
-  
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
