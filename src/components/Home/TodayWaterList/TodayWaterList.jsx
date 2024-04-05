@@ -5,24 +5,31 @@ import { TodayListModal } from "../TodayListModal/TodayListModal"
 import {PopupDelete} from "../PopupDelete/PopupDelete"
 import { useState } from "react";
 
+
+import {dailyWaterList} from "../arr.js"
+
 export const TodayWaterList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState(null);
+    const [isEditing, setisEditing] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     const openModalToAdd = () => {
         setIsModalOpen(true);
-        setModalType(null);
+        setisEditing(false);
         setIsDelete(false);
+        setSelectedItem(null)
     };
-    const openModalToEdit = () => {
+    const openModalToEdit = (item) => {
         setIsModalOpen(true);
-        setModalType("edit");
+        setisEditing(true);
         setIsDelete(false);
+        setSelectedItem(item)
     };
-    const openModalToDelete = () => {
+    const openModalToDelete = (item) => {
         setIsModalOpen(true);
         setIsDelete(true);
+         setSelectedItem(item)
     };
     const closeModal = () => {
         setIsModalOpen(false);
@@ -31,7 +38,26 @@ export const TodayWaterList = () => {
         <WaterListWrap>
             <WaterListTitle>Today</WaterListTitle>
             <List>
-                <ListItem>
+                {dailyWaterList?.length > 0 && dailyWaterList.map((item) => {
+                    return (
+                         <ListItem key={item._id}>
+                            <TodayWaterInfo data={item} />
+                    <ListItemTools>
+                        <ItemBtnEdit type="button" onClick={()=>openModalToEdit(item)}>
+                            <svg>
+                                <use href={`${icons}#icon-icon-pencil`}></use>
+                            </svg>
+                        </ItemBtnEdit>
+                        <ItemBtnDelete type="button" onClick={()=>openModalToDelete(item)}>
+                            <svg>
+                                <use href={`${icons}#icon-trash`}></use>
+                            </svg>
+                        </ItemBtnDelete>
+                    </ListItemTools>
+                </ListItem>
+                    )
+                })}
+                {/* <ListItem>
                     <TodayWaterInfo/>
                     <ListItemTools>
                         <ItemBtnEdit type="button" onClick={openModalToEdit}>
@@ -45,14 +71,14 @@ export const TodayWaterList = () => {
                             </svg>
                         </ItemBtnDelete>
                     </ListItemTools>
-                </ListItem>
+                </ListItem> */}
             </List>
             <WaterListButton onClick={openModalToAdd} type="button">
                 <span>+</span>Add water
             </WaterListButton>
-            {isDelete? <PopupDelete isOpen={isModalOpen}
-                onClose={closeModal}/> :<TodayListModal isOpen={isModalOpen}
-                onClose={closeModal} type={modalType} />}
+            {isDelete ?
+                <PopupDelete isOpen={isModalOpen} onClose={closeModal} selectedItemId={selectedItem?._id}/>
+                : <TodayListModal isOpen={isModalOpen} onClose={closeModal} isEditing={isEditing} selectedItemId={selectedItem?._id} amountWater={selectedItem?.amountWater} date={selectedItem?.date}/>}
       </WaterListWrap>
   )
 }

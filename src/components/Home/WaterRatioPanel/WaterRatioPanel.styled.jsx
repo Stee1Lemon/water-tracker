@@ -41,6 +41,10 @@ export const RangeBlock = styled('div')`
  }
 `
 
+export const RangeWrap = styled('div')`
+position:relative;
+`
+
 
 export const RangeInput = styled('input')`
 &[type="range"] {
@@ -117,11 +121,15 @@ export const StaticMarkEnd = styled('span')`
 `
 
 export const DynamicMark = styled('span')`
+color: var(--primary-focus);
+text-align:center;
+width:35px;
  font-size: 16px;
  font-weight: 500;
  position: absolute;
- top:0;
- left:50%;
+ top:35px;
+ ${({ persent }) => `left: ${persent}%;`}
+ transform:translate(-50%,0);
  ::before{
         content:"";
         position: absolute;
@@ -129,7 +137,7 @@ export const DynamicMark = styled('span')`
         height: 8px;
         background: var(--secondary-fifth);
         top:-60%;
-        left: 35%;
+        left: 50%;
     }
 `
 
