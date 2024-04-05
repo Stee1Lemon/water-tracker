@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addWater, deleteWater, editWater, fetchTodayWater } from "../../redux/Api/api";
+import { addWater, deleteWater, editWater, getTodayWater } from "../../redux/Api/api";
                                                            //тут теж уточнити роути
-export const addWaterThunk = createAsyncThunk('water/addWater', async (credentials, thunkApi) => {
+const addWaterThunk = createAsyncThunk('water/addWater', async (credentials, thunkApi) => {
     try {
         const data = await addWater(credentials);
         return data;
@@ -10,7 +10,7 @@ export const addWaterThunk = createAsyncThunk('water/addWater', async (credentia
     }
 });
 
-export const editWaterThunk = createAsyncThunk('water/edit', async ({ id, waterVolume, date }, thunkApi) => {
+const editWaterThunk = createAsyncThunk('water/edit', async ({ id, waterVolume, date }, thunkApi) => {
     try {
         const newWater = { waterVolume, date };
         const data = await editWater({ newWater, id: id });
@@ -20,7 +20,7 @@ export const editWaterThunk = createAsyncThunk('water/edit', async ({ id, waterV
     }
 });
 
-export const deleteWaterThunk = createAsyncThunk('water/delete', async (id, thunkApi) => {
+const deleteWaterThunk = createAsyncThunk('water/delete', async (id, thunkApi) => {
     try {
         await deleteWater(id);
         return id;
@@ -29,11 +29,20 @@ export const deleteWaterThunk = createAsyncThunk('water/delete', async (id, thun
     }
 });
 
-export const getTodayWater = createAsyncThunk('water/getTodayWAter', async (_, thunkApi) => {
+const getTodayWaterThunk = createAsyncThunk('water/getTodayWAter', async (_, thunkApi) => {
     try {
-        const { data } = await fetchTodayWater();
+        const { data } = await getTodayWater();
         return data[0];
     } catch (err) {
         return thunkApi.rejectWithValue(err.message);
     }
 });
+
+const waterApi = {
+    addWaterThunk,
+    editWaterThunk,
+    deleteWaterThunk,
+    getTodayWaterThunk,
+};
+
+export default waterApi;

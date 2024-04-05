@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
+  deleteUser,
   editUserInfo,
   getUser,
   logout,
@@ -56,7 +57,7 @@ const refreshUserThunk = createAsyncThunk(
     }
 
     try {
-      const data = await refreshUser(auth.token);
+      const {data} = await refreshUser(auth.token);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
@@ -100,6 +101,18 @@ const editUserInfoThunk = createAsyncThunk(
   }
 );
 
+const deleteUserThunk = createAsyncThunk(
+  'user/delete',
+  async (_, thunkApi) => {
+    try {
+      await deleteUser();
+      return;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }  
+  }
+);
+
 const waterRateThunk = createAsyncThunk(
   'auth/water_rate',
   async (norm, thunkApi) => {
@@ -121,6 +134,7 @@ const authApi = {
   getUserThunk,
   updateAvatarThunk,
   editUserInfoThunk,
+  deleteUserThunk,
   waterRateThunk,
 };
 
