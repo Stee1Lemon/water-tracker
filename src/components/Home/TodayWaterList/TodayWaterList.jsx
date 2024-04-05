@@ -77,7 +77,7 @@ export const TodayWaterList = () => {
                 <span>+</span>Add water
             </WaterListButton>
             {isDelete ?
-                <PopupDelete isOpen={isModalOpen} onClose={closeModal}/>
+                <PopupDelete isOpen={isModalOpen} onClose={closeModal} selectedItemId={selectedItem?._id}/>
                 : <TodayListModal isOpen={isModalOpen} onClose={closeModal} isEditing={isEditing} selectedItemId={selectedItem?._id} amountWater={selectedItem?.amountWater} date={selectedItem?.date}/>}
       </WaterListWrap>
   )
