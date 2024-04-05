@@ -19,19 +19,19 @@ export const handleLogout = () => initialState;
 
 export const handleDeleteUser = () => initialState;
 
-export const handleRefreshFulfiled = (state, { payload }) => {
-  state.auth.user = payload;
-  state.isRefreshing = false;
-  state.isLoggedIn = true;
-};
+// export const handleRefreshFulfiled = (state, { payload }) => {
+//   state.user = payload;
+//   state.isRefreshing = false;
+//   state.isLoggedIn = true;
+// };
 
-export const handleRefreshPending = (state) => {
-  state.isRefreshing = true;
-};
+// export const handleRefreshPending = (state) => {
+//   state.isRefreshing = true;
+// };
 
-export const handleRefreshRejected = (state) => {
-  state.isRefreshing = false;
-};
+// export const handleRefreshRejected = (state) => {
+//   state.isRefreshing = false;
+// };
 
 export const handleEditUser = (state, { payload }) => {
   state.user = { ...state.user, ...payload };

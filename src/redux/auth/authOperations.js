@@ -115,11 +115,11 @@ const deleteUserThunk = createAsyncThunk(
 
 const waterRateThunk = createAsyncThunk(
   'auth/water_rate',
-  async (norm, thunkApi) => {
+  async (data, thunkApi) => {
     try {
-      const newNorm = Number(norm) * 1000;
-      await waterRate(newNorm);
-      return newNorm;
+
+      await waterRate(data);
+      return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
     }

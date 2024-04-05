@@ -4,9 +4,9 @@ import {
   handleDeleteUser,
   handleEditUser,
   handleLogout,
-  handleRefreshFulfiled,
-  handleRefreshPending,
-  handleRefreshRejected,
+  // handleRefreshFulfiled,
+  // handleRefreshPending,
+  // handleRefreshRejected,
   handleSignin,
   handleUpdateAvatar,
   handleUserInfo,
@@ -41,9 +41,9 @@ const authSlice = createSlice({
       .addCase(authApi.signinThunk.fulfilled, handleSignin)
       .addCase(authApi.getUserThunk.fulfilled, handleUserInfo)
       .addCase(authApi.logoutThunk.pending, handleLogout)
-      .addCase(authApi.refreshUserThunk.fulfilled, handleRefreshFulfiled)
-      .addCase(authApi.refreshUserThunk.pending, handleRefreshPending)
-      .addCase(authApi.refreshUserThunk.rejected, handleRefreshRejected)
+      // .addCase(authApi.refreshUserThunk.fulfilled, handleRefreshFulfiled)
+      // .addCase(authApi.refreshUserThunk.pending, handleRefreshPending)
+      // .addCase(authApi.refreshUserThunk.rejected, handleRefreshRejected)
       .addCase(authApi.editUserInfoThunk.fulfilled, handleEditUser)
       .addCase(authApi.updateAvatarThunk.fulfilled, handleUpdateAvatar)
       .addCase(authApi.deleteUserThunk.pending, handleDeleteUser)
