@@ -48,7 +48,7 @@ export const updateAvatar = async photo => {
 };
 
 export const editUserInfo = async body => {
-    const { data } = await axios.patch('api/user/current', body);
+    const { data } = await axios.put('api/user/current', body);
     return data;
 };
 
@@ -59,8 +59,8 @@ export const deleteUser = async () => {
 
 //Water part***************************************
 
-export const waterRate = async norm => {
-    const { data } = await axios.patch('api/waters/water_rate', { waterRate: norm }); 
+export const waterRate = async newRate => {
+    const { data } = await axios.patch('api/waters/water_rate', newRate); 
     return data;
 };
 

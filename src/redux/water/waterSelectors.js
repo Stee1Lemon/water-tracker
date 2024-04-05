@@ -1,5 +1,4 @@
 
-// export const selectDailyNorm = state => state.auth.user.dailyNorm;
+export const selectWaterRate = state => state.auth.user.waterRate;
 
-// export const selectTodayWater = state => state.waterData.today;
-
+export const selectTodayWater = state => state.water.today;

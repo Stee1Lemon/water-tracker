@@ -30,7 +30,7 @@ export const store = configureStore({
   reducer: {
     root: rootReducer,
     auth: persistReducer(PersistConfig, authReducer),
-    waterData: persistReducer(PersistConfig, waterReducer),
+    water: persistReducer(PersistConfig, waterReducer),
     authTest: persistReducer(testPersistConfig, authTestReducer),
   },
 

@@ -10,10 +10,10 @@ const addWaterThunk = createAsyncThunk('water/addWater', async (credentials, thu
     }
 });
 
-const editWaterThunk = createAsyncThunk('water/edit', async ({ id, waterVolume, date }, thunkApi) => {
+const editWaterThunk = createAsyncThunk('water/edit', async ({ _id, amount, date }, thunkApi) => {
     try {
-        const newWater = { waterVolume, date };
-        const data = await editWater({ newWater, id: id });
+        const newWater = { amount, date };
+        const data = await editWater({ newWater, id: _id });
         return data;
     } catch (err) {
         return thunkApi.rejectWithValue(err.message);

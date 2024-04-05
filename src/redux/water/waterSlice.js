@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import waterApi from "./waterOperations";
+import { handleAddWater, handleDeleteWater, handleEditWAter, handleGetToday } from "./handlers";
+
 
 const initialState = {
     month: [],
@@ -13,10 +15,10 @@ const waterSlice = createSlice({
     initialState,
     extraReducers: builder => {
         builder
-            .addCase(waterApi.addWaterThunk.fulfilled)
-            .addCase(waterApi.editWaterThunk.fulfilled)
-            .addCase(waterApi.deleteWaterThunk.fulfilled)
-            // .addCase(getTodayWater.fulfilled)
+            .addCase(waterApi.addWaterThunk.fulfilled, handleAddWater)
+            .addCase(waterApi.editWaterThunk.fulfilled, handleEditWAter)
+            .addCase(waterApi.deleteWaterThunk.fulfilled, handleDeleteWater)
+            .addCase(waterApi.getTodayWaterThunk.fulfilled, handleGetToday)
             // .addCase(getMonthWater.fulfilled)
     }
 });
