@@ -11,7 +11,6 @@ import {
   RadioItem,
 } from './DailyNormaModal.styled';
 import {
-  Input,
   ModalSubtitle,
   ModalTitle,
   ModalCloseButton,
@@ -47,7 +46,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     const waterVolume = formik.values.dailyWaterGoal * 1000;
     
-    if (waterVolume > 0 && waterVolume <= 5000) {
+    if (waterVolume > 0 && waterVolume <= 15000) {
       dispatch(authApi.waterRateThunk({
         waterRate: waterVolume,
         date: format(new Date(), 'dd/MM/uuuu')
@@ -133,6 +132,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             value={formik.values.weight}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
+                onFocus ={(e)=> e.target.value =""}
             type="number"
             name="weight"
                 min="0"
@@ -146,6 +146,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
                 value={formik.values.activityTime}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
+                onFocus ={(e)=> e.target.value =""}
             type="number"
             name="activityTime"
                 min="0"
@@ -165,11 +166,11 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             value={formik.values.dailyWaterGoal}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
+            onFocus ={(e)=> e.target.value =""}
             type="number"
             name="dailyWaterGoal"
             min="0"
             step="0.1"
-            placeholder="0"
             error={formik.touched.dailyWaterGoal && formik.errors.dailyWaterGoal} />
           </div>
           <ModalBtn type="submit">Save</ModalBtn>

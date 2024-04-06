@@ -14,6 +14,10 @@ padding: 12px 10px;
 width: 100%;
 line-height: 125%;
 border: 1px solid var(--secondary-fifth);
+&::-webkit-outer-spin-button,
+&::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 `
 
 export const ErrorMessage = styled('p')`
