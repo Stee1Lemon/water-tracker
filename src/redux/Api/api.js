@@ -42,9 +42,13 @@ export const getUser = async () => {
     return data;
 }
 
-export const updateAvatar = async photo => {
-    const { data } = await axios.patch('api/user/avatars', photo);
-    return data.avatarURL;
+export const updateAvatar = async (photo) => {
+    const { data } = await axios.patch(
+        'api/user/avatars',
+        { avatarURL: photo },
+        { headers: { 'Contant-Type': 'multipart/form-data' } }
+    );
+    return data;
 };
 
 export const editUserInfo = async body => {
@@ -65,25 +69,31 @@ export const waterRate = async newRate => {
 };
 
 
-export const addWater = async water => {
-    const { data } = await axios.post('api/waters', water);
+export const addWater = async ( water ) => {
+    const { data } = await axios.post(
+        'api/waters',
+        water,
+        { headers: { 'Content-Type': 'application/json' } }
+    );
     return data;
 };
 
 export const editWater = async ({ newWater, id }) => {
-    const { data } = await axios.put(`api/waters/${id}`, newWater);
+    const { data } = await axios.put(
+        `api/waters/${id}`,
+        newWater,
+    { headers: { 'Content-Type': 'application/json' } });
     return data;
 };
 
-export const deleteWater = async id => {
+export const deleteWater = async ({id}) => {
     await axios.delete(`api/waters/${id}`);
 };
 
-export const getTodayWater = async () => {
-    // const date = format(new Date());
-    return await axios.get('api/waters/today');
+export const getTodayWater = async (data) => {
+    return await axios.post('api/waters/today', data);
 };
 
-export const getMonthWater = async () => {
-    return await axios.get('api/waters/per_month');
+export const getMonthWater = async (data) => {
+    return await axios.post('api/waters/per_month', data);
 };

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addWater, deleteWater, editWater, getTodayWater } from "../../redux/Api/api";
-                                                           //тут теж уточнити роути
+import { addWater, deleteWater, editWater, getMonthWater, getTodayWater } from "../../redux/Api/api";
+                                                           
 const addWaterThunk = createAsyncThunk('water/addWater', async (credentials, thunkApi) => {
     try {
         const data = await addWater(credentials);
@@ -10,10 +10,10 @@ const addWaterThunk = createAsyncThunk('water/addWater', async (credentials, thu
     }
 });
 
-const editWaterThunk = createAsyncThunk('water/edit', async ({ _id, amount, date }, thunkApi) => {
+const editWaterThunk = createAsyncThunk('water/edit', async ({ id, amount, time }, thunkApi) => {
     try {
-        const newWater = { amount, date };
-        const data = await editWater({ newWater, id: _id });
+        const newWater = { amount, time };
+        const data = await editWater({ newWater, id });
         return data;
     } catch (err) {
         return thunkApi.rejectWithValue(err.message);
@@ -29,10 +29,19 @@ const deleteWaterThunk = createAsyncThunk('water/delete', async (id, thunkApi) =
     }
 });
 
-const getTodayWaterThunk = createAsyncThunk('water/getTodayWAter', async (_, thunkApi) => {
+const getTodayWaterThunk = createAsyncThunk('water/getTodayWater', async (credentials, thunkApi) => {
     try {
-        const { data } = await getTodayWater();
-        return data[0];
+        const { data } = await getTodayWater(credentials);
+        return data;
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.message);
+    }
+});
+
+const getMonthWaterThunk = createAsyncThunk('water/getMonthWater', async (credentials, thunkApi) => {
+    try {
+        const { data } = await getMonthWater(credentials);
+        return data;
     } catch (err) {
         return thunkApi.rejectWithValue(err.message);
     }
@@ -43,6 +52,7 @@ const waterApi = {
     editWaterThunk,
     deleteWaterThunk,
     getTodayWaterThunk,
+    getMonthWaterThunk,
 };
 
 export default waterApi;
