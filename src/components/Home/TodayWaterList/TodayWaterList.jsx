@@ -1,9 +1,10 @@
-import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListItemTools, ItemBtnEdit, ItemBtnDelete } from "./TodayWaterList.styled"
+import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListItemTools, ItemBtnEdit, ItemBtnDelete} from "./TodayWaterList.styled"
 import icons from '../../../assets/icons.svg';
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
 import { TodayListModal } from "../TodayListModal/TodayListModal"
 import {PopupDelete} from "../PopupDelete/PopupDelete"
 import { useState } from "react";
+import {CustomScrollbars} from "../CustomScrollbars/CustomScrollbars"
 
 
 import {dailyWaterList} from "../arr.js"
@@ -38,6 +39,7 @@ export const TodayWaterList = () => {
         <WaterListWrap>
             <WaterListTitle>Today</WaterListTitle>
             <List>
+                <CustomScrollbars>
                 {dailyWaterList?.length > 0 && dailyWaterList.map((item) => {
                     return (
                          <ListItem key={item._id}>
@@ -72,6 +74,7 @@ export const TodayWaterList = () => {
                         </ItemBtnDelete>
                     </ListItemTools>
                 </ListItem> */}
+                </CustomScrollbars>
             </List>
             <WaterListButton onClick={openModalToAdd} type="button">
                 <span>+</span>Add water

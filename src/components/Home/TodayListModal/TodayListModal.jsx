@@ -5,38 +5,13 @@ import { Input, ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonSty
 import icons from '../../../assets/icons.svg';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
+import {getOptions, getCurrentTime} from "../../../hooks/water"
 // import { Formik } from 'formik';
 
 
 const maxVolumeLimit = 5000;
 const minVolumeLimit = 50;
 const step = 50;
-
-
-const getOptions = () => {
-  const options = [];
-
-  for (let i = 0; i < 24; i++) {
-    for (let j = 0; j < 60; j += 5) {
-      const hour = i < 10 ? `0${i}` : `${i}`;
-      const minute = j < 10 ? `0${j}` : `${j}`;
-      options.push({
-        value: `${hour}:${minute}`,
-        label: `${hour}:${minute}`,
-      });
-    }
-  }
-  return options;
-};
-
-
-const getCurrentTime = date => {
-  const currentTime = date ? new Date(date) : new Date();
-  const minutes = currentTime.getMinutes();
-  const roundedMinutes = Math.ceil(minutes / 5) * 5;
-  currentTime.setMinutes(roundedMinutes);
-  return currentTime;
-};
 
 
 

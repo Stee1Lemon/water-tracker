@@ -17,13 +17,12 @@ import {
   ModalCloseButton,
 } from '../CommonStyles.styled';
 import icons from '../../../assets/icons.svg';
-// import { selectAuthUser } from "../../../redux/auth/authSelectors";
-// import { useSelector } from 'react-redux';
+import { selectAuthUser } from "../../../redux/auth/authSelectors";
+import { useSelector } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
 
 export const DailyNormaModal = ({ isOpen, onClose }) => {
-  // const { gender, dailyNorma } = useSelector(selectAuthUser);
-  const gender = 'female';
+  const { gender } = useSelector(selectAuthUser);
   const [selectedGender, setSelectedGender] = useState(gender);
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
