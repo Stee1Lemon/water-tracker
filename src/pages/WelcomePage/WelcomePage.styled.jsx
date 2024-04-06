@@ -11,17 +11,15 @@ export const WelcomeSection = styled.section`
     background-image: url(${MobileBackground1});
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center;
   }
 
   @media only screen and (min-width: 768px) {
-    height: 100%;
     background-image: url(${TabletBackground1});
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center bottom;
-    width: 780px;
-    height: 800px;
+    background-position: center;
+
     &::after {
       content: '';
       position: absolute;
@@ -32,8 +30,6 @@ export const WelcomeSection = styled.section`
       top: 50%;
       left: 50%;
       transform: translate(-48%, -48%);
-      width: 780px;
-      height: 800px;
     }
   }
 
@@ -72,8 +68,9 @@ export const WelcomeContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     height: 800px;
+    max-width: 768px;
 
-    padding: 16px 32px 50px 32px;
+    padding: 16px 32px;
     margin: 0 auto;
   }
 

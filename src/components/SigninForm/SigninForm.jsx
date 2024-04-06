@@ -7,8 +7,10 @@ import icons from '../../assets/icons.svg';
 import { useDispatch } from 'react-redux';
 import authApi from '../../redux/auth/authOperations';
 import Notiflix from 'notiflix';
+import { useTranslation } from 'react-i18next';
 
 export const SigninForm = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
@@ -41,13 +43,13 @@ export const SigninForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <h2>Sign In</h2>
-      <label>Enter your email</label>
+      <h2>{t('headers.signin')}</h2>
+      <label>{t('authForm.email')}</label>
       <InputDiv>
         <input
           type="email"
           name="email"
-          placeholder="E-mail"
+          placeholder={t('placeholders.email')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
@@ -66,12 +68,12 @@ export const SigninForm = () => {
           <Message>{formik.errors.email}</Message>
         ) : null}
       </InputDiv>
-      <label>Enter your password</label>
+      <label>{t('authForm.password')}</label>
       <InputDiv>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
-          placeholder="Password"
+          placeholder={t('placeholders.password')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
@@ -109,8 +111,8 @@ export const SigninForm = () => {
           <Message>{formik.errors.password}</Message>
         ) : null}
       </InputDiv>
-      <button type="submit">Sign In</button>
-      <NavLink to="/signup">Sign up</NavLink>
+      <button type="submit">{t('buttons.signin')}</button>
+      <NavLink to="/signup">{t('links.signup')}</NavLink>
     </Form>
   );
 };

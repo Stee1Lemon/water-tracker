@@ -53,9 +53,11 @@ export const Welcome = () => {
             </WelcomePageTrackerItem>
           </WelcomePageTrackerList>
 
-          <WelcomePageButton>
-            <WelcomePageNavLink to="/signup">Try tracker</WelcomePageNavLink>
-          </WelcomePageButton>
+          <div>
+            <WelcomePageButton>
+              <WelcomePageNavLink to="/signup">Try tracker</WelcomePageNavLink>
+            </WelcomePageButton>
+          </div>
         </WelcomePageWrapperFirst>
 
         <WelcomePageDescriptionWrapper>

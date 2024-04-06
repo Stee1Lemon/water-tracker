@@ -1,11 +1,13 @@
-import { Navigation, LogoLink, UserContext } from './HeaderSigned.styled';
+import { Navigation, LogoLink, UserContext, HeaderContainer } from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
 import { ReactComponent as UserMenu } from '../headerIcons/UserMenu.svg';
 import SettingsModal from '../settingsModal/settingsModal';
 import LogOutModal from '../logOutModal/logOutModal';
 import TemplateImg from '../../../assets/Template.jpg';
 import DropDownHeader from '../dropDownMenu/dropDownHeader';
+import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 
 export const HeaderSigned = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -13,6 +15,7 @@ export const HeaderSigned = () => {
   const menuButtonRef = useRef(null);
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const userInfo = useSelector(selectAuthUser);
 
   // Дропдаун
   const toggleMenu = () => {
@@ -64,7 +67,7 @@ export const HeaderSigned = () => {
   }, []);
 
   return (
-    <header>
+    <HeaderContainer>
       <Navigation>
         <LogoLink to="/first">
           <svg className="logoWrapper">
@@ -80,7 +83,7 @@ export const HeaderSigned = () => {
             ref={menuButtonRef}
             onClick={toggleMenu}
           >
-            Template
+            {userInfo.name}
             <div className="imgWrapper">
               <img src={TemplateImg} alt="User Profile Picture" />
             </div>
@@ -107,6 +110,6 @@ export const HeaderSigned = () => {
         isLogoutModalOpen={isLogoutModalOpen}
         toggleLogoutModal={toggleLogoutModal}
       />
-    </header>
+    </HeaderContainer>
   );
 };

@@ -15,18 +15,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     confirmNewPassword: false,
   });
 
-  const togglePasswordVisibility = (field) => {
-    setPasswordVisible({
-      ...passwordVisible,
-      [field]: !passwordVisible[field],
-    });
-  };
-
-  const togglePasswordTextVisibility = (field) => {
-    const passwordInput = document.getElementById(field);
-    passwordInput.type = passwordVisible[field] ? 'password' : 'text';
-  };
-
   const [formData, setFormData] = useState({
     gender: 'woman',
     userName: '',
@@ -37,6 +25,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [changedFields, setChangedFields] = useState({});
 
   useEffect(() => {
     if (!isSettingsModalOpen) {
@@ -54,97 +43,118 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
         confirmNewPassword: false,
       });
       setErrors({});
+      setChangedFields({});
     }
   }, [isSettingsModalOpen]);
 
+  const togglePasswordVisibility = (field) => {
+    setPasswordVisible((prevState) => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
+  };
+
+  const togglePasswordTextVisibility = (field) => {
+    const passwordInput = document.getElementById(field);
+    passwordInput.type = passwordVisible[field] ? 'text' : 'password';
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setChangedFields((prevState) => ({ ...prevState, [name]: true }));
     validateField(name, value);
   };
 
   const handleRadioChange = (event) => {
-    setFormData({
-      ...formData,
-      gender: event.target.value,
-    });
+    const { name, value } = event.target;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setChangedFields((prevState) => ({ ...prevState, [name]: true }));
   };
 
   const validateField = (name, value) => {
     let fieldErrors = { ...errors };
 
-    if (name === 'userName') {
-      if (!value || value.length < 2 || !/^[A-Za-z]+$/.test(value)) {
-        fieldErrors[name] = 'Name must be at least 2 characters.';
-      } else {
-        delete fieldErrors[name];
-      }
+    if (
+      name === 'userName' &&
+      (!value || value.length < 2 || !/^[A-Za-z ]+$/.test(value))
+    ) {
+      fieldErrors[name] = 'Name must be at least 2 characters long.';
+    } else if (
+      name === 'userEmail' &&
+      (!value || !/\S+@\S+\.\S+/.test(value))
+    ) {
+      fieldErrors[name] = 'Invalid email format.';
+    } else if (
+      (name === 'oldPassword' ||
+        name === 'newPassword' ||
+        name === 'confirmNewPassword') &&
+      (!value || value.length < 8)
+    ) {
+      fieldErrors[name] = 'Password must be at least 8 characters long.';
+    } else {
+      delete fieldErrors[name];
     }
 
-    if (name === 'userEmail') {
-      if (!value || !/\S+@\S+\.\S+/.test(value)) {
-        fieldErrors[name] = 'Email is invalid.';
-      } else {
-        delete fieldErrors[name];
-      }
-    }
-
-    if (name === 'oldPassword') {
-      if (!value || value.length < 6) {
-        fieldErrors[name] = 'Old Password must be at least 6 characters long.';
-      } else {
-        delete fieldErrors[name];
-      }
-    }
-
-    if (name === 'newPassword') {
-      if (!value || value.length < 6) {
-        fieldErrors[name] = 'Minimum 6 symbols';
-      } else {
-        delete fieldErrors[name];
-      }
-    }
-
-    if (name === 'confirmNewPassword') {
-      if (formData.newPassword !== value) {
-        fieldErrors[name] = "Passwords doesn't match.";
-      } else {
-        delete fieldErrors[name];
-      }
+    // Update the password match check to be executed only if newPassword or confirmNewPassword fields are changed
+    if (
+      formData.newPassword &&
+      formData.confirmNewPassword &&
+      formData.newPassword !== formData.confirmNewPassword
+    ) {
+      fieldErrors['confirmNewPassword'] = "Passwords don't match.";
+    } else if (name === 'newPassword' || name === 'confirmNewPassword') {
+      delete fieldErrors['confirmNewPassword']; // Remove the error if conditions are met
     }
 
     setErrors(fieldErrors);
   };
 
   const handleSave = () => {
-    const formErrors = validateForm();
+    const fieldsToValidate = [
+      'oldPassword',
+      'newPassword',
+      'confirmNewPassword',
+    ];
+    let isValid = true;
+    const currentErrors = { ...errors };
 
-    const areAllFieldsValid = Object.keys(formData).every((key) => {
-      if (key === 'confirmNewPassword') return true;
-      const value = formData[key];
-      return value && (!errors[key] || errors[key] === '');
-    });
-
-    if (Object.keys(formErrors).length === 0 && areAllFieldsValid) {
-      const dataToSave = { ...formData };
-      delete dataToSave.confirmNewPassword;
-      console.log(dataToSave);
-      Notiflix.Notify.success('Success!');
-    } else {
-      Notiflix.Notify.failure('Oops! Something went wrong!');
-    }
-  };
-
-  const validateForm = () => {
-    let formErrors = {};
-    Object.keys(formData).forEach((key) => {
-      validateField(key, formData[key]);
-      if (errors[key]) {
-        formErrors[key] = errors[key];
+    // Validate password fields only if any of them has been changed
+    const passwordFieldsChanged = fieldsToValidate.some(
+      (field) => changedFields[field]
+    );
+    if (passwordFieldsChanged) {
+      fieldsToValidate.forEach((field) => {
+        if (!formData[field] || formData[field].length < 8) {
+          currentErrors[field] = 'Password must be at least 8 characters long.';
+          isValid = false;
+        }
+      });
+      if (formData.newPassword !== formData.confirmNewPassword) {
+        currentErrors['confirmNewPassword'] = "Passwords don't match.";
+        isValid = false;
       }
-    });
-    return formErrors;
+    }
+
+    if (!isValid) {
+      setErrors(currentErrors);
+      Notiflix.Notify.failure('Please correct the errors before saving.');
+      return;
+    }
+
+    const dataToSave = Object.keys(formData).reduce((acc, key) => {
+      if (
+        key !== 'confirmNewPassword' &&
+        (formData[key] ||
+          (!fieldsToValidate.includes(key) && changedFields[key]))
+      ) {
+        acc[key] = formData[key];
+      }
+      return acc;
+    }, {});
+
+    console.log(dataToSave);
+    Notiflix.Notify.success('Your changes have been saved successfully!');
   };
 
   return (
@@ -254,7 +264,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 type="text"
                 id="userName"
                 name="userName"
-                placeholder="John"
+                placeholder="Your name"
                 value={formData.userName}
                 onChange={handleInputChange}
               />
