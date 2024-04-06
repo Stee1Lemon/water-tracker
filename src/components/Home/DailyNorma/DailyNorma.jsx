@@ -1,22 +1,28 @@
-import { ModalSubtitle } from '../CommonStyles.styled';
-import { NormaBlock, NormaBlockFooter } from './DailyNorma.styled';
-import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
 import { useState } from 'react';
 import { useSelector } from "react-redux";
-import { selectAuthUser } from "../../../redux/auth/authSelectors";
+
+import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
+
+import { ModalSubtitle } from '../CommonStyles.styled';
+import { NormaBlock, NormaBlockFooter } from './DailyNorma.styled';
+
+import { selectWaterRate } from "../../../redux/water/waterSelectors";
 
 export const DailyNorma = () => {
-  const { waterRate } = useSelector(selectAuthUser);
-  const dailyNorma = waterRate / 1000;
+  const { waterRate } = useSelector(selectWaterRate);
+  const dailyNorma = (waterRate / 1000).toFixed(1);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handlerToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   return (
     <NormaBlock>
       <ModalSubtitle>My daily norma</ModalSubtitle>
       <NormaBlockFooter>
-        <span>{dailyNorma || 0} L</span>
+        <span>{dailyNorma} L</span>
         <button onClick={handlerToggleModal} type="button">
           Edit
         </button>

@@ -18,28 +18,62 @@ import {
 } from '../CommonStyles.styled';
 import icons from '../../../assets/icons.svg';
 import { selectAuthUser } from "../../../redux/auth/authSelectors";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
+import { validationWaterSchema } from "../validationWaterSchema"
+import { useFormik } from 'formik';
+
+import { FormInput } from "../reuse/input/FormInput"
+import authApi from "../../../redux/auth/authOperations"
+import { format } from 'date-fns';
+
+
 
 export const DailyNormaModal = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
+
   const { gender } = useSelector(selectAuthUser);
-  const [selectedGender, setSelectedGender] = useState(gender);
-  const [weight, setWeight] = useState('');
-  const [activityTime, setActivityTime] = useState('');
-  const [selectedDailyVolume, setSelectedDailyVolume] = useState('0');
-  const [dailyGoal, setDailyGoal] = useState('');
+  const [selectedDailyVolume, setSelectedDailyVolume] = useState(0);
 
-  const calculateWaterVolume = useCallback(() => {
-    if (!weight || !activityTime) return;
-    const weightFactor = selectedGender === 'female' ? 0.03 : 0.04;
-    const activityFactor = selectedGender === 'female' ? 0.4 : 0.6;
-    const result = weight * weightFactor + activityTime * activityFactor;
+  const calculateWaterVolume = useCallback((values) => {
+    if (!values.weight || !values.activityTime) return;
+    const weightFactor = values.gender === 'female' ? 0.03 : 0.04;
+    const activityFactor = values.gender === 'female' ? 0.4 : 0.6;
+    const result = values.weight * weightFactor + values.activityTime * activityFactor;
     setSelectedDailyVolume(result);
-  }, [selectedGender, weight, activityTime]);
+  }, []);
 
-  useEffect(() => {
-    calculateWaterVolume();
-  }, [calculateWaterVolume]);
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    const waterVolume = formik.values.dailyWaterGoal * 1000;
+    
+    if (waterVolume > 0 && waterVolume <= 5000) {
+      dispatch(authApi.waterRateThunk({
+        waterRate: waterVolume,
+        date: format(new Date(), 'dd/MM/uuuu')
+      }));
+      console.log('Daily norma successfully updated');
+      formik.resetForm();
+      onClose();
+    } else {
+      console.log('The amount of water must be a positive');
+    }
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      gender: gender,
+      weight: 0,
+      activityTime: 0,
+      dailyWaterGoal: 0,
+    },
+    validationSchema: validationWaterSchema,
+    onSubmit: handleOnSubmit,
+  });
+
+   useEffect(() => {
+    calculateWaterVolume(formik.values);
+  }, [calculateWaterVolume, formik.values]);
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
@@ -66,7 +100,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             these, you must set 0)
           </CalculationText>
         </div>
-        <Form>
+        <Form onSubmit={handleOnSubmit}>
           <div>
             <ModalSubtitle>Calculate your rate:</ModalSubtitle>
             <FormRadioItems>
@@ -76,8 +110,8 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
                   type="radio"
                   name="gender"
                   value="female"
-                  checked={selectedGender === 'female'}
-                  onChange={() => setSelectedGender('female')}
+                  checked={formik.values.gender === 'female'}
+                  onChange={() => formik.setFieldValue('gender', 'female')}
                 />
                 <label htmlFor="gender-f">For girl</label>
               </RadioItem>
@@ -87,36 +121,36 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
                   type="radio"
                   name="gender"
                   value="male"
-                  checked={selectedGender === 'male'}
-                  onChange={() => setSelectedGender('male')}
+                  checked={formik.values.gender === 'male'}
+                  onChange={() => formik.setFieldValue('gender', 'male')}
                 />
                 <label htmlFor="gender-m">For man</label>
               </RadioItem>
             </FormRadioItems>
             <CalculationItem>
-              <p>Your weight in kilograms:</p>
-              <Input
-                type="number"
-                name="weight"
+               <FormInput
+            label="Your weight in kilograms:"
+            value={formik.values.weight}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+            type="number"
+            name="weight"
                 min="0"
-                placeholder="0"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-              />
+                step="0.1"
+            error={formik.touched.weight && formik.errors.weight}/>
             </CalculationItem>
             <CalculationItem>
-              <p>
-                The time of active participation in sports or other activities
-                with a high physical. load in hours:
-              </p>
-              <Input
-                type="number"
-                name="activity"
+              <FormInput
+            label="The time of active participation in sports or other activities
+                with a high physical. load in hours:"
+                value={formik.values.activityTime}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+            type="number"
+            name="activityTime"
                 min="0"
-                placeholder="0"
-                value={activityTime}
-                onChange={(e) => setActivityTime(e.target.value)}
-              />
+                step="0.1"
+            error={formik.touched.activityTime && formik.errors.activityTime}/>
             </CalculationItem>
             <CalculationResult>
               <p>The required amount of water in liters per day:</p>
@@ -127,14 +161,16 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             <ModalSubtitle>
               Write down how much water you will drink:
             </ModalSubtitle>
-            <Input
-              type="number"
-              name="volume"
-              min="0"
-              placeholder="0"
-              value={dailyGoal}
-              onChange={(e) => setDailyGoal(e.target.value)}
-            />
+            <FormInput
+            value={formik.values.dailyWaterGoal}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            type="number"
+            name="dailyWaterGoal"
+            min="0"
+            step="0.1"
+            placeholder="0"
+            error={formik.touched.dailyWaterGoal && formik.errors.dailyWaterGoal} />
           </div>
           <ModalBtn type="submit">Save</ModalBtn>
         </Form>

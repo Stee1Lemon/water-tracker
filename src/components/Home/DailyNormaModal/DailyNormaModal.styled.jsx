@@ -99,9 +99,9 @@ label::after {
 
 export const CalculationItem = styled('div')`
     margin-bottom: 16px;
-    p {
+    /* p {
     margin-bottom: 8px;
-    }
+    } */
 `
 export const CalculationResult = styled('div')`
     display: flex;
