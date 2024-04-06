@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div``;
+export const HeaderContainer = styled.header`
+    margin: 0 auto;
+    max-width: 1216px;
+    
+`;
 
 export const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
-  padding-left: 188px;
-  padding-right: 188px;
 
   @media (max-width: 1439px) {
     padding-left: 32px;
@@ -86,7 +88,6 @@ export const UserContext = styled.div`
   }
 
   .UserContextButton {
-    min-width: 138px;
     background: none;
     border: none;
     padding: 0;
