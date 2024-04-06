@@ -91,8 +91,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }
 
     if (name === 'oldPassword') {
-      if (!value || value.length < 6) {
-        fieldErrors[name] = 'Old Password must be at least 6 characters long.';
+      if (!value || value.length < 8) {
+        fieldErrors[name] = 'Minimum 8 symbols';
       } else {
         delete fieldErrors[name];
       }
@@ -100,7 +100,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
     if (name === 'newPassword') {
       if (!value || value.length < 6) {
-        fieldErrors[name] = 'Minimum 6 symbols';
+        fieldErrors[name] = 'Minimum 8 symbols';
       } else {
         delete fieldErrors[name];
       }
@@ -108,7 +108,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
     if (name === 'confirmNewPassword') {
       if (formData.newPassword !== value) {
-        fieldErrors[name] = "Passwords doesn't match.";
+        fieldErrors[name] = "Passwords doesn't match";
       } else {
         delete fieldErrors[name];
       }
