@@ -59,21 +59,6 @@ export const TodayWaterList = () => {
                 </ListItem>
                     )
                 })}
-                {/* <ListItem>
-                    <TodayWaterInfo/>
-                    <ListItemTools>
-                        <ItemBtnEdit type="button" onClick={openModalToEdit}>
-                            <svg>
-                                <use href={`${icons}#icon-icon-pencil`}></use>
-                            </svg>
-                        </ItemBtnEdit>
-                        <ItemBtnDelete type="button" onClick={openModalToDelete}>
-                            <svg>
-                                <use href={`${icons}#icon-trash`}></use>
-                            </svg>
-                        </ItemBtnDelete>
-                    </ListItemTools>
-                </ListItem> */}
                 </CustomScrollbars>
             </List>
             <WaterListButton onClick={openModalToAdd} type="button">
