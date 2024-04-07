@@ -10,18 +10,18 @@ import { ModalSettingContainer } from './settingsModal.styled';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const [passwordVisible, setPasswordVisible] = useState({
-    oldPassword: false,
-    newPassword: false,
-    confirmNewPassword: false,
+    outdatedPassword: false,
+    password: false,
+    repeatPassword: false,
   });
 
   const [formData, setFormData] = useState({
     gender: 'woman',
-    userName: '',
+    name: '',
     userEmail: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
+    outdatedPassword: '',
+    password: '',
+    repeatPassword: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -31,16 +31,16 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     if (!isSettingsModalOpen) {
       setFormData({
         gender: 'woman',
-        userName: '',
+        name: '',
         userEmail: '',
-        oldPassword: '',
-        newPassword: '',
-        confirmNewPassword: '',
+        outdatedPassword: '',
+        password: '',
+        repeatPassword: '',
       });
       setPasswordVisible({
-        oldPassword: false,
-        newPassword: false,
-        confirmNewPassword: false,
+        outdatedPassword: false,
+        password: false,
+        repeatPassword: false,
       });
       setErrors({});
       setChangedFields({});
@@ -76,7 +76,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     let fieldErrors = { ...errors };
 
     if (
-      name === 'userName' &&
+      name === 'name' &&
       (!value || value.length < 2 || !/^[A-Za-z ]+$/.test(value))
     ) {
       fieldErrors[name] = 'Name must be at least 2 characters long.';
@@ -86,9 +86,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     ) {
       fieldErrors[name] = 'Invalid email format.';
     } else if (
-      (name === 'oldPassword' ||
-        name === 'newPassword' ||
-        name === 'confirmNewPassword') &&
+      (name === 'outdatedPassword' ||
+        name === 'password' ||
+        name === 'repeatPassword') &&
       (!value || value.length < 8)
     ) {
       fieldErrors[name] = 'Password must be at least 8 characters long.';
@@ -96,15 +96,15 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       delete fieldErrors[name];
     }
 
-    // Update the password match check to be executed only if newPassword or confirmNewPassword fields are changed
+    // Update the password match check to be executed only if password or repeatPassword fields are changed
     if (
-      formData.newPassword &&
-      formData.confirmNewPassword &&
-      formData.newPassword !== formData.confirmNewPassword
+      formData.password &&
+      formData.repeatPassword &&
+      formData.password !== formData.repeatPassword
     ) {
-      fieldErrors['confirmNewPassword'] = "Passwords don't match.";
-    } else if (name === 'newPassword' || name === 'confirmNewPassword') {
-      delete fieldErrors['confirmNewPassword']; // Remove the error if conditions are met
+      fieldErrors['repeatPassword'] = "Passwords don't match.";
+    } else if (name === 'password' || name === 'repeatPassword') {
+      delete fieldErrors['repeatPassword']; // Remove the error if conditions are met
     }
 
     setErrors(fieldErrors);
@@ -112,9 +112,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
   const handleSave = () => {
     const fieldsToValidate = [
-      'oldPassword',
-      'newPassword',
-      'confirmNewPassword',
+      'outdatedPassword',
+      'password',
+      'repeatPassword',
     ];
     let isValid = true;
     const currentErrors = { ...errors };
@@ -130,8 +130,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           isValid = false;
         }
       });
-      if (formData.newPassword !== formData.confirmNewPassword) {
-        currentErrors['confirmNewPassword'] = "Passwords don't match.";
+      if (formData.password !== formData.repeatPassword) {
+        currentErrors['repeatPassword'] = "Passwords don't match.";
         isValid = false;
       }
     }
@@ -144,7 +144,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
     const dataToSave = Object.keys(formData).reduce((acc, key) => {
       if (
-        key !== 'confirmNewPassword' &&
+        key !== 'repeatPassword' &&
         (formData[key] ||
           (!fieldsToValidate.includes(key) && changedFields[key]))
       ) {
@@ -221,89 +221,89 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </div>
           <div className="passwordDiv">
             <p className="settingsP3">Password</p>
-            <label className="passwordLabel" htmlFor="oldPassword">
+            <label className="passwordLabel" htmlFor="outdatedPassword">
               Outdated password:
             </label>
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  errors.oldPassword ? 'invalid' : ''
+                  errors.outdatedPassword ? 'invalid' : ''
                 }`}
-                type={passwordVisible.oldPassword ? 'text' : 'password'}
-                id="oldPassword"
-                name="oldPassword"
+                type={passwordVisible.outdatedPassword ? 'text' : 'password'}
+                id="outdatedPassword"
+                name="outdatedPassword"
                 placeholder="Password"
-                value={formData.oldPassword}
+                value={formData.outdatedPassword}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('oldPassword');
-                  togglePasswordTextVisibility('oldPassword');
+                  togglePasswordVisibility('outdatedPassword');
+                  togglePasswordTextVisibility('outdatedPassword');
                 }}
               >
-                {passwordVisible.oldPassword ? (
+                {passwordVisible.outdatedPassword ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
-              {errors.oldPassword && (
-                <div className="errorText">{errors.oldPassword}</div>
+              {errors.outdatedPassword && (
+                <div className="errorText">{errors.outdatedPassword}</div>
               )}
             </div>
           </div>
           <div className="nameDiv">
-            <label className="passwordLabel" htmlFor="userName">
+            <label className="passwordLabel" htmlFor="name">
               Your name:
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${errors.userName ? 'invalid' : ''}`}
+                className={`passwordInput ${errors.name ? 'invalid' : ''}`}
                 type="text"
-                id="userName"
-                name="userName"
+                id="name"
+                name="name"
                 placeholder="Your name"
-                value={formData.userName}
+                value={formData.name}
                 onChange={handleInputChange}
               />
-              {errors.userName && (
-                <div className="errorText">{errors.userName}</div>
+              {errors.name && (
+                <div className="errorText">{errors.name}</div>
               )}
             </div>
           </div>
           <div className="newPasswordDiv">
-            <label className="passwordLabel" htmlFor="newPassword">
+            <label className="passwordLabel" htmlFor="password">
               New password:
             </label>
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  errors.newPassword ? 'invalid' : ''
+                  errors.password ? 'invalid' : ''
                 }`}
-                type={passwordVisible.newPassword ? 'text' : 'password'}
-                id="newPassword"
-                name="newPassword"
+                type={passwordVisible.password ? 'text' : 'password'}
+                id="password"
+                name="password"
                 placeholder="Password"
-                value={formData.newPassword}
+                value={formData.password}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('newPassword');
-                  togglePasswordTextVisibility('newPassword');
+                  togglePasswordVisibility('password');
+                  togglePasswordTextVisibility('password');
                 }}
               >
-                {passwordVisible.newPassword ? (
+                {passwordVisible.password ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
-              {errors.newPassword && (
-                <div className="errorText">{errors.newPassword}</div>
+              {errors.password && (
+                <div className="errorText">{errors.password}</div>
               )}
             </div>
           </div>
@@ -327,36 +327,36 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </div>
           </div>
           <div className="confirmNewPasswordDiv">
-            <label className="passwordLabel" htmlFor="confirmNewPassword">
+            <label className="passwordLabel" htmlFor="repeatPassword">
               Repeat New password:
             </label>
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  errors.confirmNewPassword ? 'invalid' : ''
+                  errors.repeatPassword ? 'invalid' : ''
                 }`}
-                type={passwordVisible.confirmNewPassword ? 'text' : 'password'}
-                id="confirmNewPassword"
-                name="confirmNewPassword"
+                type={passwordVisible.repeatPassword ? 'text' : 'password'}
+                id="repeatPassword"
+                name="repeatPassword"
                 placeholder="Password"
-                value={formData.confirmNewPassword}
+                value={formData.repeatPassword}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('confirmNewPassword');
-                  togglePasswordTextVisibility('confirmNewPassword');
+                  togglePasswordVisibility('repeatPassword');
+                  togglePasswordTextVisibility('repeatPassword');
                 }}
               >
-                {passwordVisible.confirmNewPassword ? (
+                {passwordVisible.repeatPassword ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
-              {errors.confirmNewPassword && (
-                <div className="errorText">{errors.confirmNewPassword}</div>
+              {errors.repeatPassword && (
+                <div className="errorText">{errors.repeatPassword}</div>
               )}
             </div>
           </div>
