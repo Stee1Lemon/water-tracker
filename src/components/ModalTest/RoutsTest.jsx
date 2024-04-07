@@ -66,8 +66,8 @@ const RoutsTest = () => {
             onClick={() =>
               handleDispatch(
                 authApi.waterRateThunk({
-                  waterRate: 2000,
-                  date: '06/04/2024',
+                  waterRate: 3000,
+                  date: '07/04/2024',
                 })
               )
             }
