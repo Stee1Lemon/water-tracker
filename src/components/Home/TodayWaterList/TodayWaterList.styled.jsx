@@ -19,7 +19,7 @@ font-size: 26px;
 
 export const List = styled('ul')`
 max-height:180px;
-overflow: auto;
+/* overflow: auto; */
 margin-bottom: 12px;
 @media only screen and (min-width: 768px) {
 max-height:170px;
@@ -30,10 +30,10 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 column-gap:38px;
-padding: 12px 4px;
+padding: 12px 10px 12px 4px;
 border-bottom: 1px solid var(--secondary-fifth);
 @media only screen and (min-width: 768px) {
-padding: 12px 6px; 
+padding: 12px 10px 12px 4px;
 }
 `
 
