@@ -6,20 +6,20 @@ import { DailyNormaModal } from '../DailyNormaModal/DailyNormaModal';
 import { ModalSubtitle } from '../CommonStyles.styled';
 import { NormaBlock, NormaBlockFooter } from './DailyNorma.styled';
 
-// import { selectWaterRate } from "../../../redux/water/waterSelectors";
-import { selectAuthUser } from "../../../redux/auth/authSelectors";
+import { selectWaterRate } from "../../../redux/water/waterSelectors";
+// import { selectAuthUser } from "../../../redux/auth/authSelectors";
 
 export const DailyNorma = () => {
-const {waterRate}  = useSelector(selectAuthUser);
+  const waterRate  = useSelector(selectWaterRate);
   const dailyNorma = (waterRate / 1000).toFixed(1);
   // console.log('waterRate :>> ', waterRate);
-  // console.log('selectWaterRate :>> ', useSelector(selectAuthUser));
+  // console.log('useSelector(selectWaterRate) :>> ', useSelector(selectWaterRate));
+  // console.log('useSelector(selectAuthUser) :>> ', useSelector(selectAuthUser));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handlerToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
   return (
     <NormaBlock>
       <ModalSubtitle>My daily norma</ModalSubtitle>

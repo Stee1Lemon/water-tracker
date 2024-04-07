@@ -11,12 +11,12 @@ export const validationWaterSchema = Yup.object({
   dailyWaterGoal: Yup.number()
     .required('Amount water is required')
     .min(0, 'Amount water must be a positive number')
-    .max(15000, 'The amount of water should be no more than 15000 liters'),
+    .max(15, 'The amount of water should be no more than 15000 liters'),
 });
 
 export const AddWaterSchema = Yup.object({
   portionOfWater: Yup.number()
     .required('Amount water is required')
     .min(0, 'Amount water must be a positive number')
-    .max(5000, 'The amount of water should be no more than 5000 liters'),
+    .max(5000, 'The amount of water should be no more than 5000 milliliters'),
 });

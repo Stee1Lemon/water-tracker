@@ -5,15 +5,19 @@ import { TodayListModal } from "../TodayListModal/TodayListModal"
 import {PopupDelete} from "../PopupDelete/PopupDelete"
 import { useState } from "react";
 import {CustomScrollbars} from "../CustomScrollbars/CustomScrollbars"
-
+import { selectTodayWater } from "../../../redux/water/waterSelectors";
 
 import {dailyWaterList} from "../arr.js"
+import { useSelector } from "react-redux";
 
 export const TodayWaterList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setisEditing] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+
+    const today = useSelector(selectTodayWater);
+  console.log('TodayWaterList :>> ', useSelector(selectTodayWater));
 
     const openModalToAdd = () => {
         setIsModalOpen(true);

@@ -49,7 +49,7 @@ button {
   cursor: pointer;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 4px;
 }
 
@@ -65,4 +65,4 @@ button {
 /* Firefox */
 /* * {
   scrollbar-color: #9ebbff rgba(239, 237, 232, 0.1);
-} */
+}

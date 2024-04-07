@@ -1,4 +1,11 @@
+import { format } from 'date-fns';
+import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
+import { FormInput } from "../reuse/input/FormInput"
 import {
   NormaModal,
   ModalBtn,
@@ -15,47 +22,47 @@ import {
   ModalTitle,
   ModalCloseButton,
 } from '../CommonStyles.styled';
+
 import icons from '../../../assets/icons.svg';
 import { selectAuthUser } from "../../../redux/auth/authSelectors";
-import { useDispatch, useSelector } from 'react-redux';
-import { useCallback, useEffect, useState } from 'react';
 import { validationWaterSchema } from "../validationWaterSchema"
-import { useFormik } from 'formik';
-
-import { FormInput } from "../reuse/input/FormInput"
 import authApi from "../../../redux/auth/authOperations"
-import { format } from 'date-fns';
 
 
+const maxDailyVolumeLimit = 15000;
 
 export const DailyNormaModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const { gender } = useSelector(selectAuthUser);
+
   const [selectedDailyVolume, setSelectedDailyVolume] = useState(0);
 
   const calculateWaterVolume = useCallback((values) => {
-    if (!values.weight || !values.activityTime) return;
+    // if (!values.weight || !values.activityTime) return;
+     if (!values.weight) return;
     const weightFactor = values.gender === 'female' ? 0.03 : 0.04;
     const activityFactor = values.gender === 'female' ? 0.4 : 0.6;
     const result = values.weight * weightFactor + values.activityTime * activityFactor;
     setSelectedDailyVolume(result);
   }, []);
 
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+
     const waterVolume = formik.values.dailyWaterGoal * 1000;
     
-    if (waterVolume > 0 && waterVolume <= 15000) {
+    if (waterVolume > 0 && waterVolume <= maxDailyVolumeLimit) {
       dispatch(authApi.waterRateThunk({
         waterRate: waterVolume,
         date: format(new Date(), 'dd/MM/uuuu')
       }));
-      console.log('Daily norma successfully updated');
+      Notify.success('Daily norma successfully updated');
       formik.resetForm();
       onClose();
     } else {
-      console.log('The amount of water must be a positive');
+      Notify.failure('The amount of water must be a positive and no more than 15000 liters');
     }
   }
 
@@ -73,6 +80,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
    useEffect(() => {
     calculateWaterVolume(formik.values);
   }, [calculateWaterVolume, formik.values]);
+
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
