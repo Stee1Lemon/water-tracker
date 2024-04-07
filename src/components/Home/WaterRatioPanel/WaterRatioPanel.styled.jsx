@@ -3,11 +3,13 @@ import { CommonStyleBtn } from "../CommonStyles.styled"
 
 
 export const Wrapper = styled('div')`
+border: 1px solid red;
 display: flex;
 flex-direction:column;
-row-gap:35px;
+row-gap:16px;
 @media only screen and (min-width: 768px) {
 flex-direction:row;
+align-items: center;
 column-gap:23px;
 }
 `
@@ -24,13 +26,17 @@ export const AddWaterBtn = styled('button')`
         stroke:var(--primary-light);
         fill: transparent;
     }
-    @media only screen and (min-width: 768px) {
+    /* @media only screen and (min-width: 768px) {
         align-self:flex-end;
-    }
+    } */
 `
 export const RangeBlock = styled('div')`
- flex: 1 0 auto;
- p{
+flex: 1 0 auto;
+height: 82px;
+@media only screen and (min-width: 768px) {
+height: 90px;
+}
+p{
     font-size: 18px;
     line-height: 130%;
     color: var(--primary-focus);
@@ -42,7 +48,9 @@ export const RangeBlock = styled('div')`
 `
 
 export const RangeWrap = styled('div')`
-position:relative;
+position: relative;
+color: var(--primary-focus);
+border: 1px solid green;
 `
 
 
@@ -81,17 +89,11 @@ export const RangeInput = styled('input')`
     margin-top: -3px;
   }
 `
-export const Scope = styled('div')`
-margin-top: 13px;
- width: 100%;
- color: var(--primary-focus);
- position: relative;
-`
 export const StaticMarkStart = styled('span')`
  font-size: 12px;
  line-height: 133%;
  position: absolute;
- top:0;
+ top:35px;
  left:0;
  ::before{
         content:"";
@@ -107,7 +109,7 @@ export const StaticMarkEnd = styled('span')`
  font-size: 12px;
  line-height: 133%;
  position: absolute;
- top:0;
+ top:35px;
  right:0;
  ::before{
         content:"";
@@ -127,7 +129,7 @@ width:35px;
  font-size: 16px;
  font-weight: 500;
  position: absolute;
- top:35px;
+ top:45px;
  ${({ persent }) => `left: ${persent}%;`}
  transform:translate(-50%,0);
  ::before{

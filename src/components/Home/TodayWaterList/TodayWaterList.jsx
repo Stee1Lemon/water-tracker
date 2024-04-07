@@ -17,7 +17,7 @@ export const TodayWaterList = () => {
     const [selectedItem, setSelectedItem] = useState(null);
 
     const today = useSelector(selectTodayWater);
-  console.log('TodayWaterList :>> ', useSelector(selectTodayWater));
+//   console.log('TodayWaterList :>> ', useSelector(selectTodayWater));
 
     const openModalToAdd = () => {
         setIsModalOpen(true);
