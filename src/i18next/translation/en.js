@@ -65,7 +65,7 @@ export const en = {
     girl: 'For girl',
     man: 'For man',
     description:
-      '* V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)',
+      'V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)',
     calculate: 'Calculate your rate:',
     weight: 'Your weight in kilograms:',
     time: 'The time of active participation in sports or other activities with a high physical. load in hours:',

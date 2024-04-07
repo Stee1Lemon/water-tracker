@@ -8,9 +8,11 @@ import { Popup, PopupFooter, PopupBtnRemove, PopupBtnClose } from "./PopupDelete
 import icons from '../../../assets/icons.svg';
 
 import waterApi from "../../../redux/water/waterOperations"
+import { useTranslation } from 'react-i18next';
 
 export function PopupDelete({ isOpen, onClose, selectedItemId }) {
-    
+    const { t } = useTranslation();
+
     const dispatch = useDispatch();
     
     const handleDelete = () => {
@@ -23,16 +25,16 @@ export function PopupDelete({ isOpen, onClose, selectedItemId }) {
     return (
       <ModalOverlay isOpen={isOpen} onClose={onClose}>
             <Popup>
-                <ModalTitle>Delete entry</ModalTitle>
+                <ModalTitle>{t('deleteEntryModal.header')}</ModalTitle>
                 <ModalCloseButton onClick={onClose}>
                     <svg >
                         <use href={`${icons}#icon-close`}></use>
                     </svg>
                 </ModalCloseButton>
-                <ModalSubtitle>Are you sure you want to delete the entry?</ModalSubtitle>
+                <ModalSubtitle>{t('deleteEntryModal.question')}</ModalSubtitle>
                 <PopupFooter>
-                    <PopupBtnClose onClick={onClose} type="button">Cancel</PopupBtnClose>
-                    <PopupBtnRemove onClick={handleDelete} type="button">Delete</PopupBtnRemove>
+                    <PopupBtnClose onClick={onClose} type="button">{t('deleteEntryModal.buttonCancel')}</PopupBtnClose>
+                    <PopupBtnRemove onClick={handleDelete} type="button">{t('deleteEntryModal.buttonDelete')}</PopupBtnRemove>
                 </PopupFooter>
             </Popup>  
       </ModalOverlay>

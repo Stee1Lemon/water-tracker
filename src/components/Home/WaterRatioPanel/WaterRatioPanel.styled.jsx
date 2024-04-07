@@ -88,7 +88,7 @@ export const StaticMarkStart = styled('span')`
  font-size: 12px;
  line-height: 133%;
  position: absolute;
- top:35px;
+ top:27px;
  left:0;
  ::before{
         content:"";
@@ -96,7 +96,7 @@ export const StaticMarkStart = styled('span')`
         width: 1px;
         height: 8px;
         background: var(--secondary-fifth);
-        top:-80%;
+        top:-55%;
         left: 10%;
     }
 `
@@ -104,7 +104,7 @@ export const StaticMarkEnd = styled('span')`
  font-size: 12px;
  line-height: 133%;
  position: absolute;
- top:35px;
+ top:27px;
  right:0;
  ::before{
         content:"";
@@ -112,20 +112,25 @@ export const StaticMarkEnd = styled('span')`
         width: 1px;
         height: 8px;
         background: var(--secondary-fifth);
-        top:-80%;
+        top:-55%;
         right: 5%;
     }
 `
 
 export const DynamicMark = styled('span')`
+background-color: rgba(255, 255, 255, 0.9);
+display: block;
+padding:3px;
+border-radius:5px;
 color: var(--primary-focus);
 text-align:center;
-width:35px;
+/* width:35px; */
  font-size: 16px;
  font-weight: 500;
  position: absolute;
+ z-index:1;
  top:40px;
- ${({ persent }) => `left: ${persent}%;`}
+ ${({ persent }) => persent<=100 ? `left: ${persent}%;`: `left: 99%;`}
  transform:translate(-50%,0);
  ::before{
         content:"";
@@ -133,7 +138,7 @@ width:35px;
         width: 1px;
         height: 8px;
         background: var(--secondary-fifth);
-        top:-60%;
+        top:-50%;
         left: 50%;
     }
 `

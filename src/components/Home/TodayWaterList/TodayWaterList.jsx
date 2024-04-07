@@ -10,9 +10,11 @@ import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListIte
 import icons from '../../../assets/icons.svg';
 
 import { selectTodayWater } from "../../../redux/water/waterSelectors";
-import {getConvertedTime} from "../../../hooks/water"
+import { getConvertedTime } from "../../../hooks/water"
+import { useTranslation } from 'react-i18next'; 
 
 export const TodayWaterList = () => {
+    const { t } = useTranslation();
     const { portionsOfWater } = useSelector(selectTodayWater);
     
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +47,7 @@ export const TodayWaterList = () => {
 
     return (
         <WaterListWrap>
-            <WaterListTitle>Today</WaterListTitle>
+            <WaterListTitle>{t('today')}</WaterListTitle>
             {portionsOfWater?.length > 0 &&
             <List>
                 <CustomScrollbars>
@@ -72,7 +74,7 @@ export const TodayWaterList = () => {
             </List>
             }
             <WaterListButton onClick={openModalToAdd} type="button">
-                <span>+</span>Add water
+                <span>+</span>{t('addEditWaterModal.headerAdd')}
             </WaterListButton>
             {isDelete ?
                 <PopupDelete isOpen={isModalOpen} onClose={closeModal} selectedItemId={selectedItem?.id}/>

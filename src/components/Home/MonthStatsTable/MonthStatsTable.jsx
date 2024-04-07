@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react"
 import { startOfMonth, lastDayOfMonth, eachDayOfInterval, format, subMonths, addMonths, isSameMonth } from "date-fns";
+import { uk } from 'date-fns/locale';
 import { useSelector } from "react-redux";
 
 import { CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWrap, Day, DayButton, } from "./MonthStatsTable.styled"
 import icons from '../../../assets/icons.svg';
 
 import { selectMonthWater } from "../../../redux/water/waterSelectors";
+import { useTranslation } from 'react-i18next'; 
 
 const formatOfYear = "yyyy";
 const formatOfMonth = "MMMM";
 const formatOfDay = "d";
 
 export const MonthStatsTable = () => {
-
+  const { t } = useTranslation();
+  
   const waterForMonth = useSelector(selectMonthWater);
   console.log('month :>> ', waterForMonth);
 
@@ -41,8 +44,15 @@ export const MonthStatsTable = () => {
   //   return acc;
   // }, {});
   // console.log('monthData :>> ', monthData);
- // ---------------------------------------------------------------------------------------------------------------------------
-    const currentMonth = format(currentDate, formatOfMonth);
+  // ---------------------------------------------------------------------------------------------------------------------------
+  const LANGUAGE = "";
+  let currentMonth;
+  if (LANGUAGE) {
+     currentMonth = format(currentDate, 'LLLL', { locale: uk });
+  } else {
+    currentMonth = format(currentDate, formatOfMonth);
+  }
+    // const currentMonth = format(currentDate, 'LLLL', { locale: uk });
     const currentYear = format(currentDate, formatOfYear);
     // const isToday = (day) => isSameDay(day, new Date());
     
@@ -69,7 +79,7 @@ export const MonthStatsTable = () => {
   return (
       <div>
           <CalendarHeader>
-              <CalendarTitle>Month</CalendarTitle>
+              <CalendarTitle>{t('month')}</CalendarTitle>
               <Pagination>
                 <PaginationButton onClick={handlePrevMonth} active={activeButton === 'next'} type="button">
                   <svg >

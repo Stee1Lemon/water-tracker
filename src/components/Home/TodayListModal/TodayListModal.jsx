@@ -14,6 +14,7 @@ import icons from '../../../assets/icons.svg';
 import {getOptions, getRoundedMinutes, getConvertedTime} from "../../../hooks/water"
 import { AddWaterSchema } from "../validationWaterSchema"
 import waterApi from "../../../redux/water/waterOperations"
+import { useTranslation } from 'react-i18next'; 
 
 
 
@@ -24,7 +25,8 @@ const step = 50;
 
 
 
-export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amountWater=0, date }) => {
+export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amountWater = 0, date }) => {
+  const { t } = useTranslation(); 
   const dispatch = useDispatch();
   const [volume, setVolume] = useState(amountWater);
 
@@ -148,7 +150,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
           <AddWaterModal>
-        <ModalTitle>{isEditing? "Edit the entered amount of water" : "Add water"}</ModalTitle>
+        <ModalTitle>{isEditing? t('addEditWaterModal.headerEdit') : t('addEditWaterModal.headerAdd')}</ModalTitle>
               <ModalCloseButton onClick={onClose}>
                 <svg >
                 <use href={`${icons}#icon-close`}></use>
@@ -156,8 +158,8 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
               </ModalCloseButton>
               {isEditing && <PrevInfo><TodayWaterInfo data={{amount:amountWater,time:date}}/></PrevInfo>}
               <div>
-                <ModalSubtitle>{isEditing? "Correct entered data:" : "Choose a value:"}</ModalSubtitle>
-                <p>Amount of water:</p>
+                <ModalSubtitle>{isEditing? t('addEditWaterModal.correctData') : t('addEditWaterModal.choose')}</ModalSubtitle>
+                <p>{t('addEditWaterModal.amount')}</p>
                 <WaterCounter>
                   <CounterBtn minus onClick={decreaseVolume}>
                     <svg>
@@ -174,12 +176,12 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
               </div>
               <Form onSubmit={handleOnSubmit}>
                 <div>
-            <p>Recording time:</p>
+            <p>{t('addEditWaterModal.time')}</p>
               <TimeInput classNamePrefix={'Select'}
               options={getOptions()} value={time} defaultValue={time} onChange={handleChangeTime} onMenuOpen={onMenuOpen}/>
                 </div>
                 <div>
-                  <ModalSubtitle>Enter the value of the water used:</ModalSubtitle>
+                  <ModalSubtitle>{t('addEditWaterModal.waterUsed')}</ModalSubtitle>
             <FormInput
             value={formik.values.portionOfWater}
               onBlur={e => {
@@ -196,7 +198,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
                 </div>
                 <ModalFooter>
                   <Label>{volume}ml</Label>
-                  <ModalBtn type='submit'>Save</ModalBtn>
+                  <ModalBtn type='submit'>{t('dailyNormaModal.buttonSave')}</ModalBtn>
                 </ModalFooter>
              </Form>
           </AddWaterModal> 
