@@ -7,16 +7,16 @@ export const handleAddWater = (state, { payload }) => {
 };
 
 export const handleEditWAter = (state, { payload }) => {
-  const arr = state.today.waterList;
+  const arr = state.today.portionsOfWater;
   const index = arr.findIndex((item) => item.id === payload.id);
   if (index !== -1) {
-    arr[index] = payload;
+    arr[index] = payload.portionsOfWater;
   }
 };
 
 export const handleDeleteWater = (state, { payload }) => {
-  if (state.today.dailyWaterList)
-    state.today.dailyWaterList = state.today.dailyWaterList.filter(
+  if (state.today.portionsOfWater)
+    state.today.portionsOfWater = state.today.portionsOfWater.filter(
       (data) => data.id !== payload
     );
 };
