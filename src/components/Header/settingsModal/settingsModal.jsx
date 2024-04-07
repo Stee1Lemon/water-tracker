@@ -115,6 +115,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     setErrors(fieldErrors);
   };
 
+  const handleUploadPhoto = () => {
+    dispatch(authApi.updateAvatarThunk());
+    console.log('Photo Saved')
+  };
   const handleSave = () => {
     const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
@@ -174,13 +178,13 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           <div className="uploadPhotoDiv">
             <div className="settingsImgWrapper">
               <img
-                src={TemplateImg}
+                src={userInfo.avatarURL}
                 alt="User Profile Picture"
                 width={80}
                 height={80}
               />
             </div>
-            <button className="uploadPhotoButton">
+            <button className="uploadPhotoButton" onClick={handleUploadPhoto}>
               <div className="arrowUpWrapper">
                 <ArrowUp />
               </div>
