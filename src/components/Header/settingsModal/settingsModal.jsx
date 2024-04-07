@@ -7,12 +7,16 @@ import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg'
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
+import { useDispatch } from 'react-redux';
+import authApi from '../../../redux/auth/authOperations.js';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
+  const dispatch = useDispatch();
+
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
     password: false,
-    repeatPassword: false,
+    confirmPassword: false,
   });
 
   const [formData, setFormData] = useState({
@@ -80,10 +84,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       (!value || value.length < 2 || !/^[A-Za-z ]+$/.test(value))
     ) {
       fieldErrors[name] = 'Name must be at least 2 characters long.';
-    } else if (
-      name === 'email' &&
-      (!value || !/\S+@\S+\.\S+/.test(value))
-    ) {
+    } else if (name === 'email' && (!value || !/\S+@\S+\.\S+/.test(value))) {
       fieldErrors[name] = 'Invalid email format.';
     } else if (
       (name === 'outdatedPassword' ||
@@ -94,7 +95,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       fieldErrors[name] = 'Password must be at least 8 characters long.';
     } else if (
       (name === 'password' || name === 'repeatPassword') &&
-      (isSave && formData.password !== formData.repeatPassword)
+      isSave &&
+      formData.password !== formData.repeatPassword
     ) {
       fieldErrors['repeatPassword'] = "Passwords don't match.";
     } else {
@@ -105,11 +107,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   };
 
   const handleSave = () => {
-    const fieldsToValidate = [
-      'outdatedPassword',
-      'password',
-      'repeatPassword',
-    ];
+    const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
     const currentErrors = { ...errors };
 
@@ -148,6 +146,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }, {});
 
     console.log(dataToSave);
+    dispatch(authApi.editUserInfoThunk(dataToSave));
     Notiflix.Notify.success('Your changes have been saved successfully!');
   };
 
@@ -262,9 +261,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 value={formData.name}
                 onChange={handleInputChange}
               />
-              {errors.name && (
-                <div className="errorText">{errors.name}</div>
-              )}
+              {errors.name && <div className="errorText">{errors.name}</div>}
             </div>
           </div>
           <div className="newPasswordDiv">
@@ -273,9 +270,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${
-                  errors.password ? 'invalid' : ''
-                }`}
+                className={`passwordInput ${errors.password ? 'invalid' : ''}`}
                 type={passwordVisible.password ? 'text' : 'password'}
                 id="password"
                 name="password"
@@ -315,9 +310,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 value={formData.email}
                 onChange={handleInputChange}
               />
-              {errors.email && (
-                <div className="errorText">{errors.email}</div>
-              )}
+              {errors.email && <div className="errorText">{errors.email}</div>}
             </div>
           </div>
           <div className="confirmNewPasswordDiv">
