@@ -7,11 +7,13 @@ import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg'
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authApi from '../../../redux/auth/authOperations.js';
+import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const dispatch = useDispatch();
+  const userInfo = useSelector(selectAuthUser);
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
@@ -20,7 +22,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   });
 
   const [formData, setFormData] = useState({
-    gender: 'woman',
+    gender: 'female',
     name: '',
     email: '',
     outdatedPassword: '',
@@ -32,9 +34,16 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const [changedFields, setChangedFields] = useState({});
 
   useEffect(() => {
-    if (!isSettingsModalOpen) {
+    if (isSettingsModalOpen) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        gender: userInfo.gender,
+        name: userInfo.name,
+        email: userInfo.email,
+      }));
+    } else {
       setFormData({
-        gender: 'woman',
+        gender: 'female',
         name: '',
         email: '',
         outdatedPassword: '',
@@ -49,7 +58,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       setErrors({});
       setChangedFields({});
     }
-  }, [isSettingsModalOpen]);
+  }, [isSettingsModalOpen, userInfo]);
 
   const togglePasswordVisibility = (field) => {
     setPasswordVisible((prevState) => ({
@@ -106,6 +115,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     setErrors(fieldErrors);
   };
 
+  const handleUploadPhoto = () => {
+    dispatch(authApi.updateAvatarThunk());
+    console.log('Photo Saved')
+  };
   const handleSave = () => {
     const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
@@ -165,13 +178,13 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           <div className="uploadPhotoDiv">
             <div className="settingsImgWrapper">
               <img
-                src={TemplateImg}
+                src={userInfo.avatarURL}
                 alt="User Profile Picture"
                 width={80}
                 height={80}
               />
             </div>
-            <button className="uploadPhotoButton">
+            <button className="uploadPhotoButton" onClick={handleUploadPhoto}>
               <div className="arrowUpWrapper">
                 <ArrowUp />
               </div>
@@ -190,11 +203,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   <input
                     className="radioInput"
                     type="radio"
-                    id="woman"
+                    id="female"
                     name="gender"
-                    value="woman"
+                    value="female"
                     onChange={handleRadioChange}
-                    checked={formData.gender === 'woman'}
+                    checked={formData.gender === 'female'}
                   />
                   <div className="customRadioButton"></div>
                   Woman
@@ -203,11 +216,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   <input
                     className="radioInput"
                     type="radio"
-                    id="man"
+                    id="male"
                     name="gender"
-                    value="man"
+                    value="male"
                     onChange={handleRadioChange}
-                    checked={formData.gender === 'man'}
+                    checked={formData.gender === 'male'}
                   />
                   <div className="customRadioButton"></div>
                   Man
