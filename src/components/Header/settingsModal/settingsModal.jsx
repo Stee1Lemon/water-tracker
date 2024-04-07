@@ -5,7 +5,6 @@ import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg';
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
-import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import authApi from '../../../redux/auth/authOperations.js';
