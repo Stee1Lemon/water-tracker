@@ -102,10 +102,11 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
     if (e.target.value >= minVolumeLimit && e.target.value <= maxVolumeLimit) {
      const value = parseFloat(e.target.value);
     setVolume(value);
-    } else {
-      console.log('The amount of water should be no more than 5000 liters');
-      return;
     }
+    // else {
+    //   console.log('The amount of water should be no more than 5000 liters');
+    //   return;
+    // }
     //   if (!e.target.value) {
     //   e.target.value = volume;
     //   return;
@@ -197,7 +198,10 @@ console.log('formik.values.portionOfWater :>> ', formik.values.portionOfWater);
             {/* <Input type="number" name="volume" min="0" value={enteredVolume} onChange={handleChangeVolume} onFocus={handleOnFocus} onBlur={handleOnBlur}/> */}
             <FormInput
             value={formik.values.portionOfWater}
-            onBlur={formik.handleBlur}
+              onBlur={e => {
+                formik.handleBlur(e)
+                handleOnBlur(e);
+              }}
             onChange={formik.handleChange}
             onFocus ={(e)=> e.target.value =""}
             type="number"
