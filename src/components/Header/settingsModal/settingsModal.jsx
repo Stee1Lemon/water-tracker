@@ -128,17 +128,22 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       }
     }
 
+    // Check if any password field has been provided
+    const passwordProvided = Object.keys(formData).some(
+      (key) => fieldsToValidate.includes(key) && formData[key]
+    );
+
     if (!isValid) {
       setErrors(currentErrors);
       Notiflix.Notify.failure('Please correct the errors before saving.');
       return;
     }
 
+    // Prepare dataToSave
     const dataToSave = Object.keys(formData).reduce((acc, key) => {
       if (
         key !== 'repeatPassword' &&
-        (formData[key] ||
-          (!fieldsToValidate.includes(key) && changedFields[key]))
+        (formData[key] || (key === 'repeatPassword' && passwordProvided))
       ) {
         acc[key] = formData[key];
       }
