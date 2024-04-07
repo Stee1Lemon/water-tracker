@@ -7,21 +7,25 @@ import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg'
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
 import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
+import { useDispatch } from 'react-redux';
+import authApi from '../../../redux/auth/authOperations.js';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
+  const dispatch = useDispatch();
+
   const [passwordVisible, setPasswordVisible] = useState({
-    oldPassword: false,
-    newPassword: false,
-    confirmNewPassword: false,
+    outdatedPassword: false,
+    password: false,
+    confirmPassword: false,
   });
 
   const [formData, setFormData] = useState({
     gender: 'woman',
-    userName: '',
-    userEmail: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
+    name: '',
+    email: '',
+    outdatedPassword: '',
+    password: '',
+    repeatPassword: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -31,16 +35,16 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     if (!isSettingsModalOpen) {
       setFormData({
         gender: 'woman',
-        userName: '',
-        userEmail: '',
-        oldPassword: '',
-        newPassword: '',
-        confirmNewPassword: '',
+        name: '',
+        email: '',
+        outdatedPassword: '',
+        password: '',
+        repeatPassword: '',
       });
       setPasswordVisible({
-        oldPassword: false,
-        newPassword: false,
-        confirmNewPassword: false,
+        outdatedPassword: false,
+        password: false,
+        repeatPassword: false,
       });
       setErrors({});
       setChangedFields({});
@@ -72,54 +76,41 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     setChangedFields((prevState) => ({ ...prevState, [name]: true }));
   };
 
-  const validateField = (name, value) => {
+  const validateField = (name, value, isSave) => {
     let fieldErrors = { ...errors };
 
     if (
-      name === 'userName' &&
+      name === 'name' &&
       (!value || value.length < 2 || !/^[A-Za-z ]+$/.test(value))
     ) {
       fieldErrors[name] = 'Name must be at least 2 characters long.';
-    } else if (
-      name === 'userEmail' &&
-      (!value || !/\S+@\S+\.\S+/.test(value))
-    ) {
+    } else if (name === 'email' && (!value || !/\S+@\S+\.\S+/.test(value))) {
       fieldErrors[name] = 'Invalid email format.';
     } else if (
-      (name === 'oldPassword' ||
-        name === 'newPassword' ||
-        name === 'confirmNewPassword') &&
+      (name === 'outdatedPassword' ||
+        name === 'password' ||
+        name === 'repeatPassword') &&
       (!value || value.length < 8)
     ) {
       fieldErrors[name] = 'Password must be at least 8 characters long.';
+    } else if (
+      (name === 'password' || name === 'repeatPassword') &&
+      isSave &&
+      formData.password !== formData.repeatPassword
+    ) {
+      fieldErrors['repeatPassword'] = "Passwords don't match.";
     } else {
       delete fieldErrors[name];
-    }
-
-    // Update the password match check to be executed only if newPassword or confirmNewPassword fields are changed
-    if (
-      formData.newPassword &&
-      formData.confirmNewPassword &&
-      formData.newPassword !== formData.confirmNewPassword
-    ) {
-      fieldErrors['confirmNewPassword'] = "Passwords don't match.";
-    } else if (name === 'newPassword' || name === 'confirmNewPassword') {
-      delete fieldErrors['confirmNewPassword']; // Remove the error if conditions are met
     }
 
     setErrors(fieldErrors);
   };
 
   const handleSave = () => {
-    const fieldsToValidate = [
-      'oldPassword',
-      'newPassword',
-      'confirmNewPassword',
-    ];
+    const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
     const currentErrors = { ...errors };
 
-    // Validate password fields only if any of them has been changed
     const passwordFieldsChanged = fieldsToValidate.some(
       (field) => changedFields[field]
     );
@@ -130,11 +121,15 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           isValid = false;
         }
       });
-      if (formData.newPassword !== formData.confirmNewPassword) {
-        currentErrors['confirmNewPassword'] = "Passwords don't match.";
+      if (formData.password !== formData.repeatPassword) {
+        currentErrors['repeatPassword'] = "Passwords don't match.";
         isValid = false;
       }
     }
+
+    const passwordProvided = Object.keys(formData).some(
+      (key) => fieldsToValidate.includes(key) && formData[key]
+    );
 
     if (!isValid) {
       setErrors(currentErrors);
@@ -142,11 +137,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       return;
     }
 
+    // Prepare dataToSave
     const dataToSave = Object.keys(formData).reduce((acc, key) => {
       if (
-        key !== 'confirmNewPassword' &&
-        (formData[key] ||
-          (!fieldsToValidate.includes(key) && changedFields[key]))
+        key !== 'repeatPassword' &&
+        (formData[key] || (key === 'repeatPassword' && passwordProvided))
       ) {
         acc[key] = formData[key];
       }
@@ -154,6 +149,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }, {});
 
     console.log(dataToSave);
+    dispatch(authApi.editUserInfoThunk(dataToSave));
     Notiflix.Notify.success('Your changes have been saved successfully!');
   };
 
@@ -221,142 +217,136 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </div>
           <div className="passwordDiv">
             <p className="settingsP3">Password</p>
-            <label className="passwordLabel" htmlFor="oldPassword">
+            <label className="passwordLabel" htmlFor="outdatedPassword">
               Outdated password:
             </label>
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  errors.oldPassword ? 'invalid' : ''
+                  errors.outdatedPassword ? 'invalid' : ''
                 }`}
-                type={passwordVisible.oldPassword ? 'text' : 'password'}
-                id="oldPassword"
-                name="oldPassword"
+                type={passwordVisible.outdatedPassword ? 'text' : 'password'}
+                id="outdatedPassword"
+                name="outdatedPassword"
                 placeholder="Password"
-                value={formData.oldPassword}
+                value={formData.outdatedPassword}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('oldPassword');
-                  togglePasswordTextVisibility('oldPassword');
+                  togglePasswordVisibility('outdatedPassword');
+                  togglePasswordTextVisibility('outdatedPassword');
                 }}
               >
-                {passwordVisible.oldPassword ? (
+                {passwordVisible.outdatedPassword ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
-              {errors.oldPassword && (
-                <div className="errorText">{errors.oldPassword}</div>
+              {errors.outdatedPassword && (
+                <div className="errorText">{errors.outdatedPassword}</div>
               )}
             </div>
           </div>
           <div className="nameDiv">
-            <label className="passwordLabel" htmlFor="userName">
+            <label className="passwordLabel" htmlFor="name">
               Your name:
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${errors.userName ? 'invalid' : ''}`}
+                className={`passwordInput ${errors.name ? 'invalid' : ''}`}
                 type="text"
-                id="userName"
-                name="userName"
+                id="name"
+                name="name"
                 placeholder="Your name"
-                value={formData.userName}
+                value={formData.name}
                 onChange={handleInputChange}
               />
-              {errors.userName && (
-                <div className="errorText">{errors.userName}</div>
-              )}
+              {errors.name && <div className="errorText">{errors.name}</div>}
             </div>
           </div>
           <div className="newPasswordDiv">
-            <label className="passwordLabel" htmlFor="newPassword">
+            <label className="passwordLabel" htmlFor="password">
               New password:
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${
-                  errors.newPassword ? 'invalid' : ''
-                }`}
-                type={passwordVisible.newPassword ? 'text' : 'password'}
-                id="newPassword"
-                name="newPassword"
+                className={`passwordInput ${errors.password ? 'invalid' : ''}`}
+                type={passwordVisible.password ? 'text' : 'password'}
+                id="password"
+                name="password"
                 placeholder="Password"
-                value={formData.newPassword}
+                value={formData.password}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('newPassword');
-                  togglePasswordTextVisibility('newPassword');
+                  togglePasswordVisibility('password');
+                  togglePasswordTextVisibility('password');
                 }}
               >
-                {passwordVisible.newPassword ? (
+                {passwordVisible.password ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
-              {errors.newPassword && (
-                <div className="errorText">{errors.newPassword}</div>
+              {errors.password && (
+                <div className="errorText">{errors.password}</div>
               )}
             </div>
           </div>
           <div className="emailDiv">
-            <label className="passwordLabel" htmlFor="userEmail">
+            <label className="passwordLabel" htmlFor="email">
               E-mail:
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${errors.userEmail ? 'invalid' : ''}`}
+                className={`passwordInput ${errors.email ? 'invalid' : ''}`}
                 type="email"
-                id="userEmail"
-                name="userEmail"
+                id="email"
+                name="email"
                 placeholder="E-mail"
-                value={formData.userEmail}
+                value={formData.email}
                 onChange={handleInputChange}
               />
-              {errors.userEmail && (
-                <div className="errorText">{errors.userEmail}</div>
-              )}
+              {errors.email && <div className="errorText">{errors.email}</div>}
             </div>
           </div>
           <div className="confirmNewPasswordDiv">
-            <label className="passwordLabel" htmlFor="confirmNewPassword">
+            <label className="passwordLabel" htmlFor="repeatPassword">
               Repeat New password:
             </label>
             <div className="passwordInputContainer">
               <input
                 className={`passwordInput ${
-                  errors.confirmNewPassword ? 'invalid' : ''
+                  errors.repeatPassword ? 'invalid' : ''
                 }`}
-                type={passwordVisible.confirmNewPassword ? 'text' : 'password'}
-                id="confirmNewPassword"
-                name="confirmNewPassword"
+                type={passwordVisible.repeatPassword ? 'text' : 'password'}
+                id="repeatPassword"
+                name="repeatPassword"
                 placeholder="Password"
-                value={formData.confirmNewPassword}
+                value={formData.repeatPassword}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('confirmNewPassword');
-                  togglePasswordTextVisibility('confirmNewPassword');
+                  togglePasswordVisibility('repeatPassword');
+                  togglePasswordTextVisibility('repeatPassword');
                 }}
               >
-                {passwordVisible.confirmNewPassword ? (
+                {passwordVisible.repeatPassword ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
                 )}
               </button>
-              {errors.confirmNewPassword && (
-                <div className="errorText">{errors.confirmNewPassword}</div>
+              {errors.repeatPassword && (
+                <div className="errorText">{errors.repeatPassword}</div>
               )}
             </div>
           </div>
