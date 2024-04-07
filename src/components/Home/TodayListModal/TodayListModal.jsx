@@ -8,6 +8,10 @@ import { format } from 'date-fns';
 import {getOptions, getCurrentTime} from "../../../hooks/water"
 // import { Formik } from 'formik';
 
+import { useFormik } from 'formik';
+import { AddWaterSchema } from "../validationWaterSchema"
+import { FormInput } from "../reuse/input/FormInput"
+
 
 const maxVolumeLimit = 5000;
 const minVolumeLimit = 50;
@@ -15,8 +19,9 @@ const step = 50;
 
 
 
-export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amountWater, date }) => {
 
+export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amountWater, date }) => {
+  // const dispatch = useDispatch();
   const [volume, setVolume] = useState(amountWater||0);
 
   // Дані введені через інпут
@@ -33,16 +38,23 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
     label: nowTime,
    })
   
-  
+  const formik = useFormik({
+    initialValues: {
+      portionOfWater: volume,
+    },
+    validationSchema: AddWaterSchema,
+    // onSubmit: handleOnSubmit,
+  });
   
   useEffect(() => {
     if (isEditing) {
       setVolume(amountWater);
-      setEnteredVolume(amountWater)
+      // setEnteredVolume(amountWater)
+      formik.values.portionOfWater = amountWater;
       setTime({ value: nowTimeRounded,label: nowTime})
     } 
       
-  }, [isEditing, amountWater,nowTime, nowTimeRounded])
+  }, [isEditing, amountWater,nowTime, nowTimeRounded, formik.values])
   
 
   const handleChangeTime = selectedOption => {
@@ -69,7 +81,8 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
       return;
     }
     setVolume((prev) => parseFloat(prev) + step);
-    setEnteredVolume((prev) => parseFloat(prev) + step);
+    // setEnteredVolume((prev) => parseFloat(prev) + step);
+    formik.values.portionOfWater = formik.values.portionOfWater + step;
   };
 
   const decreaseVolume = () => {
@@ -77,7 +90,8 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
       return;
     }
     setVolume((prev) => parseFloat(prev) - step);
-    setEnteredVolume((prev) => parseFloat(prev) - step);
+    // setEnteredVolume((prev) => parseFloat(prev) - step);
+    formik.values.portionOfWater = formik.values.portionOfWater + step;
   };
 
   const handleOnFocus = (e) => {
@@ -85,14 +99,24 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
   }
 
   const handleOnBlur = (e) => {
-      if (!e.target.value) {
-      e.target.value = volume;
+    if (e.target.value >= minVolumeLimit && e.target.value <= maxVolumeLimit) {
+     const value = parseFloat(e.target.value);
+    setVolume(value);
+    } else {
+      console.log('The amount of water should be no more than 5000 liters');
       return;
     }
-    const value = parseFloat(e.target.value);
-    if (value >= 0 && value <= maxVolumeLimit) {
-      setVolume(value);
-    }
+    //   if (!e.target.value) {
+    //   e.target.value = volume;
+    //   return;
+    // }
+    // const value = parseFloat(e.target.value);
+    // if (value >= minVolumeLimit && value <= maxVolumeLimit) {
+    //   setVolume(value);
+    // } else {
+    //   console.log('The amount of water should be no more than 5000 liters');
+    //   return;
+    // }
   }
 
   const handleChangeVolume = e => {
@@ -102,6 +126,10 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    if (volume > maxVolumeLimit) {
+      console.log('The amount of water should be no more than 5000 liters');
+      return;
+    }
     let selectedDate;
       // Беремо поточний день
       const currentDate = new Date();
@@ -129,6 +157,8 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
     });
     }
   }
+
+console.log('formik.values.portionOfWater :>> ', formik.values.portionOfWater);
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
           <AddWaterModal>
@@ -164,7 +194,17 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
                 </div>
                 <div>
                   <ModalSubtitle>Enter the value of the water used:</ModalSubtitle>
-                  <Input type="number" name="volume" min="0" value={enteredVolume} onChange={handleChangeVolume} onFocus={handleOnFocus} onBlur={handleOnBlur}/>
+            {/* <Input type="number" name="volume" min="0" value={enteredVolume} onChange={handleChangeVolume} onFocus={handleOnFocus} onBlur={handleOnBlur}/> */}
+            <FormInput
+            value={formik.values.portionOfWater}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            onFocus ={(e)=> e.target.value =""}
+            type="number"
+            name="portionOfWater"
+            min="0"
+            step="0.1"
+            error={formik.touched.portionOfWater && formik.errors.portionOfWater} />
                 </div>
                 <ModalFooter>
                   <Label>{volume}ml</Label>
