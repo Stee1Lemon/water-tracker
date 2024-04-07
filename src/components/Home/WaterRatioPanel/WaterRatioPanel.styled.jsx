@@ -3,7 +3,6 @@ import { CommonStyleBtn } from "../CommonStyles.styled"
 
 
 export const Wrapper = styled('div')`
-border: 1px solid red;
 display: flex;
 flex-direction:column;
 row-gap:20px;
@@ -47,7 +46,6 @@ p{
 export const RangeWrap = styled('div')`
 position: relative;
 color: var(--primary-focus);
-border: 1px solid green;
 `
 
 

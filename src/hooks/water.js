@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 
 export const getOptions = () => {
   const options = [];
@@ -15,10 +16,19 @@ export const getOptions = () => {
   return options;
 };
 
-export const getCurrentTime = date => {
-  const currentTime = date ? new Date(date) : new Date();
+export const getConvertedTime = date => {
+  const currentTime = new Date();
+  const [hours, minutes] = date.split(':');
+  currentTime.setHours(hours, minutes, 0);
+  return currentTime;
+  // console.log('convertedTime :>> ', currentTime);
+};
+
+export const getRoundedMinutes = date => {
+  const currentTime = date ? getConvertedTime(date) : new Date();
   const minutes = currentTime.getMinutes();
   const roundedMinutes = Math.ceil(minutes / 5) * 5;
   currentTime.setMinutes(roundedMinutes);
-  return currentTime;
+  return format(currentTime, 'HH:mm');
+  // return currentTime;
 };

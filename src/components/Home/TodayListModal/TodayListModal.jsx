@@ -11,7 +11,7 @@ import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalF
 import { ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
 
-import {getOptions, getCurrentTime} from "../../../hooks/water"
+import {getOptions, getRoundedMinutes, getConvertedTime} from "../../../hooks/water"
 import { AddWaterSchema } from "../validationWaterSchema"
 import waterApi from "../../../redux/water/waterOperations"
 
@@ -28,29 +28,19 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
   const dispatch = useDispatch();
   const [volume, setVolume] = useState(amountWater);
 
-  // Дані введені через інпут
-  // const [enteredVolume, setEnteredVolume] = useState(volume);
-  
-  // ___________________________________________________Time
-
-  const now = getCurrentTime(date);
-  const nowTimeRounded = format(new Date(now), 'HH:mm');
-  const nowTime = date ? format(date, 'HH:mm') :format(new Date(), 'HH:mm');
+  const nowTimeRounded = getRoundedMinutes(date);
+  const nowTime = date ? format(getConvertedTime(date), 'HH:mm') :format(new Date(), 'HH:mm');
 
    const [time, setTime] = useState({
     value: nowTimeRounded,
     label: nowTime,
    })
+   
   
   const handleOnSubmit = (e) => {
     e.preventDefault();
-      // Беремо поточний день
-      const currentDate = new Date();
-      // Беремо години і хвилини обрані користувачем
-      const [hours, minutes] = time.value.split(':');
-      // Редагуємо поточну дату з урахуванням обраного часу
-      currentDate.setHours(hours, minutes, 0);
-      const selectedTime = format(currentDate, 'HH:mm');
+    const currentDate = new Date();
+    const selectedTime = time.value;
     if (formik.values.portionOfWater > maxVolumeLimit) {
       Notify.failure('The amount of water should be no more than 5000 milliliters');
       return;
@@ -72,12 +62,17 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
         formik.values.portionOfWater = 0;
     }
       if (isEditing) {
-      Notify.success('Information was successfully edited');
-      console.log('EDIT Water data :>> ', {
-      _id: selectedItemId,
-      time: selectedTime,
-      water: volume
-      });
+        Notify.success('Information was successfully edited');
+        dispatch(waterApi.editWaterThunk({
+        id: selectedItemId,
+        time: selectedTime,
+        waterAmount: volume,
+      }));
+      // console.log('EDIT Water data :>> ', {
+      // _id: selectedItemId,
+      // time: selectedTime,
+      // water: volume
+      // });
       onClose();
     }
 
@@ -92,15 +87,6 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
     onSubmit: handleOnSubmit,
   });
   
-  // useEffect(() => {
-  //   if (isEditing) {
-  //     setVolume(amountWater);
-  //     // setEnteredVolume(amountWater)
-  //     formik.values.portionOfWater = amountWater;
-  //     setTime({ value: nowTimeRounded,label: nowTime})
-  //   } 
-      
-  // }, [isEditing, amountWater,nowTime, nowTimeRounded, formik.values])
   
   useEffect(() => {
     setVolume(amountWater);
@@ -159,8 +145,6 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
   // };
 // ---------------------------------------------------------
 
-
-// console.log('formik.values.portionOfWater :>> ', formik.values.portionOfWater);
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
           <AddWaterModal>
@@ -170,7 +154,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
                 <use href={`${icons}#icon-close`}></use>
                 </svg>
               </ModalCloseButton>
-              {isEditing && <PrevInfo><TodayWaterInfo data={{amountWater,date}}/></PrevInfo>}
+              {isEditing && <PrevInfo><TodayWaterInfo data={{amount:amountWater,time:date}}/></PrevInfo>}
               <div>
                 <ModalSubtitle>{isEditing? "Correct entered data:" : "Choose a value:"}</ModalSubtitle>
                 <p>Amount of water:</p>
