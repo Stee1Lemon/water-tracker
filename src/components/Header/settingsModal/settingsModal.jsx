@@ -18,7 +18,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const [formData, setFormData] = useState({
     gender: 'woman',
     name: '',
-    userEmail: '',
+    email: '',
     outdatedPassword: '',
     password: '',
     repeatPassword: '',
@@ -32,7 +32,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       setFormData({
         gender: 'woman',
         name: '',
-        userEmail: '',
+        email: '',
         outdatedPassword: '',
         password: '',
         repeatPassword: '',
@@ -72,7 +72,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     setChangedFields((prevState) => ({ ...prevState, [name]: true }));
   };
 
-  const validateField = (name, value) => {
+  const validateField = (name, value, isSave) => {
     let fieldErrors = { ...errors };
 
     if (
@@ -81,7 +81,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     ) {
       fieldErrors[name] = 'Name must be at least 2 characters long.';
     } else if (
-      name === 'userEmail' &&
+      name === 'email' &&
       (!value || !/\S+@\S+\.\S+/.test(value))
     ) {
       fieldErrors[name] = 'Invalid email format.';
@@ -92,19 +92,13 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       (!value || value.length < 8)
     ) {
       fieldErrors[name] = 'Password must be at least 8 characters long.';
-    } else {
-      delete fieldErrors[name];
-    }
-
-    // Update the password match check to be executed only if password or repeatPassword fields are changed
-    if (
-      formData.password &&
-      formData.repeatPassword &&
-      formData.password !== formData.repeatPassword
+    } else if (
+      (name === 'password' || name === 'repeatPassword') &&
+      (isSave && formData.password !== formData.repeatPassword)
     ) {
       fieldErrors['repeatPassword'] = "Passwords don't match.";
-    } else if (name === 'password' || name === 'repeatPassword') {
-      delete fieldErrors['repeatPassword']; // Remove the error if conditions are met
+    } else {
+      delete fieldErrors[name];
     }
 
     setErrors(fieldErrors);
@@ -308,21 +302,21 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </div>
           </div>
           <div className="emailDiv">
-            <label className="passwordLabel" htmlFor="userEmail">
+            <label className="passwordLabel" htmlFor="email">
               E-mail:
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${errors.userEmail ? 'invalid' : ''}`}
+                className={`passwordInput ${errors.email ? 'invalid' : ''}`}
                 type="email"
-                id="userEmail"
-                name="userEmail"
+                id="email"
+                name="email"
                 placeholder="E-mail"
-                value={formData.userEmail}
+                value={formData.email}
                 onChange={handleInputChange}
               />
-              {errors.userEmail && (
-                <div className="errorText">{errors.userEmail}</div>
+              {errors.email && (
+                <div className="errorText">{errors.email}</div>
               )}
             </div>
           </div>
