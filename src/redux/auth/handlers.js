@@ -42,5 +42,5 @@ export const handleUpdateAvatar = (state, { payload }) => {
 };
 
 export const handleWaterRate = (state, { payload }) => {
-  state.user.waterRate = payload;
+  state.user.waterRate = payload.waterRate;
 };
