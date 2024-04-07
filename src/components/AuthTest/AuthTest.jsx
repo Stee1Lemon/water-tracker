@@ -60,6 +60,7 @@ export const AuthTest = () => {
             {isLoadingRedux ? <Loader /> : 'Submit'}
           </button>
         </form>
+
       </div>
     </>
   );
