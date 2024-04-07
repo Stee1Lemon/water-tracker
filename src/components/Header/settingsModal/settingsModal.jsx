@@ -111,7 +111,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     let isValid = true;
     const currentErrors = { ...errors };
 
-    // Validate password fields only if any of them has been changed
     const passwordFieldsChanged = fieldsToValidate.some(
       (field) => changedFields[field]
     );
@@ -128,7 +127,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       }
     }
 
-    // Check if any password field has been provided
     const passwordProvided = Object.keys(formData).some(
       (key) => fieldsToValidate.includes(key) && formData[key]
     );
