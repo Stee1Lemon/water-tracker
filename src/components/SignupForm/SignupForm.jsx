@@ -49,13 +49,13 @@ export const SignupForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <h2>{t('headers.signup')}</h2>
-      <label>{t('authForm.email')}</label>
+      <h2>{t('authForm.headerSignup')}</h2>
+      <label>{t('authForm.labelEmail')}</label>
       <InputDiv>
         <input
           type="email"
           name="email"
-          placeholder={t('placeholders.email')}
+          placeholder={t('authForm.placeholdEmail')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
@@ -74,12 +74,12 @@ export const SignupForm = () => {
           <Message>{formik.errors.email}</Message>
         ) : null}
       </InputDiv>
-      <label>{t('authForm.password')}</label>
+      <label>{t('authForm.labelPassword')}</label>
       <InputDiv>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
-          placeholder={t('placeholders.password')}
+          placeholder={t('authForm.placeholdPassword')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
@@ -117,12 +117,12 @@ export const SignupForm = () => {
           <Message>{formik.errors.password}</Message>
         ) : null}
       </InputDiv>
-      <label>{t('authForm.repeatPassword')}</label>
+      <label>{t('authForm.labelRepeatPassword')}</label>
       <InputDiv>
         <input
           type={showPassword ? 'text' : 'password'}
           name="repeatedPassword"
-          placeholder={t('authForm.repeatPassword')}
+          placeholder={t('authForm.labelRepeatPassword')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.repeatedPassword}
@@ -162,8 +162,8 @@ export const SignupForm = () => {
           <Message>{formik.errors.repeatedPassword}</Message>
         ) : null}
       </InputDiv>
-      <button type="submit">{t('buttons.signup')}</button>
-      <NavLink to="/signin">{t('links.signin')}</NavLink>
+      <button type="submit">{t('authForm.buttonSignup')}</button>
+      <NavLink to="/signin">{t('authForm.linkSignin')}</NavLink>
     </Form>
   );
 };

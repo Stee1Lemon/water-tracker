@@ -43,13 +43,13 @@ export const SigninForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <h2>{t('headers.signin')}</h2>
-      <label>{t('authForm.email')}</label>
+      <h2>{t('authForm.headerSignin')}</h2>
+      <label>{t('authForm.labelEmail')}</label>
       <InputDiv>
         <input
           type="email"
           name="email"
-          placeholder={t('placeholders.email')}
+          placeholder={t('authForm.placeholdEmail')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
@@ -68,12 +68,12 @@ export const SigninForm = () => {
           <Message>{formik.errors.email}</Message>
         ) : null}
       </InputDiv>
-      <label>{t('authForm.password')}</label>
+      <label>{t('authForm.labelPassword')}</label>
       <InputDiv>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
-          placeholder={t('placeholders.password')}
+          placeholder={t('authForm.placeholdPassword')}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
@@ -111,8 +111,8 @@ export const SigninForm = () => {
           <Message>{formik.errors.password}</Message>
         ) : null}
       </InputDiv>
-      <button type="submit">{t('buttons.signin')}</button>
-      <NavLink to="/signup">{t('links.signup')}</NavLink>
+      <button type="submit">{t('authForm.buttonSignin')}</button>
+      <NavLink to="/signup">{t('authForm.linkSignup')}</NavLink>
     </Form>
   );
 };
