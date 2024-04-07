@@ -26,12 +26,8 @@ export const WaterRatioPanel = () => {
            <p>Today</p>
             <RangeWrap>
               <RangeInput onChange={() => {}} name="volume" type="range" min="0" max="100" value={`${volumePercentage}`} persent={volumePercentage} />
-              {/* <DynamicMark persent={volumePercentage}>{volumePercentage}%</DynamicMark> */}
               <StaticMarkStart>0%</StaticMarkStart><DynamicMark persent={volumePercentage}>{volumePercentage}%</DynamicMark><StaticMarkEnd>100%</StaticMarkEnd>
             </RangeWrap>
-                  {/* <Scope>
-                      <StaticMarkStart>0%</StaticMarkStart><DynamicMark persent={volumePercentage}>{volumePercentage}%</DynamicMark><StaticMarkEnd>100%</StaticMarkEnd>
-                  </Scope> */}
         </RangeBlock>
         <AddWaterBtn onClick={handlerToggleModal}>
             <svg >

@@ -6,7 +6,7 @@ export const Wrapper = styled('div')`
 border: 1px solid red;
 display: flex;
 flex-direction:column;
-row-gap:16px;
+row-gap:20px;
 @media only screen and (min-width: 768px) {
 flex-direction:row;
 align-items: center;
@@ -26,9 +26,6 @@ export const AddWaterBtn = styled('button')`
         stroke:var(--primary-light);
         fill: transparent;
     }
-    /* @media only screen and (min-width: 768px) {
-        align-self:flex-end;
-    } */
 `
 export const RangeBlock = styled('div')`
 flex: 1 0 auto;
@@ -129,7 +126,7 @@ width:35px;
  font-size: 16px;
  font-weight: 500;
  position: absolute;
- top:45px;
+ top:40px;
  ${({ persent }) => `left: ${persent}%;`}
  transform:translate(-50%,0);
  ::before{
