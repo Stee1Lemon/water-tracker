@@ -12,9 +12,15 @@ const ModalOverlay = ({ children, isOpen, onClose }) => {
   };
 
   useEffect(() => {
-    if (isOpen) document.addEventListener('keydown', keydownHandler);
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', keydownHandler);
+    }
 
-    return () => document.removeEventListener('keydown', keydownHandler);
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', keydownHandler);
+    };
   });
 
   return (

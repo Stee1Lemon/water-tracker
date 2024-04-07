@@ -11,7 +11,6 @@ export const OverlayBackground = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
-  overflow-y: hidden;
 `;
 
 export const Container = styled.div`
