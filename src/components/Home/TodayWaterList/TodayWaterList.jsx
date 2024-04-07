@@ -42,7 +42,7 @@ export const TodayWaterList = () => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
-    console.log('object :>> ', getConvertedTime("11:44").getTime());
+
     return (
         <WaterListWrap>
             <WaterListTitle>Today</WaterListTitle>

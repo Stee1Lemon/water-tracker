@@ -40,7 +40,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
 
   const calculateWaterVolume = useCallback((values) => {
     // if (!values.weight || !values.activityTime) return;
-     if (!values.weight) return;
+    if (!values.weight) return;
     const weightFactor = values.gender === 'female' ? 0.03 : 0.04;
     const activityFactor = values.gender === 'female' ? 0.4 : 0.6;
     const result = values.weight * weightFactor + values.activityTime * activityFactor;

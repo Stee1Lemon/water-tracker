@@ -21,7 +21,6 @@ export const getConvertedTime = date => {
   const [hours, minutes] = date.split(':');
   currentTime.setHours(hours, minutes, 0);
   return currentTime;
-  // console.log('convertedTime :>> ', currentTime);
 };
 
 export const getRoundedMinutes = date => {
@@ -30,5 +29,4 @@ export const getRoundedMinutes = date => {
   const roundedMinutes = Math.ceil(minutes / 5) * 5;
   currentTime.setMinutes(roundedMinutes);
   return format(currentTime, 'HH:mm');
-  // return currentTime;
 };
