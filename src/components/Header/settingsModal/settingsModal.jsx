@@ -117,7 +117,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
   const handleUploadPhoto = () => {
     dispatch(authApi.updateAvatarThunk());
-    console.log('Photo Saved')
+    console.log('Photo Saved');
   };
   const handleSave = () => {
     const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
@@ -207,7 +207,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     name="gender"
                     value="female"
                     onChange={handleRadioChange}
-                    checked={formData.gender === 'female'}
+                    checked={
+                      formData.gender === 'female' ||
+                      (!formData.gender && userInfo.gender === 'female')
+                    }
                   />
                   <div className="customRadioButton"></div>
                   Woman
@@ -220,7 +223,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     name="gender"
                     value="male"
                     onChange={handleRadioChange}
-                    checked={formData.gender === 'male'}
+                    checked={
+                      formData.gender === 'male' ||
+                      (!formData.gender && userInfo.gender === 'male')
+                    }
                   />
                   <div className="customRadioButton"></div>
                   Man

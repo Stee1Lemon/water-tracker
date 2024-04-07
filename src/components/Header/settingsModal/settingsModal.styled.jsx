@@ -395,9 +395,17 @@ export const ModalSettingContainer = styled.div`
         position: relative;
     }
 
-    .settingsImgWrapper {
+    .imgWrapper {
         width: 80px;
         height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .imgWrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
     }
 
     .arrowUpWrapper {
