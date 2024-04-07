@@ -7,10 +7,10 @@ import { ModalSubtitle } from '../CommonStyles.styled';
 import { NormaBlock, NormaBlockFooter } from './DailyNorma.styled';
 
 import { selectWaterRate } from "../../../redux/water/waterSelectors";
-import { selectAuthUser } from "../../../redux/auth/authSelectors";
+// import { selectAuthUser } from "../../../redux/auth/authSelectors";
 
 export const DailyNorma = () => {
-const {waterRate}  = useSelector(selectAuthUser);
+const waterRate  = useSelector(selectWaterRate);
   const dailyNorma = (waterRate / 1000).toFixed(1);
   console.log('waterRate :>> ', waterRate);
   console.log('selectAuthUser :>> ', useSelector(selectWaterRate));

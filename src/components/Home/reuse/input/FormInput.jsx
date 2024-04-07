@@ -1,7 +1,7 @@
 import {Label, Input, ErrorMessage} from "./FormInput.styled"
 
 export const FormInput = ({ label = "", error, ...props }) => {
-    console.log('FormInput error :>> ', error);
+    // console.log('FormInput error :>> ', error);
   return (
     <Label>
         {label}
