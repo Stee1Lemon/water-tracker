@@ -17,7 +17,7 @@ export const handleEditWAter = (state, { payload }) => {
 export const handleDeleteWater = (state, { payload }) => {
   if (state.today.portionsOfWater)
     state.today.portionsOfWater = state.today.portionsOfWater.filter(
-      (data) => data.id !== payload
+      (data) => data.id !== payload.id
     );
 };
 
