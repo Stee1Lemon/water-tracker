@@ -14,7 +14,7 @@ const addWaterThunk = createAsyncThunk(
       const data = await addWater(credentials);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -27,7 +27,7 @@ const editWaterThunk = createAsyncThunk(
       const data = await editWater({ newWater, id });
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -39,7 +39,7 @@ const deleteWaterThunk = createAsyncThunk(
       await deleteWater(id);
       return id;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -51,7 +51,7 @@ const getTodayWaterThunk = createAsyncThunk(
       const { data } = await getTodayWater(credentials);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -63,7 +63,7 @@ const getMonthWaterThunk = createAsyncThunk(
       const { data } = await getMonthWater(credentials);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.message);
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
