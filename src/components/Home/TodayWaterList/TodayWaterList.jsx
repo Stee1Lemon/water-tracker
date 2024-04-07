@@ -10,6 +10,7 @@ import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListIte
 import icons from '../../../assets/icons.svg';
 
 import { selectTodayWater } from "../../../redux/water/waterSelectors";
+import {getConvertedTime} from "../../../hooks/water"
 
 export const TodayWaterList = () => {
     const { portionsOfWater } = useSelector(selectTodayWater);
@@ -41,13 +42,14 @@ export const TodayWaterList = () => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+    console.log('object :>> ', getConvertedTime("11:44").getTime());
     return (
         <WaterListWrap>
             <WaterListTitle>Today</WaterListTitle>
             {portionsOfWater?.length > 0 &&
             <List>
                 <CustomScrollbars>
-                {portionsOfWater.map((item) => {
+                {portionsOfWater.slice().sort((a,b)=>{return getConvertedTime(a.time).getTime() - getConvertedTime(b.time).getTime()}).map((item) => {
                     return (
                          <ListItem key={item.id}>
                             <TodayWaterInfo data={item} />
