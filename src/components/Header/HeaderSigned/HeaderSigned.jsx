@@ -85,7 +85,7 @@ export const HeaderSigned = () => {
           >
             {userInfo.name}
             <div className="imgWrapper">
-              <img src={TemplateImg} alt="User Profile Picture" />
+              <img src={userInfo.avatarURL} alt="User Profile Picture" />
             </div>
             <div className={`menuButton ${isMenuVisible ? 'rotate' : ''}`}>
               <UserMenu />
