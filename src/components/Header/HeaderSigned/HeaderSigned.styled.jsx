@@ -56,68 +56,77 @@ export const LogoLink = styled(Link)`
 `;
 
 export const UserContext = styled.div`
-  position: relative;
-  display: flex;
-  max-height: 48px;
-  font:
-    400 18px/1.5 'Roboto',
+    position: relative;
+    display: flex;
+    max-height: 48px;
+    font: 400 18px/1.5 'Roboto',
     sans-serif;
-  gap: 8px;
-  align-items: center;
-  color: var(--primary-focus);
-  cursor: default;
-
-  &:link,
-  &:hover,
-  &:visited,
-  &:active {
-    text-decoration: none;
-  }
-
-  @media (max-width: 1439px) {
-    font-size: 18px;
-  }
-
-  @media (max-width: 767px) {
-    font-size: 16px;
-  }
-
-  .imgWrapper {
-    width: 28px;
-    height: 28px;
-  }
-
-  .UserContextButton {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: font-size 0.2s linear;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    gap: 8px;
     align-items: center;
-    gap: 4px;
     color: var(--primary-focus);
+    cursor: default;
 
-    &:focus {
-      outline: none;
+    &:link,
+    &:hover,
+    &:visited,
+    &:active {
+        text-decoration: none;
     }
-  }
 
-  .menuButton {
-    transform: rotateX(0deg);
-    transition: transform 0.3s ease-in-out;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
+    @media (max-width: 1439px) {
+        font-size: 18px;
+    }
 
-  .menuButton.rotate {
-    transform: rotateX(180deg);
-    transition: transform 0.3s ease-in-out;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
+    @media (max-width: 767px) {
+        font-size: 16px;
+    }
+
+    .imgWrapper {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+    }
+
+    .imgWrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+    }
+
+    .UserContextButton {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: font-size 0.2s linear;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        color: var(--primary-focus);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .menuButton {
+        transform: rotateX(0deg);
+        transition: transform 0.3s ease-in-out;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .menuButton.rotate {
+        transform: rotateX(180deg);
+        transition: transform 0.3s ease-in-out;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
 `;

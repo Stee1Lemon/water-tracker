@@ -5,7 +5,6 @@ import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg';
 import { ReactComponent as ShowPasswordActive } from '../headerIcons/eye.svg';
-import TemplateImg from '../../../assets/Template.jpg';
 import { ModalSettingContainer } from './settingsModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import authApi from '../../../redux/auth/authOperations.js';
@@ -14,6 +13,8 @@ import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectAuthUser);
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(userInfo.avatarURL);
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
@@ -41,6 +42,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
         name: userInfo.name,
         email: userInfo.email,
       }));
+      setFile(null);
+      setPreviewUrl(userInfo.avatarURL);
     } else {
       setFormData({
         gender: 'female',
@@ -115,10 +118,23 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     setErrors(fieldErrors);
   };
 
-  const handleUploadPhoto = () => {
-    dispatch(authApi.updateAvatarThunk());
-    console.log('Photo Saved')
+  //Photo upload
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const fileUrl = URL.createObjectURL(file);
+      setPreviewUrl(fileUrl);
+    }
+    setFile(file);
   };
+  const handleUploadPhoto = () => {
+    const photoData = new FormData();
+    photoData.append('file', file);
+
+    dispatch(authApi.updateAvatarThunk(photoData));
+    console.log('Selected file sent', file.name);
+  };
+
   const handleSave = () => {
     const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
@@ -161,6 +177,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       return acc;
     }, {});
 
+    if (file) {
+      handleUploadPhoto();
+    }
+
     console.log(dataToSave);
     dispatch(authApi.editUserInfoThunk(dataToSave));
     Notiflix.Notify.success('Your changes have been saved successfully!');
@@ -177,19 +197,23 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           <p className="settingsP2">Your Photo</p>
           <div className="uploadPhotoDiv">
             <div className="settingsImgWrapper">
-              <img
-                src={userInfo.avatarURL}
-                alt="User Profile Picture"
-                width={80}
-                height={80}
-              />
+              <img src={previewUrl} alt="User Profile Picture" />
             </div>
-            <button className="uploadPhotoButton" onClick={handleUploadPhoto}>
-              <div className="arrowUpWrapper">
-                <ArrowUp />
-              </div>
-              Upload a photo
-            </button>
+            <div>
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+              <label htmlFor="fileInput" className="uploadPhotoButton">
+                <div className="arrowUpWrapper">
+                  <ArrowUp />
+                </div>
+                Upload a photo
+              </label>
+            </div>
           </div>
         </div>
         <div className="settingsGridContainer">
@@ -207,7 +231,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     name="gender"
                     value="female"
                     onChange={handleRadioChange}
-                    checked={formData.gender === 'female'}
+                    checked={
+                      formData.gender === 'female' ||
+                      (!formData.gender && userInfo.gender === 'female')
+                    }
                   />
                   <div className="customRadioButton"></div>
                   Woman
@@ -220,7 +247,10 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                     name="gender"
                     value="male"
                     onChange={handleRadioChange}
-                    checked={formData.gender === 'male'}
+                    checked={
+                      formData.gender === 'male' ||
+                      (!formData.gender && userInfo.gender === 'male')
+                    }
                   />
                   <div className="customRadioButton"></div>
                   Man

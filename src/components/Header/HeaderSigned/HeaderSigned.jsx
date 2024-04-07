@@ -5,7 +5,6 @@ import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
 import { ReactComponent as UserMenu } from '../headerIcons/UserMenu.svg';
 import SettingsModal from '../settingsModal/settingsModal';
 import LogOutModal from '../logOutModal/logOutModal';
-import TemplateImg from '../../../assets/Template.jpg';
 import DropDownHeader from '../dropDownMenu/dropDownHeader';
 import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 
