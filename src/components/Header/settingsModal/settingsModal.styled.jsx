@@ -50,7 +50,6 @@ export const ModalSettingContainer = styled.div`
         }
 
         @media (max-width: 767px) {
-            width: 256px;
             margin-bottom: 26px;
             overflow-y: auto;
         }
@@ -144,6 +143,7 @@ export const ModalSettingContainer = styled.div`
         max-width: 100%;
         max-height: 100%;
         display: block;
+        object-fit: fill;
     }
     
     .genderIdentityDiv {

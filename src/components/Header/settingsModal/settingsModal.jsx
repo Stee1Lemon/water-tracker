@@ -13,6 +13,8 @@ import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectAuthUser);
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(userInfo.avatarURL);
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
@@ -40,6 +42,8 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
         name: userInfo.name,
         email: userInfo.email,
       }));
+      setFile(null);
+      setPreviewUrl(userInfo.avatarURL);
     } else {
       setFormData({
         gender: 'female',
@@ -115,8 +119,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   };
 
   //Photo upload
-  const [file, setFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(userInfo.avatarURL);
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
