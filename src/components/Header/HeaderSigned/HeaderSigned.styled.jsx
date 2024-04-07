@@ -86,6 +86,8 @@ export const UserContext = styled.div`
         height: 28px;
         border-radius: 50%;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
     }
 
     .imgWrapper img {
