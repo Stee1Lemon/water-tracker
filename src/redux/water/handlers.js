@@ -8,9 +8,9 @@ export const handleAddWater = (state, { payload }) => {
 
 export const handleEditWAter = (state, { payload }) => {
   const arr = state.today.portionsOfWater;
-  const index = arr.findIndex((item) => item.id === payload.id);
+  const index = arr.findIndex((item) => item.id === payload.waterData.id);
   if (index !== -1) {
-    arr[index] = payload.portionsOfWater;
+    arr[index] = payload.waterData;
   }
 };
 
