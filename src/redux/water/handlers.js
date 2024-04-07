@@ -1,8 +1,8 @@
 export const handleAddWater = (state, { payload }) => {
-  if (state.today.waterList) {
-    state.today.waterList.push(payload.waterData);
+  if (state.today.portionsOfWater) {
+    state.today.portionsOfWater.push(payload.waterData);
   } else {
-    state.today.waterList = [payload.waterData];
+    state.today.portionsOfWater = [payload.waterData];
   }
 };
 
