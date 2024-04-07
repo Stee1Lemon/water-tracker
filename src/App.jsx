@@ -1,5 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { format } from 'date-fns';
 import { AppWrapper } from './App.styled';
 import WelcomePage from 'pages/WelcomePage/WelcomePage';
 import SignupPage from 'pages/SignupPage/SignupPage';
@@ -7,11 +10,10 @@ import SigninPage from 'pages/SigninPage/SigninPage';
 import HomePage from 'pages/HomePage/HomePage';
 import PrivateRoute from 'components/auth/PrivateRoute';
 import PublicRoute from 'components/auth/PublicRoute';
-import { useSelector, useDispatch } from 'react-redux';
 import { selectUserToken } from './redux/auth/authSelectors';
 import { setAuthToken } from './redux/Api/api';
 import authApi from './redux/auth/authOperations';
-import { useEffect } from 'react';
+import waterApi from './redux/water/waterOperations';
 
 // імпорт з .env
 // const test = import.meta.env.VITE_API_TEST;
@@ -21,11 +23,17 @@ function App() {
   const token = useSelector(selectUserToken);
 
   useEffect(() => {
-    if (token) {
-      setAuthToken(token);
-      dispatch(authApi.getUserThunk());
-      console.log('if at app');
-    }
+    const firstLogIn = () => {
+      if (token) {
+        const today = format(new Date(), 'dd/MM/yyyy');
+        const month = format(new Date(), 'MM/yyyy');
+        setAuthToken(token);
+        dispatch(authApi.getUserThunk());
+        dispatch(waterApi.getMonthWaterThunk({ date: month }));
+        dispatch(waterApi.getTodayWaterThunk({ date: today }));
+      }
+    };
+    firstLogIn();
   }, [token, dispatch]);
 
   return (
