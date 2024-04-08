@@ -6,7 +6,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import Loader from "components/Loader/Loader"
-import { FormInput } from "../reuse/Input/FormInput"
+import { FormInputToday } from "../reuse/Input/FormInput"
 import {
   NormaModal,
   ModalBtn,
@@ -139,7 +139,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
               </RadioItem>
             </FormRadioItems>
             <CalculationItem>
-               <FormInput
+               <FormInputToday
             label={t('dailyNormaModal.weight')}
             value={formik.values.weight}
                 onBlur={formik.handleBlur}
@@ -152,7 +152,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             error={formik.touched.weight && formik.errors.weight}/>
             </CalculationItem>
             <CalculationItem>
-              <FormInput
+              <FormInputToday
             label={t('dailyNormaModal.time')}
                 value={formik.values.activityTime}
                 onBlur={formik.handleBlur}
@@ -173,7 +173,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             <ModalSubtitle>
               {t('dailyNormaModal.willDrink')}
             </ModalSubtitle>
-            <FormInput
+            <FormInputToday
             value={formik.values.dailyWaterGoal}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
