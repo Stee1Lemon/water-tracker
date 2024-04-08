@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import Loader from "components/Loader/Loader";
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo";
-import { FormInput } from '../../../components/Home/reuse/input/FormInput';
+import { FormInputToday } from '../reuse/input/FormInput';
 import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalFooter, Label, ModalBtn, Form, TimeInput } from "./TodayListModal.styled";
 import { ModalSubtitle, ModalTitle, ModalCloseButton, LoaderWrap } from "../reuse/CommonStyles.styled";
 import icons from '../../../assets/icons.svg';
@@ -169,7 +169,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
                 </div>
                 <div>
                   <ModalSubtitle>{t('addEditWaterModal.waterUsed')}</ModalSubtitle>
-            <FormInput
+            <FormInputToday
             value={formik.values.portionOfWater}
               onBlur={e => {
                 formik.handleBlur(e)
