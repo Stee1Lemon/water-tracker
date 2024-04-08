@@ -9,12 +9,15 @@ import { ModalSettingContainer } from './settingsModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import authApi from '../../../redux/auth/authOperations.js';
 import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
+import { selectIsLoading } from '../../../redux/root/rootSelectors.js';
+import Loader from '../../Loader/Loader.jsx';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectAuthUser);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(userInfo.avatarURL);
+  const isLoading = useSelector(selectIsLoading);
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
@@ -23,7 +26,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   });
 
   const [formData, setFormData] = useState({
-    gender: 'female',
+    gender: '',
     name: '',
     email: '',
     outdatedPassword: '',
@@ -36,17 +39,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
   useEffect(() => {
     if (isSettingsModalOpen) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        gender: userInfo.gender,
-        name: userInfo.name,
-        email: userInfo.email,
-      }));
       setFile(null);
       setPreviewUrl(userInfo.avatarURL);
     } else {
       setFormData({
-        gender: 'female',
+        gender: '',
         name: '',
         email: '',
         outdatedPassword: '',
@@ -135,7 +132,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     console.log('Selected file sent', file.name);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
     const currentErrors = { ...errors };
@@ -178,11 +175,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }, {});
 
     if (file) {
-      handleUploadPhoto();
+      await handleUploadPhoto();
     }
 
     console.log(dataToSave);
-    dispatch(authApi.editUserInfoThunk(dataToSave));
+    await dispatch(authApi.editUserInfoThunk(dataToSave));
     Notiflix.Notify.success('Your changes have been saved successfully!');
   };
 
@@ -304,7 +301,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 id="name"
                 name="name"
                 placeholder="Your name"
-                value={formData.name}
                 onChange={handleInputChange}
               />
               {errors.name && <div className="errorText">{errors.name}</div>}
@@ -353,7 +349,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 id="email"
                 name="email"
                 placeholder="E-mail"
-                value={formData.email}
                 onChange={handleInputChange}
               />
               {errors.email && <div className="errorText">{errors.email}</div>}
@@ -395,8 +390,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </div>
         </div>
         <div className="settingsSixth">
-          <button className="saveButton" onClick={handleSave}>
-            Save
+          <button
+            className="saveButton"
+            onClick={handleSave}
+            disabled={isLoading}
+          >
+            {isLoading ? <Loader /> : 'Save'}
           </button>
         </div>
       </ModalSettingContainer>
