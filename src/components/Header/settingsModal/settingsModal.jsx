@@ -39,12 +39,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
   useEffect(() => {
     if (isSettingsModalOpen) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        gender: userInfo.gender,
-        name: userInfo.name,
-        email: userInfo.email,
-      }));
       setFile(null);
       setPreviewUrl(userInfo.avatarURL);
     } else {
@@ -396,7 +390,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </div>
         </div>
         <div className="settingsSixth">
-          <button className="saveButton" onClick={handleSave} disabled={isLoading}>
+          <button
+            className="saveButton"
+            onClick={handleSave}
+            disabled={isLoading}
+          >
             Save
           </button>
         </div>
