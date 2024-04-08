@@ -91,3 +91,12 @@ export const ModalCloseButton = styled('button')`
     right: 30px;
   }
 `;
+
+
+export const LoaderWrap = styled('span')`
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  max-height:20px;
+  width:auto;
+`;

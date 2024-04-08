@@ -21,7 +21,6 @@ const HomePage = () => {
               </ImageWrap>
               <WaterRatioPanel/>
             </DailyNormaBlock>
-             {/* <h2>Home Page</h2> */}
             <Statistics>
             <TodayWaterList/>
             <MonthStatsTable/>

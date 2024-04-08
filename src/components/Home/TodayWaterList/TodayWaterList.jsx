@@ -4,23 +4,22 @@ import { useState } from "react";
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
 import { TodayListModal } from "../TodayListModal/TodayListModal"
 import { PopupDelete } from "../PopupDelete/PopupDelete"
-import {CustomScrollbars} from "../CustomScrollbars/CustomScrollbars"
 
 import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListItemTools, ItemBtnEdit, ItemBtnDelete } from "./TodayWaterList.styled"
 import icons from '../../../assets/icons.svg';
 
 import { selectTodayWater } from "../../../redux/water/waterSelectors";
-import {getConvertedTime} from "../../../hooks/water"
+import { getConvertedTime } from "../../../hooks/water"
+import { useTranslation } from 'react-i18next'; 
 
 export const TodayWaterList = () => {
+    const { t } = useTranslation();
     const { portionsOfWater } = useSelector(selectTodayWater);
     
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setisEditing] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-
-  console.log('portionsOfWater :>> ', portionsOfWater);
 
     const openModalToAdd = () => {
         setIsModalOpen(true);
@@ -45,10 +44,9 @@ export const TodayWaterList = () => {
 
     return (
         <WaterListWrap>
-            <WaterListTitle>Today</WaterListTitle>
+            <WaterListTitle>{t('today')}</WaterListTitle>
             {portionsOfWater?.length > 0 &&
             <List>
-                <CustomScrollbars>
                 {portionsOfWater.slice().sort((a,b)=>{return getConvertedTime(a.time).getTime() - getConvertedTime(b.time).getTime()}).map((item) => {
                     return (
                          <ListItem key={item.id}>
@@ -68,11 +66,10 @@ export const TodayWaterList = () => {
                 </ListItem>
                     )
                 })}
-                </CustomScrollbars>
             </List>
             }
             <WaterListButton onClick={openModalToAdd} type="button">
-                <span>+</span>Add water
+                <span>+</span>{t('addEditWaterModal.headerAdd')}
             </WaterListButton>
             {isDelete ?
                 <PopupDelete isOpen={isModalOpen} onClose={closeModal} selectedItemId={selectedItem?.id}/>

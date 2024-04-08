@@ -7,10 +7,12 @@ import { AddWaterBtn, Wrapper, RangeBlock, RangeInput, StaticMarkStart, StaticMa
 import icons from '../../../assets/icons.svg';
 
 import { selectTodayWater } from "../../../redux/water/waterSelectors";
+import { useTranslation } from 'react-i18next'; 
 
 export const WaterRatioPanel = () => {
+  const { t } = useTranslation();
 
-  const { percentageWater } = useSelector(selectTodayWater);
+  const { percentageWater=0 } = useSelector(selectTodayWater);
   const volumePercentage = parseFloat(percentageWater).toFixed(1);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +25,7 @@ export const WaterRatioPanel = () => {
     <div>
       <Wrapper>
           <RangeBlock>
-           <p>Today</p>
+           <p>{t('today')}</p>
             <RangeWrap>
               <RangeInput onChange={() => {}} name="volume" type="range" min="0" max="100" value={`${volumePercentage}`} persent={volumePercentage} />
               <StaticMarkStart>0%</StaticMarkStart><DynamicMark persent={volumePercentage}>{volumePercentage}%</DynamicMark><StaticMarkEnd>100%</StaticMarkEnd>
@@ -33,7 +35,7 @@ export const WaterRatioPanel = () => {
             <svg >
             <use href={`${icons}#icon-circle-plus`}></use>
             </svg>
-              Add Water
+              {t('addEditWaterModal.headerAdd')}
           </AddWaterBtn>
       </Wrapper>
       <TodayListModal isOpen={isModalOpen}

@@ -5,7 +5,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
-import { FormInput } from "../reuse/input/FormInput"
+import Loader from "components/Loader/Loader"
+import { FormInput } from "../reuse/Input/FormInput"
 import {
   NormaModal,
   ModalBtn,
@@ -21,25 +22,31 @@ import {
   ModalSubtitle,
   ModalTitle,
   ModalCloseButton,
-} from '../CommonStyles.styled';
+  LoaderWrap
+} from '../reuse/CommonStyles.styled';
 
 import icons from '../../../assets/icons.svg';
 import { selectAuthUser } from "../../../redux/auth/authSelectors";
-import { validationWaterSchema } from "../validationWaterSchema"
+import { selectIsLoading } from "../../../redux/root/rootSelectors";
+import { validationWaterSchema } from "../Schema/validationWaterSchema"
 import authApi from "../../../redux/auth/authOperations"
+import { useTranslation } from 'react-i18next'; 
 
 
 const maxDailyVolumeLimit = 15000;
 
 export const DailyNormaModal = ({ isOpen, onClose }) => {
+
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const { gender } = useSelector(selectAuthUser);
+  const isLoading = useSelector(selectIsLoading);
 
   const [selectedDailyVolume, setSelectedDailyVolume] = useState(0);
 
   const calculateWaterVolume = useCallback((values) => {
-    // if (!values.weight || !values.activityTime) return;
     if (!values.weight) return;
     const weightFactor = values.gender === 'female' ? 0.03 : 0.04;
     const activityFactor = values.gender === 'female' ? 0.4 : 0.6;
@@ -54,7 +61,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     const waterVolume = formik.values.dailyWaterGoal * 1000;
     
     if (waterVolume > 0 && waterVolume <= maxDailyVolumeLimit) {
-      dispatch(authApi.waterRateThunk({
+      await dispatch(authApi.waterRateThunk({
         waterRate: waterVolume,
         date: format(new Date(), 'dd/MM/uuuu')
       }));
@@ -85,7 +92,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
       <NormaModal>
-        <ModalTitle>My daily norma</ModalTitle>
+        <ModalTitle>{t('dailyNormaModal.header')}</ModalTitle>
         <ModalCloseButton onClick={onClose}>
           <svg>
             <use href={`${icons}#icon-close`}></use>
@@ -94,22 +101,19 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
         <div>
           <CalculationScheme>
             <p>
-              For girl: <span>V=(M*0,03) + (T*0,4)</span>
+              {t('dailyNormaModal.girl')}: <span>V=(M*0,03) + (T*0,4)</span>
             </p>
             <p>
-              For man: <span>V=(M*0,04) + (T*0,6)</span>
+              {t('dailyNormaModal.man')}: <span>V=(M*0,04) + (T*0,6)</span>
             </p>
           </CalculationScheme>
           <CalculationText>
-            <span>*</span> V is the volume of the water norm in liters per day,
-            M is your body weight, T is the time of active sports, or another
-            type of activity commensurate in terms of loads (in the absence of
-            these, you must set 0)
+            <span>*</span> {t('dailyNormaModal.description')}
           </CalculationText>
         </div>
         <Form onSubmit={handleOnSubmit}>
           <div>
-            <ModalSubtitle>Calculate your rate:</ModalSubtitle>
+            <ModalSubtitle>{t('dailyNormaModal.calculate')}</ModalSubtitle>
             <FormRadioItems>
               <RadioItem>
                 <input
@@ -120,7 +124,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
                   checked={formik.values.gender === 'female'}
                   onChange={() => formik.setFieldValue('gender', 'female')}
                 />
-                <label htmlFor="gender-f">For girl</label>
+                <label htmlFor="gender-f">{t('dailyNormaModal.girl')}</label>
               </RadioItem>
               <RadioItem>
                 <input
@@ -131,12 +135,12 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
                   checked={formik.values.gender === 'male'}
                   onChange={() => formik.setFieldValue('gender', 'male')}
                 />
-                <label htmlFor="gender-m">For man</label>
+                <label htmlFor="gender-m">{t('dailyNormaModal.man')}</label>
               </RadioItem>
             </FormRadioItems>
             <CalculationItem>
                <FormInput
-            label="Your weight in kilograms:"
+            label={t('dailyNormaModal.weight')}
             value={formik.values.weight}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
@@ -149,8 +153,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             </CalculationItem>
             <CalculationItem>
               <FormInput
-            label="The time of active participation in sports or other activities
-                with a high physical. load in hours:"
+            label={t('dailyNormaModal.time')}
                 value={formik.values.activityTime}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
@@ -162,13 +165,13 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             error={formik.touched.activityTime && formik.errors.activityTime}/>
             </CalculationItem>
             <CalculationResult>
-              <p>The required amount of water in liters per day:</p>
+              <p>{t('dailyNormaModal.perDay')}</p>
               <span>{parseFloat(selectedDailyVolume).toFixed(1)} L</span>
             </CalculationResult>
           </div>
           <div>
             <ModalSubtitle>
-              Write down how much water you will drink:
+              {t('dailyNormaModal.willDrink')}
             </ModalSubtitle>
             <FormInput
             value={formik.values.dailyWaterGoal}
@@ -181,7 +184,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             step="0.1"
             error={formik.touched.dailyWaterGoal && formik.errors.dailyWaterGoal} />
           </div>
-          <ModalBtn type="submit">Save</ModalBtn>
+          <ModalBtn disabled={isLoading} type="submit">{isLoading? <LoaderWrap><Loader/></LoaderWrap>: t('dailyNormaModal.buttonSave')}</ModalBtn>
         </Form>
       </NormaModal>
     </ModalOverlay>

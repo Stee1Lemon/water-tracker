@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-// import styled from 'styled-components';
-import { CommonStyleBtn, ModalWrap } from "../CommonStyles.styled"
+import { CommonStyleBtn, ModalWrap } from "../reuse/CommonStyles.styled"
 import Select from 'react-select';
 
 export const AddWaterModal = styled('div')`
@@ -107,7 +106,6 @@ height: 44px;
 width: 100%;
 line-height: 125%;
 margin: 0;
-/* border: 1px solid var(--secondary-fifth); */
 .Select__control {
     height: 44px;
     border: 1px solid var(--secondary-fifth);
