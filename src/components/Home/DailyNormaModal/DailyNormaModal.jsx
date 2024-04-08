@@ -5,8 +5,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
-import Loader from "components/Loader/Loader"
-import { FormInputToday } from "../reuse/Input/FormInput"
+import Loader from "components/Loader/Loader";
+import { FormInputToday } from '../reuse/input/FormInput';
 import {
   NormaModal,
   ModalBtn,
@@ -28,8 +28,8 @@ import {
 import icons from '../../../assets/icons.svg';
 import { selectAuthUser } from "../../../redux/auth/authSelectors";
 import { selectIsLoading } from "../../../redux/root/rootSelectors";
-import { validationWaterSchema } from "../Schema/validationWaterSchema"
-import authApi from "../../../redux/auth/authOperations"
+import { validationWaterSchema } from "../Schema/validationWaterSchema";
+import authApi from "../../../redux/auth/authOperations";
 import { useTranslation } from 'react-i18next'; 
 
 
