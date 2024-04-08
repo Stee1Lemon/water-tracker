@@ -304,7 +304,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 id="name"
                 name="name"
                 placeholder="Your name"
-                value={formData.name}
                 onChange={handleInputChange}
               />
               {errors.name && <div className="errorText">{errors.name}</div>}
@@ -353,7 +352,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 id="email"
                 name="email"
                 placeholder="E-mail"
-                value={formData.email}
                 onChange={handleInputChange}
               />
               {errors.email && <div className="errorText">{errors.email}</div>}
