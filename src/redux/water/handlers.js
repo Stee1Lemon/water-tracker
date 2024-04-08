@@ -1,23 +1,23 @@
 export const handleAddWater = (state, { payload }) => {
-  if (state.today.waterList) {
-    state.today.waterList.push(payload.waterData);
+  if (state.today.portionsOfWater) {
+    state.today.portionsOfWater.push(payload.waterData);
   } else {
-    state.today.waterList = [payload.waterData];
+    state.today.portionsOfWater = [payload.waterData];
   }
 };
 
 export const handleEditWAter = (state, { payload }) => {
   const arr = state.today.portionsOfWater;
-  const index = arr.findIndex((item) => item.id === payload.id);
+  const index = arr.findIndex((item) => item.id === payload.waterData.id);
   if (index !== -1) {
-    arr[index] = payload.portionsOfWater;
+    arr[index] = payload.waterData;
   }
 };
 
 export const handleDeleteWater = (state, { payload }) => {
   if (state.today.portionsOfWater)
     state.today.portionsOfWater = state.today.portionsOfWater.filter(
-      (data) => data.id !== payload
+      (data) => data.id !== payload.id
     );
 };
 

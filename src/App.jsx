@@ -25,8 +25,9 @@ function App() {
   useEffect(() => {
     const firstLogIn = () => {
       if (token) {
-        const today = format(new Date(), 'dd/MM/yyyy');
-        const month = format(new Date(), 'MM/yyyy');
+        const date = new Date();
+        const today = format(date, 'dd/MM/yyyy');
+        const month = format(date, 'MM/yyyy');
         setAuthToken(token);
         dispatch(authApi.getUserThunk());
         dispatch(waterApi.getMonthWaterThunk({ date: month }));

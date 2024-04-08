@@ -50,7 +50,6 @@ export const ModalSettingContainer = styled.div`
         }
 
         @media (max-width: 767px) {
-            width: 256px;
             margin-bottom: 26px;
             overflow-y: auto;
         }
@@ -95,7 +94,10 @@ export const ModalSettingContainer = styled.div`
         cursor: pointer;
         display: flex;
         gap: 4px;
+        min-width: 134px;
     }
+    
+    
 
     .uploadPhotoButton:hover .arrowUpWrapper {
         transform: rotateY(180deg);
@@ -124,10 +126,26 @@ export const ModalSettingContainer = styled.div`
     .uploadPhotoDiv {
         display: flex;
         flex-direction: row;
-        gap: 8px;
+        gap: 16px;
         align-items: center;
     }
 
+    .settingsImgWrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+    }
+
+    .settingsImgWrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        object-fit: fill;
+    }
+    
     .genderIdentityDiv {
         display: flex;
         flex-direction: column;
@@ -395,9 +413,17 @@ export const ModalSettingContainer = styled.div`
         position: relative;
     }
 
-    .settingsImgWrapper {
+    .imgWrapper {
         width: 80px;
         height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .imgWrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
     }
 
     .arrowUpWrapper {
@@ -424,5 +450,9 @@ export const ModalSettingContainer = styled.div`
 
     .errorText {
         color: var(--secondary-second);
+    }
+
+    .fileInputContainer input[type="file"] {
+        display: none;
     }
 `;
