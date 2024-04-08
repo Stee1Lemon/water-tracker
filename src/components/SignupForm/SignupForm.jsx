@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -8,11 +8,14 @@ import { useTranslation } from 'react-i18next';
 import { Form, InputDiv, Message } from './SignupForm.styled';
 import icons from '../../assets/icons.svg';
 import authApi from '../../redux/auth/authOperations';
+import Loader from 'components/Loader/Loader';
+import { selectIsLoading } from '../../redux/root/rootSelectors';
 
 export const SignupForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const isLoading = useSelector(selectIsLoading);
 
   const formik = useFormik({
     initialValues: {
@@ -33,6 +36,9 @@ export const SignupForm = () => {
         .oneOf([Yup.ref('password'), null], 'Passwords must match'),
     }),
     onSubmit: async ({ email, password }) => {
+      Notiflix.Notify.info(
+        'Please, consider that we use free API resources. Initial load may take some time.'
+      );
       const register = await dispatch(authApi.signupThunk({ email, password }));
       if (register.error) return Notiflix.Notify.failure(register.payload);
 
@@ -162,7 +168,9 @@ export const SignupForm = () => {
           <Message>{formik.errors.repeatedPassword}</Message>
         ) : null}
       </InputDiv>
-      <button type="submit">{t('authForm.buttonSignup')}</button>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : t('authForm.buttonSignup')}
+      </button>
       <NavLink to="/signin">{t('authForm.linkSignin')}</NavLink>
     </Form>
   );

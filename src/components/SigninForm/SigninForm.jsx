@@ -4,15 +4,18 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import icons from '../../assets/icons.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authApi from '../../redux/auth/authOperations';
 import Notiflix from 'notiflix';
 import { useTranslation } from 'react-i18next';
+import Loader from 'components/Loader/Loader';
+import { selectIsLoading } from '../../redux/root/rootSelectors';
 
 export const SigninForm = () => {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   const formik = useFormik({
     initialValues: {
@@ -29,11 +32,11 @@ export const SigninForm = () => {
         .max(64, 'Password must contain no more than 64 characters'),
     }),
     onSubmit: async (values) => {
+      Notiflix.Notify.info(
+        'Please, consider that we use free API resources. Initial load may take some time.'
+      );
       const result = await dispatch(authApi.signinThunk(values));
       if (result.error) return Notiflix.Notify.failure(result.payload);
-      // const user = await dispatch(authApi.getUserThunk());
-      // if (user.error) return Notiflix.Notify.failure(user.payload);
-      // console.log(user.payload);
     },
   });
 
@@ -111,7 +114,9 @@ export const SigninForm = () => {
           <Message>{formik.errors.password}</Message>
         ) : null}
       </InputDiv>
-      <button type="submit">{t('authForm.buttonSignin')}</button>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : t('authForm.buttonSignin')}
+      </button>
       <NavLink to="/signup">{t('authForm.linkSignup')}</NavLink>
     </Form>
   );
