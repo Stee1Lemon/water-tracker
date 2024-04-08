@@ -9,12 +9,15 @@ import { ModalSettingContainer } from './settingsModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import authApi from '../../../redux/auth/authOperations.js';
 import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
+import { selectIsLoading } from '../../../redux/root/rootSelectors.js';
+import Loader from '../../Loader/Loader.jsx';
 
 const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectAuthUser);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(userInfo.avatarURL);
+  const isLoading = useSelector(selectIsLoading);
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
@@ -393,7 +396,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </div>
         </div>
         <div className="settingsSixth">
-          <button className="saveButton" onClick={handleSave}>
+          <button className="saveButton" onClick={handleSave} disabled={isLoading}>
             Save
           </button>
         </div>
