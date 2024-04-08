@@ -12,7 +12,7 @@ export const ModalSettingContainer = styled.div`
     flex-direction: column;
     align-items: start;
     max-height: 80vh;
-    padding: 32px 0 32px 24px;
+    padding: 32px 0 32px 32px;
 
     @media (max-width: 1439px) {
         width: 704px;
@@ -344,7 +344,7 @@ export const ModalSettingContainer = styled.div`
     }
 
     .saveButton {
-        width: 160px;
+        width: 152px;
         height: 44px;
         margin: 0;
         padding: 0;

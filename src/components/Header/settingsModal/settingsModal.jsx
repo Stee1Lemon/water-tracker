@@ -395,7 +395,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             onClick={handleSave}
             disabled={isLoading}
           >
-            Save
+            {isLoading ? <Loader /> : 'Save'}
           </button>
         </div>
       </ModalSettingContainer>
