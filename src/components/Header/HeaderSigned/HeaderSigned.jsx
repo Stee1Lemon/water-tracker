@@ -7,6 +7,7 @@ import SettingsModal from '../settingsModal/settingsModal';
 import LogOutModal from '../logOutModal/logOutModal';
 import DropDownHeader from '../dropDownMenu/dropDownHeader';
 import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
+import { LanguageSwitcher } from '../../LanguageSwitcher/LanguageSwitcher.jsx';
 
 export const HeaderSigned = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -76,6 +77,7 @@ export const HeaderSigned = () => {
           <br />
           OF WATER
         </LogoLink>
+        <LanguageSwitcher />
         <UserContext>
           <button
             className="UserContextButton"

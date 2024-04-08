@@ -8,6 +8,7 @@ import {
 } from './Header.styled';
 import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
 import { ReactComponent as OutlineIcon } from '../headerIcons/Outline.svg';
+import { LanguageSwitcher } from '../../LanguageSwitcher/LanguageSwitcher.jsx';
 
 export const Header = () => {
   return (
@@ -20,6 +21,7 @@ export const Header = () => {
           TRACKER<br /> 
           OF WATER
         </LogoLink>
+        <LanguageSwitcher />
         <SignInLink to="/signin">
           Sign in
           <SignWrapper>
