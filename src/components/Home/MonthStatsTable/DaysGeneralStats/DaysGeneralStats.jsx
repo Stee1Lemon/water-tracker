@@ -1,7 +1,7 @@
-import {StatsWrap, StatsDate} from "./DaysGeneralStats.styled"
+import { StatsWrap, StatsDate } from "./DaysGeneralStats.styled"
 
 export const DaysGeneralStats = ({ calendarRef, refData, waterData = {} }) => {
-  
+
   const { date, dailyNorm, totalWaterPortionsForDay, percentageWater } = waterData;
 
   const currentRef = refData?.current.getBoundingClientRect().left;

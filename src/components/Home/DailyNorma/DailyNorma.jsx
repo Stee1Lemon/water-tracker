@@ -7,7 +7,7 @@ import { ModalSubtitle } from '../reuse/CommonStyles.styled';
 import { NormaBlock, NormaBlockFooter } from './DailyNorma.styled';
 
 import { selectWaterRate } from "../../../redux/water/waterSelectors";
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
 
 export const DailyNorma = () => {
   const { t } = useTranslation(); 
@@ -20,6 +20,7 @@ export const DailyNorma = () => {
   const handlerToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   
   return (
     <NormaBlock>
