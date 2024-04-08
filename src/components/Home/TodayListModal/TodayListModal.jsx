@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import Loader from "components/Loader/Loader";
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo";
-import { FormInput } from '../reuse/input/FormInput';
+import { FormInput } from '../../../components/Home/reuse/input/FormInput';
 import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalFooter, Label, ModalBtn, Form, TimeInput } from "./TodayListModal.styled";
 import { ModalSubtitle, ModalTitle, ModalCloseButton, LoaderWrap } from "../reuse/CommonStyles.styled";
 import icons from '../../../assets/icons.svg';
