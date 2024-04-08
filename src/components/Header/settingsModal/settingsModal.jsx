@@ -26,7 +26,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   });
 
   const [formData, setFormData] = useState({
-    gender: 'female',
+    gender: '',
     name: '',
     email: '',
     outdatedPassword: '',
@@ -43,7 +43,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       setPreviewUrl(userInfo.avatarURL);
     } else {
       setFormData({
-        gender: 'female',
+        gender: '',
         name: '',
         email: '',
         outdatedPassword: '',
@@ -132,7 +132,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     console.log('Selected file sent', file.name);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
     let isValid = true;
     const currentErrors = { ...errors };
@@ -175,11 +175,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }, {});
 
     if (file) {
-      handleUploadPhoto();
+      await handleUploadPhoto();
     }
 
     console.log(dataToSave);
-    dispatch(authApi.editUserInfoThunk(dataToSave));
+    await dispatch(authApi.editUserInfoThunk(dataToSave));
     Notiflix.Notify.success('Your changes have been saved successfully!');
   };
 
