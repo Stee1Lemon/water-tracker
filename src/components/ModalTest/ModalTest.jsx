@@ -4,7 +4,7 @@ import { ModalTestStyles } from './ModalTest.styled';
 import Loader from 'components/Loader/Loader';
 import { AuthTest } from 'components/AuthTest/AuthTest';
 import { LanguageSwitcher } from 'components/LanguageSwitcher/LanguageSwitcher';
-import RoutsTest from './RoutsTest';
+// import RoutsTest from './RoutsTest';
 
 const ModalTest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -9,7 +9,7 @@ export const WelcomePageWrapper = styled.div`
 
     margin: 0 auto;
     padding-top: 24px;
-    padding-bottom: 40px;
+    padding-bottom: 0;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -33,7 +33,7 @@ export const WelcomePageWrapper = styled.div`
 
     margin: 0 auto;
     padding-top: 60px;
-    padding-bottom: 294px;
+    padding-bottom: 100px;
     padding-left: 30px;
     padding-right: 210px;
   }
@@ -80,10 +80,13 @@ export const WelcomePageTitle = styled.h1`
     font-style: normal;
     font-weight: 700;
     line-height: 1.2;
+    min-width: 439px;
   }
 `;
 export const WelcomePageSubtitle = styled.p`
   @media screen and (max-width: 767px) {
+    max-width: 197px;
+
     color: var(--primary-dark);
     font-family: Roboto;
     font-size: 24px;
@@ -307,7 +310,7 @@ export const WelcomePageDescriptionDiv = styled.div`
     background: var(--secondary-first);
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
     margin-left: 0px;
-    margin-top: 420px;
+    margin-top: 520px;
     width: 280px;
   }
 
@@ -323,13 +326,13 @@ export const WelcomePageDescriptionDiv = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    position: absolute;
+    position: relative;
     padding: 32px 21px;
     border-radius: 10px;
     background: var(--secondary-first);
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-    margin-left: 81px;
-    margin-top: 78px;
+    margin-left: 61px;
+    margin-top: 108px;
     width: 515px;
   }
 `;

@@ -18,44 +18,51 @@ import {
 
 import icons from '../../assets/icons.svg';
 
+import { useTranslation } from 'react-i18next';
+
 export const Welcome = () => {
+  const { t } = useTranslation();
   return (
     <>
       <WelcomePageWrapper>
         <WelcomePageWrapperFirst>
           <WelcomePageTextWrapper>
-            <WelcomePageTitle>Water consumption tracker</WelcomePageTitle>
+            <WelcomePageTitle>{t('welcome.header')}</WelcomePageTitle>
             <WelcomePageSubtitle>
-              Record daily water intake and track
+              {t('welcome.description')}
             </WelcomePageSubtitle>
           </WelcomePageTextWrapper>
 
-          <WelcomePageTrackerTitle>Tracker Benefits</WelcomePageTrackerTitle>
+          <WelcomePageTrackerTitle>
+            {t('welcome.listBenef')}
+          </WelcomePageTrackerTitle>
 
           <WelcomePageTrackerList>
             <WelcomePageTrackerItem>
               <svg>
                 <use href={`${icons}#icon-calendar`}></use>
               </svg>
-              Habit drive
+              {t('welcome.firstBenef')}
             </WelcomePageTrackerItem>
             <WelcomePageTrackerItem>
               <svg>
                 <use href={`${icons}#icon-chart-bar`}></use>
               </svg>
-              View statistics
+              {t('welcome.secondBenef')}
             </WelcomePageTrackerItem>
             <WelcomePageTrackerItem>
               <svg>
                 <use href={`${icons}#icon-wrench-screwdriver`}></use>
               </svg>
-              Personal rate setting
+              {t('welcome.thirdBenef')}
             </WelcomePageTrackerItem>
           </WelcomePageTrackerList>
 
           <div>
             <WelcomePageButton>
-              <WelcomePageNavLink to="/signup">Try tracker</WelcomePageNavLink>
+              <WelcomePageNavLink to="/signup">
+                {t('welcome.buttonTry')}
+              </WelcomePageNavLink>
             </WelcomePageButton>
           </div>
         </WelcomePageWrapperFirst>
@@ -63,29 +70,29 @@ export const Welcome = () => {
         <WelcomePageDescriptionWrapper>
           <WelcomePageDescriptionDiv>
             <WelcomePageDescriptionTitle>
-              Why drink water
+              {t('welcome.listWhy')}
             </WelcomePageDescriptionTitle>
             <WelcomePageDescriptionList>
               <WelcomePageDescriptionItem>
-                Supply of nutrients to all organs
+                {t('welcome.firstWhy')}
               </WelcomePageDescriptionItem>
               <WelcomePageDescriptionItem>
-                Providing oxygen to the lungs
+                {t('welcome.secondWhy')}
               </WelcomePageDescriptionItem>
               <WelcomePageDescriptionItem>
-                Maintaining the work of the heart
+                {t('welcome.thirdWhy')}
               </WelcomePageDescriptionItem>
               <WelcomePageDescriptionItem>
-                Release of processed substances
+                {t('welcome.fourthWhy')}
               </WelcomePageDescriptionItem>
               <WelcomePageDescriptionItem>
-                Ensuring the stability of the internal environment
+                {t('welcome.fifthWhy')}
               </WelcomePageDescriptionItem>
               <WelcomePageDescriptionItem>
-                Maintaining within the normal temperature
+                {t('welcome.sixthWhy')}
               </WelcomePageDescriptionItem>
               <WelcomePageDescriptionItem>
-                Maintaining an immune system capable of resisting disease
+                {t('welcome.seventhWhy')}
               </WelcomePageDescriptionItem>
             </WelcomePageDescriptionList>
           </WelcomePageDescriptionDiv>
