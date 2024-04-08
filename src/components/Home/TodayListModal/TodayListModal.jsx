@@ -2,18 +2,20 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useFormik } from 'formik';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
+import Loader from "components/Loader/Loader"
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
-import { FormInput } from "../reuse/input/FormInput"
+import { FormInput } from "../reuse/Input/FormInput"
 import { AddWaterModal, PrevInfo, WaterCounter, CounterLabel, CounterBtn, ModalFooter, Label, ModalBtn, Form, TimeInput } from "./TodayListModal.styled"
-import { ModalSubtitle, ModalTitle, ModalCloseButton } from "../CommonStyles.styled"
+import { ModalSubtitle, ModalTitle, ModalCloseButton, LoaderWrap } from "../reuse/CommonStyles.styled"
 import icons from '../../../assets/icons.svg';
 
 import {getOptions, getRoundedMinutes, getConvertedTime} from "../../../hooks/water"
-import { AddWaterSchema } from "../validationWaterSchema"
+import { AddWaterSchema } from "../Schema/validationWaterSchema"
 import waterApi from "../../../redux/water/waterOperations"
+import { selectIsLoading } from "../../../redux/root/rootSelectors";
 import { useTranslation } from 'react-i18next'; 
 
 
@@ -26,8 +28,13 @@ const step = 50;
 
 
 export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amountWater = 0, date }) => {
+
   const { t } = useTranslation(); 
+
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectIsLoading);
+
   const [volume, setVolume] = useState(amountWater);
 
   const nowTimeRounded = getRoundedMinutes(date);
@@ -39,7 +46,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
    })
    
   
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     const currentDate = new Date();
     const selectedTime = time.value;
@@ -48,34 +55,24 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
       return;
     } else {
       if (!isEditing) {
-        Notify.success('Water portion successfully added');
-        dispatch(waterApi.addWaterThunk({
+        await dispatch(waterApi.addWaterThunk({
         date: format(currentDate, 'dd/MM/uuuu'),
         time: selectedTime,
         waterAmount: volume,
-      }));
-      //   console.log('ADD Water data :>> ', {
-      // date: format(currentDate, 'dd/MM/uuuu'),
-      // time: selectedTime,
-      // waterAmount: volume,
-      // });
+        }));
+        Notify.success('Water portion successfully added');
         onClose();
         setVolume(0)
         formik.values.portionOfWater = 0;
     }
       if (isEditing) {
-        Notify.success('Information was successfully edited');
-        dispatch(waterApi.editWaterThunk({
+        await dispatch(waterApi.editWaterThunk({
         id: selectedItemId,
         time: selectedTime,
         waterAmount: volume,
       }));
-      // console.log('EDIT Water data :>> ', {
-      // _id: selectedItemId,
-      // time: selectedTime,
-      // water: volume
-      // });
-      onClose();
+        onClose();
+        Notify.success('Information was successfully edited');
     }
 
     }
@@ -112,17 +109,12 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
       }
     });
   };
-  // ---------------------------------------------------
   
-
-  //_____________________________________________ Volume
-
   const increaseVolume = () => {
     if (volume >= maxVolumeLimit) {
       return;
     }
     setVolume((prev) => parseFloat(prev) + step);
-    // setEnteredVolume((prev) => parseFloat(prev) + step);
     formik.values.portionOfWater = formik.values.portionOfWater + step;
   };
 
@@ -131,7 +123,6 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
       return;
     }
     setVolume((prev) => parseFloat(prev) - step);
-    // setEnteredVolume((prev) => parseFloat(prev) - step);
     formik.values.portionOfWater = formik.values.portionOfWater - step;
   };
 
@@ -142,10 +133,6 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
     }
   }
 
-  // const handleChangeVolume = e => {
-  //  setEnteredVolume(e.target.value);
-  // };
-// ---------------------------------------------------------
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
@@ -198,7 +185,7 @@ export const TodayListModal = ({ isOpen, onClose, isEditing, selectedItemId, amo
                 </div>
                 <ModalFooter>
                   <Label>{volume}ml</Label>
-                  <ModalBtn type='submit'>{t('dailyNormaModal.buttonSave')}</ModalBtn>
+                  <ModalBtn disabled={isLoading} type='submit'>{isLoading? <LoaderWrap><Loader/></LoaderWrap>:t('dailyNormaModal.buttonSave')}</ModalBtn>
                 </ModalFooter>
              </Form>
           </AddWaterModal> 

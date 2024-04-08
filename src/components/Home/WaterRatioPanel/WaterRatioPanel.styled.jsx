@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CommonStyleBtn } from "../CommonStyles.styled"
+import { CommonStyleBtn } from "../reuse/CommonStyles.styled"
 
 
 export const Wrapper = styled('div')`
@@ -124,11 +124,9 @@ padding:3px;
 border-radius:5px;
 color: var(--primary-focus);
 text-align:center;
-/* width:35px; */
  font-size: 16px;
  font-weight: 500;
  position: absolute;
- z-index:1;
  top:40px;
  ${({ persent }) => persent<=100 ? `left: ${persent}%;`: `left: 99%;`}
  transform:translate(-50%,0);

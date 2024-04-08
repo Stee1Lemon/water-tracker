@@ -6,7 +6,6 @@ padding: 8px 20px;
 border-radius: 10px;
 box-shadow: 0px 4px 8px rgba(158, 187, 255,0.2);
 max-width: 164px;
-/* max-width: 210px; */
 position: relative;
 z-index:1;
 `

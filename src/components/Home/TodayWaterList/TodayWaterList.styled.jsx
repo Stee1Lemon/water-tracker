@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import styled from 'styled-components';
 
 export const WaterListWrap = styled('div')`
 margin-bottom: 24px;
@@ -19,7 +18,7 @@ font-size: 26px;
 
 export const List = styled('ul')`
 max-height:180px;
-/* overflow: auto; */
+overflow: auto;
 margin-bottom: 12px;
 @media only screen and (min-width: 768px) {
 max-height:170px;

@@ -5,7 +5,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
-import { FormInput } from "../reuse/input/FormInput"
+import Loader from "components/Loader/Loader"
+import { FormInput } from "../reuse/Input/FormInput"
 import {
   NormaModal,
   ModalBtn,
@@ -21,11 +22,13 @@ import {
   ModalSubtitle,
   ModalTitle,
   ModalCloseButton,
-} from '../CommonStyles.styled';
+  LoaderWrap
+} from '../reuse/CommonStyles.styled';
 
 import icons from '../../../assets/icons.svg';
 import { selectAuthUser } from "../../../redux/auth/authSelectors";
-import { validationWaterSchema } from "../validationWaterSchema"
+import { selectIsLoading } from "../../../redux/root/rootSelectors";
+import { validationWaterSchema } from "../Schema/validationWaterSchema"
 import authApi from "../../../redux/auth/authOperations"
 import { useTranslation } from 'react-i18next'; 
 
@@ -33,15 +36,17 @@ import { useTranslation } from 'react-i18next';
 const maxDailyVolumeLimit = 15000;
 
 export const DailyNormaModal = ({ isOpen, onClose }) => {
+
   const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const { gender } = useSelector(selectAuthUser);
+  const isLoading = useSelector(selectIsLoading);
 
   const [selectedDailyVolume, setSelectedDailyVolume] = useState(0);
 
   const calculateWaterVolume = useCallback((values) => {
-    // if (!values.weight || !values.activityTime) return;
     if (!values.weight) return;
     const weightFactor = values.gender === 'female' ? 0.03 : 0.04;
     const activityFactor = values.gender === 'female' ? 0.4 : 0.6;
@@ -56,7 +61,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     const waterVolume = formik.values.dailyWaterGoal * 1000;
     
     if (waterVolume > 0 && waterVolume <= maxDailyVolumeLimit) {
-      dispatch(authApi.waterRateThunk({
+      await dispatch(authApi.waterRateThunk({
         waterRate: waterVolume,
         date: format(new Date(), 'dd/MM/uuuu')
       }));
@@ -179,7 +184,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             step="0.1"
             error={formik.touched.dailyWaterGoal && formik.errors.dailyWaterGoal} />
           </div>
-          <ModalBtn type="submit">{t('dailyNormaModal.buttonSave')}</ModalBtn>
+          <ModalBtn disabled={isLoading} type="submit">{isLoading? <LoaderWrap><Loader/></LoaderWrap>: t('dailyNormaModal.buttonSave')}</ModalBtn>
         </Form>
       </NormaModal>
     </ModalOverlay>

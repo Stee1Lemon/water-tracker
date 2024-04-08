@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-
 export const CalendarHeader = styled('div')`
 margin-bottom: 16px;
 display: flex;
@@ -53,6 +52,7 @@ font-size: 26px;
 `
 
 export const CalendarWrap = styled('div')`
+position: relative;
 display: grid;
 grid-template-columns: repeat(5, 1fr);
 grid-template-rows: repeat(6, 52px);
@@ -63,28 +63,4 @@ grid-template-columns: repeat(10, 1fr);
 grid-template-rows: repeat(4, 56px);
 gap: 20px;
 }
-`
-
-export const Day = styled('div')`
-display: flex;
-flex-direction:column;
-row-gap:4px;
-span {
-    font-size: 12px;
-    width: 100%;
-    text-align: center;
-    color: var(--secondary-third);
-}
-`
-
-export const DayButton = styled('button')`
-display: flex;
-align-items: center;
-justify-content: center;
-width: 34px;
-height: 34px;
-background-color:var(--primary-light);
-border: 1px solid;
-border-radius: 50%;
- ${({ isConsumed }) => isConsumed ? `border-color: transparent;`: `border-color: var(--secondary-fourth);`}
 `

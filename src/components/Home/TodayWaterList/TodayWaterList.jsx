@@ -4,7 +4,6 @@ import { useState } from "react";
 import { TodayWaterInfo } from "../TodayWaterInfo/TodayWaterInfo"
 import { TodayListModal } from "../TodayListModal/TodayListModal"
 import { PopupDelete } from "../PopupDelete/PopupDelete"
-import {CustomScrollbars} from "../CustomScrollbars/CustomScrollbars"
 
 import { WaterListWrap, List, ListItem, WaterListTitle, WaterListButton, ListItemTools, ItemBtnEdit, ItemBtnDelete } from "./TodayWaterList.styled"
 import icons from '../../../assets/icons.svg';
@@ -21,8 +20,6 @@ export const TodayWaterList = () => {
     const [isEditing, setisEditing] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-
-  console.log('portionsOfWater :>> ', portionsOfWater);
 
     const openModalToAdd = () => {
         setIsModalOpen(true);
@@ -50,7 +47,6 @@ export const TodayWaterList = () => {
             <WaterListTitle>{t('today')}</WaterListTitle>
             {portionsOfWater?.length > 0 &&
             <List>
-                <CustomScrollbars>
                 {portionsOfWater.slice().sort((a,b)=>{return getConvertedTime(a.time).getTime() - getConvertedTime(b.time).getTime()}).map((item) => {
                     return (
                          <ListItem key={item.id}>
@@ -70,7 +66,6 @@ export const TodayWaterList = () => {
                 </ListItem>
                     )
                 })}
-                </CustomScrollbars>
             </List>
             }
             <WaterListButton onClick={openModalToAdd} type="button">

@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
-import { CommonStyleBtn, ModalWrap } from "../CommonStyles.styled"
+import { CommonStyleBtn, ModalWrap } from "../reuse/CommonStyles.styled"
 
 export const NormaModal = styled('div')`
 ${ModalWrap}
 display: flex;
 flex-direction:column;
 row-gap:24px;
+ position: relative;
+ z-index:2;
 /* max-height: 648px; */
 /* @media only screen and (min-width: 768px) {
     max-height: 580px;
@@ -99,9 +101,6 @@ label::after {
 
 export const CalculationItem = styled('div')`
     margin-bottom: 16px;
-    /* p {
-    margin-bottom: 8px;
-    } */
 `
 export const CalculationResult = styled('div')`
     display: flex;

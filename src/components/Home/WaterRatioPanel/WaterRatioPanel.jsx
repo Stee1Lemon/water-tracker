@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 export const WaterRatioPanel = () => {
   const { t } = useTranslation();
 
-  const { percentageWater } = useSelector(selectTodayWater);
+  const { percentageWater=0 } = useSelector(selectTodayWater);
   const volumePercentage = parseFloat(percentageWater).toFixed(1);
 
   const [isModalOpen, setIsModalOpen] = useState(false);

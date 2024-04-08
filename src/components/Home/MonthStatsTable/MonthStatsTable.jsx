@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useRef, useState } from "react"
 import { startOfMonth, lastDayOfMonth, eachDayOfInterval, format, subMonths, addMonths, isSameMonth } from "date-fns";
-import { uk } from 'date-fns/locale';
+// import { uk } from 'date-fns/locale';
 import { useSelector } from "react-redux";
 
-import { CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWrap, Day, DayButton, } from "./MonthStatsTable.styled"
+import {DayComponent} from "./Day/Day"
+import { CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWrap} from "./MonthStatsTable.styled"
 import icons from '../../../assets/icons.svg';
 
 import { selectMonthWater } from "../../../redux/water/waterSelectors";
@@ -16,47 +17,32 @@ const formatOfDay = "d";
 export const MonthStatsTable = () => {
   const { t } = useTranslation();
   
-  const waterForMonth = useSelector(selectMonthWater);
-  console.log('month :>> ', waterForMonth);
+  const {waterForMonth=[]} = useSelector(selectMonthWater);
 
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [activeButton, setActiveButton] = useState(null);
-    // const [isConsumed, setIsConsumed] = useState(false);
-    // Find the first day of month of this currentDate
-    const firstDay = startOfMonth(currentDate);
-    // Find the last day of month of this currentDate
-    const lastDay = lastDayOfMonth(currentDate);
-    // temporary data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    const percentOfWaterVolume = 0;
-    const isConsumed = percentOfWaterVolume >= 100;
-    // console.log('isConsumed :>> ', isConsumed);
-
-    // render all days
-    const totalDate = eachDayOfInterval({
-        start: firstDay,
-        end: lastDay
-    });
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [activeButton, setActiveButton] = useState(null);
+  const ref = useRef(null);
   
-  // ---------------------------------------------------------------------------------------------------------------------------
-  console.log('totalDate :>> ', totalDate);
-  // const monthData = waterForMonth?.reduce((acc, dayData) => {
-  //   acc[dayData.date] = dayData;
-  //   return acc;
-  // }, {});
-  // console.log('monthData :>> ', monthData);
-  // ---------------------------------------------------------------------------------------------------------------------------
-  const LANGUAGE = "";
-  let currentMonth;
-  if (LANGUAGE) {
-     currentMonth = format(currentDate, 'LLLL', { locale: uk });
-  } else {
-    currentMonth = format(currentDate, formatOfMonth);
+  const firstDay = startOfMonth(currentDate);
+  const lastDay = lastDayOfMonth(currentDate);
+
+  const totalDate = eachDayOfInterval({
+    start: firstDay,
+    end: lastDay
+  });
+  
+  let monthData=[];
+  if (waterForMonth.length > 0) {
+    monthData = waterForMonth?.reduce((acc, dayData) => {
+    acc[dayData.date] = dayData;
+    return acc;
+  }, {});
   }
-    // const currentMonth = format(currentDate, 'LLLL', { locale: uk });
-    const currentYear = format(currentDate, formatOfYear);
-    // const isToday = (day) => isSameDay(day, new Date());
+
+  const currentMonth = format(currentDate, formatOfMonth);
+  const currentYear = format(currentDate, formatOfYear);
     
-    const handlePrevMonth = () => {
+  const handlePrevMonth = () => {
     const newMonth = subMonths(currentDate, 1);
     setCurrentDate(newMonth);
     if (isSameMonth(newMonth, new Date())) {
@@ -64,9 +50,9 @@ export const MonthStatsTable = () => {
     } else {
       setActiveButton('prev');
     }
-    };
+  };
 
-    const handleNextMonth = () => {
+  const handleNextMonth = () => {
     const newMonth = addMonths(currentDate, 1);
     setCurrentDate(newMonth);
     if (isSameMonth(newMonth, new Date())) {
@@ -76,8 +62,9 @@ export const MonthStatsTable = () => {
     }
   };
 
+ 
   return (
-      <div>
+      <div ref={ref}>
           <CalendarHeader>
               <CalendarTitle>{t('month')}</CalendarTitle>
               <Pagination>
@@ -95,18 +82,17 @@ export const MonthStatsTable = () => {
               </Pagination>
           </CalendarHeader>
           <CalendarWrap>
-        {/* {totalDate.map((date, index) =>  <Day key={index}><DayButton isConsumed={isConsumed} type="button">{format(date, formatOfDay)}</DayButton><span>{percentOfWaterVolume}%</span></Day>)} */}
-        {totalDate.map((date, index) => {
-          const key = format(date, 'yyyy-MM-dd');
-          // const dayData = monthData[key];
+        {totalDate.map((date) => {
+          const key = format(date, 'd, MMMM');
+          const dayData = monthData[key] || 0;
 
-          // const percentage = dayData ? dayData.percentageWater : 0;
-          // const isHighlighted = dayData && dayData.percentageWater < 100;
+          const percentage = dayData ? parseInt(dayData.percentageWater) : 0;
+          const isHighlighted = dayData ? dayData && parseInt(dayData.percentageWater) >= 100 : false;
 
           return (
-             <Day key={key}><DayButton type="button">{format(date, formatOfDay)}</DayButton><span>0%</span></Day>
+            <DayComponent key={key} isConsumed={isHighlighted} date={format(date, formatOfDay)} percentage={percentage} day={key} calendarRef={ref} data={monthData}/>
            )
-         })}
+        })}
           </CalendarWrap>
     </div>
   )

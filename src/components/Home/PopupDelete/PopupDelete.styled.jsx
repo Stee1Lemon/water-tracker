@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CommonStyleBtn, ModalWrap } from "../CommonStyles.styled"
+import { CommonStyleBtn, ModalWrap } from "../reuse/CommonStyles.styled"
 
 export const Popup = styled('div')`
 ${ModalWrap}

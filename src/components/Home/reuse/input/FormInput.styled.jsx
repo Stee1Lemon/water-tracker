@@ -4,6 +4,7 @@ export const Label = styled('label')`
 display: flex;
 flex-direction: column;
 row-gap: 8px;
+position: relative;
 `
 
 export const Input = styled('input')`
@@ -21,7 +22,10 @@ border: 1px solid var(--secondary-fifth);
 `
 
 export const ErrorMessage = styled('p')`
+position: absolute;
+bottom:-30px;
+left:5px;
   color: var(--secondary-second);
-  font-size: 14px;
+  font-size: 12px;
   line-height: 120%;
 `;
