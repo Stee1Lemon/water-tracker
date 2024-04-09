@@ -19,7 +19,7 @@ export const WelcomeSection = styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 1440px;
+
     &::after {
       content: '';
       position: absolute;
@@ -38,7 +38,7 @@ export const WelcomeSection = styled.section`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;
-
+    height: 100%;
     &::after {
       content: '';
       position: absolute;
@@ -57,8 +57,6 @@ export const WelcomeSection = styled.section`
 
 export const WelcomeContainer = styled.div`
   @media screen and (max-width: 767px) {
-    height: 1200px;
-
     max-width: 320px;
     margin: 0 auto;
     padding: 15px 15px;
@@ -79,7 +77,6 @@ export const WelcomeContainer = styled.div`
   @media screen and (min-width: 1440px) {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 18px 119px;
-    height: 100%;
+    padding: 18px 80px;
   }
 `;

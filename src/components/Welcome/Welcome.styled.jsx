@@ -91,7 +91,6 @@ export const WelcomePageSubtitle = styled.p`
     line-height: 1.2;
     margin-top: 16px;
     margin-bottom: 0;
-    max-width: 197px;
   }
 
   @media screen and (min-width: 768px) {
@@ -106,6 +105,7 @@ export const WelcomePageSubtitle = styled.p`
   }
 
   @media screen and (min-width: 1440px) {
+    // width: 660px;
     color: var(--primary-dark);
     font-family: Roboto;
     font-size: 26px;
@@ -326,8 +326,8 @@ export const WelcomePageDescriptionDiv = styled.div`
     border-radius: 10px;
     background: var(--secondary-first);
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-    margin-left: 61px;
-    margin-top: 108px;
+    margin-left: 81px;
+    margin-top: 105px;
     width: 515px;
   }
 `;
