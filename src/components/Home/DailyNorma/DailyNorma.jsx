@@ -7,10 +7,13 @@ import { ModalSubtitle } from '../reuse/CommonStyles.styled';
 import { NormaBlock, NormaBlockFooter } from './DailyNorma.styled';
 
 import { selectWaterRate } from "../../../redux/water/waterSelectors";
+import { selectLang } from "../../../redux/root/rootSelectors";
 import { useTranslation } from 'react-i18next';
 
 export const DailyNorma = () => {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
+  const language = useSelector(selectLang);
+  
 
   const waterRate  = useSelector(selectWaterRate);
   const dailyNorma = (waterRate / 1000).toFixed(1);
@@ -23,7 +26,7 @@ export const DailyNorma = () => {
 
   
   return (
-    <NormaBlock>
+    <NormaBlock lang={language}>
       <ModalSubtitle>{t('dailyNormaModal.header')}</ModalSubtitle>
       <NormaBlockFooter>
         <span>{dailyNorma} L</span>

@@ -21,11 +21,11 @@ export const CalculationScheme = styled('div')`
     margin-bottom: 12px;
     span {
         color: var(--primary-focus);
-        font-size: 18px;
+         ${({ lang }) => lang==="uk" ? `font-size: 16px;` : `font-size: 18px;`}
     }
     @media only screen and (min-width: 768px) {
         flex-direction:row;
-        column-gap:24px;
+         ${({ lang }) => lang==="uk" ? `column-gap:15px;` : `column-gap:24px;`}
     }
 `
 
@@ -106,13 +106,14 @@ export const CalculationResult = styled('div')`
     display: flex;
     align-items: center;
     p{
-        max-width:190px;
+        max-width:180px;
     }
     span {
         color: var(--primary-focus);
         font-weight:700;
         font-size: 18px;
         width: 57px;
+        text-align: end;
     }
     @media only screen and (min-width: 768px) {
         column-gap:6px;

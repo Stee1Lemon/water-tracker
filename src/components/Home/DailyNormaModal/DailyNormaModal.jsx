@@ -30,7 +30,8 @@ import { selectAuthUser } from "../../../redux/auth/authSelectors";
 import { selectIsLoading } from "../../../redux/root/rootSelectors";
 import { validationWaterSchema } from "../Schema/validationWaterSchema";
 import authApi from "../../../redux/auth/authOperations";
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
+import { selectLang } from "../../../redux/root/rootSelectors"; 
 
 
 const maxDailyVolumeLimit = 15000;
@@ -38,6 +39,7 @@ const maxDailyVolumeLimit = 15000;
 export const DailyNormaModal = ({ isOpen, onClose }) => {
 
   const { t } = useTranslation();
+  const language = useSelector(selectLang);
 
   const dispatch = useDispatch();
 
@@ -99,7 +101,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
           </svg>
         </ModalCloseButton>
         <div>
-          <CalculationScheme>
+          <CalculationScheme lang={language}>
             <p>
               {t('dailyNormaModal.girl')}: <span>V=(M*0,03) + (T*0,4)</span>
             </p>

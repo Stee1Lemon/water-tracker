@@ -102,4 +102,9 @@ export const uk = {
     november: 'Листопад',
     december: 'Грудень',
   },
+  daysGeneralStats: {
+    norma: 'Денна норма:',
+    fulfillment: 'Виконання денної норми:',
+    servings: 'Кількість порцій води:',
+  },
 };

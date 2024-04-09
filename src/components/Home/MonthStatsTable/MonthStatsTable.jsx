@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { startOfMonth, lastDayOfMonth, eachDayOfInterval, format, subMonths, addMonths, isSameMonth } from "date-fns";
-// import { uk } from 'date-fns/locale';
+import { uk } from 'date-fns/locale';
 import { useSelector } from "react-redux";
 
 import {DayComponent} from "./Day/Day"
@@ -8,6 +8,7 @@ import { CalendarHeader, CalendarTitle, Pagination, PaginationButton, CalendarWr
 import icons from '../../../assets/icons.svg';
 
 import { selectMonthWater } from "../../../redux/water/waterSelectors";
+import { selectLang } from "../../../redux/root/rootSelectors";
 import { useTranslation } from 'react-i18next'; 
 
 const formatOfYear = "yyyy";
@@ -16,6 +17,7 @@ const formatOfDay = "d";
 
 export const MonthStatsTable = () => {
   const { t } = useTranslation();
+  const language = useSelector(selectLang);
   
   const {waterForMonth=[]} = useSelector(selectMonthWater);
 
@@ -39,7 +41,12 @@ export const MonthStatsTable = () => {
   }, {});
   }
 
-  const currentMonth = format(currentDate, formatOfMonth);
+  let currentMonth;
+  if (language === "uk") {
+    currentMonth = format(currentDate, "LLLL", {locale:uk});
+  } else {
+    currentMonth = format(currentDate, formatOfMonth);
+  }
   const currentYear = format(currentDate, formatOfYear);
     
   const handlePrevMonth = () => {
