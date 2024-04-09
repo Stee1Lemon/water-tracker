@@ -19,7 +19,7 @@ export const WelcomeSection = styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 1440px;
+
     &::after {
       content: '';
       position: absolute;
@@ -34,13 +34,12 @@ export const WelcomeSection = styled.section`
   }
 
   @media only screen and (min-width: 1440px) {
-    width: 100%;
-    height: 100%;
     background-image: url(${DesktopBackground1});
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;
-
+    height: 100%;
+    width: 100%;
     &::after {
       content: '';
       position: absolute;
@@ -50,7 +49,7 @@ export const WelcomeSection = styled.section`
       z-index: -99;
       top: 50%;
       left: 50%;
-      transform: translate(-48%, -48%);
+      transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
     }
@@ -59,11 +58,9 @@ export const WelcomeSection = styled.section`
 
 export const WelcomeContainer = styled.div`
   @media screen and (max-width: 767px) {
-    height: 1200px;
-
     max-width: 320px;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 15px 15px;
   }
 
   @media screen and (max-width: 360px) {
@@ -81,6 +78,6 @@ export const WelcomeContainer = styled.div`
   @media screen and (min-width: 1440px) {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 18px 119px;
+    padding: 18px 80px;
   }
 `;

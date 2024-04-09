@@ -41,22 +41,21 @@ const ModalTeam = () => {
         onClose={() => setIsModalOpen(!isModalOpen)}
       >
         <ModalTeamOverlay>
-          <ButtonOverlay onClick={() => setIsModalOpen(!isModalOpen)}>
-            <svg>
-              <use href={`${icons}#icon-close`}></use>
-            </svg>
-          </ButtonOverlay>
-
           <ContainerTeam>
             <ListTeam>
               <ContainerListTeam>
                 <div>
+                  <ButtonOverlay onClick={() => setIsModalOpen(!isModalOpen)}>
+                    <svg>
+                      <use href={`${icons}#icon-close`}></use>
+                    </svg>
+                  </ButtonOverlay>
                   <Image src={VG}></Image>
                   <TitleTeam>Vladyslav Golodnuik</TitleTeam>
                   <SubtitleTeam>Team Lead Frontend</SubtitleTeam>
                   <IconList>
                     <IconTeam>
-                      <a>
+                      <a href="https://www.linkedin.com/in/vladyslav-golodniuk-780902302/">
                         <svg>
                           <use href={`${icons}#icon-linkedin`}></use>
                         </svg>

@@ -12,27 +12,23 @@ import {
   WelcomePageDescriptionList,
   WelcomePageDescriptionItem,
   WelcomePageDescriptionDiv,
-  WelcomePageWrapperFirst,
   WelcomePageNavLink,
+  ContainerTeam,
 } from './Welcome.styled';
 
 import icons from '../../assets/icons.svg';
 
 import { useTranslation } from 'react-i18next';
+import ModalTeam from 'components/ModalTeam/ModalTeam';
 
 export const Welcome = () => {
   const { t } = useTranslation();
   return (
     <>
       <WelcomePageWrapper>
-        <WelcomePageWrapperFirst>
-          <WelcomePageTextWrapper>
-            <WelcomePageTitle>{t('welcome.header')}</WelcomePageTitle>
-            <WelcomePageSubtitle>
-              {t('welcome.description')}
-            </WelcomePageSubtitle>
-          </WelcomePageTextWrapper>
-
+        <WelcomePageTextWrapper>
+          <WelcomePageTitle>{t('welcome.header')}</WelcomePageTitle>
+          <WelcomePageSubtitle>{t('welcome.description')}</WelcomePageSubtitle>
           <WelcomePageTrackerTitle>
             {t('welcome.listBenef')}
           </WelcomePageTrackerTitle>
@@ -57,7 +53,6 @@ export const Welcome = () => {
               {t('welcome.thirdBenef')}
             </WelcomePageTrackerItem>
           </WelcomePageTrackerList>
-
           <div>
             <WelcomePageButton>
               <WelcomePageNavLink to="/signup">
@@ -65,7 +60,7 @@ export const Welcome = () => {
               </WelcomePageNavLink>
             </WelcomePageButton>
           </div>
-        </WelcomePageWrapperFirst>
+        </WelcomePageTextWrapper>
 
         <WelcomePageDescriptionWrapper>
           <WelcomePageDescriptionDiv>
@@ -98,6 +93,9 @@ export const Welcome = () => {
           </WelcomePageDescriptionDiv>
         </WelcomePageDescriptionWrapper>
       </WelcomePageWrapper>
+      <ContainerTeam>
+        <ModalTeam />
+      </ContainerTeam>
     </>
   );
 };

@@ -133,3 +133,17 @@ export const Message = styled.span`
   color: var(--secondary-second);
   font-size: 14px;
 `;
+
+export const SignupTeam = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-left: 0;
+    margin-top: 100px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin: 0 auto;
+    margin-top: 70px;
+  }
+`;

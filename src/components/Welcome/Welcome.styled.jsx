@@ -1,6 +1,21 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const ContainerTeam = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-left: 20px;
+    margin-top: 500px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-left: 25px;
+    margin-top: 400px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin: 0 auto;
+    margin-top: 70px;
+  }
+`;
+
 export const WelcomePageWrapper = styled.div`
   @media screen and (max-width: 767px) {
     display: flex;
@@ -29,25 +44,6 @@ export const WelcomePageWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     display: flex;
     flex-direction: row;
-    align-items: normal;
-
-    margin: 0 auto;
-    padding-top: 60px;
-    padding-bottom: 100px;
-    padding-left: 30px;
-    padding-right: 210px;
-  }
-`;
-
-export const WelcomePageWrapperFirst = styled.div`
-  @media screen and (max-width: 767px) {
-    position: absolute;
-  }
-  @media screen and (min-width: 768px) {
-    position: absolute;
-  }
-  @media screen and (min-width: 1440px) {
-    position: relative;
   }
 `;
 
@@ -95,7 +91,6 @@ export const WelcomePageSubtitle = styled.p`
     line-height: 1.2;
     margin-top: 16px;
     margin-bottom: 0;
-    max-width: 197px;
   }
 
   @media screen and (min-width: 768px) {
@@ -110,6 +105,7 @@ export const WelcomePageSubtitle = styled.p`
   }
 
   @media screen and (min-width: 1440px) {
+    // width: 660px;
     color: var(--primary-dark);
     font-family: Roboto;
     font-size: 26px;
@@ -253,7 +249,6 @@ export const WelcomePageButton = styled.button`
     border: none;
     background: var(--primary-focus);
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-    margin-bottom: 60px;
 
     color: var(--primary-light);
     text-align: center;
@@ -310,7 +305,7 @@ export const WelcomePageDescriptionDiv = styled.div`
     background: var(--secondary-first);
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
     margin-left: 0px;
-    margin-top: 520px;
+    margin-top: 40px;
     width: 280px;
   }
 
@@ -321,7 +316,7 @@ export const WelcomePageDescriptionDiv = styled.div`
     background: var(--secondary-first);
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
 
-    margin-top: 320px;
+    margin-top: 60px;
     width: 500px;
   }
 
@@ -331,8 +326,8 @@ export const WelcomePageDescriptionDiv = styled.div`
     border-radius: 10px;
     background: var(--secondary-first);
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-    margin-left: 61px;
-    margin-top: 108px;
+    margin-left: 81px;
+    margin-top: 105px;
     width: 515px;
   }
 `;

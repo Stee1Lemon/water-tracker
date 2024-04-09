@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 export const TeamButton = styled.button`
   @media screen and (max-width: 767px) {
-    margin: auto;
-    margin-bottom: 60px;
-    display: flex;
     height: 36px;
     width: 280px;
     padding: 8px 30px;
@@ -25,9 +22,7 @@ export const TeamButton = styled.button`
     line-height: 1.2;
   }
   @media screen and (min-width: 768px) {
-    margin: auto;
-
-    display: flex;
+    margin: 0 auto;
     height: 44px;
     width: 336px;
     padding: 10px 30px;
@@ -38,7 +33,6 @@ export const TeamButton = styled.button`
     border: none;
     background: var(--primary-focus);
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-    margin-bottom: 60px;
 
     color: var(--primary-light);
     text-align: center;
@@ -51,7 +45,6 @@ export const TeamButton = styled.button`
   @media screen and (min-width: 1440px) {
     display: flex;
     margin: auto;
-    margin-bottom: 60px;
 
     height: 44px;
     width: 384px;
@@ -81,7 +74,7 @@ export const ModalTeamOverlay = styled.div`
     border-radius: 10px;
     padding: 12px 6px;
     width: 280px;
-    height: 900px;
+    max-height: 627px;
     color: var(--primary-dark);
     display: flex;
     flex-direction: column;
@@ -118,8 +111,8 @@ export const ButtonOverlay = styled.button`
     background-color: transparent;
     position: absolute;
 
-    top: 15px;
-    right: 20px;
+    top: 10px;
+    right: 15px;
     svg {
       width: 16px;
       height: 16px;
@@ -157,8 +150,8 @@ export const ButtonOverlay = styled.button`
 `;
 export const Image = styled.img`
   @media screen and (max-width: 767px) {
-    width: 50px;
-    height: 55px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
   }
   @media screen and (min-width: 768px) {
@@ -177,8 +170,7 @@ export const Image = styled.img`
 
 export const ContainerTeam = styled.div`
   @media screen and (max-width: 767px) {
-    padding: 25px 35px;
-    padding-right: 5px;
+    padding: 5px 10px;
   }
 
   @media screen and (min-width: 768px) {
@@ -213,8 +205,8 @@ export const ListTeam = styled.div`
   @media screen and (max-width: 767px) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px 10px;
+    justify-content: flex-end;
+    gap: 10px 10px;
     list-style: none;
   }
   @media screen and (min-width: 768px) {
@@ -240,8 +232,8 @@ export const TitleTeam = styled.h3`
     color: var(--primary-dark);
     font-family: Roboto;
     font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
+    font-style: bold;
+    font-weight: 500;
     line-height: 1;
 
     margin-top: 5px;
@@ -278,12 +270,12 @@ export const SubtitleTeam = styled.p`
     display: grid;
     color: var(--primary-dark);
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.3;
 
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   @media screen and (min-width: 768px) {
     display: grid;
@@ -329,8 +321,8 @@ export const IconList = styled.ul`
 export const IconTeam = styled.li`
   @media screen and (max-width: 767px) {
     svg {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       stroke-width: 1;
       stroke: var(--primary-light);
       fill: var(--primary-focus);
@@ -359,8 +351,8 @@ export const IconTeam = styled.li`
 export const IconTeamGithub = styled.li`
   @media screen and (max-width: 767px) {
     svg {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
 
       stroke: var(--primary-dark);
       fill: var(--primary-dark);
