@@ -39,6 +39,7 @@ export const WelcomeSection = styled.section`
     background-repeat: no-repeat;
     background-position: center bottom;
     height: 100%;
+    width: 100%;
     &::after {
       content: '';
       position: absolute;
@@ -48,7 +49,7 @@ export const WelcomeSection = styled.section`
       z-index: -99;
       top: 50%;
       left: 50%;
-      transform: translate(-48%, -48%);
+      transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
     }
