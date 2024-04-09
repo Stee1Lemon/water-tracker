@@ -55,7 +55,7 @@ const ModalTeam = () => {
                   <SubtitleTeam>Team Lead Frontend</SubtitleTeam>
                   <IconList>
                     <IconTeam>
-                      <a>
+                      <a href="https://www.linkedin.com/in/vladyslav-golodniuk-780902302/">
                         <svg>
                           <use href={`${icons}#icon-linkedin`}></use>
                         </svg>
