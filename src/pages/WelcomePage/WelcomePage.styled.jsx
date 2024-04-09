@@ -34,8 +34,6 @@ export const WelcomeSection = styled.section`
   }
 
   @media only screen and (min-width: 1440px) {
-    width: 100%;
-    height: 100%;
     background-image: url(${DesktopBackground1});
     background-size: contain;
     background-repeat: no-repeat;
@@ -63,7 +61,7 @@ export const WelcomeContainer = styled.div`
 
     max-width: 320px;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 15px 15px;
   }
 
   @media screen and (max-width: 360px) {
@@ -82,5 +80,6 @@ export const WelcomeContainer = styled.div`
     max-width: 1280px;
     margin: 0 auto;
     padding: 18px 119px;
+    height: 100%;
   }
 `;

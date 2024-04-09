@@ -1,4 +1,4 @@
-import { Form, InputDiv, Message } from './SigninForm.styled';
+import { Form, InputDiv, Message, SigninTeam } from './SigninForm.styled';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useFormik } from 'formik';
@@ -10,6 +10,7 @@ import Notiflix from 'notiflix';
 import { useTranslation } from 'react-i18next';
 import Loader from 'components/Loader/Loader';
 import { selectIsLoading } from '../../redux/root/rootSelectors';
+import ModalTeam from 'components/ModalTeam/ModalTeam';
 
 export const SigninForm = () => {
   const { t } = useTranslation();
@@ -118,6 +119,9 @@ export const SigninForm = () => {
         {isLoading ? <Loader /> : t('authForm.buttonSignin')}
       </button>
       <NavLink to="/signup">{t('authForm.linkSignup')}</NavLink>
+      <SigninTeam>
+        <ModalTeam />
+      </SigninTeam>
     </Form>
   );
 };

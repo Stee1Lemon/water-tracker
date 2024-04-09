@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 export const TeamButton = styled.button`
   @media screen and (max-width: 767px) {
-    margin: auto;
-    margin-bottom: 60px;
-    display: flex;
     height: 36px;
     width: 280px;
     padding: 8px 30px;
@@ -25,9 +22,7 @@ export const TeamButton = styled.button`
     line-height: 1.2;
   }
   @media screen and (min-width: 768px) {
-    margin: auto;
-
-    display: flex;
+    margin: 0 auto;
     height: 44px;
     width: 336px;
     padding: 10px 30px;
@@ -38,7 +33,6 @@ export const TeamButton = styled.button`
     border: none;
     background: var(--primary-focus);
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-    margin-bottom: 60px;
 
     color: var(--primary-light);
     text-align: center;
@@ -51,7 +45,6 @@ export const TeamButton = styled.button`
   @media screen and (min-width: 1440px) {
     display: flex;
     margin: auto;
-    margin-bottom: 60px;
 
     height: 44px;
     width: 384px;
@@ -80,7 +73,7 @@ export const ModalTeamOverlay = styled.div`
     position: relative;
     border-radius: 10px;
     padding: 12px 6px;
-    width: 280px;
+    width: 320px;
     height: 900px;
     color: var(--primary-dark);
     display: flex;
@@ -177,7 +170,7 @@ export const Image = styled.img`
 
 export const ContainerTeam = styled.div`
   @media screen and (max-width: 767px) {
-    padding: 25px 35px;
+    padding: 10px 35px;
     padding-right: 5px;
   }
 
@@ -214,7 +207,7 @@ export const ListTeam = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px 10px;
+    gap: 15px 20px;
     list-style: none;
   }
   @media screen and (min-width: 768px) {
