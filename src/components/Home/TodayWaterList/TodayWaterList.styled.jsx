@@ -77,7 +77,7 @@ export const ItemBtnDelete = styled('button')`
 `
 
 export const WaterListButton = styled('button')`
-width: 100px;
+width: 115px;
 padding: 0;
 font-weight: 500;
 border:none;
@@ -93,7 +93,7 @@ span{
     font-size: 24px;
 }
 @media only screen and (min-width: 768px) {
-width: 115px;
+width: 135px;
 font-size: 18px;
 svg {
     width: 12px;

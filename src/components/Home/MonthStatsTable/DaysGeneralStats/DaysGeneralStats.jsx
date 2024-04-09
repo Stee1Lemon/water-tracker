@@ -1,6 +1,9 @@
 import { StatsWrap, StatsDate } from "./DaysGeneralStats.styled"
 
+import { useTranslation } from 'react-i18next';
+
 export const DaysGeneralStats = ({ calendarRef, refData, waterData = {} }) => {
+  const { t } = useTranslation();
 
   const { date, dailyNorm, totalWaterPortionsForDay, percentageWater } = waterData;
 
@@ -15,9 +18,9 @@ export const DaysGeneralStats = ({ calendarRef, refData, waterData = {} }) => {
   return (
       <StatsWrap $delta={position} $deltaNum={delta}>
       <StatsDate>{date}</StatsDate>
-      <p>Daily norma: <span>{dailyNorm}</span></p>
-          <p>Fulfillment of the daily norm: <span>{percentageWater}%</span></p>
-          <p>How many servings of water: <span>{totalWaterPortionsForDay}</span></p>
+      <p>{t('daysGeneralStats.norma')} <span>{dailyNorm}</span></p>
+          <p>{t('daysGeneralStats.fulfillment')} <span>{percentageWater}%</span></p>
+          <p>{t('daysGeneralStats.servings')} <span>{totalWaterPortionsForDay}</span></p>
     </StatsWrap>
   )
 }

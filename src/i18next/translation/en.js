@@ -105,4 +105,9 @@ export const en = {
     november: 'November',
     december: 'December',
   },
+  daysGeneralStats: {
+    norma: 'Daily norma:',
+    fulfillment: 'Fulfillment of the daily norm:',
+    servings: 'How many servings of water:',
+  },
 };

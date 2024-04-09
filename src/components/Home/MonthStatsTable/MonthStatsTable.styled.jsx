@@ -24,7 +24,7 @@ export const Pagination = styled('div')`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap:3px;
+    column-gap:2px;
     @media only screen and (min-width: 768px) {
     column-gap:5px;
     min-width:190px;
