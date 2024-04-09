@@ -19,14 +19,14 @@ export const PageWrap = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 24px 0 40px 0;
+  padding: 24px 0 20px 0;
   @media only screen and (min-width: 768px) {
-    padding: 40px 0 40px 0;
+    padding: 40px 0 20px 0;
   }
   @media only screen and (min-width: 1440px) {
     flex-direction: row;
     gap: 32px;
-    padding: 20px 0 40px 0;
+    padding: 20px 0 20px 0;
   }
 `;
 
@@ -66,7 +66,9 @@ export const ImageWrap = styled('div')`
   }
 `;
 
-export const ProgressWrap = styled('div')``;
+export const SettingsWrap = styled('div')`
+padding-bottom: 20px;
+`;
 
 export const Statistics = styled('div')`
   display: flex;

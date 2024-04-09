@@ -18,7 +18,8 @@ export const WelcomeSection = styled.section`
     background-image: url(${TabletBackground1});
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom;
+    height: 100%;
 
     &::after {
       content: '';
