@@ -3,6 +3,7 @@ import { MonthStatsTable } from 'components/Home/MonthStatsTable/MonthStatsTable
 import { TodayWaterList } from 'components/Home/TodayWaterList/TodayWaterList';
 import { DailyNorma } from 'components/Home/DailyNorma/DailyNorma';
 import { WaterRatioPanel } from 'components/Home/WaterRatioPanel/WaterRatioPanel';
+import { DeleteUserBtn } from 'components/DeleteUser/DeleteUserBtn';
 import ModalTeam from 'components/ModalTeam/ModalTeam';
 
 import {
@@ -12,6 +13,7 @@ import {
   PageWrap,
   DailyNormaBlock,
   ImageWrap,
+  SettingsWrap,
   HomeTeam,
 } from './HomePage.styled';
 import bg from '../../assets/bg.png';
@@ -35,6 +37,7 @@ const HomePage = () => {
               <MonthStatsTable />
             </Statistics>
           </PageWrap>
+          <SettingsWrap><DeleteUserBtn>Delete user</DeleteUserBtn></SettingsWrap>
           <HomeTeam>
             <ModalTeam />
           </HomeTeam>
