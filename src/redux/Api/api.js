@@ -60,6 +60,17 @@ export const deleteUser = async () => {
   clearAuthToken();
 };
 
+//additional tasks (password)**********************
+export const verifyPassword = async () => {
+    const { data } = await axios.post('api/auth/verify');
+    return data;
+};
+
+export const forgotPassword = async body => {
+    const { data } = await axios.post('api/auth/forgot-password', body);
+    return data;
+};
+
 //Water part***************************************
 
 export const waterRate = async (newRate) => {
