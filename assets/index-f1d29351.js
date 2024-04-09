@@ -1154,9 +1154,7 @@ to {
   }
 `,GN=D.div`
   @media screen and (max-width: 767px) {
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 15px 15px;
+    padding: 15px 5px;
   }
 
   @media screen and (max-width: 360px) {
