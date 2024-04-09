@@ -117,7 +117,9 @@ export const SigninForm = () => {
       </InputDiv>
       <button type="submit" disabled={isLoading}>
         {isLoading ? <Loader /> : t('authForm.buttonSignin')}
-      </button>
+      </button>{' '}
+      <NavLink to="/forgot-password">Forgot password?</NavLink>
+      <br />
       <NavLink to="/signup">{t('authForm.linkSignup')}</NavLink>
       <SigninTeam>
         <ModalTeam />

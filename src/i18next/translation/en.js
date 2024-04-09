@@ -46,16 +46,19 @@ export const en = {
   authForm: {
     headerSignup: 'Sign Up',
     headerSignin: 'Sign In',
+    headerForgotPassword: 'Forgot your password?',
     labelEmail: 'Enter your email',
     labelPassword: 'Enter your password',
     labelRepeatPassword: 'Repeat password',
     buttonSignup: 'Sign Up',
     buttonSignin: 'Sign In',
+    buttonSendNewPassword: 'Send new password',
     linkSignup: 'Sign up',
     linkSignin: 'Sign in',
     placeholdEmail: 'E-mail',
     placeholdPassword: 'Password',
   },
+
   // Home page
   today: 'Today',
   month: 'Month',
