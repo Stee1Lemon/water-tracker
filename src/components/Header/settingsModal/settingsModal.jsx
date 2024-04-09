@@ -178,14 +178,16 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }, {});
 
     if (file) {
-      await handleUploadPhoto();
+      const resultImg = await handleUploadPhoto();
+      if (resultImg.error) return Notiflix.Notify.failure(result.payload);
       Notiflix.Notify.success('Your avatar changes successfully!');
     }
 
     if (Object.keys(dataToSave).length === 0) {
       return Notiflix.Notify.info('Must be at least one field to change.');
     }
-    await dispatch(authApi.editUserInfoThunk(dataToSave));
+    const result = await dispatch(authApi.editUserInfoThunk(dataToSave));
+    if (result.error) return Notiflix.Notify.failure(result.payload);
     Notiflix.Notify.success('Your changes have been saved successfully!');
   };
 
