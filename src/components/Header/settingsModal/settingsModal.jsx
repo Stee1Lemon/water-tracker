@@ -189,6 +189,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     const result = await dispatch(authApi.editUserInfoThunk(dataToSave));
     if (result.error) return Notiflix.Notify.failure(result.payload);
     Notiflix.Notify.success('Your changes have been saved successfully!');
+    toggleSettingsModal();
   };
 
   return (
