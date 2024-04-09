@@ -21,7 +21,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
-    password: false,
+    newPassword: false,
     confirmPassword: false,
   });
 
@@ -30,7 +30,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     name: '',
     email: '',
     outdatedPassword: '',
-    password: '',
+    newPassword: '',
     repeatPassword: '',
   });
 
@@ -47,12 +47,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
         name: '',
         email: '',
         outdatedPassword: '',
-        password: '',
+        newPassword: '',
         repeatPassword: '',
       });
       setPasswordVisible({
         outdatedPassword: false,
-        password: false,
+        newPassword: false,
         repeatPassword: false,
       });
       setErrors({});
@@ -97,15 +97,15 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
       fieldErrors[name] = 'Invalid email format.';
     } else if (
       (name === 'outdatedPassword' ||
-        name === 'password' ||
+        name === 'newPassword' ||
         name === 'repeatPassword') &&
       (!value || value.length < 8)
     ) {
       fieldErrors[name] = 'Password must be at least 8 characters long.';
     } else if (
-      (name === 'password' || name === 'repeatPassword') &&
+      (name === 'newPassword' || name === 'repeatPassword') &&
       isSave &&
-      formData.password !== formData.repeatPassword
+      formData.newPassword !== formData.repeatPassword
     ) {
       fieldErrors['repeatPassword'] = "Passwords don't match.";
     } else {
@@ -132,7 +132,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   };
 
   const handleSave = async () => {
-    const fieldsToValidate = ['outdatedPassword', 'password', 'repeatPassword'];
+    const fieldsToValidate = ['outdatedPassword', 'newPassword', 'repeatPassword'];
     let isValid = true;
     const currentErrors = { ...errors };
 
@@ -146,7 +146,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           isValid = false;
         }
       });
-      if (formData.password !== formData.repeatPassword) {
+      if (formData.newPassword !== formData.repeatPassword) {
         currentErrors['repeatPassword'] = "Passwords don't match.";
         isValid = false;
       }
@@ -306,24 +306,24 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </div>
           </div>
           <div className="newPasswordDiv">
-            <label className="passwordLabel" htmlFor="password">
+            <label className="passwordLabel" htmlFor="newPassword">
               New password:
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${errors.password ? 'invalid' : ''}`}
-                type={passwordVisible.password ? 'text' : 'password'}
-                id="password"
-                name="password"
+                className={`passwordInput ${errors.newPassword ? 'invalid' : ''}`}
+                type={passwordVisible.newPassword ? 'text' : 'password'}
+                id="newPassword"
+                name="newPassword"
                 placeholder="Password"
-                value={formData.password}
+                value={formData.newPassword}
                 onChange={handleInputChange}
               />
               <button
                 className="ShowPasswordWrapper"
                 onClick={() => {
-                  togglePasswordVisibility('password');
-                  togglePasswordTextVisibility('password');
+                  togglePasswordVisibility('newPassword');
+                  togglePasswordTextVisibility('newPassword');
                 }}
               >
                 {passwordVisible.password ? (
