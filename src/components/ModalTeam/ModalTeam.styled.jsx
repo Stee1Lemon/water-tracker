@@ -73,8 +73,8 @@ export const ModalTeamOverlay = styled.div`
     position: relative;
     border-radius: 10px;
     padding: 12px 6px;
-    width: 320px;
-    height: 900px;
+    width: 280px;
+    max-height: 627px;
     color: var(--primary-dark);
     display: flex;
     flex-direction: column;
@@ -111,8 +111,8 @@ export const ButtonOverlay = styled.button`
     background-color: transparent;
     position: absolute;
 
-    top: 15px;
-    right: 20px;
+    top: 10px;
+    right: 15px;
     svg {
       width: 16px;
       height: 16px;
@@ -150,8 +150,8 @@ export const ButtonOverlay = styled.button`
 `;
 export const Image = styled.img`
   @media screen and (max-width: 767px) {
-    width: 50px;
-    height: 55px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
   }
   @media screen and (min-width: 768px) {
@@ -170,8 +170,7 @@ export const Image = styled.img`
 
 export const ContainerTeam = styled.div`
   @media screen and (max-width: 767px) {
-    padding: 10px 35px;
-    padding-right: 5px;
+    padding: 5px 10px;
   }
 
   @media screen and (min-width: 768px) {
@@ -206,8 +205,8 @@ export const ListTeam = styled.div`
   @media screen and (max-width: 767px) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px 20px;
+    justify-content: flex-end;
+    gap: 10px 10px;
     list-style: none;
   }
   @media screen and (min-width: 768px) {
@@ -233,8 +232,8 @@ export const TitleTeam = styled.h3`
     color: var(--primary-dark);
     font-family: Roboto;
     font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
+    font-style: bold;
+    font-weight: 500;
     line-height: 1;
 
     margin-top: 5px;
@@ -271,12 +270,12 @@ export const SubtitleTeam = styled.p`
     display: grid;
     color: var(--primary-dark);
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.3;
 
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   @media screen and (min-width: 768px) {
     display: grid;
@@ -322,8 +321,8 @@ export const IconList = styled.ul`
 export const IconTeam = styled.li`
   @media screen and (max-width: 767px) {
     svg {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       stroke-width: 1;
       stroke: var(--primary-light);
       fill: var(--primary-focus);
@@ -352,8 +351,8 @@ export const IconTeam = styled.li`
 export const IconTeamGithub = styled.li`
   @media screen and (max-width: 767px) {
     svg {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
 
       stroke: var(--primary-dark);
       fill: var(--primary-dark);

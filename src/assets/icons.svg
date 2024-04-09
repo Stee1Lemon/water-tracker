@@ -74,7 +74,7 @@
       <path
         d="M9.706 10.293a1.002 1.002 0 0 1 0 1.414L6.413 15H28a.997.997 0 0 1 1 1 1 1 0 0 1-1 1H6.413l3.293 3.293a1.002 1.002 0 0 1 .025 1.439.992.992 0 0 1-.725.293 1.001 1.001 0 0 1-.714-.318l-5-5a1.002 1.002 0 0 1 0-1.414l5-5a1.002 1.002 0 0 1 1.414 0z" />
     </symbol>
-    <symbol id="icon-close" width="16" height="16" fill="none">
+    <symbol id="icon-close"  fill="none">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 13 13 1M1 1l12 12" />
     </symbol>
     <symbol id="icon-pagination-arrow-prev" width="14" height="14" viewBox="0 0 14 14" fill="none">
