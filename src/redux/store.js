@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authTestReducer from './auth-test/auth-test-slice.js';
 import {
   persistStore,
   persistReducer,
@@ -15,11 +14,6 @@ import { rootReducer } from './root/rootSlice.js';
 import { authReducer } from './auth/authSlice.js';
 import { waterReducer } from './water/waterSlice.js';
 
-const testPersistConfig = {
-  key: 'authTest',
-  storage,
-};
-
 const PersistConfig = {
   key: 'auth',
   storage,
@@ -31,7 +25,6 @@ export const store = configureStore({
     root: rootReducer,
     auth: persistReducer(PersistConfig, authReducer),
     water: persistReducer(PersistConfig, waterReducer),
-    authTest: persistReducer(testPersistConfig, authTestReducer),
   },
 
   middleware: (getDefaultMiddleware) =>

@@ -3,12 +3,14 @@ import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ModalLogOutContainer } from './logOutModal.styled';
 import { useDispatch } from 'react-redux';
 import authApi from '../../../redux/auth/authOperations';
+import { waterSlice } from '../../../redux/water/waterSlice';
 
 const LogOutModal = ({ isLogoutModalOpen, toggleLogoutModal }) => {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
     dispatch(authApi.logoutThunk());
+    dispatch(waterSlice.actions.cleanWaterRedux());
   };
 
   return (
