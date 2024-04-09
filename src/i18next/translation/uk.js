@@ -46,11 +46,13 @@ export const uk = {
   authForm: {
     headerSignup: 'Реєстрація',
     headerSignin: 'Вхід',
+    headerForgotPassword: 'Забули пароль?',
     labelEmail: 'Введіть вашу електронну адресу',
     labelPassword: 'Введіть ваш пароль',
     labelRepeatPassword: 'Повторіть пароль',
     buttonSignup: 'Зареєструватись',
     buttonSignin: 'Увійти',
+    buttonSendNewPassword: 'Відправити новий пароль',
     linkSignup: 'Зареєструватись',
     linkSignin: 'Увійти',
     placeholdEmail: 'Електронна адреса',

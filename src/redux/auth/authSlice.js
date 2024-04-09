@@ -3,7 +3,7 @@ import authApi from './authOperations';
 import {
   handleDeleteUser,
   handleEditUser,
-  handleForgotPass,
+  // handleForgotPass,
   handleLogout,
   // handleRefreshFulfiled,
   // handleRefreshPending,
@@ -11,7 +11,7 @@ import {
   handleSignin,
   handleUpdateAvatar,
   handleUserInfo,
-  handleVerifyPass,
+  // handleVerifyPass,
   handleWaterRate,
 } from './handlers';
 
@@ -50,8 +50,8 @@ const authSlice = createSlice({
       .addCase(authApi.updateAvatarThunk.fulfilled, handleUpdateAvatar)
       .addCase(authApi.deleteUserThunk.pending, handleDeleteUser)
       .addCase(authApi.waterRateThunk.fulfilled, handleWaterRate)
-      .addCase(authApi.verifyPassThunk.fulfilled, handleVerifyPass)
-      .addCase(authApi.forgotPassThunk.fulfilled, handleForgotPass)
+      .addCase(authApi.verifyPassThunk.fulfilled)
+      .addCase(authApi.forgotPassThunk.fulfilled);
   },
 });
 

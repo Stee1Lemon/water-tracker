@@ -8,6 +8,7 @@ import WelcomePage from 'pages/WelcomePage/WelcomePage';
 import SignupPage from 'pages/SignupPage/SignupPage';
 import SigninPage from 'pages/SigninPage/SigninPage';
 import HomePage from 'pages/HomePage/HomePage';
+import ForgotPassword from 'pages/ForgotPasswordPage/ForgotPasswordPage';
 import PrivateRoute from 'components/auth/PrivateRoute';
 import PublicRoute from 'components/auth/PublicRoute';
 import { selectUserToken } from './redux/auth/authSelectors';
@@ -47,6 +48,7 @@ function App() {
             <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SigninPage />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Route>
           <Route path="/home" element={<PrivateRoute Component={HomePage} />} />
           <Route path="/" element={<Navigate to="/welcome" />} />
