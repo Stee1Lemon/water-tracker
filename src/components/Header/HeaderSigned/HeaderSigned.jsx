@@ -1,4 +1,9 @@
-import { Navigation, LogoLink, UserContext, HeaderContainer } from './HeaderSigned.styled';
+import {
+  Navigation,
+  LogoLink,
+  UserContext,
+  HeaderContainer,
+} from './HeaderSigned.styled';
 import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
@@ -21,6 +26,25 @@ export const HeaderSigned = () => {
   const toggleMenu = () => {
     setMenuVisible((prevState) => !prevState);
   };
+
+  // Модалка налаштувань
+  const toggleSettingsModal = () => {
+    setSettingsModalOpen(!isSettingsModalOpen);
+  };
+
+  // Модалка LogOut
+  const toggleLogoutModal = () => {
+    setLogoutModalOpen(!isLogoutModalOpen);
+  };
+
+  // Закриття на esc
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      setSettingsModalOpen(false);
+      setLogoutModalOpen(false);
+    }
+  };
+
   useEffect(() => {
     function handleClickOutside(event) {
       const isModalOpen = isSettingsModalOpen || isLogoutModalOpen;
@@ -35,36 +59,12 @@ export const HeaderSigned = () => {
     }
 
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [menuRef, menuButtonRef, isSettingsModalOpen, isLogoutModalOpen]);
-
-  // Модалка налаштувань
-  const toggleSettingsModal = () => {
-    setSettingsModalOpen(!isSettingsModalOpen);
-  };
-
-  // Модалка LogOut
-  const toggleLogoutModal = () => {
-    setLogoutModalOpen(!isLogoutModalOpen);
-  };
-
-  // Закриття на esc
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setSettingsModalOpen(false);
-        setLogoutModalOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [menuRef, menuButtonRef, isSettingsModalOpen, isLogoutModalOpen]);
 
   return (
     <HeaderContainer>

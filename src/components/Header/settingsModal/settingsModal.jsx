@@ -128,8 +128,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     const photoData = new FormData();
     photoData.append('file', file);
 
-    dispatch(authApi.updateAvatarThunk(photoData));
-    console.log('Selected file sent', file.name);
+    dispatch(authApi.updateAvatarThunk(file));
   };
 
   const handleSave = async () => {
@@ -300,7 +299,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 type="text"
                 id="name"
                 name="name"
-                placeholder="Your name"
+                placeholder={userInfo.name}
                 onChange={handleInputChange}
               />
               {errors.name && <div className="errorText">{errors.name}</div>}
@@ -348,7 +347,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="E-mail"
+                placeholder={userInfo.email}
                 onChange={handleInputChange}
               />
               {errors.email && <div className="errorText">{errors.email}</div>}

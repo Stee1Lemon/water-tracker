@@ -7,10 +7,7 @@ import ModalTest from 'components/ModalTest/ModalTest';
 const SharedLayout = () => {
   return (
     <>
-      <ModalTest />
-
       <HeaderCombined />
-
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

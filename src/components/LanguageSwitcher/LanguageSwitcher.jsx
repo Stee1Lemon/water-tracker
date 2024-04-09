@@ -1,10 +1,14 @@
 import i18n from 'i18next';
 import icons from '../../assets/icons.svg';
 import { Container, Button } from './LanguageSwitcher.styled';
+import { useDispatch } from 'react-redux';
+import { rootSlice } from '../../redux/root/rootSlice';
 
 export const LanguageSwitcher = () => {
+  const dispatch = useDispatch();
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    dispatch(rootSlice.actions.readLang());
   };
 
   return (

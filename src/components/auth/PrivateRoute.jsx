@@ -2,14 +2,18 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   selectIsLoggedIn,
-  // selectUserToken,
+  selectUserToken,
 } from '../../redux/auth/authSelectors';
 
 const PrivateRoute = ({ Component }) => {
-  // const isAuthenticated = useSelector(selectUserToken);
+  const isAuthenticated = useSelector(selectUserToken);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  return isLoggedIn ? <Component /> : <Navigate to="/singin" />;
+  return isLoggedIn && isAuthenticated ? (
+    <Component />
+  ) : (
+    <Navigate to="/singin" />
+  );
 };
 
 export default PrivateRoute;
