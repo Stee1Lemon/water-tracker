@@ -337,7 +337,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   togglePasswordTextVisibility('newPassword');
                 }}
               >
-                {passwordVisible.password ? (
+                {passwordVisible.newPassword ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
