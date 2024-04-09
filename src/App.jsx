@@ -1,14 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { format } from 'date-fns';
 import { AppWrapper } from './App.styled';
-import WelcomePage from 'pages/WelcomePage/WelcomePage';
-import SignupPage from 'pages/SignupPage/SignupPage';
-import SigninPage from 'pages/SigninPage/SigninPage';
-import HomePage from 'pages/HomePage/HomePage';
-import ForgotPassword from 'pages/ForgotPasswordPage/ForgotPasswordPage';
 import PrivateRoute from 'components/auth/PrivateRoute';
 import PublicRoute from 'components/auth/PublicRoute';
 import { selectUserToken } from './redux/auth/authSelectors';
@@ -17,8 +12,13 @@ import authApi from './redux/auth/authOperations';
 import waterApi from './redux/water/waterOperations';
 import { rootSlice } from './redux/root/rootSlice';
 
-// імпорт з .env
-// const test = import.meta.env.VITE_API_TEST;
+const WelcomePage = lazy(() => import('pages/WelcomePage/WelcomePage'));
+const SignupPage = lazy(() => import('pages/SignupPage/SignupPage'));
+const SigninPage = lazy(() => import('pages/SigninPage/SigninPage'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const ForgotPassword = lazy(() =>
+  import('pages/ForgotPasswordPage/ForgotPasswordPage')
+);
 
 function App() {
   const dispatch = useDispatch();
