@@ -14,6 +14,7 @@ import { selectUserToken } from './redux/auth/authSelectors';
 import { setAuthToken } from './redux/Api/api';
 import authApi from './redux/auth/authOperations';
 import waterApi from './redux/water/waterOperations';
+import { rootSlice } from './redux/root/rootSlice';
 
 // імпорт з .env
 // const test = import.meta.env.VITE_API_TEST;
@@ -29,6 +30,7 @@ function App() {
         const today = format(date, 'dd/MM/yyyy');
         const month = format(date, 'MM/yyyy');
         setAuthToken(token);
+        dispatch(rootSlice.actions.readLang());
         dispatch(authApi.getUserThunk());
         dispatch(waterApi.getMonthWaterThunk({ date: month }));
         dispatch(waterApi.getTodayWaterThunk({ date: today }));
