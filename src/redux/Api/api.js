@@ -45,7 +45,7 @@ export const updateAvatar = async (photo) => {
   const { data } = await axios.patch(
     'api/user/avatars',
     { avatarURL: photo },
-    { headers: { 'Contant-Type': 'multipart/form-data' } }
+    { headers: { 'Content-Type': 'multipart/form-data' } }
   );
   return data;
 };
@@ -58,6 +58,17 @@ export const editUserInfo = async (body) => {
 export const deleteUser = async () => {
   await axios.delete('api/user');
   clearAuthToken();
+};
+
+//additional tasks (password)**********************
+export const verifyPassword = async () => {
+    const { data } = await axios.post('api/auth/verify');
+    return data;
+};
+
+export const forgotPassword = async body => {
+    const { data } = await axios.post('api/auth/forgot-password', body);
+    return data;
 };
 
 //Water part***************************************

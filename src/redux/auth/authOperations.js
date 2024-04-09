@@ -2,12 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   deleteUser,
   editUserInfo,
+  forgotPassword,
   getUser,
   logout,
   refreshUser,
   signin,
   signup,
   updateAvatar,
+  verifyPassword,
   waterRate,
 } from '../../redux/Api/api';
 
@@ -113,6 +115,33 @@ const deleteUserThunk = createAsyncThunk(
   }
 );
 
+//password *******************
+
+const verifyPassThunk = createAsyncThunk(
+  'auth/verify',
+  async (_, thunkApi) => {
+    try {
+      await verifyPassword();
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+const forgotPassThunk = createAsyncThunk(
+  'auth/forgot-password',
+  async (credentials, thunkApi) => {
+    try {
+      const email = await forgotPassword(credentials);
+      return email;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+//******************************
+
 const waterRateThunk = createAsyncThunk(
   'auth/water_rate',
   async (data, thunkApi) => {
@@ -136,6 +165,8 @@ const authApi = {
   editUserInfoThunk,
   deleteUserThunk,
   waterRateThunk,
+  verifyPassThunk,
+  forgotPassThunk
 };
 
 export default authApi;
