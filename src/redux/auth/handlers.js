@@ -44,3 +44,6 @@ export const handleUpdateAvatar = (state, { payload }) => {
 export const handleWaterRate = (state, { payload }) => {
   state.user.waterRate = payload;
 };
+
+export const handleVerifyPass = () => initialState;
+export const handleForgotPass = () => initialState;
