@@ -35,11 +35,10 @@ const HomePage = () => {
               <MonthStatsTable />
             </Statistics>
           </PageWrap>
+          <HomeTeam>
+            <ModalTeam />
+          </HomeTeam>
         </Container>
-        <HomeTeam>
-          <ModalTeam />
-        </HomeTeam>
-
         <BackgrounImage src={bg} alt="bg" />
       </BackgroundWrap>
     </>
