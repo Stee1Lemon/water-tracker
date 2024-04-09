@@ -38,7 +38,7 @@ export const handleEditUser = (state, { payload }) => {
 };
 
 export const handleUpdateAvatar = (state, { payload }) => {
-  state.user.avatarURL = payload;
+  state.user.avatarURL = payload.avatarURL;
 };
 
 export const handleWaterRate = (state, { payload }) => {

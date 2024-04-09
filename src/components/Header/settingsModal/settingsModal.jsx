@@ -132,7 +132,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   };
 
   const handleSave = async () => {
-    const fieldsToValidate = ['outdatedPassword', 'newPassword', 'repeatPassword'];
+    const fieldsToValidate = [
+      'outdatedPassword',
+      'newPassword',
+      'repeatPassword',
+    ];
     let isValid = true;
     const currentErrors = { ...errors };
 
@@ -175,9 +179,12 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
     if (file) {
       await handleUploadPhoto();
+      Notiflix.Notify.success('Your avatar changes successfully!');
     }
 
-    console.log(dataToSave);
+    if (Object.keys(dataToSave).length === 0) {
+      return Notiflix.Notify.info('Must be at least one field to change.');
+    }
     await dispatch(authApi.editUserInfoThunk(dataToSave));
     Notiflix.Notify.success('Your changes have been saved successfully!');
   };
@@ -311,7 +318,9 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
             </label>
             <div className="passwordInputContainer">
               <input
-                className={`passwordInput ${errors.newPassword ? 'invalid' : ''}`}
+                className={`passwordInput ${
+                  errors.newPassword ? 'invalid' : ''
+                }`}
                 type={passwordVisible.newPassword ? 'text' : 'password'}
                 id="newPassword"
                 name="newPassword"
