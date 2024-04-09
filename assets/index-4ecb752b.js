@@ -1090,7 +1090,8 @@ to {
     background-image: url(${iP});
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom;
+    height: 100%;
 
     &::after {
       content: '';
