@@ -24,7 +24,6 @@ import icons from '../../../assets/icons.svg';
 import { selectMonthWater } from '../../../redux/water/waterSelectors';
 import { selectLang } from '../../../redux/root/rootSelectors';
 import { useTranslation } from 'react-i18next';
-import { DeleteUserBtn } from 'components/DeleteUser/DeleteUserBtn';
 
 const formatOfYear = 'yyyy';
 const formatOfMonth = 'MMMM';
@@ -135,7 +134,6 @@ export const MonthStatsTable = () => {
           );
         })}
       </CalendarWrap>
-      <DeleteUserBtn>Delete user</DeleteUserBtn>
     </div>
   );
 };

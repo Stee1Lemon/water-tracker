@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const DeleteUserButton = styled.button`
-  float: right;
+  display: flex;
   padding: 8px 8px;
   justify-content: center;
   align-items: center;
+  margin-left:auto;
 
   border-radius: 10px;
   border: none;
