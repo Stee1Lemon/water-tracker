@@ -121,13 +121,17 @@ const deleteUserThunk = createAsyncThunk('user/delete', async (_, thunkApi) => {
 
 //password *******************
 
-const verifyPassThunk = createAsyncThunk('auth/verify', async (_, thunkApi) => {
-  try {
-    await verifyPassword();
-  } catch (err) {
-    return thunkApi.rejectWithValue(err.response.data.message);
+const verifyPasswordThunk = createAsyncThunk(
+  'auth/checkPassword',
+  async (credentials, thunkApi) => {
+    try {
+      const data = await verifyPassword(credentials);
+      return data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
   }
-});
+);
 
 const forgotPassThunk = createAsyncThunk(
   'auth/forgot-password',
@@ -160,13 +164,13 @@ const authApi = {
   signinThunk,
   logoutThunk,
   sendEmailVerifyThunk,
+  verifyPasswordThunk,
   refreshUserThunk,
   getUserThunk,
   updateAvatarThunk,
   editUserInfoThunk,
   deleteUserThunk,
   waterRateThunk,
-  verifyPassThunk,
   forgotPassThunk,
 };
 

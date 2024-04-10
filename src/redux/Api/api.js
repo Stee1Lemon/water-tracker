@@ -66,8 +66,8 @@ export const deleteUser = async () => {
 };
 
 //additional tasks (password)**********************
-export const verifyPassword = async () => {
-  const { data } = await axios.post('api/auth/verify');
+export const verifyPassword = async (password) => {
+  const { data } = await axios.post('api/user/checkPassword', password);
   return data;
 };
 
