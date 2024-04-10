@@ -3,10 +3,19 @@ import styled from 'styled-components';
 export const DeleteContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  p {
+    @media (max-width: 767px) {
+      padding: 0 12px;
+    }
+  }
 `;
 
 export const InputDiv = styled.div`
   position: relative;
+  @media (max-width: 767px) {
+    padding: 0 12px;
+  }
 `;
 export const DeleteInput = styled.input`
   border-radius: 6px;
