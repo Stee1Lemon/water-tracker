@@ -1,4 +1,4 @@
-import{u as o}from"./index-0d28448a.js";import{m as e,a as n,t,b as i,d as a,c as r}from"./signup-bottle-desktop-c5b3fade.js";const s=o.form`
+import{u as o}from"./index-37320e23.js";import{m as e,a as n,t,b as i,d as a,c as r}from"./signup-bottle-desktop-c5b3fade.js";const s=o.form`
   display: flex;
   flex-direction: column;
   max-width: 280px;
@@ -126,19 +126,7 @@ import{u as o}from"./index-0d28448a.js";import{m as e,a as n,t,b as i,d as a,c a
 `,x=o.span`
   color: var(--secondary-second);
   font-size: 14px;
-`,g=o.div`
-  @media screen and (max-width: 767px) {
-    margin-left: 0;
-    margin-top: 200px;
-  }
-  @media screen and (min-width: 768px) {
-    margin-top: 70px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin: 0 auto;
-    margin-top: 170px;
-  }
-`,m=o.section`
+`,g=o.section`
   @media only screen and (max-width: 767px) {
     background-image: url(${e});
     background-size: cover;
@@ -216,4 +204,4 @@ import{u as o}from"./index-0d28448a.js";import{m as e,a as n,t,b as i,d as a,c a
     display: flex;
     justify-content: flex-end;
   }
-`;export{s as F,c as I,x as M,g as S,m as a,h as b};
+`;export{s as F,c as I,x as M,g as a,h as b};
