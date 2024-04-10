@@ -15,7 +15,7 @@ export const DailyNorma = () => {
   const language = useSelector(selectLang);
   
 
-  const waterRate  = useSelector(selectWaterRate);
+  const waterRate = useSelector(selectWaterRate);
   const dailyNorma = (waterRate / 1000).toFixed(1);
   
   const [isModalOpen, setIsModalOpen] = useState(false);
