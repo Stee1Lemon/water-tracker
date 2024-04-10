@@ -32,7 +32,6 @@ import { validationWaterSchema } from '../Schema/validationWaterSchema';
 import authApi from '../../../redux/auth/authOperations';
 import { useTranslation } from 'react-i18next';
 import { selectLang } from '../../../redux/root/rootSelectors';
-import waterApi from '../../../redux/water/waterOperations';
 
 const maxDailyVolumeLimit = 15000;
 
@@ -62,14 +61,12 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     const waterVolume = formik.values.dailyWaterGoal * 1000;
 
     if (waterVolume > 0 && waterVolume <= maxDailyVolumeLimit) {
-      const date = format(new Date(), 'dd/MM/uuuu');
       await dispatch(
         authApi.waterRateThunk({
           waterRate: waterVolume,
-          date: date,
+          date: format(new Date(), 'dd/MM/uuuu'),
         })
       );
-      await dispatch(waterApi.getTodayWaterThunk({ date: date }));
       Notify.success('Daily norma successfully updated');
       formik.resetForm();
       onClose();
