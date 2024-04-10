@@ -1,4 +1,4 @@
-import{u as n,N as a,j as e,i as r}from"./index-ade25f37.js";import{u as d}from"./useTranslation-6fe0dd8d.js";import{C as s}from"./Container-6cd207aa.js";n.div`
+import{u as n,N as a,j as e,i as r}from"./index-e91df7db.js";import{u as d}from"./useTranslation-ba4f0dd8.js";import{C as s}from"./Container-fc8d7888.js";n.div`
   margin-top: 500px;
 
   @media screen and (min-width: 768px) {
