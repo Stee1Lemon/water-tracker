@@ -7,13 +7,18 @@ import { AddWaterBtn, Wrapper, RangeBlock, RangeInput, StaticMarkStart, StaticMa
 import icons from '../../../assets/icons.svg';
 
 import { selectTodayWater } from "../../../redux/water/waterSelectors";
-import { useTranslation } from 'react-i18next'; 
+import { selectWaterRate } from "../../../redux/water/waterSelectors"; 
+import { useTranslation } from 'react-i18next';
 
 export const WaterRatioPanel = () => {
   const { t } = useTranslation();
 
-  const { percentageWater=0 } = useSelector(selectTodayWater);
-  const volumePercentage = parseFloat(percentageWater).toFixed(1);
+  const waterRate = useSelector(selectWaterRate);
+  const {allAmountForDay = 0} = useSelector(selectTodayWater);
+  
+  const percent = allAmountForDay / waterRate * 100;
+
+  const volumePercentage = parseFloat(percent).toFixed(0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -19,7 +19,9 @@ import {
 import bg from '../../assets/bg.png';
 import bottle from '../../assets/bottle.png';
 
+
 const HomePage = () => {
+
   return (
     <>
       <BackgroundWrap>
@@ -34,7 +36,7 @@ const HomePage = () => {
             </DailyNormaBlock>
             <Statistics>
               <TodayWaterList />
-              <MonthStatsTable />
+              <MonthStatsTable/>
             </Statistics>
           </PageWrap>
           <SettingsWrap><DeleteUserBtn>Delete user</DeleteUserBtn></SettingsWrap>

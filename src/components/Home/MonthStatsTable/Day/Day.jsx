@@ -8,10 +8,13 @@ import { DaysGeneralStats } from "../DaysGeneralStats/DaysGeneralStats"
 import { DayWrap, DayButton, Percentage } from "./Day.styled"
 
 import { selectLang } from "../../../../redux/root/rootSelectors";
+import { selectWaterRate } from "../../../../redux/water/waterSelectors";
 
-export const DayComponent = ({ isConsumed, date, percentage, day, data, calendarRef }) => {
+export const DayComponent = ({ isConsumed, date, percentage, day, data, calendarRef,today:{todayWaterData,dailyNormaFullfilled} }) => {
   const language = useSelector(selectLang);
 
+  const waterRate = useSelector(selectWaterRate);
+  
   const [activeModal, setActiveModal] = useState(null);
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   
@@ -31,17 +34,29 @@ export const DayComponent = ({ isConsumed, date, percentage, day, data, calendar
   }, []);
 
   const toggleModal = (day) => {
-      setActiveModal(prevModal => (prevModal === day ? null : day));
-      const dayData = data[day] || 0;
-      if (language === "uk") {
+  
+    setActiveModal(prevModal => (prevModal === day ? null : day));
+     if (language === "uk") {
       day = format(day, "d, MMMM", { locale: uk });
-      }
+    }
+    const isToday = day === format(new Date(), 'd, MMMM');
+    
+    if (isToday) {
       setSelectedDayStats({
+        date: day,
+        dailyNorm: (waterRate / 1000).toFixed(1),
+        totalWaterPortionsForDay: todayWaterData.portionsOfWater ? todayWaterData.portionsOfWater.length : 0,
+        percentageWater: dailyNormaFullfilled,
+      });
+    } else {
+        const dayData = data[day] || 0;
+        setSelectedDayStats({
         date: day,
         dailyNorm: dayData ? dayData.dailyNorm : 0,
         totalWaterPortionsForDay: dayData ? dayData.totalWaterPortionsForDay : 0,
         percentageWater: dayData ? parseInt(dayData.percentageWater) : 0,
       });
+    }
   };
 
   return (
