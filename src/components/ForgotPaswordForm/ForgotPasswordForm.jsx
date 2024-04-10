@@ -35,6 +35,7 @@ const ForgotPasswordForm = () => {
       );
       const result = await dispatch(authApi.forgotPassThunk(values));
       if (result.error) return Notiflix.Notify.failure(result.payload);
+      Notiflix.Notify.success('Email was send');
     },
   });
 

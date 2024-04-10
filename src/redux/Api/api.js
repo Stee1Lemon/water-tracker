@@ -13,6 +13,11 @@ const clearAuthToken = () => {
 
 // User-Auth part**********************************
 
+export const signinWithGoogle = async () => {
+  const { data } = await axios.get('api/auth/google');
+  return data;
+};
+
 export const signup = async (body) => {
   const { data } = await axios.post('api/auth/register', body);
   setAuthToken(data.token);

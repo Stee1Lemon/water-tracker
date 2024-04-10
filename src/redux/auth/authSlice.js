@@ -39,6 +39,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(authApi.signinWithGoogleThunk.fulfilled)
       .addCase(authApi.signupThunk.fulfilled)
       .addCase(authApi.signinThunk.fulfilled, handleSignin)
       .addCase(authApi.getUserThunk.fulfilled, handleUserInfo)

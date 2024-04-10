@@ -72,7 +72,7 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
       onClose();
     } else {
       Notify.failure(
-        'The amount of water must be a positive and no more than 15000 liters'
+        'The amount of water must be a positive and no more than 15 liters'
       );
     }
   };

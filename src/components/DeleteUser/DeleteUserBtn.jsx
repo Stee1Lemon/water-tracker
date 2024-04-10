@@ -12,6 +12,7 @@ import { ReactComponent as Xmark } from '../../components/Header/headerIcons/Xma
 import { useDispatch } from 'react-redux';
 import authApi from '../../redux/auth/authOperations';
 import icons from '../../assets/icons.svg';
+import Notiflix from 'notiflix';
 
 export const DeleteUserBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +29,12 @@ export const DeleteUserBtn = () => {
   };
 
   const handleDelete = async () => {
-    const { payload } = await dispatch(
+    const result = await dispatch(
       authApi.verifyPasswordThunk({ password: passwordInput })
     );
-    if (payload.isCorrectPass) await dispatch(authApi.deleteUserThunk());
+    if (result.error)
+      if (result.error) return Notiflix.Notify.failure(result.payload);
+    if (result.payload.isCorrectPass) await dispatch(authApi.deleteUserThunk());
   };
   return (
     <>

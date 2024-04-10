@@ -89,7 +89,6 @@ const SettingsModal = ({ isOpen, onClose }) => {
     }
 
     setErrors(fieldErrors);
-    console.log(fieldErrors);
   };
 
   //Photo upload
@@ -159,24 +158,25 @@ const SettingsModal = ({ isOpen, onClose }) => {
 
     const dataToSave = prepareDataToSave();
 
-    try {
-      if (!file && !dataToSave)
-        throw new Error('Must be at least one field to change.');
-      if (file) await handleUploadPhoto();
-      if (dataToSave) await dispatch(authApi.editUserInfoThunk(dataToSave));
-
-      Notiflix.Notify.success('Your changes have been saved successfully!');
-      onClose();
-    } catch (error) {
-      Notiflix.Notify.failure(error.message);
+    if (!file && !dataToSave)
+      return Notiflix.Notify.failure('Must be at least one field to change.');
+    if (file) {
+      const result = await handleUploadPhoto();
+      if (result.error) return Notiflix.Notify.failure(result.payload);
     }
+    if (dataToSave) {
+      const result = await dispatch(authApi.editUserInfoThunk(dataToSave));
+      if (result.error) return Notiflix.Notify.failure(result.payload);
+    }
+
+    Notiflix.Notify.success('Your changes have been saved successfully!');
+    onClose();
   };
 
   const handleSendEmailVerification = async () => {
     const result = await dispatch(
       authApi.sendEmailVerifyThunk({ email: userInfo.email })
     );
-    console.log(result);
     Notiflix.Notify.success(result.payload.message);
   };
 

@@ -8,11 +8,24 @@ import {
   refreshUser,
   sendEmailVerify,
   signin,
+  signinWithGoogle,
   signup,
   updateAvatar,
   verifyPassword,
   waterRate,
 } from '../../redux/Api/api';
+
+const signinWithGoogleThunk = createAsyncThunk(
+  'auth/signin-google',
+  async (_, thunkApi) => {
+    try {
+      const data = await signinWithGoogle();
+      return data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
 
 const signupThunk = createAsyncThunk(
   'auth/signup',
@@ -160,6 +173,7 @@ const waterRateThunk = createAsyncThunk(
 );
 
 const authApi = {
+  signinWithGoogleThunk,
   signupThunk,
   signinThunk,
   logoutThunk,
