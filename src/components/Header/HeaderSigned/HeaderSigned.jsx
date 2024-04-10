@@ -3,6 +3,7 @@ import {
   LogoLink,
   UserContext,
   HeaderContainer,
+  UserContextButton,
 } from './HeaderSigned.styled';
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
@@ -74,12 +75,20 @@ export const HeaderSigned = () => {
           OF WATER
         </LogoLink>
         <LanguageSwitcher />
+
         <UserContext>
-          <button
+          <UserContextButton
             className="UserContextButton"
             ref={menuButtonRef}
             onClick={toggleMenu}
+            $verify={userInfo.verify}
           >
+            {userInfo.verify ? null : (
+              <p className="auth-warning">
+                Please, verify your email or profile will be deleted at 7 days
+                after registration.
+              </p>
+            )}
             {userInfo.name}
             <div className="imgWrapper">
               <img src={userInfo.avatarURL} alt="User Profile Picture" />
@@ -87,7 +96,7 @@ export const HeaderSigned = () => {
             <div className={`menuButton ${isMenuVisible ? 'rotate' : ''}`}>
               <UserMenu />
             </div>
-          </button>
+          </UserContextButton>
           {/* Дропдаун */}
           <DropDownHeader
             menuRef={menuRef}

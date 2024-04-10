@@ -6,6 +6,7 @@ import {
   getUser,
   logout,
   refreshUser,
+  sendEmailVerify,
   signin,
   signup,
   updateAvatar,
@@ -37,12 +38,21 @@ const signinThunk = createAsyncThunk(
   }
 );
 
-const logoutThunk = createAsyncThunk(
-  'auth/logout',
-  async (_, thunkApi) => {
+const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkApi) => {
+  try {
+    await logout();
+    return;
+  } catch (err) {
+    return thunkApi.rejectWithValue(err.response.data.message);
+  }
+});
+
+const sendEmailVerifyThunk = createAsyncThunk(
+  'auth/verify',
+  async (credentials, thunkApi) => {
     try {
-      await logout();
-      return;
+      const data = await sendEmailVerify(credentials);
+      return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
     }
@@ -59,7 +69,7 @@ const refreshUserThunk = createAsyncThunk(
     }
 
     try {
-      const {data} = await refreshUser(auth.token);
+      const { data } = await refreshUser(auth.token);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
@@ -67,17 +77,14 @@ const refreshUserThunk = createAsyncThunk(
   }
 );
 
-const getUserThunk = createAsyncThunk(
-  'user/current',
-  async (_, thunkApi) => {
-    try {
-      const data = await getUser();
-      return data;
-    } catch (err) {
-      return thunkApi.rejectWithValue(err.respinse.data.message)
-    }
-  });
-
+const getUserThunk = createAsyncThunk('user/current', async (_, thunkApi) => {
+  try {
+    const data = await getUser();
+    return data;
+  } catch (err) {
+    return thunkApi.rejectWithValue(err.respinse.data.message);
+  }
+});
 
 const updateAvatarThunk = createAsyncThunk(
   'user/avatar',
@@ -103,30 +110,24 @@ const editUserInfoThunk = createAsyncThunk(
   }
 );
 
-const deleteUserThunk = createAsyncThunk(
-  'user/delete',
-  async (_, thunkApi) => {
-    try {
-      await deleteUser();
-      return;
-    } catch (err) {
-      return thunkApi.rejectWithValue(err.response.data.message);
-    }  
+const deleteUserThunk = createAsyncThunk('user/delete', async (_, thunkApi) => {
+  try {
+    await deleteUser();
+    return;
+  } catch (err) {
+    return thunkApi.rejectWithValue(err.response.data.message);
   }
-);
+});
 
 //password *******************
 
-const verifyPassThunk = createAsyncThunk(
-  'auth/verify',
-  async (_, thunkApi) => {
-    try {
-      await verifyPassword();
-    } catch (err) {
-      return thunkApi.rejectWithValue(err.response.data.message);
-    }
+const verifyPassThunk = createAsyncThunk('auth/verify', async (_, thunkApi) => {
+  try {
+    await verifyPassword();
+  } catch (err) {
+    return thunkApi.rejectWithValue(err.response.data.message);
   }
-);
+});
 
 const forgotPassThunk = createAsyncThunk(
   'auth/forgot-password',
@@ -135,7 +136,7 @@ const forgotPassThunk = createAsyncThunk(
       const email = await forgotPassword(credentials);
       return email;
     } catch (err) {
-      return thunkApi.rejectWithValue(err.response.data.message)
+      return thunkApi.rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -146,7 +147,6 @@ const waterRateThunk = createAsyncThunk(
   'auth/water_rate',
   async (data, thunkApi) => {
     try {
-
       await waterRate(data);
       return data;
     } catch (err) {
@@ -159,6 +159,7 @@ const authApi = {
   signupThunk,
   signinThunk,
   logoutThunk,
+  sendEmailVerifyThunk,
   refreshUserThunk,
   getUserThunk,
   updateAvatarThunk,
@@ -166,7 +167,7 @@ const authApi = {
   deleteUserThunk,
   waterRateThunk,
   verifyPassThunk,
-  forgotPassThunk
+  forgotPassThunk,
 };
 
 export default authApi;

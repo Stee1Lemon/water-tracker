@@ -43,14 +43,12 @@ const authSlice = createSlice({
       .addCase(authApi.signinThunk.fulfilled, handleSignin)
       .addCase(authApi.getUserThunk.fulfilled, handleUserInfo)
       .addCase(authApi.logoutThunk.pending, handleLogout)
-      // .addCase(authApi.refreshUserThunk.fulfilled, handleRefreshFulfiled)
-      // .addCase(authApi.refreshUserThunk.pending, handleRefreshPending)
-      // .addCase(authApi.refreshUserThunk.rejected, handleRefreshRejected)
+      .addCase(authApi.sendEmailVerifyThunk.fulfilled)
       .addCase(authApi.editUserInfoThunk.fulfilled, handleEditUser)
       .addCase(authApi.updateAvatarThunk.fulfilled, handleUpdateAvatar)
       .addCase(authApi.deleteUserThunk.pending, handleDeleteUser)
       .addCase(authApi.waterRateThunk.fulfilled, handleWaterRate)
-      .addCase(authApi.verifyPassThunk.fulfilled)
+      // .addCase(authApi.verifyPassThunk.fulfilled)
       .addCase(authApi.forgotPassThunk.fulfilled);
   },
 });

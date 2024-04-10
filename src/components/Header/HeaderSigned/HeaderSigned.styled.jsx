@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const HeaderContainer = styled.header`
-    margin: 0 auto;
-    max-width: 1216px;
-    
+  margin: 0 auto;
+  max-width: 1216px;
 `;
 
 export const Navigation = styled.nav`
@@ -56,77 +55,109 @@ export const LogoLink = styled(Link)`
 `;
 
 export const UserContext = styled.div`
-    position: relative;
-    display: flex;
-    max-height: 48px;
-    font: 400 18px/1.5 'Roboto',
+  position: relative;
+  display: flex;
+  max-height: 48px;
+  font:
+    400 18px/1.5 'Roboto',
     sans-serif;
-    gap: 8px;
+  gap: 8px;
+  align-items: center;
+  color: var(--primary-focus);
+  cursor: default;
+
+  &:link,
+  &:hover,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+
+  @media (max-width: 1439px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+
+  .imgWrapper {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  .imgWrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+  }
+
+  .UserContextButton {
+  }
+
+  .menuButton {
+    transform: rotateX(0deg);
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+    display: flex;
     align-items: center;
-    color: var(--primary-focus);
-    cursor: default;
+  }
 
-    &:link,
-    &:hover,
-    &:visited,
-    &:active {
-        text-decoration: none;
-    }
+  .menuButton.rotate {
+    transform: rotateX(180deg);
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+`;
 
-    @media (max-width: 1439px) {
-        font-size: 18px;
-    }
+export const UserContextButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: font-size 0.2s linear;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-focus);
+  overflow: hidden;
 
-    @media (max-width: 767px) {
-        font-size: 16px;
-    }
+  &:focus {
+    outline: none;
+  }
 
-    .imgWrapper {
-        width: 28px;
-        height: 28px;
+  ${(props) =>
+    !props.$verify &&
+    css`
+      .auth-warning {
+        display: none;
+        position: absolute;
+        top: 50px;
+        font-size: 14px;
+        padding: 6px 6px;
+        background-color: var(--secondary-second-brighter);
+        color: var(--primary-light);
+        border-radius: 10px;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        left: calc(-30px);
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-    }
-
-    .imgWrapper img {
-        max-width: 100%;
-        max-height: 100%;
+        background-color: var(--secondary-second);
+      }
+      &:hover .auth-warning {
         display: block;
-    }
-
-    .UserContextButton {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        transition: font-size 0.2s linear;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        color: var(--primary-focus);
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .menuButton {
-        transform: rotateX(0deg);
-        transition: transform 0.3s ease-in-out;
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    .menuButton.rotate {
-        transform: rotateX(180deg);
-        transition: transform 0.3s ease-in-out;
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
+      }
+    `}
 `;

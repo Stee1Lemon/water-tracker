@@ -172,6 +172,14 @@ const SettingsModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleSendEmailVerification = async () => {
+    const result = await dispatch(
+      authApi.sendEmailVerifyThunk({ email: userInfo.email })
+    );
+    console.log(result);
+    Notiflix.Notify.success(result.payload.message);
+  };
+
   useEffect(() => {
     setPreviewUrl(userInfo.avatarURL);
   }, [isOpen, userInfo]);
@@ -181,6 +189,18 @@ const SettingsModal = ({ isOpen, onClose }) => {
       <ModalSettingContainer>
         <div className="settingsFirst">
           <p className="settingsP1">Settings</p>
+          {userInfo.verify ? null : (
+            <button
+              className="uploadPhotoButton"
+              onClick={handleSendEmailVerification}
+              disabled={isLoading}
+            >
+              <div className="arrowUpWrapper">
+                <ArrowUp />
+              </div>
+              Send email verification
+            </button>
+          )}
           <Xmark className="xMarkWrapper" onClick={onClose} />
         </div>
         <div className="settingsSecond">

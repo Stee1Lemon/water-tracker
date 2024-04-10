@@ -30,6 +30,11 @@ export const logout = async () => {
   clearAuthToken();
 };
 
+export const sendEmailVerify = async (email) => {
+  const { data } = await axios.post('api/auth/verify', email);
+  return data;
+};
+
 export const refreshUser = async (token) => {
   setAuthToken(token);
   const { data } = await axios.get('api/user/current');
@@ -62,13 +67,13 @@ export const deleteUser = async () => {
 
 //additional tasks (password)**********************
 export const verifyPassword = async () => {
-    const { data } = await axios.post('api/auth/verify');
-    return data;
+  const { data } = await axios.post('api/auth/verify');
+  return data;
 };
 
-export const forgotPassword = async body => {
-    const { data } = await axios.post('api/auth/forgot-password', body);
-    return data;
+export const forgotPassword = async (body) => {
+  const { data } = await axios.post('api/auth/forgot-password', body);
+  return data;
 };
 
 //Water part***************************************

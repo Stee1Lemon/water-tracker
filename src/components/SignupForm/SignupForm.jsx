@@ -46,6 +46,8 @@ export const SignupForm = () => {
       const login = await dispatch(authApi.signinThunk({ email, password }));
       if (login.error) return Notiflix.Notify.failure(login.payload);
 
+      await dispatch(authApi.sendEmailVerifyThunk({ email }));
+
       formik.resetForm();
     },
   });
