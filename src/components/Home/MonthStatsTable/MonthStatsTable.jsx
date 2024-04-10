@@ -38,6 +38,7 @@ export const MonthStatsTable = () => {
 
   const { waterForMonth = [] } = useSelector(selectMonthWater);
   const todayWaterData = useSelector(selectTodayWater);
+
   const waterRate = useSelector(selectWaterRate);
   const { allAmountForDay = 0 } = useSelector(selectTodayWater);
   
@@ -48,7 +49,7 @@ export const MonthStatsTable = () => {
 
   useEffect(() => {
     setDailyNormaFullfilled(volumePercentage)
-  },[waterRate, allAmountForDay, volumePercentage])
+  },[waterRate, allAmountForDay, todayWaterData, volumePercentage])
 
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeButton, setActiveButton] = useState(null);
@@ -131,19 +132,10 @@ export const MonthStatsTable = () => {
           const key = format(date, 'd, MMMM');
           const dayData = monthData[key] || 0;
 
-          const { date: today } = dayData;
-          let percentage;
-          let isHighlighted;
-          const isToday = today === format(new Date(), 'd, MMMM');
-          if (isToday) {
-            percentage = dailyNormaFullfilled;
-            isHighlighted = dailyNormaFullfilled >= 100 || false;
-          } else {
-            percentage = dayData ? parseInt(dayData.percentageWater) : 0;
-            isHighlighted = dayData
+          const percentage = dayData ? parseInt(dayData.percentageWater) : 0;
+            const isHighlighted = dayData
             ? dayData && parseInt(dayData.percentageWater) >= 100
             : false;
-          }
 
           return (
             <DayComponent
