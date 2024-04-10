@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Notiflix from 'notiflix';
-import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg';
@@ -11,8 +10,9 @@ import authApi from '../../../redux/auth/authOperations.js';
 import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 import { selectIsLoading } from '../../../redux/root/rootSelectors.js';
 import Loader from '../../Loader/Loader.jsx';
+import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 
-const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
+const SettingsModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectAuthUser);
   const [file, setFile] = useState(null);
@@ -36,29 +36,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
 
   const [errors, setErrors] = useState({});
   const [changedFields, setChangedFields] = useState({});
-
-  useEffect(() => {
-    if (isSettingsModalOpen) {
-      setFile(null);
-      setPreviewUrl(userInfo.avatarURL);
-    } else {
-      setFormData({
-        gender: '',
-        name: '',
-        email: '',
-        outdatedPassword: '',
-        newPassword: '',
-        repeatPassword: '',
-      });
-      setPasswordVisible({
-        outdatedPassword: false,
-        newPassword: false,
-        repeatPassword: false,
-      });
-      setErrors({});
-      setChangedFields({});
-    }
-  }, [isSettingsModalOpen, userInfo]);
 
   const togglePasswordVisibility = (field) => {
     setPasswordVisible((prevState) => ({
@@ -189,15 +166,38 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     const result = await dispatch(authApi.editUserInfoThunk(dataToSave));
     if (result.error) return Notiflix.Notify.failure(result.payload);
     Notiflix.Notify.success('Your changes have been saved successfully!');
-    toggleSettingsModal();
+    onClose();
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      setFile(null);
+      setPreviewUrl(userInfo.avatarURL);
+    } else {
+      setFormData({
+        gender: '',
+        name: '',
+        email: '',
+        outdatedPassword: '',
+        newPassword: '',
+        repeatPassword: '',
+      });
+      setPasswordVisible({
+        outdatedPassword: false,
+        newPassword: false,
+        repeatPassword: false,
+      });
+      setErrors({});
+      setChangedFields({});
+    }
+  }, [isOpen, userInfo]);
+
   return (
-    <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
+    <ModalOverlay isOpen={isOpen} onClose={onClose}>
       <ModalSettingContainer>
         <div className="settingsFirst">
           <p className="settingsP1">Settings</p>
-          <Xmark className="xMarkWrapper" onClick={toggleSettingsModal} />
+          <Xmark className="xMarkWrapper" onClick={onClose} />
         </div>
         <div className="settingsSecond">
           <p className="settingsP2">Your Photo</p>
@@ -410,7 +410,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </button>
         </div>
       </ModalSettingContainer>
-    </Modal>
+    </ModalOverlay>
   );
 };
 
