@@ -1,14 +1,14 @@
 import ForgotPasswordForm from 'components/ForgotPaswordForm/ForgotPasswordForm';
-import { FormContainer, FormSection } from 'pages/SigninPage/SigninPage.styled';
+import { FormContainer } from 'pages/SigninPage/SigninPage.styled';
 
 const ForgotPassword = () => {
   return (
     <>
-      <FormSection>
+      <section>
         <FormContainer>
           <ForgotPasswordForm />
         </FormContainer>
-      </FormSection>
+      </section>
     </>
   );
 };
