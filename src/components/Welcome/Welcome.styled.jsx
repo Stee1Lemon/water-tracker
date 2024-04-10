@@ -105,7 +105,6 @@ export const WelcomePageSubtitle = styled.p`
   }
 
   @media screen and (min-width: 1440px) {
-    // width: 660px;
     color: var(--primary-dark);
     font-family: Roboto;
     font-size: 26px;
@@ -284,10 +283,6 @@ export const WelcomePageButton = styled.button`
 
 export const WelcomePageNavLink = styled(NavLink)`
   color: var(--primary-light);
-
-  
-    
-  }
 `;
 
 export const WelcomePageDescriptionWrapper = styled.div`

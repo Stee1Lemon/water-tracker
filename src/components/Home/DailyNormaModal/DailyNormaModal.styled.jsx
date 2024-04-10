@@ -11,9 +11,6 @@ export const NormaModal = styled('div')`
   max-height: 85vh;
   overflow-y: auto;
   overflow-x: hidden;
-  /* @media only screen and (min-width: 768px) {
-    max-height: 580px;
-} */
 `;
 
 export const CalculationScheme = styled('div')`

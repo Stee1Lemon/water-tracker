@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-// LogOutStyles
-
 export const ModalLogOutContainer = styled.div`
   background-color: var(--primary-light);
   border-radius: 10px;

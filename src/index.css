@@ -15,9 +15,6 @@
 
 body {
   background-color: var(--primary-light);
-  background-size: auto 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -62,8 +59,3 @@ button {
 ::-webkit-scrollbar-track {
   background-color: rgba(239, 237, 232, 0.1);
 }
-
-/* Firefox 
-  {
-  scrollbar-color: #9ebbff rgba(239, 237, 232, 0.1);
-} */

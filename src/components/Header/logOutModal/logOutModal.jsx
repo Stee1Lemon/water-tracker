@@ -1,4 +1,3 @@
-// import Modal from 'components/Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ModalLogOutContainer } from './logOutModal.styled';
 import { useDispatch } from 'react-redux';

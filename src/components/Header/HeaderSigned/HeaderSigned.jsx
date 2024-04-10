@@ -24,45 +24,6 @@ export const HeaderSigned = () => {
     setMenuVisible((prevState) => !prevState);
   };
 
-  // Модалка налаштувань
-  // const toggleSettingsModal = () => {
-  //   setSettingsModalOpen(!isSettingsModalOpen);
-  // };
-
-  // Модалка LogOut
-  // const toggleLogoutModal = () => {
-  //   setLogoutModalOpen(!isLogoutModalOpen);
-  // };
-
-  // Закриття на esc
-  // const handleKeyDown = (event) => {
-  //   if (event.key === 'Escape') {
-  //     setSettingsModalOpen(false);
-  //     setLogoutModalOpen(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   function handleClickOutside(event) {
-  //     const isModalOpen = isSettingsModalOpen || isLogoutModalOpen;
-
-  //     if (
-  //       !menuRef.current.contains(event.target) &&
-  //       !menuButtonRef.current.contains(event.target) &&
-  //       !isModalOpen
-  //     ) {
-  //       setMenuVisible(false);
-  //     }
-  //   }
-
-  //   document.addEventListener('mousedown', handleClickOutside);
-  //   window.addEventListener('keydown', handleKeyDown);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //     window.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [menuRef, menuButtonRef, isSettingsModalOpen, isLogoutModalOpen]);
-
   return (
     <HeaderContainer>
       <Navigation>

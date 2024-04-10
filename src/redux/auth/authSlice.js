@@ -3,15 +3,10 @@ import authApi from './authOperations';
 import {
   handleDeleteUser,
   handleEditUser,
-  // handleForgotPass,
   handleLogout,
-  // handleRefreshFulfiled,
-  // handleRefreshPending,
-  // handleRefreshRejected,
   handleSignin,
   handleUpdateAvatar,
   handleUserInfo,
-  // handleVerifyPass,
   handleWaterRate,
 } from './handlers';
 
