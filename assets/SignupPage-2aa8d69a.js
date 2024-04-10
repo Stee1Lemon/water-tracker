@@ -1,4 +1,4 @@
-import{u as r,a as f,r as y,b as v,s as k,c as t,d as b,j as o,i as n,L as j,N as P}from"./index-368e7e1c.js";import{u as z,c as F,a as i,b as S}from"./index.esm-1cf734d4.js";import{u as I,M as N}from"./ModalTeam-d41bd8fc.js";import{m as $,a as B,t as C,b as q,d as A,c as E}from"./signup-bottle-desktop-c5b3fade.js";const L=r.form`
+import{u as r,a as f,r as y,b as v,s as k,c as d,d as p,j as o,i as n,L as j,N as P}from"./index-da0b41c1.js";import{u as z,c as F,a as c,b as S}from"./index.esm-36d89c20.js";import{u as I,M as N}from"./ModalTeam-95342f57.js";import{m as $,a as B,t as C,b as q,d as E,c as T}from"./signup-bottle-desktop-c5b3fade.js";const A=r.form`
   display: flex;
   flex-direction: column;
   max-width: 280px;
@@ -120,13 +120,13 @@ import{u as r,a as f,r as y,b as v,s as k,c as t,d as b,j as o,i as n,L as j,N a
       width: 384px;
     }
   }
-`,d=r.div`
+`,l=r.div`
   margin-bottom: 16px;
   position: relative;
-`,p=r.span`
+`,h=r.span`
   color: var(--secondary-second);
   font-size: 14px;
-`,T=r.div`
+`,L=r.div`
   @media screen and (max-width: 767px) {
     margin-left: 0;
     margin-top: 100px;
@@ -138,7 +138,7 @@ import{u as r,a as f,r as y,b as v,s as k,c as t,d as b,j as o,i as n,L as j,N a
     margin: 0 auto;
     margin-top: 70px;
   }
-`,M=()=>{const{t:a}=I(),c=f(),[s,w]=y.useState(!1),l=v(k),e=z({initialValues:{email:"",password:"",repeatedPassword:""},validationSchema:F({email:i().required("Email is required").matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,"Invalid email"),password:i().required("Password is required").min(8,"Password must contain at least 8 characters").max(64,"Password must contain no more than 64 characters"),repeatedPassword:i().required("Password is required").oneOf([S("password"),null],"Passwords must match")}),onSubmit:async({email:u,password:m})=>{t.Notify.info("Please, consider that we use free API resources. Initial load may take some time.");const x=await c(b.signupThunk({email:u,password:m}));if(x.error)return t.Notify.failure(x.payload);const g=await c(b.signinThunk({email:u,password:m}));if(g.error)return t.Notify.failure(g.payload);e.resetForm()}}),h=()=>{w(!s)};return o.jsxs(L,{onSubmit:e.handleSubmit,children:[o.jsx("h2",{children:a("authForm.headerSignup")}),o.jsx("label",{children:a("authForm.labelEmail")}),o.jsxs(d,{children:[o.jsx("input",{type:"email",name:"email",placeholder:a("authForm.placeholdEmail"),onChange:e.handleChange,onBlur:e.handleBlur,value:e.values.email,style:{color:e.errors.email&&e.touched.email?"var(--secondary-second)":"var(--primary-focus)",border:e.errors.email&&e.touched.email?"1px solid var(--secondary-second)":"1px solid var(--secondary-fifth)"}}),e.errors.email&&e.touched.email?o.jsx(p,{children:e.errors.email}):null]}),o.jsx("label",{children:a("authForm.labelPassword")}),o.jsxs(d,{children:[o.jsx("input",{type:s?"text":"password",name:"password",placeholder:a("authForm.placeholdPassword"),onChange:e.handleChange,onBlur:e.handleBlur,value:e.values.password,style:{color:e.errors.password&&e.touched.password?"var(--secondary-second)":"var(--primary-focus)",border:e.errors.password&&e.touched.password?"1px solid var(--secondary-second)":"1px solid var(--secondary-fifth)"}}),o.jsx("button",{type:"button",className:"icon-eye",onClick:h,style:{top:e.errors.password&&e.touched.password?"23%":"30%"},children:o.jsx("svg",{width:"16",height:"16",className:"icon",children:o.jsx("use",{href:s?n+"#icon-opened-eye":n+"#icon-closed-eye"})})}),e.errors.password&&e.touched.password?o.jsx(p,{children:e.errors.password}):null]}),o.jsx("label",{children:a("authForm.labelRepeatPassword")}),o.jsxs(d,{children:[o.jsx("input",{type:s?"text":"password",name:"repeatedPassword",placeholder:a("authForm.labelRepeatPassword"),onChange:e.handleChange,onBlur:e.handleBlur,value:e.values.repeatedPassword,style:{color:e.errors.repeatedPassword&&e.touched.repeatedPassword?"var(--secondary-second)":"var(--primary-focus)",border:e.errors.repeatedPassword&&e.touched.repeatedPassword?"1px solid var(--secondary-second)":"1px solid var(--secondary-fifth)"}}),o.jsx("button",{type:"button",className:"icon-eye",onClick:h,style:{top:e.errors.repeatedPassword&&e.touched.repeatedPassword?"23%":"30%"},children:o.jsx("svg",{width:"16",height:"16",className:"icon",children:o.jsx("use",{href:s?n+"#icon-opened-eye":n+"#icon-closed-eye"})})}),e.errors.repeatedPassword&&e.touched.repeatedPassword?o.jsx(p,{children:e.errors.repeatedPassword}):null]}),o.jsx("button",{type:"submit",disabled:l,children:l?o.jsx(j,{}):a("authForm.buttonSignup")}),o.jsx(P,{to:"/signin",children:a("authForm.linkSignin")}),o.jsx(T,{children:o.jsx(N,{})})]})},R=r.section`
+`,M=()=>{const{t:a}=I(),t=f(),[s,w]=y.useState(!1),u=v(k),e=z({initialValues:{email:"",password:"",repeatedPassword:""},validationSchema:F({email:c().required("Email is required").matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,"Invalid email"),password:c().required("Password is required").min(8,"Password must contain at least 8 characters").max(64,"Password must contain no more than 64 characters"),repeatedPassword:c().required("Password is required").oneOf([S("password"),null],"Passwords must match")}),onSubmit:async({email:i,password:x})=>{d.Notify.info("Please, consider that we use free API resources. Initial load may take some time.");const g=await t(p.signupThunk({email:i,password:x}));if(g.error)return d.Notify.failure(g.payload);const b=await t(p.signinThunk({email:i,password:x}));if(b.error)return d.Notify.failure(b.payload);await t(p.sendEmailVerifyThunk({email:i})),e.resetForm()}}),m=()=>{w(!s)};return o.jsxs(A,{onSubmit:e.handleSubmit,children:[o.jsx("h2",{children:a("authForm.headerSignup")}),o.jsx("label",{children:a("authForm.labelEmail")}),o.jsxs(l,{children:[o.jsx("input",{type:"email",name:"email",placeholder:a("authForm.placeholdEmail"),onChange:e.handleChange,onBlur:e.handleBlur,value:e.values.email,style:{color:e.errors.email&&e.touched.email?"var(--secondary-second)":"var(--primary-focus)",border:e.errors.email&&e.touched.email?"1px solid var(--secondary-second)":"1px solid var(--secondary-fifth)"}}),e.errors.email&&e.touched.email?o.jsx(h,{children:e.errors.email}):null]}),o.jsx("label",{children:a("authForm.labelPassword")}),o.jsxs(l,{children:[o.jsx("input",{type:s?"text":"password",name:"password",placeholder:a("authForm.placeholdPassword"),onChange:e.handleChange,onBlur:e.handleBlur,value:e.values.password,style:{color:e.errors.password&&e.touched.password?"var(--secondary-second)":"var(--primary-focus)",border:e.errors.password&&e.touched.password?"1px solid var(--secondary-second)":"1px solid var(--secondary-fifth)"}}),o.jsx("button",{type:"button",className:"icon-eye",onClick:m,style:{top:e.errors.password&&e.touched.password?"23%":"30%"},children:o.jsx("svg",{width:"16",height:"16",className:"icon",children:o.jsx("use",{href:s?n+"#icon-opened-eye":n+"#icon-closed-eye"})})}),e.errors.password&&e.touched.password?o.jsx(h,{children:e.errors.password}):null]}),o.jsx("label",{children:a("authForm.labelRepeatPassword")}),o.jsxs(l,{children:[o.jsx("input",{type:s?"text":"password",name:"repeatedPassword",placeholder:a("authForm.labelRepeatPassword"),onChange:e.handleChange,onBlur:e.handleBlur,value:e.values.repeatedPassword,style:{color:e.errors.repeatedPassword&&e.touched.repeatedPassword?"var(--secondary-second)":"var(--primary-focus)",border:e.errors.repeatedPassword&&e.touched.repeatedPassword?"1px solid var(--secondary-second)":"1px solid var(--secondary-fifth)"}}),o.jsx("button",{type:"button",className:"icon-eye",onClick:m,style:{top:e.errors.repeatedPassword&&e.touched.repeatedPassword?"23%":"30%"},children:o.jsx("svg",{width:"16",height:"16",className:"icon",children:o.jsx("use",{href:s?n+"#icon-opened-eye":n+"#icon-closed-eye"})})}),e.errors.repeatedPassword&&e.touched.repeatedPassword?o.jsx(h,{children:e.errors.repeatedPassword}):null]}),o.jsx("button",{type:"submit",disabled:u,children:u?o.jsx(j,{}):a("authForm.buttonSignup")}),o.jsx(P,{to:"/signin",children:a("authForm.linkSignin")}),o.jsx(L,{children:o.jsx(N,{})})]})},R=r.section`
   @media only screen and (max-width: 767px) {
     background-image: url(${$});
     background-size: cover;
@@ -181,14 +181,14 @@ import{u as r,a as f,r as y,b as v,s as k,c as t,d as b,j as o,i as n,L as j,N a
 
   @media only screen and (min-width: 1440px) {
     height: 100%;
-    background-image: url(${A});
+    background-image: url(${E});
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
     &::before {
       content: '';
       position: absolute;
-      background-image: url(${E});
+      background-image: url(${T});
       background-size: contain;
       background-repeat: no-repeat;
       z-index: -99;
@@ -199,7 +199,7 @@ import{u as r,a as f,r as y,b as v,s as k,c as t,d as b,j as o,i as n,L as j,N a
       height: 680px;
     }
   }
-`,Z=r.div`
+`,V=r.div`
   max-width: 320px;
   margin: 0 auto;
   padding: 24px 20px;
@@ -216,4 +216,4 @@ import{u as r,a as f,r as y,b as v,s as k,c as t,d as b,j as o,i as n,L as j,N a
     display: flex;
     justify-content: flex-end;
   }
-`,G=()=>o.jsx(R,{children:o.jsx(Z,{children:o.jsx(M,{})})});export{G as default};
+`,G=()=>o.jsx(R,{children:o.jsx(V,{children:o.jsx(M,{})})});export{G as default};

@@ -1,4 +1,4 @@
-import{u as i,N as r,j as e,i as a}from"./index-368e7e1c.js";import{u as d,M as p}from"./ModalTeam-d41bd8fc.js";import{C as s}from"./Container-43f289b4.js";const l="/water-tracker/assets/background-main-page-9f8a621c.png",c="/water-tracker/assets/signup-background-desktop-88afa2b3.png",m="/water-tracker/assets/tablet-background-main-page-1f797613.png",x="/water-tracker/assets/tablet-background-element-home-screen-09058794.png",g="/water-tracker/assets/mobile-background-main-page-686385c1.png",h=i.section`
+import{u as i,N as r,j as e,i as a}from"./index-da0b41c1.js";import{u as d,M as p}from"./ModalTeam-95342f57.js";import{C as s}from"./Container-780756af.js";const l="/water-tracker/assets/background-main-page-9f8a621c.png",c="/water-tracker/assets/signup-background-desktop-88afa2b3.png",m="/water-tracker/assets/tablet-background-main-page-1f797613.png",x="/water-tracker/assets/tablet-background-element-home-screen-09058794.png",g="/water-tracker/assets/mobile-background-main-page-686385c1.png",h=i.section`
   @media only screen and (max-width: 767px) {
     background-image: url(${g});
     background-size: cover;
