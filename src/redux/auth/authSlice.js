@@ -48,7 +48,7 @@ const authSlice = createSlice({
       .addCase(authApi.updateAvatarThunk.fulfilled, handleUpdateAvatar)
       .addCase(authApi.deleteUserThunk.pending, handleDeleteUser)
       .addCase(authApi.waterRateThunk.fulfilled, handleWaterRate)
-      // .addCase(authApi.verifyPassThunk.fulfilled)
+      .addCase(authApi.verifyPasswordThunk.fulfilled)
       .addCase(authApi.forgotPassThunk.fulfilled);
   },
 });

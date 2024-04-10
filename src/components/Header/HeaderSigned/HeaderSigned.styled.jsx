@@ -146,6 +146,7 @@ export const UserContextButton = styled.button`
         background-color: var(--secondary-second-brighter);
         color: var(--primary-light);
         border-radius: 10px;
+        z-index: 1;
       }
       &:before {
         content: '';
