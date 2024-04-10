@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Notiflix from 'notiflix';
-import Modal from '../../Modal/Modal';
 import { ReactComponent as Xmark } from '../headerIcons/Xmark.svg';
 import { ReactComponent as ArrowUp } from '../headerIcons/ArrowUp.svg';
 import { ReactComponent as ShowPassword } from '../headerIcons/ShowPassword.svg';
@@ -11,13 +10,14 @@ import authApi from '../../../redux/auth/authOperations.js';
 import { selectAuthUser } from '../../../redux/auth/authSelectors.js';
 import { selectIsLoading } from '../../../redux/root/rootSelectors.js';
 import Loader from '../../Loader/Loader.jsx';
+import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 
-const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
+const SettingsModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectAuthUser);
+  const isLoading = useSelector(selectIsLoading);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(userInfo.avatarURL);
-  const isLoading = useSelector(selectIsLoading);
 
   const [passwordVisible, setPasswordVisible] = useState({
     outdatedPassword: false,
@@ -35,30 +35,6 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   });
 
   const [errors, setErrors] = useState({});
-  const [changedFields, setChangedFields] = useState({});
-
-  useEffect(() => {
-    if (isSettingsModalOpen) {
-      setFile(null);
-      setPreviewUrl(userInfo.avatarURL);
-    } else {
-      setFormData({
-        gender: '',
-        name: '',
-        email: '',
-        outdatedPassword: '',
-        newPassword: '',
-        repeatPassword: '',
-      });
-      setPasswordVisible({
-        outdatedPassword: false,
-        newPassword: false,
-        repeatPassword: false,
-      });
-      setErrors({});
-      setChangedFields({});
-    }
-  }, [isSettingsModalOpen, userInfo]);
 
   const togglePasswordVisibility = (field) => {
     setPasswordVisible((prevState) => ({
@@ -75,22 +51,22 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-    setChangedFields((prevState) => ({ ...prevState, [name]: true }));
     validateField(name, value);
   };
 
   const handleRadioChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-    setChangedFields((prevState) => ({ ...prevState, [name]: true }));
   };
 
   const validateField = (name, value, isSave) => {
     let fieldErrors = { ...errors };
 
-    if (
+    if (value === '') {
+      delete fieldErrors[name];
+    } else if (
       name === 'name' &&
-      (!value || value.length < 2 || !/^[A-Za-z ]+$/.test(value))
+      (value.length < 2 || !/^[A-Za-z ]+$/.test(value))
     ) {
       fieldErrors[name] = 'Name must be at least 2 characters long.';
     } else if (name === 'email' && (!value || !/\S+@\S+\.\S+/.test(value))) {
@@ -113,6 +89,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     }
 
     setErrors(fieldErrors);
+    console.log(fieldErrors);
   };
 
   //Photo upload
@@ -125,14 +102,11 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     setFile(file);
   };
   const handleUploadPhoto = () => {
-    const photoData = new FormData();
-    photoData.append('file', file);
-
     dispatch(authApi.updateAvatarThunk(file));
   };
 
-  const handleSave = async () => {
-    const fieldsToValidate = [
+  const validatePasswords = () => {
+    const passwordFields = [
       'outdatedPassword',
       'newPassword',
       'repeatPassword',
@@ -140,63 +114,74 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
     let isValid = true;
     const currentErrors = { ...errors };
 
-    const passwordFieldsChanged = fieldsToValidate.some(
-      (field) => changedFields[field]
-    );
-    if (passwordFieldsChanged) {
-      fieldsToValidate.forEach((field) => {
-        if (!formData[field] || formData[field].length < 8) {
-          currentErrors[field] = 'Password must be at least 8 characters long.';
-          isValid = false;
-        }
-      });
-      if (formData.newPassword !== formData.repeatPassword) {
-        currentErrors['repeatPassword'] = "Passwords don't match.";
+    passwordFields.forEach((field) => {
+      const value = formData[field];
+      if (value !== '' && value.length < 8) {
+        currentErrors[field] = 'Password must be at least 8 characters long.';
         isValid = false;
       }
-    }
+    });
 
-    const passwordProvided = Object.keys(formData).some(
-      (key) => fieldsToValidate.includes(key) && formData[key]
-    );
+    if (formData.newPassword !== formData.repeatPassword) {
+      currentErrors['repeatPassword'] = "Passwords don't match.";
+      isValid = false;
+    }
 
     if (!isValid) {
       setErrors(currentErrors);
       Notiflix.Notify.failure('Please correct the errors before saving.');
-      return;
     }
 
-    // Prepare dataToSave
-    const dataToSave = Object.keys(formData).reduce((acc, key) => {
-      if (
-        key !== 'repeatPassword' &&
-        (formData[key] || (key === 'repeatPassword' && passwordProvided))
-      ) {
-        acc[key] = formData[key];
-      }
-      return acc;
-    }, {});
-
-    if (file) {
-      const resultImg = await handleUploadPhoto();
-      if (resultImg.error) return Notiflix.Notify.failure(result.payload);
-      Notiflix.Notify.success('Your avatar changes successfully!');
-    }
-
-    if (Object.keys(dataToSave).length === 0) {
-      return Notiflix.Notify.info('Must be at least one field to change.');
-    }
-    const result = await dispatch(authApi.editUserInfoThunk(dataToSave));
-    if (result.error) return Notiflix.Notify.failure(result.payload);
-    Notiflix.Notify.success('Your changes have been saved successfully!');
+    return isValid;
   };
 
+  const prepareDataToSave = () => {
+    const dataToSave = { ...formData };
+    delete dataToSave.repeatPassword;
+
+    const keysWithValues = Object.keys(dataToSave).filter(
+      (key) => dataToSave[key] && key !== 'repeatPassword'
+    );
+
+    if (keysWithValues.length === 0) {
+      return null;
+    }
+
+    return keysWithValues.reduce((acc, key) => {
+      acc[key] = dataToSave[key];
+      return acc;
+    }, {});
+  };
+
+  const handleSave = async () => {
+    const isPasswordValid = validatePasswords();
+    if (!isPasswordValid) return;
+
+    const dataToSave = prepareDataToSave();
+
+    try {
+      if (!file && !dataToSave)
+        throw new Error('Must be at least one field to change.');
+      if (file) await handleUploadPhoto();
+      if (dataToSave) await dispatch(authApi.editUserInfoThunk(dataToSave));
+
+      Notiflix.Notify.success('Your changes have been saved successfully!');
+      onClose();
+    } catch (error) {
+      Notiflix.Notify.failure(error.message);
+    }
+  };
+
+  useEffect(() => {
+    setPreviewUrl(userInfo.avatarURL);
+  }, [isOpen, userInfo]);
+
   return (
-    <Modal isOpen={isSettingsModalOpen} onClose={toggleSettingsModal}>
+    <ModalOverlay isOpen={isOpen} onClose={onClose}>
       <ModalSettingContainer>
         <div className="settingsFirst">
           <p className="settingsP1">Settings</p>
-          <Xmark className="xMarkWrapper" onClick={toggleSettingsModal} />
+          <Xmark className="xMarkWrapper" onClick={onClose} />
         </div>
         <div className="settingsSecond">
           <p className="settingsP2">Your Photo</p>
@@ -337,7 +322,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
                   togglePasswordTextVisibility('newPassword');
                 }}
               >
-                {passwordVisible.password ? (
+                {passwordVisible.newPassword ? (
                   <ShowPasswordActive className="showPasswordSVG" />
                 ) : (
                   <ShowPassword className="showPasswordSVG" />
@@ -409,7 +394,7 @@ const SettingsModal = ({ isSettingsModalOpen, toggleSettingsModal }) => {
           </button>
         </div>
       </ModalSettingContainer>
-    </Modal>
+    </ModalOverlay>
   );
 };
 

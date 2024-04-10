@@ -26,7 +26,7 @@ export const DeleteUserBtn = () => {
           </div>
           <div className="logOutDiv2">
             <p className="logOutP2">
-              Do you really want to delete your prefill?
+              Do you really want to delete your profile?
             </p>
           </div>
           <div className="logOutDiv3">
