@@ -5,12 +5,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Notiflix from 'notiflix';
 import { useTranslation } from 'react-i18next';
-import { Form, InputDiv, Message, SignupTeam } from './SignupForm.styled';
+import { Form, InputDiv, Message } from './SignupForm.styled';
 import icons from '../../assets/icons.svg';
 import authApi from '../../redux/auth/authOperations';
 import Loader from 'components/Loader/Loader';
 import { selectIsLoading } from '../../redux/root/rootSelectors';
-import ModalTeam from 'components/ModalTeam/ModalTeam';
 
 export const SignupForm = () => {
   const { t } = useTranslation();
@@ -173,9 +172,6 @@ export const SignupForm = () => {
         {isLoading ? <Loader /> : t('authForm.buttonSignup')}
       </button>
       <NavLink to="/signin">{t('authForm.linkSignin')}</NavLink>
-      <SignupTeam>
-        <ModalTeam />
-      </SignupTeam>
     </Form>
   );
 };

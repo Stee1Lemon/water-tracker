@@ -1,6 +1,5 @@
 import {
   WelcomePageWrapper,
-  WelcomePageTextWrapper,
   WelcomePageTitle,
   WelcomePageSubtitle,
   WelcomePageTrackerTitle,
@@ -26,7 +25,7 @@ export const Welcome = () => {
   return (
     <>
       <WelcomePageWrapper>
-        <WelcomePageTextWrapper>
+        <div>
           <WelcomePageTitle>{t('welcome.header')}</WelcomePageTitle>
           <WelcomePageSubtitle>{t('welcome.description')}</WelcomePageSubtitle>
           <WelcomePageTrackerTitle>
@@ -60,7 +59,7 @@ export const Welcome = () => {
               </WelcomePageNavLink>
             </WelcomePageButton>
           </div>
-        </WelcomePageTextWrapper>
+        </div>
 
         <WelcomePageDescriptionWrapper>
           <WelcomePageDescriptionDiv>

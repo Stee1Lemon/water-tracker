@@ -1,6 +1,8 @@
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
+import CardMember from './CardMember';
 import { useState } from 'react';
 import icons from '../../assets/icons.svg';
+
 import VG from 'assets/photoTeam/VLADYSLAV-GOLODNIUK.jpg';
 import MA from 'assets/photoTeam/MARYNA-AKSAKOVA.jpg';
 import AT from 'assets/photoTeam/ALINA-TANTSURA.jpg';
@@ -12,23 +14,95 @@ import OB from 'assets/photoTeam/OLHA-BUZAK.jpg';
 import VS from 'assets/photoTeam/VADYM-STARYNETS-min.png';
 import YS from 'assets/photoTeam/YELYZAVETA SHATROVA.jpg';
 
-import {
-  TeamButton,
-  ModalTeamOverlay,
-  ButtonOverlay,
-  Image,
-  ContainerTeam,
-  ListTeam,
-  IconTeam,
-  IconTeamGithub,
-  IconList,
-  ContainerListTeam,
-  TitleTeam,
-  SubtitleTeam,
-} from './ModalTeam.styled';
+import { TeamButton, ButtonOverlay, CardArray } from './ModalTeam.styled';
 
 const ModalTeam = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const teamArray = [
+    {
+      id: 1,
+      name: 'Vladyslav Golodnuik',
+      role: 'Team Lead Frontend',
+      photo: VG,
+      linkedin: 'https://www.linkedin.com/in/vladyslav-golodniuk-780902302/',
+      github: 'https://github.com/Stee1Lemon',
+    },
+
+    {
+      id: 2,
+      name: 'Maryna Aksakova',
+      role: 'Team Lead Backend',
+      photo: MA,
+      linkedin: 'https://www.linkedin.com/in/maryna-aksakova-3a0b9623b/',
+      github: 'https://github.com/Marixa82',
+    },
+    {
+      id: 3,
+      name: 'Oleh Kriuchkov',
+      role: 'Scrum Master',
+      photo: OK,
+      linkedin: 'https://www.linkedin.com/in/oleg-kryuchkov/',
+      github: 'https://github.com/OlegKryuchkov',
+    },
+    {
+      id: 4,
+      name: 'Maksym Vysotskyi',
+      role: 'Backend developer',
+      photo: MV,
+      linkedin: 'https://www.linkedin.com/in/maxim-vysotsky-74a570274/',
+      github: 'https://github.com/Needlife1',
+    },
+    {
+      id: 5,
+      name: 'Alina Tantsura',
+      role: 'Backend developer',
+      photo: AT,
+      linkedin: 'https://www.linkedin.com/in/alina-tantsura/',
+      github: 'https://github.com/AlinaTantsura',
+    },
+
+    {
+      id: 6,
+      name: 'Vadym Starynets',
+      role: 'Frontend developer',
+      photo: VS,
+      linkedin: 'https://www.linkedin.com/in/vadymstarynets/',
+      github: 'https://github.com/Debeluk',
+    },
+    {
+      id: 7,
+      name: 'Yelyzaveta Shatrova',
+      role: 'Frontend developer',
+      photo: YS,
+      linkedin: 'https://www.linkedin.com/in/yelyzaveta-shatrova/',
+      github: 'https://github.com/shtrvv',
+    },
+    {
+      id: 8,
+      name: 'Iryna Tololo',
+      role: 'Frontend developer',
+      photo: IT,
+      linkedin: 'https://www.linkedin.com/in/iryna-tololo/',
+      github: 'https://github.com/iratololo',
+    },
+    {
+      id: 9,
+      name: 'Kamila Bohdanova',
+      role: 'Frontend developer',
+      photo: KB,
+      linkedin: 'https://www.linkedin.com/in/kamila-bohdanova/',
+      github: 'https://github.com/Kamila0301',
+    },
+    {
+      id: 10,
+      name: 'Olha Buzak',
+      role: 'Frontend developer',
+      photo: OB,
+      linkedin: 'https://www.linkedin.com/in/olha-buzak/',
+      github: 'https://github.com/Olha-buz',
+    },
+  ];
 
   return (
     <>
@@ -40,274 +114,16 @@ const ModalTeam = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(!isModalOpen)}
       >
-        <ModalTeamOverlay>
-          <ContainerTeam>
-            <ListTeam>
-              <ContainerListTeam>
-                <div>
-                  <ButtonOverlay onClick={() => setIsModalOpen(!isModalOpen)}>
-                    <svg>
-                      <use href={`${icons}#icon-close`}></use>
-                    </svg>
-                  </ButtonOverlay>
-                  <Image src={VG}></Image>
-                  <TitleTeam>Vladyslav Golodnuik</TitleTeam>
-                  <SubtitleTeam>Team Lead Frontend</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href="https://www.linkedin.com/in/vladyslav-golodniuk-780902302/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/Stee1Lemon">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={MA}></Image>
-
-                <div>
-                  <TitleTeam>Maryna Aksakova</TitleTeam>
-                  <SubtitleTeam>Team Lead Backend</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href="https://www.linkedin.com/in/maryna-aksakova-3a0b9623b/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/Marixa82">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={OK}></Image>
-
-                <div>
-                  <TitleTeam>Oleh Kriuchkov</TitleTeam>
-                  <SubtitleTeam>Scrum Master</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/oleg-kryuchkov/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href="https://github.com/OlegKryuchkov">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={AT}></Image>
-
-                <div>
-                  <TitleTeam>Alina Tantsura</TitleTeam>
-                  <SubtitleTeam>Backend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/alina-tantsura/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/AlinaTantsura">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-              <ContainerListTeam>
-                <Image src={MV}></Image>
-
-                <div>
-                  <TitleTeam>Maksym Vysotskyi</TitleTeam>
-                  <SubtitleTeam>Backend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/maxim-vysotsky-74a570274/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/Needlife1">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={VS}></Image>
-
-                <div>
-                  <TitleTeam>Vadym Starynets</TitleTeam>
-                  <SubtitleTeam>Frontend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/vadymstarynets/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/Debeluk">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={OB}></Image>
-
-                <div>
-                  <TitleTeam>Olha Buzak</TitleTeam>
-                  <SubtitleTeam>Frontend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/olha-buzak/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/Olha-buz">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={IT}></Image>
-
-                <div>
-                  <TitleTeam>Iryna Tololo</TitleTeam>
-                  <SubtitleTeam>Frontend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/iryna-tololo/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/iratololo">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={YS}></Image>
-
-                <div>
-                  <TitleTeam>Yelyzaveta Shatrova</TitleTeam>
-                  <SubtitleTeam>Frontend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/yelyzaveta-shatrova/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/shtrvv">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-
-              <ContainerListTeam>
-                <Image src={KB}></Image>
-
-                <div>
-                  <TitleTeam>Kamila Bohdanova</TitleTeam>
-                  <SubtitleTeam>Frontend developer</SubtitleTeam>
-                  <IconList>
-                    <IconTeam>
-                      <a href=" https://www.linkedin.com/in/kamila-bohdanova/">
-                        <svg>
-                          <use href={`${icons}#icon-linkedin`}></use>
-                        </svg>
-                      </a>
-                    </IconTeam>
-
-                    <IconTeamGithub>
-                      <a href=" https://github.com/Kamila0301">
-                        <svg>
-                          <use href={`${icons}#icon-github`}></use>
-                        </svg>
-                      </a>
-                    </IconTeamGithub>
-                  </IconList>
-                </div>
-              </ContainerListTeam>
-            </ListTeam>
-          </ContainerTeam>
-        </ModalTeamOverlay>
+        <CardArray>
+          {teamArray.map((member, index) => (
+            <CardMember key={index} data={member} />
+          ))}
+          <ButtonOverlay onClick={() => setIsModalOpen(!isModalOpen)}>
+            <svg>
+              <use href={`${icons}#icon-close`}></use>
+            </svg>
+          </ButtonOverlay>
+        </CardArray>
       </ModalOverlay>
     </>
   );
