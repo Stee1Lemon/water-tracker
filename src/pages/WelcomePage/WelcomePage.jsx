@@ -1,16 +1,13 @@
-import { WelcomeSection, WelcomeContainer } from './WelcomePage.styled';
 import { Welcome } from 'components/Welcome/Welcome';
 import { Container } from 'components/Container/Container';
 
 const WelcomePage = () => {
   return (
-    <WelcomeSection>
+    <section>
       <Container>
-        <WelcomeContainer>
-          <Welcome />
-        </WelcomeContainer>
+        <Welcome />
       </Container>
-    </WelcomeSection>
+    </section>
   );
 };
 

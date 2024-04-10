@@ -25,8 +25,8 @@ export const WelcomePageWrapper = styled.div`
   @media screen and (min-width: 768px) {
     padding-top: 40px;
     padding-bottom: 50px;
-    padding-left: 32px;
-    padding-right: 32px;
+    /* padding-left: 32px;
+    padding-right: 32px; */
   }
 
   @media screen and (min-width: 1440px) {
@@ -95,25 +95,25 @@ export const WelcomePageTrackerList = styled.ul`
 `;
 
 export const WelcomePageTrackerItem = styled.li`
-    display: flex;
-    align-items: center;
-    margin-top: 12px;
-    color: var(--primary-dark);
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.2;
-    min-width: 224px;
-  
-    svg {
-      width: 32px;
-      height: 32px;
-      stroke: var(--primary-focus);
-      fill: none;
-      margin-right: 8px;
-    }
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  color: var(--primary-dark);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  min-width: 224px;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--primary-focus);
+    fill: none;
+    margin-right: 8px;
   }
+
   @media screen and (min-width: 768px) {
     svg {
       width: 40px;
@@ -169,14 +169,12 @@ export const WelcomePageNavLink = styled(NavLink)`
 `;
 
 export const WelcomePageDescriptionWrapper = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `;
 
 export const WelcomePageDescriptionDiv = styled.div`
-  position: absolute;
   padding: 24px 16px;
   border-radius: 10px;
   background: var(--secondary-first);
@@ -192,7 +190,6 @@ export const WelcomePageDescriptionDiv = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    position: relative;
     padding: 32px 21px;
     border-radius: 10px;
     margin-left: 81px;

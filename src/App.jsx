@@ -1,7 +1,7 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { useSelector, useDispatch } from 'react-redux';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { AppWrapper } from './App.styled';
 import PrivateRoute from 'components/auth/PrivateRoute';
@@ -21,10 +21,23 @@ const ForgotPassword = lazy(() =>
 );
 
 function App() {
+  const [background, setBackground] = useState('welcome');
+  const location = useLocation();
   const dispatch = useDispatch();
   const token = useSelector(selectUserToken);
 
   useEffect(() => {
+    switch (location.pathname) {
+      case '/welcome':
+        setBackground('welcome');
+        break;
+      case '/signin' || '/signup':
+        setBackground('sign');
+        break;
+      case '/home':
+        setBackground('home');
+        break;
+    }
     const firstLogIn = () => {
       if (token) {
         const date = new Date();
@@ -38,12 +51,12 @@ function App() {
       }
     };
     firstLogIn();
-  }, [token, dispatch]);
+  }, [token, dispatch, background, location.pathname]);
 
   return (
     <AppWrapper>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route path="/" element={<SharedLayout page={background} />}>
           <Route element={<PublicRoute restricted redirectTo="/home" />}>
             <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/signup" element={<SignupPage />} />

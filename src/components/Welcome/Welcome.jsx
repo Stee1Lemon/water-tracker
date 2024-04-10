@@ -12,13 +12,11 @@ import {
   WelcomePageDescriptionItem,
   WelcomePageDescriptionDiv,
   WelcomePageNavLink,
-  ContainerTeam,
 } from './Welcome.styled';
 
 import icons from '../../assets/icons.svg';
 
 import { useTranslation } from 'react-i18next';
-import ModalTeam from 'components/ModalTeam/ModalTeam';
 
 export const Welcome = () => {
   const { t } = useTranslation();
@@ -92,9 +90,9 @@ export const Welcome = () => {
           </WelcomePageDescriptionDiv>
         </WelcomePageDescriptionWrapper>
       </WelcomePageWrapper>
-      <ContainerTeam>
+      {/* <ContainerTeam>
         <ModalTeam />
-      </ContainerTeam>
+      </ContainerTeam> */}
     </>
   );
 };

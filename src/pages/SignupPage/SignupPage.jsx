@@ -1,13 +1,13 @@
 import { SignupForm } from 'components/SignupForm/SignupForm';
-import { FormContainer, FormSection } from './SignupPage.styled';
+import { FormContainer } from './SignupPage.styled';
 
 const SignupPage = () => {
   return (
-    <FormSection>
+    <section>
       <FormContainer>
         <SignupForm />
       </FormContainer>
-    </FormSection>
+    </section>
   );
 };
 

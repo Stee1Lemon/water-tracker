@@ -7,12 +7,12 @@ import { WaterRatioPanel } from 'components/Home/WaterRatioPanel/WaterRatioPanel
 import {
   Statistics,
   BackgroundWrap,
-  BackgrounImage,
+  // BackgrounImage,
   PageWrap,
   DailyNormaBlock,
   ImageWrap,
 } from './HomePage.styled';
-import bg from '../../assets/bg.png';
+// import bg from '../../assets/bg.png';
 import bottle from '../../assets/bottle.png';
 
 const HomePage = () => {
@@ -34,7 +34,7 @@ const HomePage = () => {
             </Statistics>
           </PageWrap>
         </Container>
-        <BackgrounImage src={bg} alt="bg" />
+        {/* <BackgrounImage src={bg} alt="bg" /> */}
       </BackgroundWrap>
     </>
   );
