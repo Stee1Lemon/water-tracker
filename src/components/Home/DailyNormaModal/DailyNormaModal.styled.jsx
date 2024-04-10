@@ -6,12 +6,10 @@ ${ModalWrap}
 display: flex;
 flex-direction:column;
 row-gap:24px;
- position: relative;
- z-index:2;
-/* max-height: 648px; */
-/* @media only screen and (min-width: 768px) {
-    max-height: 580px;
-} */
+position: relative;
+z-index:2;
+overflow-y:auto;
+max-height: 816px;
 `
 
 export const CalculationScheme = styled('div')`

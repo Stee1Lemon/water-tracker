@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   startOfMonth,
   lastDayOfMonth,
@@ -9,7 +9,7 @@ import {
   isSameMonth,
 } from 'date-fns';
 import { uk } from 'date-fns/locale';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { DayComponent } from './Day/Day';
 import {
@@ -23,11 +23,10 @@ import icons from '../../../assets/icons.svg';
 
 import { selectMonthWater } from '../../../redux/water/waterSelectors';
 import { selectLang } from '../../../redux/root/rootSelectors';
-import { selectTodayWater } from "../../../redux/water/waterSelectors";
-import { selectWaterRate } from "../../../redux/water/waterSelectors"; 
 import { useTranslation } from 'react-i18next';
-import waterApi from "../../../redux/water/waterOperations";
-
+import { selectTodayWater } from '../../../redux/water/waterSelectors';
+import { selectWaterRate } from "../../../redux/water/waterSelectors";
+import { useEffect } from 'react';
 
 const formatOfYear = 'yyyy';
 const formatOfMonth = 'MMMM';
@@ -37,12 +36,19 @@ export const MonthStatsTable = () => {
   const { t } = useTranslation();
   const language = useSelector(selectLang);
 
-  const dispatch = useDispatch();
-
   const { waterForMonth = [] } = useSelector(selectMonthWater);
+  const todayWaterData = useSelector(selectTodayWater);
   const waterRate = useSelector(selectWaterRate);
-  const {allAmountForDay = 0} = useSelector(selectTodayWater);
+  const { allAmountForDay = 0 } = useSelector(selectTodayWater);
+  
+  const [dailyNormaFullfilled, setDailyNormaFullfilled] = useState(0);
+  
   const percent = allAmountForDay / waterRate * 100;
+  const volumePercentage = parseFloat(percent).toFixed(0);
+
+  useEffect(() => {
+    setDailyNormaFullfilled(volumePercentage)
+  },[waterRate, allAmountForDay, volumePercentage])
 
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeButton, setActiveButton] = useState(null);
@@ -56,6 +62,14 @@ export const MonthStatsTable = () => {
     end: lastDay,
   });
 
+  let monthData = [];
+  if (waterForMonth.length > 0) {
+    monthData = waterForMonth?.reduce((acc, dayData) => {
+      acc[dayData.date] = dayData;
+      return acc;
+    }, {});
+  }
+
   let currentMonth;
   if (language === 'uk') {
     currentMonth = format(currentDate, 'LLLL', { locale: uk });
@@ -63,18 +77,6 @@ export const MonthStatsTable = () => {
     currentMonth = format(currentDate, formatOfMonth);
   }
   const currentYear = format(currentDate, formatOfYear);
-  
-
-  useEffect(() => {
-    dispatch(waterApi.getMonthWaterThunk({ date: format(currentDate, 'MM/yyyy') }));
-  }, [dispatch, currentDate, percent]);
-
-
-  const monthData = waterForMonth?.reduce((acc, dayData) => {
-      acc[dayData.date] = dayData;
-      return acc;
-    }, {});
-
 
   const handlePrevMonth = () => {
     const newMonth = subMonths(currentDate, 1);
@@ -129,10 +131,19 @@ export const MonthStatsTable = () => {
           const key = format(date, 'd, MMMM');
           const dayData = monthData[key] || 0;
 
-          const percentage = dayData ? parseInt(dayData.percentageWater) : 0;
-          const isHighlighted = dayData
+          const { date: today } = dayData;
+          let percentage;
+          let isHighlighted;
+          const isToday = today === format(new Date(), 'd, MMMM');
+          if (isToday) {
+            percentage = dailyNormaFullfilled;
+            isHighlighted = dailyNormaFullfilled >= 100 || false;
+          } else {
+            percentage = dayData ? parseInt(dayData.percentageWater) : 0;
+            isHighlighted = dayData
             ? dayData && parseInt(dayData.percentageWater) >= 100
             : false;
+          }
 
           return (
             <DayComponent
@@ -143,6 +154,7 @@ export const MonthStatsTable = () => {
               day={key}
               calendarRef={ref}
               data={monthData}
+              today={{todayWaterData,dailyNormaFullfilled}}
             />
           );
         })}
