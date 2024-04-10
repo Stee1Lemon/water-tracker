@@ -31,7 +31,10 @@ function App() {
       case '/welcome':
         setBackground('welcome');
         break;
-      case '/signin' || '/signup':
+      case '/signin':
+        setBackground('sign');
+        break;
+      case '/signup':
         setBackground('sign');
         break;
       case '/home':
