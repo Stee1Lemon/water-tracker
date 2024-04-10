@@ -1,4 +1,4 @@
-import{u as o}from"./index-37320e23.js";import{m as e,a as n,t,b as i,d as a,c as r}from"./signup-bottle-desktop-c5b3fade.js";const s=o.form`
+import{u as o}from"./index-ade25f37.js";const n=o.form`
   display: flex;
   flex-direction: column;
   max-width: 280px;
@@ -120,74 +120,13 @@ import{u as o}from"./index-37320e23.js";import{m as e,a as n,t,b as i,d as a,c a
       width: 384px;
     }
   }
-`,c=o.div`
+`,t=o.div`
   margin-bottom: 16px;
   position: relative;
-`,x=o.span`
+`,e=o.span`
   color: var(--secondary-second);
   font-size: 14px;
-`,g=o.section`
-  @media only screen and (max-width: 767px) {
-    background-image: url(${e});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top 50px;
-    &::before {
-      content: '';
-      position: absolute;
-      background-image: url(${n});
-      background-size: contain;
-      background-repeat: no-repeat;
-      z-index: -99;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, 98%);
-      width: 280px;
-      height: 210px;
-    }
-  }
-
-  @media only screen and (min-width: 768px) {
-    background-image: url(${t});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top 15px;
-    &::before {
-      content: '';
-      position: absolute;
-      background-image: url(${i});
-      background-size: contain;
-      background-repeat: no-repeat;
-      z-index: -99;
-      top: 50%;
-      left: 50%;
-      transform: translate(-37%, -55%);
-      width: 570px;
-      height: 500px;
-    }
-  }
-
-  @media only screen and (min-width: 1440px) {
-    height: 100%;
-    background-image: url(${a});
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center top;
-    &::before {
-      content: '';
-      position: absolute;
-      background-image: url(${r});
-      background-size: contain;
-      background-repeat: no-repeat;
-      z-index: -99;
-      top: 50%;
-      left: 50%;
-      transform: translate(-85%, -45%);
-      width: 916px;
-      height: 680px;
-    }
-  }
-`,h=o.div`
+`,a=o.div`
   max-width: 320px;
   margin: 0 auto;
   padding: 24px 20px;
@@ -204,4 +143,4 @@ import{u as o}from"./index-37320e23.js";import{m as e,a as n,t,b as i,d as a,c a
     display: flex;
     justify-content: flex-end;
   }
-`;export{s as F,c as I,x as M,g as a,h as b};
+`;export{n as F,t as I,e as M,a};
