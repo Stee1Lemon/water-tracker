@@ -19,7 +19,7 @@ export const DayComponent = ({ isConsumed, date, percentage, day, data, calendar
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   
   const ref = useRef(null);
-
+  const isToday = day === format(new Date(), 'd, MMMM');
   const handleClick = e => {
     if (ref.current && !ref.current.contains(e.target)) {
       setActiveModal(null);
@@ -58,14 +58,14 @@ export const DayComponent = ({ isConsumed, date, percentage, day, data, calendar
       });
     }
   };
-
+  
   return (
       <DayWrap>
           <div>
             {activeModal && (<DaysGeneralStats key={day} calendarRef={calendarRef} refData={ref} waterData={selectedDayStats}/>)}
           </div>
           <DayButton ref={ref}  onClick={() => toggleModal(day)} isConsumed={isConsumed}>{date}</DayButton>
-          <Percentage>{percentage}%</Percentage>
+          <Percentage>{isToday?dailyNormaFullfilled:percentage}%</Percentage>
       </DayWrap>
   )
 }

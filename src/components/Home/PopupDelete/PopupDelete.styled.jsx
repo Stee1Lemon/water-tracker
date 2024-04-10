@@ -22,6 +22,7 @@ ${CommonStyleBtn}
 color: var(--primary-focus);
 background-color: var(--secondary-fifth);
 box-shadow:none;
+min-width:116px;
 :hover {
   box-shadow:none;
   background-color: var(--secondary-third);  
@@ -32,6 +33,7 @@ export const PopupBtnRemove = styled('button')`
 ${CommonStyleBtn}
 background-color: var(--secondary-second);
 box-shadow:none;
+min-width:116px;
 :hover {
   box-shadow:none;
   background-color: #ec1717;  
