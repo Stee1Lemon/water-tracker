@@ -18,7 +18,7 @@ export const WaterRatioPanel = () => {
   
   const percent = allAmountForDay / waterRate * 100;
 
-  const volumePercentage = parseFloat(percent).toFixed(1);
+  const volumePercentage = parseFloat(percent).toFixed(0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

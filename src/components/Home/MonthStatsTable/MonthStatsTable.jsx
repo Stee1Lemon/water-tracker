@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   startOfMonth,
   lastDayOfMonth,
@@ -9,7 +9,7 @@ import {
   isSameMonth,
 } from 'date-fns';
 import { uk } from 'date-fns/locale';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { DayComponent } from './Day/Day';
 import {
@@ -23,7 +23,11 @@ import icons from '../../../assets/icons.svg';
 
 import { selectMonthWater } from '../../../redux/water/waterSelectors';
 import { selectLang } from '../../../redux/root/rootSelectors';
+import { selectTodayWater } from "../../../redux/water/waterSelectors";
+import { selectWaterRate } from "../../../redux/water/waterSelectors"; 
 import { useTranslation } from 'react-i18next';
+import waterApi from "../../../redux/water/waterOperations";
+
 
 const formatOfYear = 'yyyy';
 const formatOfMonth = 'MMMM';
@@ -33,7 +37,12 @@ export const MonthStatsTable = () => {
   const { t } = useTranslation();
   const language = useSelector(selectLang);
 
+  const dispatch = useDispatch();
+
   const { waterForMonth = [] } = useSelector(selectMonthWater);
+  const waterRate = useSelector(selectWaterRate);
+  const {allAmountForDay = 0} = useSelector(selectTodayWater);
+  const percent = allAmountForDay / waterRate * 100;
 
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeButton, setActiveButton] = useState(null);
@@ -47,14 +56,6 @@ export const MonthStatsTable = () => {
     end: lastDay,
   });
 
-  let monthData = [];
-  if (waterForMonth.length > 0) {
-    monthData = waterForMonth?.reduce((acc, dayData) => {
-      acc[dayData.date] = dayData;
-      return acc;
-    }, {});
-  }
-
   let currentMonth;
   if (language === 'uk') {
     currentMonth = format(currentDate, 'LLLL', { locale: uk });
@@ -62,6 +63,18 @@ export const MonthStatsTable = () => {
     currentMonth = format(currentDate, formatOfMonth);
   }
   const currentYear = format(currentDate, formatOfYear);
+  
+
+  useEffect(() => {
+    dispatch(waterApi.getMonthWaterThunk({ date: format(currentDate, 'MM/yyyy') }));
+  }, [dispatch, currentDate, percent]);
+
+
+  const monthData = waterForMonth?.reduce((acc, dayData) => {
+      acc[dayData.date] = dayData;
+      return acc;
+    }, {});
+
 
   const handlePrevMonth = () => {
     const newMonth = subMonths(currentDate, 1);
