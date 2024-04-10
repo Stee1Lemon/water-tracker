@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
-import Loader from "components/Loader/Loader";
+import Loader from 'components/Loader/Loader';
 import { FormInputToday } from '../reuse/input/FormInput';
 import {
   NormaModal,
@@ -22,22 +22,21 @@ import {
   ModalSubtitle,
   ModalTitle,
   ModalCloseButton,
-  LoaderWrap
+  LoaderWrap,
 } from '../reuse/CommonStyles.styled';
 
 import icons from '../../../assets/icons.svg';
-import { selectAuthUser } from "../../../redux/auth/authSelectors";
-import { selectIsLoading } from "../../../redux/root/rootSelectors";
-import { validationWaterSchema } from "../Schema/validationWaterSchema";
-import authApi from "../../../redux/auth/authOperations";
+import { selectAuthUser } from '../../../redux/auth/authSelectors';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
+import { validationWaterSchema } from '../Schema/validationWaterSchema';
+import authApi from '../../../redux/auth/authOperations';
 import { useTranslation } from 'react-i18next';
-import { selectLang } from "../../../redux/root/rootSelectors"; 
-
+import { selectLang } from '../../../redux/root/rootSelectors';
+import waterApi from '../../../redux/water/waterOperations';
 
 const maxDailyVolumeLimit = 15000;
 
 export const DailyNormaModal = ({ isOpen, onClose }) => {
-
   const { t } = useTranslation();
   const language = useSelector(selectLang);
 
@@ -52,28 +51,34 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     if (!values.weight) return;
     const weightFactor = values.gender === 'female' ? 0.03 : 0.04;
     const activityFactor = values.gender === 'female' ? 0.4 : 0.6;
-    const result = values.weight * weightFactor + values.activityTime * activityFactor;
+    const result =
+      values.weight * weightFactor + values.activityTime * activityFactor;
     setSelectedDailyVolume(result);
   }, []);
-
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     const waterVolume = formik.values.dailyWaterGoal * 1000;
-    
+
     if (waterVolume > 0 && waterVolume <= maxDailyVolumeLimit) {
-      await dispatch(authApi.waterRateThunk({
-        waterRate: waterVolume,
-        date: format(new Date(), 'dd/MM/uuuu')
-      }));
+      const date = format(new Date(), 'dd/MM/uuuu');
+      await dispatch(
+        authApi.waterRateThunk({
+          waterRate: waterVolume,
+          date: date,
+        })
+      );
+      await dispatch(waterApi.getTodayWaterThunk({ date: date }));
       Notify.success('Daily norma successfully updated');
       formik.resetForm();
       onClose();
     } else {
-      Notify.failure('The amount of water must be a positive and no more than 15000 liters');
+      Notify.failure(
+        'The amount of water must be a positive and no more than 15000 liters'
+      );
     }
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -86,10 +91,9 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
     onSubmit: handleOnSubmit,
   });
 
-   useEffect(() => {
+  useEffect(() => {
     calculateWaterVolume(formik.values);
   }, [calculateWaterVolume, formik.values]);
-
 
   return (
     <ModalOverlay isOpen={isOpen} onClose={onClose}>
@@ -141,30 +145,34 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
               </RadioItem>
             </FormRadioItems>
             <CalculationItem>
-               <FormInputToday
-            label={t('dailyNormaModal.weight')}
-            value={formik.values.weight}
+              <FormInputToday
+                label={t('dailyNormaModal.weight')}
+                value={formik.values.weight}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                onFocus ={(e)=> e.target.value =""}
-            type="number"
-            name="weight"
+                onFocus={(e) => (e.target.value = '')}
+                type="number"
+                name="weight"
                 min="0"
                 step="0.1"
-            error={formik.touched.weight && formik.errors.weight}/>
+                error={formik.touched.weight && formik.errors.weight}
+              />
             </CalculationItem>
             <CalculationItem>
               <FormInputToday
-            label={t('dailyNormaModal.time')}
+                label={t('dailyNormaModal.time')}
                 value={formik.values.activityTime}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                onFocus ={(e)=> e.target.value =""}
-            type="number"
-            name="activityTime"
+                onFocus={(e) => (e.target.value = '')}
+                type="number"
+                name="activityTime"
                 min="0"
                 step="0.1"
-            error={formik.touched.activityTime && formik.errors.activityTime}/>
+                error={
+                  formik.touched.activityTime && formik.errors.activityTime
+                }
+              />
             </CalculationItem>
             <CalculationResult>
               <p>{t('dailyNormaModal.perDay')}</p>
@@ -172,21 +180,30 @@ export const DailyNormaModal = ({ isOpen, onClose }) => {
             </CalculationResult>
           </div>
           <div>
-            <ModalSubtitle>
-              {t('dailyNormaModal.willDrink')}
-            </ModalSubtitle>
+            <ModalSubtitle>{t('dailyNormaModal.willDrink')}</ModalSubtitle>
             <FormInputToday
-            value={formik.values.dailyWaterGoal}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            onFocus ={(e)=> e.target.value =""}
-            type="number"
-            name="dailyWaterGoal"
-            min="0"
-            step="0.1"
-            error={formik.touched.dailyWaterGoal && formik.errors.dailyWaterGoal} />
+              value={formik.values.dailyWaterGoal}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              onFocus={(e) => (e.target.value = '')}
+              type="number"
+              name="dailyWaterGoal"
+              min="0"
+              step="0.1"
+              error={
+                formik.touched.dailyWaterGoal && formik.errors.dailyWaterGoal
+              }
+            />
           </div>
-          <ModalBtn disabled={isLoading} type="submit">{isLoading? <LoaderWrap><Loader/></LoaderWrap>: t('dailyNormaModal.buttonSave')}</ModalBtn>
+          <ModalBtn disabled={isLoading} type="submit">
+            {isLoading ? (
+              <LoaderWrap>
+                <Loader />
+              </LoaderWrap>
+            ) : (
+              t('dailyNormaModal.buttonSave')
+            )}
+          </ModalBtn>
         </Form>
       </NormaModal>
     </ModalOverlay>
