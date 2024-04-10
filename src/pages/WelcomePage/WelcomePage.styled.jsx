@@ -19,7 +19,6 @@ export const WelcomeSection = styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
-    height: 100%;
 
     &::after {
       content: '';
@@ -30,6 +29,7 @@ export const WelcomeSection = styled.section`
       z-index: -99;
       top: 50%;
       left: 50%;
+      height: 100%;
       transform: translate(-48%, -48%);
     }
   }
@@ -59,7 +59,6 @@ export const WelcomeSection = styled.section`
 
 export const WelcomeContainer = styled.div`
   @media screen and (max-width: 767px) {
-    padding: 15px 5px;
   }
 
   @media screen and (max-width: 360px) {

@@ -89,20 +89,3 @@ export const Statistics = styled('div')`
     height: 680px;
   }
 `;
-
-export const HomeTeam = styled.div`
-  @media screen and (max-width: 767px) {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 20px;
-  }
-  @media screen and (min-width: 768px) {
-    display: flex;
-    margin: 0 auto;
-    padding-bottom: 20px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin: 0 auto;
-    margin-top: 10px;
-  }
-`;

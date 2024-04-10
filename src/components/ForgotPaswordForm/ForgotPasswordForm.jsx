@@ -2,15 +2,10 @@ import { useFormik } from 'formik';
 import Notiflix from 'notiflix';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Form,
-  InputDiv,
-  Message,
-  SigninTeam,
-} from '../SigninForm/SigninForm.styled';
+import { Form, InputDiv, Message } from '../SigninForm/SigninForm.styled';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import ModalTeam from 'components/ModalTeam/ModalTeam';
+
 import Loader from 'components/Loader/Loader';
 import { selectIsLoading } from '../../redux/root/rootSelectors';
 import authApi from '../../redux/auth/authOperations';
@@ -71,9 +66,6 @@ const ForgotPasswordForm = () => {
           {isLoading ? <Loader /> : t('authForm.buttonSendNewPassword')}
         </button>
         <NavLink to="/signin">{t('authForm.linkSignin')}</NavLink>
-        <SigninTeam>
-          <ModalTeam />
-        </SigninTeam>
       </Form>
     </>
   );
