@@ -17,6 +17,7 @@ export const en = {
     labelOutdPass: 'Outdated password:',
     labelNewPass: 'New password:',
     labelRepeatPass: 'Repeat new password:',
+    sendMail: 'Send email verification',
   },
   logoutModal: {
     logout: 'Log out',

@@ -17,6 +17,7 @@ export const uk = {
     labelOutdPass: 'Старий пароль:',
     labelNewPass: 'Новий пароль:',
     labelRepeatPass: 'Повторіть новий пароль:',
+    sendMail: 'Надіслати підтвердження для електронної пошти',
   },
   logoutModal: {
     logout: 'Вихід',
