@@ -57,6 +57,7 @@ export const TodayListModal = ({
   const isLoading = useSelector(selectIsLoading);
 
   const [volume, setVolume] = useState(amountWater);
+  const [tempVolume, setTempVolume] = useState(volume);
 
   const nowTimeRounded = getRoundedMinutes(date);
   const nowTime = date
@@ -117,17 +118,19 @@ export const TodayListModal = ({
 
   const formik = useFormik({
     initialValues: {
-      portionOfWater: volume,
+      portionOfWater: tempVolume,
     },
     validationSchema: AddWaterSchema,
     onSubmit: handleOnSubmit,
   });
 
+
   useEffect(() => {
     setVolume(amountWater);
+    setTempVolume(amountWater)
     setTime({ value: nowTimeRounded, label: nowTime });
-    formik.initialValues.portionOfWater = amountWater;
-  }, [amountWater, nowTime, nowTimeRounded, formik.initialValues]);
+    
+  }, [amountWater, nowTime, nowTimeRounded,]);
 
   const handleChangeTime = (selectedOption) => {
     setTime(selectedOption);
@@ -149,7 +152,7 @@ export const TodayListModal = ({
       return;
     }
     setVolume((prev) => parseFloat(prev) + step);
-    formik.values.portionOfWater = formik.values.portionOfWater + step;
+     setTempVolume(tempVolume + step);
   };
 
   const decreaseVolume = () => {
@@ -157,7 +160,7 @@ export const TodayListModal = ({
       return;
     }
     setVolume((prev) => parseFloat(prev) - step);
-    formik.values.portionOfWater = formik.values.portionOfWater - step;
+    setTempVolume(tempVolume - step);
   };
 
   const handleOnBlur = (e) => {
@@ -165,6 +168,19 @@ export const TodayListModal = ({
       const value = parseFloat(e.target.value);
       setVolume(value);
     }
+  };
+
+  const handleChange = e => {
+    if (!e.target.value) {
+      e.target.value = '';
+      setTempVolume(null);
+      return;
+    }
+    if (e.target.value > maxVolumeLimit) {
+      e.target.value = maxVolumeLimit;
+    }
+    const val = parseInt(e.target.value, 10);
+    setTempVolume(val);
   };
 
   return (
@@ -221,12 +237,12 @@ export const TodayListModal = ({
           <div>
             <ModalSubtitle>{t('addEditWaterModal.waterUsed')}</ModalSubtitle>
             <FormInputToday
-              value={formik.values.portionOfWater}
+              value={tempVolume}
               onBlur={(e) => {
                 formik.handleBlur(e);
                 handleOnBlur(e);
               }}
-              onChange={formik.handleChange}
+              onChange={handleChange}
               onFocus={(e) => (e.target.value = '')}
               type="number"
               name="portionOfWater"
