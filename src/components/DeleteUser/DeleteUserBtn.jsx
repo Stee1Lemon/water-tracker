@@ -13,8 +13,10 @@ import { useDispatch } from 'react-redux';
 import authApi from '../../redux/auth/authOperations';
 import icons from '../../assets/icons.svg';
 import Notiflix from 'notiflix';
+import { useTranslation } from 'react-i18next';
 
 export const DeleteUserBtn = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
@@ -39,26 +41,24 @@ export const DeleteUserBtn = () => {
   return (
     <>
       <DeleteUserButton onClick={() => setIsOpen(!isOpen)}>
-        Delete user
+        {t('deleteUserModal.deleteUserbtn')}
       </DeleteUserButton>
       <ModalOverlay isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
         <ModalLogOutContainer>
           <div className="logOutDiv1">
-            <p className="logOutP1">DELETE user</p>
+            <p className="logOutP1">{t('deleteUserModal.deleteUserbtn')}</p>
             <Xmark
               className="xMarkWrapper"
               onClick={() => setIsOpen(!isOpen)}
             />
           </div>
           <DeleteContainer>
-            <p className="logOutP2">
-              Do you really want to delete your profile?
-            </p>
+            <p className="logOutP2">{t('deleteUserModal.question')}</p>
             <InputDiv>
               <DeleteInput
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                placeholder="Password"
+                placeholder={t('authForm.placeholdPassword')}
                 value={passwordInput}
                 onChange={handlePassword}
                 style={{
@@ -88,13 +88,13 @@ export const DeleteUserBtn = () => {
           </DeleteContainer>
           <div className="logOutDiv3">
             <button className="logOutButtonDelete" onClick={handleDelete}>
-              DELETE
+              {t('deleteEntryModal.buttonDelete')}
             </button>
             <button
               className="logOutButtonCancel"
               onClick={() => setIsOpen(!isOpen)}
             >
-              Cancel
+              {t('deleteEntryModal.buttonCancel')}
             </button>
           </div>
         </ModalLogOutContainer>

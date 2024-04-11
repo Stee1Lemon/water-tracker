@@ -9,8 +9,10 @@ import {
 import { ReactComponent as LogoIcon } from '../headerIcons/Logo.svg';
 import { ReactComponent as OutlineIcon } from '../headerIcons/Outline.svg';
 import { LanguageSwitcher } from '../../LanguageSwitcher/LanguageSwitcher.jsx';
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
+  const { t } = useTranslation();
   return (
     <HeaderContainer>
       <Navigation>
@@ -18,12 +20,13 @@ export const Header = () => {
           <LogoWrapper>
             <LogoIcon />
           </LogoWrapper>
-          TRACKER<br /> 
+          TRACKER
+          <br />
           OF WATER
         </LogoLink>
         <LanguageSwitcher />
         <SignInLink to="/signin">
-          Sign in
+          {t('authForm.linkSignin')}
           <SignWrapper>
             <OutlineIcon />
           </SignWrapper>

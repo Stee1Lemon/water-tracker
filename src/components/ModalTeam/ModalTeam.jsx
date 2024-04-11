@@ -1,6 +1,7 @@
 import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 import CardMember from './CardMember';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import icons from '../../assets/icons.svg';
 
 import VG from 'assets/photoTeam/VLADYSLAV-GOLODNIUK.jpg';
@@ -17,6 +18,7 @@ import YS from 'assets/photoTeam/YELYZAVETA SHATROVA.jpg';
 import { TeamButton, ButtonOverlay, CardArray } from './ModalTeam.styled';
 
 const ModalTeam = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const teamArray = [
@@ -107,7 +109,7 @@ const ModalTeam = () => {
   return (
     <>
       <TeamButton onClick={() => setIsModalOpen(!isModalOpen)}>
-        Team members
+        {t('team')}
       </TeamButton>
 
       <ModalOverlay
