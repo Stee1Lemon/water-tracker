@@ -1,15 +1,4 @@
-import{u as n,N as a,j as e,i as r}from"./index-e91df7db.js";import{u as d}from"./useTranslation-ba4f0dd8.js";import{C as s}from"./Container-fc8d7888.js";n.div`
-  margin-top: 500px;
-
-  @media screen and (min-width: 768px) {
-    margin-left: 25px;
-    margin-top: 400px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin: 0 auto;
-    margin-top: 70px;
-  }
-`;const p=n.div`
+import{u as n,N as a,j as e,i as r}from"./index-376479bf.js";import{u as d}from"./useTranslation-e78d2aa3.js";import{C as s}from"./Container-6b37e9b8.js";const l=n.div`
   display: flex;
   flex-direction: column;
   align-items: normal;
@@ -20,14 +9,13 @@ import{u as n,N as a,j as e,i as r}from"./index-e91df7db.js";import{u as d}from"
   @media screen and (min-width: 768px) {
     padding-top: 40px;
     padding-bottom: 50px;
-    /* padding-left: 32px;
-    padding-right: 32px; */
   }
 
   @media screen and (min-width: 1440px) {
     flex-direction: row;
+    padding-left: 100px;
   }
-`,l=n.h1`
+`,p=n.h1`
   color: var(--primary-dark);
   font-family: Roboto;
   font-size: 28px;
@@ -159,6 +147,7 @@ import{u as n,N as a,j as e,i as r}from"./index-e91df7db.js";import{u as d}from"
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   margin-left: 0px;
   margin-top: 40px;
+  margin-bottom: 40px;
   width: 280px;
 
   @media screen and (min-width: 768px) {
@@ -171,6 +160,9 @@ import{u as n,N as a,j as e,i as r}from"./index-e91df7db.js";import{u as d}from"
     padding: 32px 21px;
     border-radius: 10px;
     margin-left: 81px;
+    margin-right: 0;
+    padding-right: 0;
+    margin-top: 85px;
     width: 515px;
   }
 `,y=n.h2`
@@ -203,4 +195,4 @@ import{u as n,N as a,j as e,i as r}from"./index-e91df7db.js";import{u as d}from"
     color: var(--primary-focus);
     font-size: 1.5em;
   }
-`,u=()=>{const{t:i}=d();return e.jsx(e.Fragment,{children:e.jsxs(p,{children:[e.jsxs("div",{children:[e.jsx(l,{children:i("welcome.header")}),e.jsx(c,{children:i("welcome.description")}),e.jsx(x,{children:i("welcome.listBenef")}),e.jsxs(m,{children:[e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-calendar`})}),i("welcome.firstBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-chart-bar`})}),i("welcome.secondBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-wrench-screwdriver`})}),i("welcome.thirdBenef")]})]}),e.jsx("div",{children:e.jsx(h,{children:e.jsx(g,{to:"/signup",children:i("welcome.buttonTry")})})})]}),e.jsx(f,{children:e.jsxs(w,{children:[e.jsx(y,{children:i("welcome.listWhy")}),e.jsxs(j,{children:[e.jsx(t,{children:i("welcome.firstWhy")}),e.jsx(t,{children:i("welcome.secondWhy")}),e.jsx(t,{children:i("welcome.thirdWhy")}),e.jsx(t,{children:i("welcome.fourthWhy")}),e.jsx(t,{children:i("welcome.fifthWhy")}),e.jsx(t,{children:i("welcome.sixthWhy")}),e.jsx(t,{children:i("welcome.seventhWhy")})]})]})})]})})},k=()=>e.jsx("section",{children:e.jsx(s,{children:e.jsx(u,{})})});export{k as default};
+`,u=()=>{const{t:i}=d();return e.jsx(e.Fragment,{children:e.jsxs(l,{children:[e.jsxs("div",{children:[e.jsx(p,{children:i("welcome.header")}),e.jsx(c,{children:i("welcome.description")}),e.jsx(x,{children:i("welcome.listBenef")}),e.jsxs(m,{children:[e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-calendar`})}),i("welcome.firstBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-chart-bar`})}),i("welcome.secondBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-wrench-screwdriver`})}),i("welcome.thirdBenef")]})]}),e.jsx("div",{children:e.jsx(h,{children:e.jsx(g,{to:"/signup",children:i("welcome.buttonTry")})})})]}),e.jsx(f,{children:e.jsxs(w,{children:[e.jsx(y,{children:i("welcome.listWhy")}),e.jsxs(j,{children:[e.jsx(t,{children:i("welcome.firstWhy")}),e.jsx(t,{children:i("welcome.secondWhy")}),e.jsx(t,{children:i("welcome.thirdWhy")}),e.jsx(t,{children:i("welcome.fourthWhy")}),e.jsx(t,{children:i("welcome.fifthWhy")}),e.jsx(t,{children:i("welcome.sixthWhy")}),e.jsx(t,{children:i("welcome.seventhWhy")})]})]})})]})})},k=()=>e.jsx("section",{children:e.jsx(s,{children:e.jsx(u,{})})});export{k as default};
