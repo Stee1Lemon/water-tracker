@@ -11,7 +11,7 @@ export const validationWaterSchema = Yup.object({
   dailyWaterGoal: Yup.number()
     .required('Amount water is required')
     .min(0, 'Amount water must be a positive number')
-    .max(15, 'The amount of water should be no more than 15000 liters')
+    .max(15, 'The amount of water should be no more than 15 liters')
     .test(
       "maxDigitsAfterDecimal",
       "The amount of water must have 1 digits after decimal or less",

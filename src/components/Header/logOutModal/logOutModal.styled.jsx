@@ -4,7 +4,7 @@ export const ModalLogOutContainer = styled.div`
   background-color: var(--primary-light);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 320px;
+  /* min-width: 320px; */
   width: 592px;
   min-height: 216px;
   box-sizing: border-box;
@@ -130,7 +130,7 @@ export const ModalLogOutContainer = styled.div`
     transition: all 0.1s ease;
 
     @media (max-width: 767px) {
-      max-width: 232px;
+      width: 100%;
       max-height: 36px;
     }
   }
