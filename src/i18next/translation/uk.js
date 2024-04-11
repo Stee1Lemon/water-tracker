@@ -7,8 +7,8 @@ export const uk = {
   },
   settingModal: {
     photo: 'Ваше фото',
-    upload: 'Завантажити фото',
-    gender: 'Ваша гендерна ідентичність',
+    upload: 'Завантажити',
+    gender: 'Ваша стать',
     woman: 'Жінка',
     man: 'Чоловік',
     pass: 'Пароль',

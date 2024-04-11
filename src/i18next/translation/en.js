@@ -2,7 +2,7 @@ export const en = {
   // Header / Modal Settings
   header: {
     signin: 'Sign In',
-    setting: 'Setting',
+    setting: 'Settings',
     logout: 'Log out',
   },
   settingModal: {
