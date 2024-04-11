@@ -21,6 +21,11 @@ export const TeamButton = styled.button`
   font-weight: 500;
   line-height: 1.2;
 
+  &:hover,
+  &:focus {
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  }
+
   @media screen and (min-width: 768px) {
     margin: 0 auto;
     height: 44px;
@@ -91,12 +96,14 @@ export const ButtonOverlay = styled.button`
     width: 16px;
     height: 16px;
     stroke: var(--primary-focus);
+    &:hover,
+    &:focus {
+      stroke: var(--primary-dark);
+    }
   }
-  &:focus,
-  &:active {
-    stroke: var(--secondary-second);
-
-    outline: none;
+  &:hover,
+  &:focus {
+    border-color: var(--primary-dark);
   }
 
   @media screen and (min-width: 768px) {
@@ -193,40 +200,70 @@ export const IconList = styled.ul`
 `;
 
 export const IconTeam = styled.a`
+  background: transparent;
+  border-radius: 20px;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
   svg {
     width: 20px;
     height: 20px;
     stroke-width: 1;
     stroke: var(--primary-light);
     fill: var(--primary-focus);
+    &:hover,
+    &:focus {
+      stroke: var(--secondary-fifth);
+    }
   }
-
+  &:hover,
   &:focus {
-    stroke: var(--secondary-second);
-    fill: var(--secondary-second);
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
   }
 
   @media screen and (min-width: 1440px) {
+    border-radius: 30px;
+
+    width: 31px;
+    height: 30px;
     svg {
-      width: 35px;
+      width: 31px;
       height: 30px;
     }
   }
 `;
 
 export const IconTeamGithub = styled.a`
+  background: transparent;
+  border-radius: 18px;
+  box-sizing: border-box;
+  width: 19px;
+  height: 18px;
   svg {
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 18px;
     stroke-width: 1;
     stroke: var(--primary-dark);
     fill: var(--primary-dark);
+    &:hover,
+    &:focus {
+      stroke: var(--primary-dark);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 4px 14px 0 rgba(0, 0, 15, 0.54);
   }
 
   @media screen and (min-width: 1440px) {
+    border-radius: 29px;
+
+    width: 30px;
+    height: 29px;
     svg {
-      width: 35px;
-      height: 30px;
+      width: 30px;
+      height: 29px;
     }
   }
 `;

@@ -149,6 +149,11 @@ export const WelcomePageButton = styled.button`
   font-weight: 500;
   line-height: 1.2;
 
+  &:hover,
+  &:focus {
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  }
+
   @media screen and (min-width: 768px) {
     height: 44px;
     width: 336px;

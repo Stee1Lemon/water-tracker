@@ -100,9 +100,6 @@ const SettingsModal = ({ isOpen, onClose }) => {
     }
     setFile(file);
   };
-  const handleUploadPhoto = () => {
-    dispatch(authApi.updateAvatarThunk(file));
-  };
 
   const validatePasswords = () => {
     const passwordFields = [
@@ -161,7 +158,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
     if (!file && !dataToSave)
       return Notiflix.Notify.failure('Must be at least one field to change.');
     if (file) {
-      const result = await handleUploadPhoto();
+      const result = await dispatch(authApi.updateAvatarThunk(file));
       if (result.error) return Notiflix.Notify.failure(result.payload);
     }
     if (dataToSave) {
