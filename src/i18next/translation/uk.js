@@ -17,6 +17,7 @@ export const uk = {
     labelOutdPass: 'Старий пароль:',
     labelNewPass: 'Новий пароль:',
     labelRepeatPass: 'Повторіть новий пароль:',
+    sendMail: 'Надіслати підтвердження для електронної пошти',
   },
   logoutModal: {
     logout: 'Вихід',
@@ -57,6 +58,7 @@ export const uk = {
     linkSignin: 'Увійти',
     placeholdEmail: 'Електронна адреса',
     placeholdPassword: 'Пароль',
+    forgotPass: 'Забули пароль?',
   },
   // Home page
   today: 'Сьогодні',
@@ -108,5 +110,12 @@ export const uk = {
     norma: 'Денна норма:',
     fulfillment: 'Виконання денної норми:',
     servings: 'Кількість порцій води:',
+  },
+  // Team members
+  team: 'Учасники команди',
+  // Delete user modal
+  deleteUserModal: {
+    deleteUserbtn: 'Видалити користувача',
+    question: 'Ви справді хочете видалити свій профіль?',
   },
 };

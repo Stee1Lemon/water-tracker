@@ -17,6 +17,7 @@ export const en = {
     labelOutdPass: 'Outdated password:',
     labelNewPass: 'New password:',
     labelRepeatPass: 'Repeat new password:',
+    sendMail: 'Send email verification',
   },
   logoutModal: {
     logout: 'Log out',
@@ -57,6 +58,7 @@ export const en = {
     linkSignin: 'Sign in',
     placeholdEmail: 'E-mail',
     placeholdPassword: 'Password',
+    forgotPass: 'Forgot password?',
   },
 
   // Home page
@@ -109,5 +111,12 @@ export const en = {
     norma: 'Daily norma:',
     fulfillment: 'Fulfillment of the daily norm:',
     servings: 'How many servings of water:',
+  },
+  // Team members
+  team: 'Team members',
+  // Delete user modal
+  deleteUserModal: {
+    deleteUserbtn: 'Delete user',
+    question: 'Do you really want to delete your profile?',
   },
 };
