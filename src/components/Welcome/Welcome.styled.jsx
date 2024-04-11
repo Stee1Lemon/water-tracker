@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const ContainerTeam = styled.div`
-  margin-top: 500px;
+// export const ContainerTeam = styled.div`
+//   margin-top: 500px;
 
-  @media screen and (min-width: 768px) {
-    margin-left: 25px;
-    margin-top: 400px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin: 0 auto;
-    margin-top: 70px;
-  }
-`;
+//   @media screen and (min-width: 768px) {
+//     margin-left: 25px;
+//     margin-top: 400px;
+//   }
+//   @media screen and (min-width: 1440px) {
+//     margin: 0 auto;
+//     margin-top: 70px;
+//   }
+// `;
 
 export const WelcomePageWrapper = styled.div`
   display: flex;
@@ -25,12 +25,11 @@ export const WelcomePageWrapper = styled.div`
   @media screen and (min-width: 768px) {
     padding-top: 40px;
     padding-bottom: 50px;
-    /* padding-left: 32px;
-    padding-right: 32px; */
   }
 
   @media screen and (min-width: 1440px) {
     flex-direction: row;
+    padding-left: 100px;
   }
 `;
 
@@ -181,6 +180,7 @@ export const WelcomePageDescriptionDiv = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   margin-left: 0px;
   margin-top: 40px;
+  margin-bottom: 40px;
   width: 280px;
 
   @media screen and (min-width: 768px) {
@@ -193,6 +193,9 @@ export const WelcomePageDescriptionDiv = styled.div`
     padding: 32px 21px;
     border-radius: 10px;
     margin-left: 81px;
+    margin-right: 0;
+    padding-right: 0;
+    margin-top: 85px;
     width: 515px;
   }
 `;
