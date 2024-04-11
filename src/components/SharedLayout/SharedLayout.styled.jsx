@@ -28,8 +28,6 @@ export const BackGround = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
-  width: 100%;
 
   @media only screen and (max-width: 768px) {
     ${(props) =>
@@ -63,8 +61,6 @@ export const BackGround = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100%;
-    width: 100%;
 
     &::after {
       content: '';
