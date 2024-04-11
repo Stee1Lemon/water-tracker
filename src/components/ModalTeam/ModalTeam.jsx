@@ -40,7 +40,7 @@ const ModalTeam = () => {
     {
       id: 3,
       name: 'Oleh Kriuchkov',
-      role: 'Scrum Master',
+      role: 'Scrum / Frontend Developer',
       photo: OK,
       linkedin: 'https://www.linkedin.com/in/oleg-kryuchkov/',
       github: 'https://github.com/OlegKryuchkov',
