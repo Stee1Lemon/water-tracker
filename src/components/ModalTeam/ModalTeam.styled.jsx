@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const TeamButton = styled.button`
+  display: flex;
+  margin: 0 auto;
+
   height: 36px;
   width: 280px;
   padding: 8px 30px;
@@ -14,9 +17,7 @@ export const TeamButton = styled.button`
 
   color: var(--primary-light);
   text-align: center;
-  font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.2;
 
@@ -30,7 +31,7 @@ export const TeamButton = styled.button`
   }
   @media screen and (min-width: 1440px) {
     display: flex;
-    margin: auto;
+    margin: 0 auto;
     height: 44px;
     width: 384px;
   }

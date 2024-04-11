@@ -25,9 +25,11 @@ export const BackGround = styled.div`
       : props.$page === 'home'
       ? `url(${bg})`
       : 'none'};
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center;
+  height: 100%;
+  width: 100%;
 
   @media only screen and (max-width: 768px) {
     ${(props) =>
@@ -57,6 +59,12 @@ export const BackGround = styled.div`
         : props.$page === 'home'
         ? `url(${bg})`
         : 'none'};
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
 
     &::after {
       content: '';
