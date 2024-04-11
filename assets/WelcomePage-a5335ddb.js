@@ -1,4 +1,4 @@
-import{u as n,N as a,j as e,i as r}from"./index-91338d69.js";import{u as d}from"./useTranslation-878a25ff.js";import{C as s}from"./Container-52fa92f4.js";const l=n.div`
+import{u as n,N as a,j as e,i as r}from"./index-f3b87ed2.js";import{u as s}from"./useTranslation-78d28ff1.js";import{C as d}from"./Container-ba5df022.js";const l=n.div`
   display: flex;
   flex-direction: column;
   align-items: normal;
@@ -122,6 +122,11 @@ import{u as n,N as a,j as e,i as r}from"./index-91338d69.js";import{u as d}from"
   font-weight: 500;
   line-height: 1.2;
 
+  &:hover,
+  &:focus {
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  }
+
   @media screen and (min-width: 768px) {
     height: 44px;
     width: 336px;
@@ -195,4 +200,4 @@ import{u as n,N as a,j as e,i as r}from"./index-91338d69.js";import{u as d}from"
     color: var(--primary-focus);
     font-size: 1.5em;
   }
-`,u=()=>{const{t:i}=d();return e.jsx(e.Fragment,{children:e.jsxs(l,{children:[e.jsxs("div",{children:[e.jsx(p,{children:i("welcome.header")}),e.jsx(c,{children:i("welcome.description")}),e.jsx(x,{children:i("welcome.listBenef")}),e.jsxs(m,{children:[e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-calendar`})}),i("welcome.firstBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-chart-bar`})}),i("welcome.secondBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-wrench-screwdriver`})}),i("welcome.thirdBenef")]})]}),e.jsx("div",{children:e.jsx(h,{children:e.jsx(g,{to:"/signup",children:i("welcome.buttonTry")})})})]}),e.jsx(f,{children:e.jsxs(w,{children:[e.jsx(y,{children:i("welcome.listWhy")}),e.jsxs(j,{children:[e.jsx(t,{children:i("welcome.firstWhy")}),e.jsx(t,{children:i("welcome.secondWhy")}),e.jsx(t,{children:i("welcome.thirdWhy")}),e.jsx(t,{children:i("welcome.fourthWhy")}),e.jsx(t,{children:i("welcome.fifthWhy")}),e.jsx(t,{children:i("welcome.sixthWhy")}),e.jsx(t,{children:i("welcome.seventhWhy")})]})]})})]})})},k=()=>e.jsx("section",{children:e.jsx(s,{children:e.jsx(u,{})})});export{k as default};
+`,u=()=>{const{t:i}=s();return e.jsx(e.Fragment,{children:e.jsxs(l,{children:[e.jsxs("div",{children:[e.jsx(p,{children:i("welcome.header")}),e.jsx(c,{children:i("welcome.description")}),e.jsx(x,{children:i("welcome.listBenef")}),e.jsxs(m,{children:[e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-calendar`})}),i("welcome.firstBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-chart-bar`})}),i("welcome.secondBenef")]}),e.jsxs(o,{children:[e.jsx("svg",{children:e.jsx("use",{href:`${r}#icon-wrench-screwdriver`})}),i("welcome.thirdBenef")]})]}),e.jsx("div",{children:e.jsx(h,{children:e.jsx(g,{to:"/signup",children:i("welcome.buttonTry")})})})]}),e.jsx(f,{children:e.jsxs(w,{children:[e.jsx(y,{children:i("welcome.listWhy")}),e.jsxs(j,{children:[e.jsx(t,{children:i("welcome.firstWhy")}),e.jsx(t,{children:i("welcome.secondWhy")}),e.jsx(t,{children:i("welcome.thirdWhy")}),e.jsx(t,{children:i("welcome.fourthWhy")}),e.jsx(t,{children:i("welcome.fifthWhy")}),e.jsx(t,{children:i("welcome.sixthWhy")}),e.jsx(t,{children:i("welcome.seventhWhy")})]})]})})]})})},k=()=>e.jsx("section",{children:e.jsx(d,{children:e.jsx(u,{})})});export{k as default};
