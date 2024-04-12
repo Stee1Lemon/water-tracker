@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Notiflix from 'notiflix';
 import { useTranslation } from 'react-i18next';
-import { Form, InputDiv, Message } from './SignupForm.styled';
+import { Blueletter, Form, GoogleAuth, Greenletter, InputDiv, Message, Redletter, Yellowletter } from './SignupForm.styled';
 import icons from '../../assets/icons.svg';
 import authApi from '../../redux/auth/authOperations';
 import Loader from 'components/Loader/Loader';
@@ -171,6 +171,10 @@ export const SignupForm = () => {
       <button type="submit" disabled={isLoading}>
         {isLoading ? <Loader /> : t('authForm.buttonSignup')}
       </button>
+      <GoogleAuth type="button" disabled={isLoading}>
+        {isLoading ? <Loader /> : <a href="https://watertracker-t8-backend.onrender.com/api/auth/google">Sign up with <span><Blueletter>G</Blueletter><Redletter>o</Redletter><Yellowletter>o</Yellowletter><Blueletter>g</Blueletter><Greenletter>l</Greenletter><Redletter>e</Redletter></span></a>}
+      </GoogleAuth>
+      
       <NavLink to="/signin">{t('authForm.linkSignin')}</NavLink>
     </Form>
   );

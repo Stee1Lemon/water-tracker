@@ -73,11 +73,12 @@ export const FormContainer = styled.div`
   max-width: 320px;
   margin: 0 auto;
   padding: 24px 20px;
-  height: 600px;
+  height: 550px;
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
     padding: 40px 32px;
+    margin-bottom: 40px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -85,5 +86,6 @@ export const FormContainer = styled.div`
     padding: 20px 112px;
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 120px;
   }
 `;

@@ -133,3 +133,34 @@ export const Message = styled.span`
   color: var(--secondary-second);
   font-size: 14px;
 `;
+
+export const GoogleAuth = styled.button`
+  a{
+    color: white;
+    font-weight: 500;
+    width: inherit;
+    display: block;
+   }
+ 
+  a:hover{
+    color: white;
+  }
+  span{
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 0;
+  }
+`;
+
+export const Blueletter = styled.span`
+  color: #0341AE`;
+
+export const Redletter = styled.span`
+  color: #EA4335`;
+
+export const Yellowletter = styled.span`
+  color: #FBBC05`;
+
+export const Greenletter = styled.span`
+  color: #34A853`;
+
