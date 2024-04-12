@@ -1,4 +1,4 @@
-import { Form, InputDiv, Message } from './SigninForm.styled';
+import { Form, InputDiv, Message} from './SigninForm.styled';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useFormik } from 'formik';
@@ -10,6 +10,7 @@ import Notiflix from 'notiflix';
 import { useTranslation } from 'react-i18next';
 import Loader from 'components/Loader/Loader';
 import { selectIsLoading } from '../../redux/root/rootSelectors';
+import { Blueletter, GoogleAuth, Greenletter, Redletter, Yellowletter } from 'components/SignupForm/SignupForm.styled';
 
 export const SigninForm = () => {
   const { t } = useTranslation();
@@ -116,7 +117,10 @@ export const SigninForm = () => {
       </InputDiv>
       <button type="submit" disabled={isLoading}>
         {isLoading ? <Loader /> : t('authForm.buttonSignin')}
-      </button>{' '}
+      </button>
+      <GoogleAuth type="button" disabled={isLoading}>
+        {isLoading ? <Loader /> : <a href="https://watertracker-t8-backend.onrender.com/api/auth/google">Sign in with <span><Blueletter>G</Blueletter><Redletter>o</Redletter><Yellowletter>o</Yellowletter><Blueletter>g</Blueletter><Greenletter>l</Greenletter><Redletter>e</Redletter></span></a>}
+      </GoogleAuth>{' '}
       <NavLink to="/forgot-password">{t('authForm.forgotPass')}</NavLink>
       <br />
       <NavLink to="/signup">{t('authForm.linkSignup')}</NavLink>
