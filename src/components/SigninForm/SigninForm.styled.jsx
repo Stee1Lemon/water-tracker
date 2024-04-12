@@ -133,24 +133,3 @@ export const Message = styled.span`
   color: var(--secondary-second);
   font-size: 14px;
 `;
-
-// export const GoogleAuthSignIn = styled.button`
-//   a{
-//     color: white;
-//     font-weight: 500;
-//     width: inherit;
-//     display: block;
-//    }
- 
-//   a:hover{
-//     color: white;
-//   }
-//   span{
-//     font-weight: 600;
-//     border-radius: 3px;
-//     padding: 3px 0;
-//   }
-// `;
-
-// export const SignInA = styled.a`
-// color: white`
