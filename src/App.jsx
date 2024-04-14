@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useSearchParams } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { lazy, useEffect, useState } from 'react';
@@ -9,6 +9,7 @@ import PublicRoute from 'components/auth/PublicRoute';
 import { selectUserToken } from './redux/auth/authSelectors';
 import { setAuthToken } from './redux/Api/api';
 import authApi from './redux/auth/authOperations';
+import { authSlice }from './redux/auth/authSlice.js';
 import waterApi from './redux/water/waterOperations';
 import { rootSlice } from './redux/root/rootSlice';
 
@@ -24,7 +25,12 @@ function App() {
   const [background, setBackground] = useState('welcome');
   const location = useLocation();
   const dispatch = useDispatch();
+  const [tokenParam, setTokenParam] = useSearchParams();
+  if (tokenParam.get("token")) {
+    dispatch(authSlice.actions.setToken(tokenParam.get("token")))
+  }
   const token = useSelector(selectUserToken);
+  console.log(token)
 
   useEffect(() => {
     switch (location.pathname) {

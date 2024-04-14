@@ -19,7 +19,6 @@ const PersistConfig = {
   storage,
   whitelist: ['token', 'isLoggedIn'],
 };
-
 export const store = configureStore({
   reducer: {
     root: rootReducer,
