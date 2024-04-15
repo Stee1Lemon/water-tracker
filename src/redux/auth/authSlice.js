@@ -28,13 +28,13 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setToken: (state, { payload }) => {
+    setGoogleToken: (state, { payload }) => {
       state.token = payload;
+      state.isLoggedIn = true;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authApi.signinWithGoogleThunk.fulfilled)
       .addCase(authApi.signupThunk.fulfilled)
       .addCase(authApi.signinThunk.fulfilled, handleSignin)
       .addCase(authApi.getUserThunk.fulfilled, handleUserInfo)
