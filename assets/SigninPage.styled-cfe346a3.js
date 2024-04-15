@@ -1,4 +1,4 @@
-import{u as o}from"./index-d87722c3.js";const n=o.form`
+import{u as o}from"./index-ba4dd61d.js";const n=o.form`
   display: flex;
   flex-direction: column;
   max-width: 280px;
