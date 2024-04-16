@@ -137,7 +137,7 @@ export const SigninForm = () => {
           {isLoading ? <Loader /> : t('authForm.buttonSignin')}
         </button>
         <GoogleAuth type="button" disabled={isLoading}>
-          {isLoading ? <Loader /> : <a href="https://watertracker-t8-backend.onrender.com/api/auth/google">Sign in with <span><Blueletter>G</Blueletter><Redletter>o</Redletter><Yellowletter>o</Yellowletter><Blueletter>g</Blueletter><Greenletter>l</Greenletter><Redletter>e</Redletter></span></a>}
+          {isLoading ? <Loader /> : <a href="https://watertrackerteam8-template.onrender.com/api/auth/google">Sign in with <span><Blueletter>G</Blueletter><Redletter>o</Redletter><Yellowletter>o</Yellowletter><Blueletter>g</Blueletter><Greenletter>l</Greenletter><Redletter>e</Redletter></span></a>}
           {/* {isLoading ? (
             <Loader />
           ) : (
