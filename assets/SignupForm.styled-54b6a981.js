@@ -1,4 +1,4 @@
-import{u as o}from"./index-ba4dd61d.js";const n=o.form`
+import{u as o}from"./index-c906add2.js";const e=o.form`
   display: flex;
   flex-direction: column;
   max-width: 280px;
@@ -120,29 +120,30 @@ import{u as o}from"./index-ba4dd61d.js";const n=o.form`
       width: 384px;
     }
   }
-`,t=o.div`
+`,n=o.div`
   margin-bottom: 16px;
   position: relative;
-`,e=o.span`
+`,i=o.span`
   color: var(--secondary-second);
   font-size: 14px;
-`,a=o.div`
-  max-width: 320px;
-  margin: 0 auto;
-  padding: 24px 20px;
-  height: 550px;
-
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
-    padding: 40px 32px;
-    margin-bottom: 40px;
+`,r=o.button`
+  a{
+    color: white;
+    font-weight: 500;
+    width: inherit;
+    display: block;
+   }
+ 
+  a:hover{
+    color: white;
   }
-
-  @media screen and (min-width: 1440px) {
-    max-width: 1280px;
-    padding: 20px 112px;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 120px;
+  span{
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 0;
   }
-`;export{n as F,t as I,e as M,a};
+`,a=o.span`
+  color: #0341AE`,p=o.span`
+  color: #EA4335`,s=o.span`
+  color: #FBBC05`,h=o.span`
+  color: #34A853`;export{a as B,e as F,r as G,n as I,i as M,p as R,s as Y,h as a};
