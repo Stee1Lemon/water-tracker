@@ -1,4 +1,4 @@
-import{u as n,j as a}from"./index-c906add2.js";const d=n.div`
+import{u as n,j as a}from"./index-7bf387d2.js";const d=n.div`
   width: 100%;
   max-width: 320px;
   margin: 0 auto;
